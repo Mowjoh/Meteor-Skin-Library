@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteor Skin Library", "Meteor Skin Library\Meteor Skin Library.csproj", "{60BBC1A5-08BA-4A40-BC3E-65EC8CE48910}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Meteor Skin Library Setup", "Meteor Skin Library Setup\Meteor Skin Library Setup.vdproj", "{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,9 @@ Global
 		{60BBC1A5-08BA-4A40-BC3E-65EC8CE48910}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60BBC1A5-08BA-4A40-BC3E-65EC8CE48910}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60BBC1A5-08BA-4A40-BC3E-65EC8CE48910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}.Debug|Any CPU.ActiveCfg = Debug
+		{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}.Debug|Any CPU.Build.0 = Debug
+		{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
