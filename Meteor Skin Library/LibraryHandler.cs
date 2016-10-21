@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -14,7 +15,7 @@ namespace MeteorSkinLibrary
 
         #region ClassVariables
         //Library path
-        String LibraryPath = "mmsl_config/Library.xml";
+        String LibraryPath = Application.StartupPath + "/mmsl_config/Library.xml";
         #endregion
 
         #region Constructors
@@ -213,7 +214,7 @@ namespace MeteorSkinLibrary
         internal void get_skin_default(String fullname, int slot)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load("mmsl_config/Default_Library.xml");
+            xml.Load(Application.StartupPath + "/mmsl_config/Default_Library.xml");
             XmlNode node = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']");
             XmlDocument xml2 = new XmlDocument();
             xml2.Load(LibraryPath);

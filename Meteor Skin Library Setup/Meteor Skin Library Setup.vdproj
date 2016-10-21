@@ -373,7 +373,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Meteor Skin Library"
         "ProductCode" = "8:{BC562068-FBA9-4EB8-9184-3DE1D6AAB937}"
-        "PackageCode" = "8:{551377EA-1B51-4B1C-9A24-DEA7302071F5}"
+        "PackageCode" = "8:{A3C51346-FF15-4C0A-873F-BC74912137B0}"
         "UpgradeCode" = "8:{7E5945E5-0291-472B-A02F-D0C785C3138C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -473,6 +473,100 @@
             {
                 "Keys"
                 {
+                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_DB11D641D3D74781A013C0971EC07736"
+                    {
+                    "Name" = "8:meteor"
+                    "Condition" = "8:"
+                    "AlwaysCreate" = "11:FALSE"
+                    "DeleteAtUninstall" = "11:FALSE"
+                    "Transitive" = "11:FALSE"
+                        "Keys"
+                        {
+                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_2DBD0F5447394015B049AE4322927FB0"
+                            {
+                            "Name" = "8:shell"
+                            "Condition" = "8:"
+                            "AlwaysCreate" = "11:FALSE"
+                            "DeleteAtUninstall" = "11:FALSE"
+                            "Transitive" = "11:FALSE"
+                                "Keys"
+                                {
+                                    "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_44AB80ADB0D248EA9EE3A895BFCB6888"
+                                    {
+                                    "Name" = "8:open"
+                                    "Condition" = "8:"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "DeleteAtUninstall" = "11:FALSE"
+                                    "Transitive" = "11:FALSE"
+                                        "Keys"
+                                        {
+                                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_9EAFD685A13D478EBC438A2361309EE0"
+                                            {
+                                            "Name" = "8:command"
+                                            "Condition" = "8:"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "DeleteAtUninstall" = "11:TRUE"
+                                            "Transitive" = "11:FALSE"
+                                                "Keys"
+                                                {
+                                                }
+                                                "Values"
+                                                {
+                                                    "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_83CB962E3279451F8FEE987032ABBA68"
+                                                    {
+                                                    "Name" = "8:"
+                                                    "Condition" = "8:"
+                                                    "Transitive" = "11:FALSE"
+                                                    "ValueTypes" = "3:1"
+                                                    "Value" = "8:\"[TARGETDIR]Meteor Skin Library.exe\" \"%1\""
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        "Values"
+                                        {
+                                        }
+                                    }
+                                }
+                                "Values"
+                                {
+                                }
+                            }
+                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_64F873A39C014C0486AD4DED2A627CCC"
+                            {
+                            "Name" = "8:URL Protocol"
+                            "Condition" = "8:"
+                            "AlwaysCreate" = "11:FALSE"
+                            "DeleteAtUninstall" = "11:FALSE"
+                            "Transitive" = "11:FALSE"
+                                "Keys"
+                                {
+                                }
+                                "Values"
+                                {
+                                }
+                            }
+                        }
+                        "Values"
+                        {
+                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_38BD8B123C1240CEBD603F7258AD5963"
+                            {
+                            "Name" = "8:URL Protocol"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "ValueTypes" = "3:1"
+                            "Value" = "8:"
+                            }
+                            "{ADCFDA98-8FDD-45E4-90BC-E3D20B029870}:_591B593FD0CF4B9DBA5B20DB77E757B8"
+                            {
+                            "Name" = "8:"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "ValueTypes" = "3:1"
+                            "Value" = "8:URL:meteor Protocol"
+                            }
+                        }
+                    }
                 }
             }
             "HKU"
@@ -504,7 +598,7 @@
             "Target" = "8:_EA1E9E816B9D4ECBAD38D122ECC39CD7"
             "Folder" = "8:_3AAC36BFABF846028D619F5406F0B0E7"
             "WorkingFolder" = "8:_3D8912FE11584D3998A1D5D43806406C"
-            "Icon" = "8:"
+            "Icon" = "8:_A1A0427695BA4C38BC84BAFEA318D15A"
             "Feature" = "8:"
             }
         }

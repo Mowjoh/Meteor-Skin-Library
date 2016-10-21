@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MeteorSkinLibrary
 {
@@ -72,8 +73,8 @@ namespace MeteorSkinLibrary
             models = new ArrayList();
 
             //Instanciating handlers to get info
-            Library = new LibraryHandler("mmsl_config/Library.xml");
-            Properties = new PropertyHandler("mmsl_config/Config.xml");
+            Library = new LibraryHandler(Application.StartupPath + "/mmsl_config/Library.xml");
+            Properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Config.xml");
 
             check_skin();
 
@@ -84,23 +85,23 @@ namespace MeteorSkinLibrary
             this.datafolder = Properties.get("datafolder");
 
             //Now setting folders, easy ones
-            this.modelpath = "mmsl_workspace/data/fighter/" + modelfolder + "/model/";
+            this.modelpath = Application.StartupPath + "/mmsl_workspace/data/fighter/" + modelfolder + "/model/";
             if (dlc)
             {
                 if(Library.get_moved_dlc_status(fullname))
                 {
-                    this.csppath = "mmsl_workspace/data/ui/replace/chr/";
-                    this.edited_csppath = "mmsl_workspace/"+datafolder+"/ui/replace/append/chr/";
+                    this.csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/chr/";
+                    this.edited_csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder+"/ui/replace/append/chr/";
                 }else
                 {
-                    this.csppath = "mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
+                    this.csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
                 }
             }else
             {
-                this.csppath = "mmsl_workspace/data/ui/replace/chr/";
+                this.csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/chr/";
             }
             //Config meta
-            this.metapath = "mmsl_config/meta/" + this.modelfolder + "/slot_" + slot+"/";
+            this.metapath = Application.StartupPath + "/mmsl_config/meta/" + this.modelfolder + "/slot_" + slot+"/";
 
             loadMeta();
             load_models();
@@ -118,8 +119,8 @@ namespace MeteorSkinLibrary
             csps = new ArrayList();
             models = new ArrayList();
 
-            Library = new LibraryHandler("mmsl_config/Library.xml");
-            Properties = new PropertyHandler("mmsl_config/Config.xml");
+            Library = new LibraryHandler(Application.StartupPath + "/mmsl_config/Library.xml");
+            Properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Config.xml");
         }
         #endregion
 
@@ -475,7 +476,7 @@ namespace MeteorSkinLibrary
             if (File.Exists(this.metapath + "meta.xml"))
             {
                 File.Delete(this.metapath + "meta.xml");
-                File.Copy("mmsl_config/meta/Default_Meta.xml", this.metapath + "meta.xml", true);
+                File.Copy(Application.StartupPath + "/mmsl_config/meta/Default_Meta.xml", this.metapath + "meta.xml", true);
             }
             loadMeta();
         }
@@ -488,7 +489,7 @@ namespace MeteorSkinLibrary
             }
             if(!File.Exists(this.metapath + "meta.xml"))
             {
-                File.Copy("mmsl_config/meta/Default_Meta.xml", this.metapath + "meta.xml", true);
+                File.Copy(Application.StartupPath + "/mmsl_config/meta/Default_Meta.xml", this.metapath + "meta.xml", true);
             }
             Meta = new MetaHandler(this.metapath + "meta.xml");
 
@@ -509,7 +510,7 @@ namespace MeteorSkinLibrary
         #region MeteorSkins
         public void package_meteor()
         {
-            String package_destination = "mmsl_packages/meteor_xx_"+libraryname+"/";
+            String package_destination = Application.StartupPath + "/mmsl_packages/meteor_xx_" + libraryname+"/";
             if (Directory.Exists(package_destination + "meta"))
             {
                 Directory.Delete(package_destination + "meta", true);

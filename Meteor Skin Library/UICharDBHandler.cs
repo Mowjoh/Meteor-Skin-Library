@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
+using System.Windows.Forms;
 
 namespace MeteorSkinLibrary
 {
@@ -26,7 +27,7 @@ namespace MeteorSkinLibrary
         public UICharDBHandler(String uipath, String datafolder)
         {
             PropertyHandler properties = new PropertyHandler();
-            properties.set_library_path("mmsl_config/Config.xml");
+            properties.set_library_path(Application.StartupPath + "/mmsl_config/Config.xml");
             imported = false;
             sourcepresent = false;
 
@@ -43,12 +44,12 @@ namespace MeteorSkinLibrary
                 //Source definition
                 ui_file_path_source = uipath + "/content/patch/" + datafolder + "/param/ui/ui_character_db.bin";
                 //Destination definition
-                this.ui_file_path_destination = "mmsl_workspace/" + datafolder + "/param/ui/ui_character_db.bin";
+                this.ui_file_path_destination = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/param/ui/ui_character_db.bin";
 
                 //Checks if the param/ui folder exists so it knows if a backup may be here
-                if (!Directory.Exists("mmsl_workspace/" + datafolder + "/param/ui/"))
+                if (!Directory.Exists(Application.StartupPath + "/mmsl_workspace/" + datafolder + "/param/ui/"))
                 {
-                    Directory.CreateDirectory("mmsl_workspace/" + datafolder + "/param/ui/");
+                    Directory.CreateDirectory(Application.StartupPath + "/mmsl_workspace/" + datafolder + "/param/ui/");
                     //If source exists
                     if (File.Exists(ui_file_path_source))
                     {

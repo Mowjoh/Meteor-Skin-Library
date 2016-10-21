@@ -86,11 +86,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.loadingbox = new System.Windows.Forms.PictureBox();
             this.appstatus = new System.Windows.Forms.Label();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.loadingbox = new System.Windows.Forms.PictureBox();
             this.meteorbox = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -650,6 +650,16 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "App Status";
             // 
+            // loadingbox
+            // 
+            this.loadingbox.Image = global::Meteor_Skin_Library.Properties.Resources.ajax_loader__1_;
+            this.loadingbox.Location = new System.Drawing.Point(6, 82);
+            this.loadingbox.Name = "loadingbox";
+            this.loadingbox.Size = new System.Drawing.Size(304, 20);
+            this.loadingbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadingbox.TabIndex = 1;
+            this.loadingbox.TabStop = false;
+            // 
             // appstatus
             // 
             this.appstatus.AutoSize = true;
@@ -686,16 +696,6 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.move_down_skin);
             // 
-            // loadingbox
-            // 
-            this.loadingbox.Image = global::Meteor_Skin_Library.Properties.Resources.ajax_loader__1_;
-            this.loadingbox.Location = new System.Drawing.Point(6, 82);
-            this.loadingbox.Name = "loadingbox";
-            this.loadingbox.Size = new System.Drawing.Size(304, 20);
-            this.loadingbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.loadingbox.TabIndex = 1;
-            this.loadingbox.TabStop = false;
-            // 
             // meteorbox
             // 
             this.meteorbox.Image = global::Meteor_Skin_Library.Properties.Resources._01;
@@ -729,7 +729,7 @@
             this.MaximumSize = new System.Drawing.Size(1215, 660);
             this.MinimumSize = new System.Drawing.Size(1215, 660);
             this.Name = "main";
-            this.Text = "Mowjoh\'s Meteor Skin Library Alpha R5.5.1";
+            this.Text = "Mowjoh\'s Meteor Skin Library Beta";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
