@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MeteorSkinLibrary
 {
@@ -24,8 +25,8 @@ namespace MeteorSkinLibrary
             this.fullname = full_name;
 
             //Instanciating handlers to get info
-            Library = new LibraryHandler("mmsl_config/Library.xml");
-            properties = new PropertyHandler("mmsl_config/Config.xml");
+            Library = new LibraryHandler(Application.StartupPath+ "/mmsl_config/Library.xml");
+            properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Config.xml");
             ui = new UICharDBHandler(properties.get("explorer_workspace"), properties.get("datafolder"));
 
             //Getting skins

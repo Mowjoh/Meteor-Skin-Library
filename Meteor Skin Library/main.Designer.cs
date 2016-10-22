@@ -84,14 +84,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textConsole = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.import_worker = new System.ComponentModel.BackgroundWorker();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.loadingbox = new System.Windows.Forms.PictureBox();
+            this.loadingbox = new System.Windows.Forms.ProgressBar();
             this.appstatus = new System.Windows.Forms.Label();
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.export_worker = new System.ComponentModel.BackgroundWorker();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.meteorbox = new System.Windows.Forms.PictureBox();
+            this.url_worker = new System.ComponentModel.BackgroundWorker();
+            this.meteor_worker = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -103,7 +105,6 @@
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingbox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.meteorbox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -633,11 +634,12 @@
             this.label9.TabIndex = 7;
             this.label9.Text = "Console";
             // 
-            // backgroundWorker1
+            // import_worker
             // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            this.import_worker.WorkerReportsProgress = true;
+            this.import_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.import_worker_work);
+            this.import_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.import_worker_ProgressChanged);
+            this.import_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.import_worker_completed);
             // 
             // groupBox6
             // 
@@ -652,13 +654,11 @@
             // 
             // loadingbox
             // 
-            this.loadingbox.Image = global::Meteor_Skin_Library.Properties.Resources.ajax_loader__1_;
-            this.loadingbox.Location = new System.Drawing.Point(6, 82);
+            this.loadingbox.ForeColor = System.Drawing.Color.LimeGreen;
+            this.loadingbox.Location = new System.Drawing.Point(10, 76);
             this.loadingbox.Name = "loadingbox";
-            this.loadingbox.Size = new System.Drawing.Size(304, 20);
-            this.loadingbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.loadingbox.TabIndex = 1;
-            this.loadingbox.TabStop = false;
+            this.loadingbox.Size = new System.Drawing.Size(304, 23);
+            this.loadingbox.TabIndex = 2;
             // 
             // appstatus
             // 
@@ -671,10 +671,12 @@
             this.appstatus.Text = "STATUS";
             this.appstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // backgroundWorker2
+            // export_worker
             // 
-            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
-            this.backgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker2_RunWorkerCompleted);
+            this.export_worker.WorkerReportsProgress = true;
+            this.export_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.export_worker_work);
+            this.export_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.export_worker_ProgressChanged);
+            this.export_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.export_worker_completed);
             // 
             // button7
             // 
@@ -699,13 +701,27 @@
             // meteorbox
             // 
             this.meteorbox.Image = global::Meteor_Skin_Library.Properties.Resources._01;
-            this.meteorbox.Location = new System.Drawing.Point(423, 473);
+            this.meteorbox.Location = new System.Drawing.Point(396, 454);
             this.meteorbox.Name = "meteorbox";
-            this.meteorbox.Size = new System.Drawing.Size(420, 130);
+            this.meteorbox.Size = new System.Drawing.Size(450, 150);
             this.meteorbox.TabIndex = 17;
             this.meteorbox.TabStop = false;
             this.meteorbox.DragDrop += new System.Windows.Forms.DragEventHandler(this.slot_DragDrop);
             this.meteorbox.DragEnter += new System.Windows.Forms.DragEventHandler(this.slot_DragEnter);
+            // 
+            // url_worker
+            // 
+            this.url_worker.WorkerReportsProgress = true;
+            this.url_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.url_worker_DoWork);
+            this.url_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.url_worker_ProgressChanged);
+            this.url_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.url_worker_RunWorkerCompleted);
+            // 
+            // meteor_worker
+            // 
+            this.meteor_worker.WorkerReportsProgress = true;
+            this.meteor_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.meteor_worker_DoWork);
+            this.meteor_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.meteor_worker_ProgressChanged);
+            this.meteor_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.meteor_worker_RunWorkerCompleted);
             // 
             // main
             // 
@@ -747,7 +763,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingbox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.meteorbox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -812,13 +827,15 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ToolStripMenuItem exportSmashExplorerWorkpaceToolStripMenuItem;
         private System.Windows.Forms.PictureBox meteorbox;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker import_worker;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label appstatus;
-        private System.Windows.Forms.PictureBox loadingbox;
-        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.ComponentModel.BackgroundWorker export_worker;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.ProgressBar loadingbox;
+        private System.ComponentModel.BackgroundWorker url_worker;
+        private System.ComponentModel.BackgroundWorker meteor_worker;
     }
 }
 

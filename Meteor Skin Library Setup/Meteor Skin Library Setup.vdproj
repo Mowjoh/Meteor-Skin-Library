@@ -15,14 +15,14 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_583A222D5B8B44EA9939A64D6F775708"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_433CDCA5F1EE997BBB2A505199E28351"
+        "OwnerKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7844E62248B9C0C0DA9E289F587E35A3"
-        "OwnerKey" = "8:_EA1E9E816B9D4ECBAD38D122ECC39CD7"
+        "MsmKey" = "8:_583A222D5B8B44EA9939A64D6F775708"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -39,13 +39,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E9B6499C982A43A7B8ABE8452C0EA661"
+        "MsmKey" = "8:_AB42B83B6E85E9BF949D5AF214167EBD"
+        "OwnerKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_EA1E9E816B9D4ECBAD38D122ECC39CD7"
+        "MsmKey" = "8:_E9B6499C982A43A7B8ABE8452C0EA661"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -58,13 +64,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7844E62248B9C0C0DA9E289F587E35A3"
+        "OwnerKey" = "8:_433CDCA5F1EE997BBB2A505199E28351"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EA1E9E816B9D4ECBAD38D122ECC39CD7"
+        "OwnerKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AB42B83B6E85E9BF949D5AF214167EBD"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -85,6 +97,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -92,7 +120,7 @@
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
         "OutputFilename" = "8:Release\\Meteor Skin Library Setup.msi"
-        "PackageFilesAs" = "3:2"
+        "PackageFilesAs" = "3:1"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
         "Compression" = "3:2"
@@ -101,6 +129,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -130,34 +174,14 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_583A222D5B8B44EA9939A64D6F775708"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Downloads\\mowjohbanne.bmp"
-            "TargetName" = "8:mowjohbanne.bmp"
-            "Tag" = "8:"
-            "Folder" = "8:_9FACD82A931A4470BF1611CE6952E6D9"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:TRUE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7844E62248B9C0C0DA9E289F587E35A3"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_433CDCA5F1EE997BBB2A505199E28351"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_7844E62248B9C0C0DA9E289F587E35A3"
+                    "_433CDCA5F1EE997BBB2A505199E28351"
                     {
                     "Name" = "8:System.Net.Http.dll"
                     "Attributes" = "3:512"
@@ -179,6 +203,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_583A222D5B8B44EA9939A64D6F775708"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\..\\Downloads\\mowjohbanne.bmp"
+            "TargetName" = "8:mowjohbanne.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_9FACD82A931A4470BF1611CE6952E6D9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_831BB5723E864FFE989EF24B2B3CA252"
@@ -219,6 +263,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AB42B83B6E85E9BF949D5AF214167EBD"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SharpCompress, Version=0.10.3.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_AB42B83B6E85E9BF949D5AF214167EBD"
+                    {
+                    "Name" = "8:SharpCompress.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SharpCompress.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3D8912FE11584D3998A1D5D43806406C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E9B6499C982A43A7B8ABE8452C0EA661"
@@ -343,6 +418,17 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_D7D7EF902CE24112A083060D9550EAC6"
+                    {
+                    "Name" = "8:mmsl_downloads"
+                    "AlwaysCreate" = "11:TRUE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_6F954BDB669046269910059B21930100"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_94C30F3197E64301B385EF2BBA2DC57F"
@@ -373,7 +459,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Meteor Skin Library"
         "ProductCode" = "8:{BC562068-FBA9-4EB8-9184-3DE1D6AAB937}"
-        "PackageCode" = "8:{A3C51346-FF15-4C0A-873F-BC74912137B0}"
+        "PackageCode" = "8:{7CBA2337-C171-4262-BF0F-C51399666C47}"
         "UpgradeCode" = "8:{7E5945E5-0291-472B-A02F-D0C785C3138C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -587,7 +673,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B7EBF926C4F8482299CF3FE505341EFB"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A994BAF4A27D438A8097427F95E5F4AE"
             {
             "Name" = "8:Meteor Skin Library"
             "Arguments" = "8:"
@@ -595,7 +681,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_EA1E9E816B9D4ECBAD38D122ECC39CD7"
+            "Target" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
             "Folder" = "8:_3AAC36BFABF846028D619F5406F0B0E7"
             "WorkingFolder" = "8:_3D8912FE11584D3998A1D5D43806406C"
             "Icon" = "8:_A1A0427695BA4C38BC84BAFEA318D15A"
@@ -1010,7 +1096,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_EA1E9E816B9D4ECBAD38D122ECC39CD7"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_DE5D0D6326D54E699EF2FC5C66CB5272"
             {
             "SourcePath" = "8:..\\Meteor Skin Library\\obj\\Debug\\Meteor Skin Library.exe"
             "TargetName" = "8:"
@@ -1030,7 +1116,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:Debug|Any CPU"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{60BBC1A5-08BA-4A40-BC3E-65EC8CE48910}"
             "ShowKeyOutput" = "11:TRUE"
