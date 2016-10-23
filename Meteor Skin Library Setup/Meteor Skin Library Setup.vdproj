@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_2FBC52CC8F789784EDE7A0E4C8A62BF0"
+        "OwnerKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_433CDCA5F1EE997BBB2A505199E28351"
         "OwnerKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
         "MsmSig" = "8:_UNDEFINED"
@@ -22,6 +28,12 @@
         "Entry"
         {
         "MsmKey" = "8:_583A222D5B8B44EA9939A64D6F775708"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5BE5EB8838EB4184AC69B016227E1B4A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -64,19 +76,25 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_433CDCA5F1EE997BBB2A505199E28351"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2FBC52CC8F789784EDE7A0E4C8A62BF0"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_AB42B83B6E85E9BF949D5AF214167EBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_433CDCA5F1EE997BBB2A505199E28351"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -174,6 +192,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2FBC52CC8F789784EDE7A0E4C8A62BF0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:SevenZipSharp, Version=0.64.3890.29348, Culture=neutral, PublicKeyToken=20de82c62b055c88, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_2FBC52CC8F789784EDE7A0E4C8A62BF0"
+                    {
+                    "Name" = "8:SevenZipSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:SevenZipSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_3D8912FE11584D3998A1D5D43806406C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_433CDCA5F1EE997BBB2A505199E28351"
             {
             "AssemblyRegister" = "3:1"
@@ -222,6 +271,26 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5BE5EB8838EB4184AC69B016227E1B4A"
+            {
+            "SourcePath" = "8:C:\\Program Files (x86)\\7-Zip\\7z.dll"
+            "TargetName" = "8:7z.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_3D8912FE11584D3998A1D5D43806406C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
@@ -459,7 +528,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Meteor Skin Library"
         "ProductCode" = "8:{BC562068-FBA9-4EB8-9184-3DE1D6AAB937}"
-        "PackageCode" = "8:{7CBA2337-C171-4262-BF0F-C51399666C47}"
+        "PackageCode" = "8:{968F5F79-288D-4B4E-A8F5-9D37B0E23DBB}"
         "UpgradeCode" = "8:{7E5945E5-0291-472B-A02F-D0C785C3138C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -683,6 +752,20 @@
             "Transitive" = "11:FALSE"
             "Target" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
             "Folder" = "8:_3AAC36BFABF846028D619F5406F0B0E7"
+            "WorkingFolder" = "8:_3D8912FE11584D3998A1D5D43806406C"
+            "Icon" = "8:_A1A0427695BA4C38BC84BAFEA318D15A"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_EEC4D356C1524246A25167A5FC290E04"
+            {
+            "Name" = "8:Meteor Skin Library"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
+            "Folder" = "8:_94C30F3197E64301B385EF2BBA2DC57F"
             "WorkingFolder" = "8:_3D8912FE11584D3998A1D5D43806406C"
             "Icon" = "8:_A1A0427695BA4C38BC84BAFEA318D15A"
             "Feature" = "8:"

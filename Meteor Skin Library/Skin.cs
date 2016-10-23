@@ -510,7 +510,8 @@ namespace MeteorSkinLibrary
         #region MeteorSkins
         public void package_meteor()
         {
-            String package_destination = Application.StartupPath + "/mmsl_packages/meteor_xx_" + libraryname+"/";
+            
+            String package_destination = Application.StartupPath + "/mmsl_packages/"+fullname+"/meteor_xx_" + libraryname+"/";
             if (Directory.Exists(package_destination + "meta"))
             {
                 Directory.Delete(package_destination + "meta", true);
@@ -568,7 +569,7 @@ namespace MeteorSkinLibrary
             }
 
             File.Copy(metapath + "meta.xml", package_destination + "meta/meta.xml");
-
+            
         }
         #endregion
 

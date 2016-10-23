@@ -9,6 +9,8 @@ using SharpCompress.Reader;
 using SharpCompress.Common;
 using System.Diagnostics;
 using System.Threading;
+using SharpCompress.Archive;
+using SharpCompress.Archive.Zip;
 
 namespace MeteorSkinLibrary
 {
@@ -102,8 +104,11 @@ namespace MeteorSkinLibrary
                 url_worker.RunWorkerAsync();
                 if (args.Length > 0)
                 {
+                    processing = true;
+                    block_controls();
                     meteor_download(args);
                 }
+                reset_skin_pack_session();
             }
 
         }
@@ -362,9 +367,12 @@ namespace MeteorSkinLibrary
         //Skin Info Saved button is pressed
         private void set_skin_libraryname(object sender, EventArgs e)
         {
-            this.selected_skin.set_library_name(SkinNameText.Text);
-            skin_ListBox_reload();
-            state_check();
+           
+                this.selected_skin.set_library_name(SkinNameText.Text);
+                skin_ListBox_reload();
+                state_check();
+            
+            
         }
 
         //When Delete is pressed
@@ -407,6 +415,8 @@ namespace MeteorSkinLibrary
         private void package_meteor(object sender, EventArgs e)
         {
             this.selected_skin.package_meteor();
+            console_write("This skin was added to the current pack session");
+            
         }
         #endregion
         #region ModelAction !-!
@@ -517,7 +527,6 @@ namespace MeteorSkinLibrary
         //Reloads Skin List
         private void skin_ListBox_reload()
         {
-
             if (CharacterList.SelectedIndex != -1)
             {
                 SkinListBox.Items.Clear();
@@ -755,12 +764,17 @@ namespace MeteorSkinLibrary
             SkinListBox.Enabled = false;
             CharacterList.Enabled = false;
             meteorbox.Enabled = false;
+
+            button7.Enabled = false;
+            button8.Enabled = false;
         }
         private void enable_controls()
         {
             SkinListBox.Enabled = true;
             CharacterList.Enabled = true;
             meteorbox.Enabled = true;
+            button7.Enabled = true;
+            button8.Enabled = true;
         }
         #endregion
 
@@ -961,19 +975,20 @@ namespace MeteorSkinLibrary
 
         private void batch_add_slot(String path)
         {
-            float count = Directory.GetDirectories(path).Length;
-            float current = 1;
+            
             foreach (String dir in Directory.GetDirectories(path))
             {
                 int index = CharacterList.FindString(Path.GetFileName(dir));
                 // Determine if a valid index is returned. Select the item if it is valid.
                 if (index != -1)
                 {
-
+                    
                     //Get specified char and add a skin to it
                     Character selected_meteor_char = new Character(Path.GetFileName(dir));
 
                     Regex meteor = new Regex("(meteor_)(x{2})(_)(p*)");
+                    float count = Directory.GetDirectories(dir).Length;
+                    float current = 0;
                     foreach (String file in Directory.GetDirectories(dir))
                     {
                         if (meteor.IsMatch(Path.GetFileName(file)))
@@ -996,6 +1011,8 @@ namespace MeteorSkinLibrary
                             else
                             {
                             }
+                            float val = (1 / count)*current+ (1 / count) *1/3 * 100;
+                            meteor_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
                             //CSP Files check
                             if (Directory.Exists(file + "/csp/"))
                             {
@@ -1005,22 +1022,27 @@ namespace MeteorSkinLibrary
                             else
                             {
                             }
+                            val = (1 / count) * current + (1 / count) * 2 / 3*100;
+                            meteor_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
                             if (Directory.Exists(file + "/meta"))
                             {
                                 meteor_skin.addMeta(file + "/meta/meta.xml");
                             }
                             selected_meteor_char.skins.Add(meteor_skin);
+                            val = (1 / count) * current + (1 / count) * 100;
+                            meteor_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
                         }
+                        current++;
                     }
+                    
                     skin_ListBox_reload();
                     uichar.setFile(int.Parse(Library.get_ui_char_db_id(selected_meteor_char.fullname)), 7, selected_meteor_char.skins.Count);
                     skin_details_reload();
                     CharacterList.SetSelected(index, true);
                     SkinListBox.SelectedIndex = SkinListBox.Items.Count - 1;
+                    
                 }
-                float val = current / count * 100;
-                meteor_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
-                current++;
+                
             }
         }
         //Used to import SmashExplorer mmsl_workspace into Library
@@ -1260,7 +1282,6 @@ namespace MeteorSkinLibrary
                         }
 
                         float count2 = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Length;
-                        float current2 = 1;
 
                         //Copy all the files & Replaces any files with the same name
                         foreach (string newPath in Directory.GetFiles(source, "*.*", SearchOption.AllDirectories))
@@ -1416,7 +1437,12 @@ namespace MeteorSkinLibrary
             if (File.Exists(Application.StartupPath + "/mmsl_downloads/url.txt"))
             {
                 string[] lines = System.IO.File.ReadAllLines(Application.StartupPath + "/mmsl_downloads/url.txt");
-                meteor_download(lines);
+                if (!processing)
+                {
+                    processing = true;
+                    meteor_download(lines);
+                    block_controls();
+                }
                 File.Delete(Application.StartupPath + "/mmsl_downloads/url.txt");
             }
         }
@@ -1429,7 +1455,9 @@ namespace MeteorSkinLibrary
         //Launches meteor import
         private void meteor_worker_DoWork(object sender, DoWorkEventArgs e)
         {
+
             batch_add_slot(Application.StartupPath + "/mmsl_downloads/archive");
+            
         }
         //Reports meteor import progress
         private void meteor_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -1439,14 +1467,46 @@ namespace MeteorSkinLibrary
         //Reports completion of meteor import
         private void meteor_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Directory.Delete(Application.StartupPath + "/mmsl_downloads/archive", true);
+            //Directory.Delete(Application.StartupPath + "/mmsl_downloads/archive", true);
             foreach(String file in Directory.GetFiles(Application.StartupPath + "/mmsl_downloads"))
             {
                 File.Delete(file);
             }
             appstatus.Text = "Skin(s) Installed";
+            loadingbox.Value = 100;
+            enable_controls();
+            processing = false;
+            
         }
 
+        //Launches archiving
+        private void archive_worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if(Directory.GetDirectories(Application.StartupPath + "/mmsl_packages").Length > 0)
+            {
+                if (File.Exists(Application.StartupPath + "/mmsl_packages/Archive.zip"))
+                {
+                    File.Delete(Application.StartupPath + "/mmsl_packages/Archive.zip");
+                }
+                using (var archive = ZipArchive.Create())
+                {
+                    archive.AddAllFromDirectory(Application.StartupPath + "/mmsl_packages");
+                    archive.SaveTo(File.OpenWrite(Application.StartupPath + "/mmsl_packages/Archive.zip"), CompressionType.BZip2);
+                }
+            }
+            
+        }
+        //When archive is complete
+        private void archive_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            loadingbox.Style = ProgressBarStyle.Continuous;
+            loadingbox.Value = 100;
+            console_write("Archive Created in mmsl_packages");
+            appstatus.Text = "Archive complete";
+            processing = false;
+            reset_skin_pack_session();
+            enable_controls();
+        }
         #endregion
 
         private void move_up_skin(object sender, EventArgs e)
@@ -1510,19 +1570,40 @@ namespace MeteorSkinLibrary
                         if (e.Error == null && !e.Cancelled)
                         {
                             file_path += "meteorpack." + file_ext;
-                            //Extracting archive
-                            using (Stream stream = File.OpenRead(file_path))
+                            if(file_ext == "7z")
                             {
-                                var reader = ReaderFactory.Open(stream);
-                                while (reader.MoveToNextEntry())
+                                if (Directory.Exists(base_path + "archive"))
                                 {
-                                    if (!reader.Entry.IsDirectory)
+                                    Directory.Delete(base_path + "archive",true);
+                                }
+                                Directory.CreateDirectory(base_path + "archive");
+                                ProcessStartInfo pro = new ProcessStartInfo();
+                                pro.WindowStyle = ProcessWindowStyle.Hidden;
+                                pro.FileName = Application.StartupPath+"/7za.exe";
+                                pro.Arguments = "e " + file_path + " -o" + base_path + "archive";
+                                Process x = Process.Start(pro);
+                                x.WaitForExit();
+
+                            }
+                            else
+                            {
+                                //Extracting archive
+                                using (Stream stream = File.OpenRead(file_path))
+                                {
+                                    var reader = ReaderFactory.Open(stream);
+                                    while (reader.MoveToNextEntry())
                                     {
-                                        reader.WriteEntryToDirectory(base_path + "archive", ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+                                        if (!reader.Entry.IsDirectory)
+                                        {
+                                            reader.WriteEntryToDirectory(base_path + "archive", ExtractOptions.ExtractFullPath | ExtractOptions.Overwrite);
+                                        }
                                     }
                                 }
                             }
-                            loadingbox.Value = 100;
+
+                            loadingbox.Value = 0;
+                            appstatus.Text = "Importing Meteor Skins";
+                           
                             meteor_worker.RunWorkerAsync();
                         }
                         else
@@ -1532,13 +1613,52 @@ namespace MeteorSkinLibrary
 
                 if (http_url != "")
                 {
-                    webClient.DownloadFileAsync(new Uri(http_url), file_path + "meteorpack." + file_ext);
+                    if(file_ext == "zip" | file_ext == "rar" | file_ext == "7z")
+                    {
+                        webClient.DownloadFileAsync(new Uri(http_url), file_path + "meteorpack." + file_ext);
+                    }
                 }
             }
         }
 
+        private void SkinNameText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.selected_skin.set_library_name(SkinNameText.Text);
+                skin_ListBox_reload();
+                state_check();
+            }
+        }
 
+        private void resetCurrentMeteorSkinPackSessionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            reset_skin_pack_session();
+        }
 
+        private void reset_skin_pack_session()
+        {
+            foreach (String dir in Directory.GetDirectories(Application.StartupPath + "/mmsl_packages"))
+            {
+                Directory.Delete(dir, true);
+            }
+            console_write("Meteor skin pack session reseted");
+        }
+
+        private void archiveCurrentMeteorSkinPackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!processing)
+            {
+                archive_worker.RunWorkerAsync();
+                loadingbox.Style = ProgressBarStyle.Marquee;
+                appstatus.Text = "Archiving files...";
+                processing = true;
+                block_controls();
+            }
+            
+        }
+
+       
     }
 
 

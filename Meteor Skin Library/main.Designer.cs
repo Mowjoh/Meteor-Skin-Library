@@ -35,6 +35,8 @@
             this.cleanWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addForSelectedCharacterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.archiveCurrentMeteorSkinPackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +96,7 @@
             this.meteorbox = new System.Windows.Forms.PictureBox();
             this.url_worker = new System.ComponentModel.BackgroundWorker();
             this.meteor_worker = new System.ComponentModel.BackgroundWorker();
+            this.archive_worker = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -148,7 +151,9 @@
             // skinsToolStripMenuItem
             // 
             this.skinsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addForSelectedCharacterToolStripMenuItem});
+            this.addForSelectedCharacterToolStripMenuItem,
+            this.archiveCurrentMeteorSkinPackToolStripMenuItem,
+            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem});
             this.skinsToolStripMenuItem.Name = "skinsToolStripMenuItem";
             this.skinsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.skinsToolStripMenuItem.Text = "Skins";
@@ -156,9 +161,23 @@
             // addForSelectedCharacterToolStripMenuItem
             // 
             this.addForSelectedCharacterToolStripMenuItem.Name = "addForSelectedCharacterToolStripMenuItem";
-            this.addForSelectedCharacterToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.addForSelectedCharacterToolStripMenuItem.Size = new System.Drawing.Size(277, 22);
             this.addForSelectedCharacterToolStripMenuItem.Text = "Add for selected Character";
             this.addForSelectedCharacterToolStripMenuItem.Click += new System.EventHandler(this.skin_add);
+            // 
+            // archiveCurrentMeteorSkinPackToolStripMenuItem
+            // 
+            this.archiveCurrentMeteorSkinPackToolStripMenuItem.Name = "archiveCurrentMeteorSkinPackToolStripMenuItem";
+            this.archiveCurrentMeteorSkinPackToolStripMenuItem.Size = new System.Drawing.Size(277, 22);
+            this.archiveCurrentMeteorSkinPackToolStripMenuItem.Text = "Archive current meteor skin pack";
+            this.archiveCurrentMeteorSkinPackToolStripMenuItem.Click += new System.EventHandler(this.archiveCurrentMeteorSkinPackToolStripMenuItem_Click);
+            // 
+            // resetCurrentMeteorSkinPackSessionToolStripMenuItem
+            // 
+            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Name = "resetCurrentMeteorSkinPackSessionToolStripMenuItem";
+            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Size = new System.Drawing.Size(277, 22);
+            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Text = "Reset current meteor skin pack session";
+            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Click += new System.EventHandler(this.resetCurrentMeteorSkinPackSessionToolStripMenuItem_Click);
             // 
             // optionsToolStripMenuItem
             // 
@@ -345,6 +364,7 @@
             this.SkinNameText.Name = "SkinNameText";
             this.SkinNameText.Size = new System.Drawing.Size(188, 20);
             this.SkinNameText.TabIndex = 3;
+            this.SkinNameText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SkinNameText_KeyDown);
             // 
             // label2
             // 
@@ -700,8 +720,8 @@
             // 
             // meteorbox
             // 
-            this.meteorbox.Image = global::Meteor_Skin_Library.Properties.Resources._01;
-            this.meteorbox.Location = new System.Drawing.Point(396, 454);
+            this.meteorbox.Image = global::Meteor_Skin_Library.Properties.Resources.mowjohdrop;
+            this.meteorbox.Location = new System.Drawing.Point(402, 454);
             this.meteorbox.Name = "meteorbox";
             this.meteorbox.Size = new System.Drawing.Size(450, 150);
             this.meteorbox.TabIndex = 17;
@@ -722,6 +742,11 @@
             this.meteor_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.meteor_worker_DoWork);
             this.meteor_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.meteor_worker_ProgressChanged);
             this.meteor_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.meteor_worker_RunWorkerCompleted);
+            // 
+            // archive_worker
+            // 
+            this.archive_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.archive_worker_DoWork);
+            this.archive_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.archive_worker_RunWorkerCompleted);
             // 
             // main
             // 
@@ -836,6 +861,9 @@
         private System.Windows.Forms.ProgressBar loadingbox;
         private System.ComponentModel.BackgroundWorker url_worker;
         private System.ComponentModel.BackgroundWorker meteor_worker;
+        private System.Windows.Forms.ToolStripMenuItem archiveCurrentMeteorSkinPackToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resetCurrentMeteorSkinPackSessionToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker archive_worker;
     }
 }
 

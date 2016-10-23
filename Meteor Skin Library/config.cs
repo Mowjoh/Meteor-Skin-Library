@@ -48,8 +48,10 @@ namespace MeteorSkinLibrary
             }
             else
             {
-                textBox1.Text = "Folder is not named workspace";
+                textBox1.Text = path;
                 textBox1.BackColor = Color.LightCoral;
+                properties.add("explorer_workspace", path);
+                message.Text = "Workspace path wasn't named workspace but was saved";
             }
         }
 
@@ -214,6 +216,26 @@ namespace MeteorSkinLibrary
             properties.set("unlocalised", val);
         }
 
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                String path = textBox1.Text;
+                if (Path.GetFileName(path) == "workspace")
+                {
+                    textBox1.BackColor = Color.LightGreen;
+                    properties.add("explorer_workspace", path);
+                    message.Text = "Workspace path saved";
+
+                }
+                else
+                {
+                    textBox1.BackColor = Color.LightCoral;
+                    properties.add("explorer_workspace", path);
+                    message.Text = "Workspace path wasn't named workspace but was saved";
+                }
+            }
+        }
     }
 
 
