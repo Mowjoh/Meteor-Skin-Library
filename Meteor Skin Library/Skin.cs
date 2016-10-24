@@ -345,7 +345,11 @@ namespace MeteorSkinLibrary
                     File.Copy(file, destination+"/"+Path.GetFileName(file));
                 }
             }
-            Directory.Delete(source,true);
+            if (Directory.Exists(source))
+            {
+                Directory.Delete(source, true);
+            }
+            
         }
         public void load_models()
         {
@@ -449,8 +453,11 @@ namespace MeteorSkinLibrary
                 FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + source_slot + ".nut";
                 new_name = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + new_slot + ".nut";
             }
-
-            File.Move(FilePath, new_name);
+            if (File.Exists(FilePath))
+            {
+                File.Move(FilePath, new_name);
+            }
+                
             
         }
 

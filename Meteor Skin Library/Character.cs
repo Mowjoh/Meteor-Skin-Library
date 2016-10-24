@@ -67,62 +67,69 @@ namespace MeteorSkinLibrary
         public void swap_skin(int origin, int destination)
         {
             Skin ori = (Skin)skins[origin];
-            Skin dest = (Skin)skins[destination];
-            int action = 0;
+            if(!(skins.Count == (origin + 1) && destination == origin +1))
+            {
+                Skin dest = (Skin)skins[destination];
+                int action = 0;
 
-            //Checking what action needs to be done
+                //Checking what action needs to be done
+
+                //No swapping for default slots
+                if (ori.origin == "Default")
+                {
+                    action = -1;
+                }
+                //Means inserting a skin up
+                if (ori.origin == "Default Replaced" && dest.origin == "Custom")
+                {
+                    action = 1;
+                }
+                //Means overwriting a default slot
+                if (ori.origin == "Custom" && dest.origin == "Default")
+                {
+                    action = 2;
+                }
+                //Means swapping a Default replaced ont a default slot
+                if (ori.origin == "Default Replaced" && dest.origin == "Default")
+                {
+                    action = 3;
+                }
+                switch (action)
+                {
+                    case -1:
+                        break;
+                    case 0:
+                        swap(ori, dest);
+                        break;
+                    case 1:
+                        Skin new_skin = new Skin(fullname, ori.slot, "Default", "Default");
+                        Library.insert_skin(fullname, new_skin.slot, new_skin.libraryname, new_skin.origin);
+                        skins.Insert(ori.slot, new_skin);
+                        Library.reload_skin_order(fullname);
+                        new_skin.reload_default_skin();
+                        dest = (Skin)skins[destination + 1];
+                        dest.set_origin("Custom");
+                        remake_skinlist_inverted();
+
+                        break;
+                    case 2:
+                        swap(ori, dest);
+                        dest.delete_skin();
+                        skins.Remove(dest);
+                        ori.set_origin("Default Replaced");
+                        remake_skinlist();
+                        Library.reload_skin_order(fullname);
+                        break;
+                    case 3:
+                        swap(ori, dest);
+                        dest.reload_default_skin();
+                        break;
+                }
+            }else
+            {
+               
+            }
             
-            //No swapping for default slots
-            if(ori.origin == "Default")
-            {
-                action = -1;
-            }   
-            //Means inserting a skin up
-            if(ori.origin == "Default Replaced" && dest.origin == "Custom")
-            {
-                action = 1;
-            }
-            //Means overwriting a default slot
-            if(ori.origin == "Custom" && dest.origin == "Default")
-            {
-                action = 2;
-            }
-            //Means swapping a Default replaced ont a default slot
-            if (ori.origin == "Default Replaced" && dest.origin == "Default")
-            {
-                action = 3;
-            }
-            switch (action)
-            {
-                case -1:
-                    break;
-                case 0:
-                    swap(ori, dest);
-                    break;
-                case 1:
-                    Skin new_skin = new Skin(fullname, ori.slot, "Default", "Default");
-                    Library.insert_skin(fullname, new_skin.slot, new_skin.libraryname, new_skin.origin);
-                    skins.Insert(ori.slot, new_skin);
-                    Library.reload_skin_order(fullname);
-                    new_skin.reload_default_skin();
-                    dest = (Skin)skins[destination+1];
-                    dest.set_origin("Custom");
-                    remake_skinlist_inverted();
-
-                    break;
-                case 2:
-                    swap(ori, dest);
-                    dest.delete_skin();
-                    skins.Remove(dest);
-                    ori.set_origin("Default Replaced");
-                    remake_skinlist();
-                    Library.reload_skin_order(fullname);
-                    break;
-                case 3:
-                    swap(ori, dest);
-                    dest.reload_default_skin();
-                    break;
-            }
         }
 
         //Swaps skin files and library info

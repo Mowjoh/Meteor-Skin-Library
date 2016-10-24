@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Threading;
 using SharpCompress.Archive;
 using SharpCompress.Archive.Zip;
+using SharpCompress.Writer;
 
 namespace MeteorSkinLibrary
 {
@@ -179,6 +180,7 @@ namespace MeteorSkinLibrary
                 SkinListBox.SelectedIndex = -1;
                 Characters = Library.get_character_list();
                 init_character_ListBox();
+                CharacterList.SelectedIndex = 0;
                 state_check();
             }
         }
@@ -564,7 +566,9 @@ namespace MeteorSkinLibrary
         {
             this.model_folder_list = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             batch_copy_model(this.model_folder_list, this.selected_skin);
+            skin_details_reload();
             state_check();
+            skin_details_reload();
         }
         private void csp_DragEnter2(object sender, DragEventArgs e)
         {
@@ -580,6 +584,7 @@ namespace MeteorSkinLibrary
             {
                 this.csp_file_list = FileList;
                 batch_copy_csp(FileList, SkinListBox.SelectedIndex);
+                skin_details_reload();
                 state_check();
             }
             else
@@ -601,6 +606,7 @@ namespace MeteorSkinLibrary
             this.slot_file_list = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             batch_add_slot(SkinListBox.Items.Count + 1);
             state_check();
+            skin_details_reload();
         }
         #endregion
         #region Inits !-!
@@ -846,7 +852,7 @@ namespace MeteorSkinLibrary
                 }
 
             }
-            skin_details_reload();
+            //skin_details_reload();
 
 
         }
@@ -906,17 +912,13 @@ namespace MeteorSkinLibrary
 
                 foreach (String file in files)
                 {
-                    console_write("File Detected :" + Path.GetFileName(file));
                     skin.add_csp(file);
                 }
-                console_write("All detected CSP were moved to slot " + skin.slot);
             }
             else
             {
-                console_write("no csp detected ");
             }
 
-            skin_details_reload();
         }
         //batch copy with specified source and new next slot
         private void batch_add_slot(int slot)
@@ -1034,13 +1036,9 @@ namespace MeteorSkinLibrary
                         }
                         current++;
                     }
-                    
-                    skin_ListBox_reload();
-                    uichar.setFile(int.Parse(Library.get_ui_char_db_id(selected_meteor_char.fullname)), 7, selected_meteor_char.skins.Count);
-                    skin_details_reload();
+
                     CharacterList.SetSelected(index, true);
-                    SkinListBox.SelectedIndex = SkinListBox.Items.Count - 1;
-                    
+                    uichar.setFile(int.Parse(Library.get_ui_char_db_id(selected_meteor_char.fullname)), 7, selected_meteor_char.skins.Count);
                 }
                 
             }
@@ -1224,11 +1222,15 @@ namespace MeteorSkinLibrary
                 }
                 if (Directory.Exists(destination))
                 {
-                    if (Directory.Exists(destination + "/fighter"))
+                    //Deletes the previous fighter models
+                    foreach (String c in Characters)
                     {
-                        Directory.Delete(destination + "/fighter", true);
-
+                        if (Directory.Exists(destination + "/fighter/" + Library.get_modelfolder_fullname(c) + "/model"))
+                        {
+                            Directory.Delete(destination + "/fighter/" + Library.get_modelfolder_fullname(c) + "/model",true);
+                        }
                     }
+
                     if (Directory.Exists(destination + "/ui/replace/chr"))
                     {
                         Directory.Delete(destination + "/ui/replace/chr", true);
@@ -1467,7 +1469,12 @@ namespace MeteorSkinLibrary
         //Reports completion of meteor import
         private void meteor_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //Directory.Delete(Application.StartupPath + "/mmsl_downloads/archive", true);
+            skin_details_reload();
+            skin_ListBox_reload();
+            
+            SkinListBox.SelectedIndex = SkinListBox.Items.Count - 1;
+
+            Directory.Delete(Application.StartupPath + "/mmsl_downloads/archive", true);
             foreach(String file in Directory.GetFiles(Application.StartupPath + "/mmsl_downloads"))
             {
                 File.Delete(file);
@@ -1491,8 +1498,10 @@ namespace MeteorSkinLibrary
                 using (var archive = ZipArchive.Create())
                 {
                     archive.AddAllFromDirectory(Application.StartupPath + "/mmsl_packages");
-                    archive.SaveTo(File.OpenWrite(Application.StartupPath + "/mmsl_packages/Archive.zip"), CompressionType.BZip2);
+                    archive.SaveTo(File.OpenWrite(Application.StartupPath + "/mmsl_packages/Archive.zip"), CompressionType.None);
+                    archive.Dispose();
                 }
+                
             }
             
         }
@@ -1576,14 +1585,13 @@ namespace MeteorSkinLibrary
                                 {
                                     Directory.Delete(base_path + "archive",true);
                                 }
-                                Directory.CreateDirectory(base_path + "archive");
                                 ProcessStartInfo pro = new ProcessStartInfo();
                                 pro.WindowStyle = ProcessWindowStyle.Hidden;
                                 pro.FileName = Application.StartupPath+"/7za.exe";
-                                pro.Arguments = "e " + file_path + " -o" + base_path + "archive";
+                                String arguments = "x \"" + (file_path) + "\" -o\"" + (base_path) + "archive/\"";
+                                pro.Arguments = arguments;
                                 Process x = Process.Start(pro);
                                 x.WaitForExit();
-
                             }
                             else
                             {
@@ -1603,7 +1611,6 @@ namespace MeteorSkinLibrary
 
                             loadingbox.Value = 0;
                             appstatus.Text = "Importing Meteor Skins";
-                           
                             meteor_worker.RunWorkerAsync();
                         }
                         else

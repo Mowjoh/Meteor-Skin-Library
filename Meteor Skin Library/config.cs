@@ -13,9 +13,9 @@ namespace MeteorSkinLibrary
 {
     public partial class config : Form
     {
-        public PropertyHandler properties = new PropertyHandler("mmsl_config/Config.xml");
-        public LibraryHandler Library = new LibraryHandler("mmsl_config/Library.xml");
-        public LibraryHandler Default_Library = new LibraryHandler("mmsl_config/Default_Library.xml");
+        public PropertyHandler properties = new PropertyHandler(Application.StartupPath+"/mmsl_config/Config.xml");
+        public LibraryHandler Library = new LibraryHandler(Application.StartupPath + "/mmsl_config/Library.xml");
+        public LibraryHandler Default_Library = new LibraryHandler(Application.StartupPath + "/mmsl_config/Default_Library.xml");
 
         public config()
         {
