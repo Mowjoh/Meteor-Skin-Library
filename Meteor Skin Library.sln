@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteor Skin Library", "Mete
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Meteor Skin Library Setup", "Meteor Skin Library Setup\Meteor Skin Library Setup.vdproj", "{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteor updater", "Meteor updater\Meteor updater.csproj", "{80876718-ED7B-470D-8396-FF789131156A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}.Debug|Any CPU.Build.0 = Debug
 		{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}.Release|Any CPU.ActiveCfg = Release
 		{5F7C9DFC-BA4F-4638-A551-29EDBD4015FF}.Release|Any CPU.Build.0 = Release
+		{80876718-ED7B-470D-8396-FF789131156A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80876718-ED7B-470D-8396-FF789131156A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80876718-ED7B-470D-8396-FF789131156A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80876718-ED7B-470D-8396-FF789131156A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

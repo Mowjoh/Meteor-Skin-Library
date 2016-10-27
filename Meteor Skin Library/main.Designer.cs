@@ -46,7 +46,6 @@
             this.smashExplorerInterfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importSmashExplorerWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSmashExplorerWorkpaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.CharacterList = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -83,7 +82,6 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SkinListBox = new System.Windows.Forms.ListBox();
             this.skinboxlabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.textConsole = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.import_worker = new System.ComponentModel.BackgroundWorker();
@@ -97,6 +95,11 @@
             this.url_worker = new System.ComponentModel.BackgroundWorker();
             this.meteor_worker = new System.ComponentModel.BackgroundWorker();
             this.archive_worker = new System.ComponentModel.BackgroundWorker();
+            this.Characterlist2 = new System.Windows.Forms.ListView();
+            this.Characterss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -109,6 +112,8 @@
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.meteorbox)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -121,7 +126,7 @@
             this.smashExplorerInterfaceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1199, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1159, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -249,21 +254,12 @@
             this.exportSmashExplorerWorkpaceToolStripMenuItem.Text = "Export SmashExplorer workpace";
             this.exportSmashExplorerWorkpaceToolStripMenuItem.Click += new System.EventHandler(this.launch_se_export);
             // 
-            // CharacterList
-            // 
-            this.CharacterList.FormattingEnabled = true;
-            this.CharacterList.Location = new System.Drawing.Point(0, 53);
-            this.CharacterList.Name = "CharacterList";
-            this.CharacterList.Size = new System.Drawing.Size(120, 550);
-            this.CharacterList.TabIndex = 1;
-            this.CharacterList.SelectedIndexChanged += new System.EventHandler(this.character_selected);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(396, 27);
+            this.tabControl1.Location = new System.Drawing.Point(168, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(466, 421);
@@ -613,9 +609,9 @@
             // SkinListBox
             // 
             this.SkinListBox.FormattingEnabled = true;
-            this.SkinListBox.Location = new System.Drawing.Point(126, 53);
+            this.SkinListBox.Location = new System.Drawing.Point(6, 6);
             this.SkinListBox.Name = "SkinListBox";
-            this.SkinListBox.Size = new System.Drawing.Size(264, 459);
+            this.SkinListBox.Size = new System.Drawing.Size(156, 550);
             this.SkinListBox.TabIndex = 0;
             this.SkinListBox.SelectedIndexChanged += new System.EventHandler(this.skin_selected);
             // 
@@ -624,31 +620,21 @@
             this.skinboxlabel.AutoSize = true;
             this.skinboxlabel.Location = new System.Drawing.Point(243, 37);
             this.skinboxlabel.Name = "skinboxlabel";
-            this.skinboxlabel.Size = new System.Drawing.Size(33, 13);
+            this.skinboxlabel.Size = new System.Drawing.Size(0, 13);
             this.skinboxlabel.TabIndex = 1;
-            this.skinboxlabel.Text = "Skins";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Characters";
             // 
             // textConsole
             // 
-            this.textConsole.Location = new System.Drawing.Point(871, 53);
+            this.textConsole.Location = new System.Drawing.Point(821, 65);
             this.textConsole.Name = "textConsole";
-            this.textConsole.Size = new System.Drawing.Size(319, 399);
+            this.textConsole.Size = new System.Drawing.Size(319, 476);
             this.textConsole.TabIndex = 4;
             this.textConsole.Text = "";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(868, 33);
+            this.label9.Location = new System.Drawing.Point(821, 49);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(45, 13);
             this.label9.TabIndex = 7;
@@ -665,7 +651,7 @@
             // 
             this.groupBox6.Controls.Add(this.loadingbox);
             this.groupBox6.Controls.Add(this.appstatus);
-            this.groupBox6.Location = new System.Drawing.Point(871, 473);
+            this.groupBox6.Location = new System.Drawing.Point(824, 547);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(316, 130);
             this.groupBox6.TabIndex = 18;
@@ -700,7 +686,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(207, 518);
+            this.button7.Location = new System.Drawing.Point(22, 562);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(122, 23);
             this.button7.TabIndex = 19;
@@ -710,7 +696,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(207, 580);
+            this.button8.Location = new System.Drawing.Point(22, 591);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(122, 23);
             this.button8.TabIndex = 20;
@@ -721,7 +707,7 @@
             // meteorbox
             // 
             this.meteorbox.Image = global::Meteor_Skin_Library.Properties.Resources.mowjohdrop;
-            this.meteorbox.Location = new System.Drawing.Point(402, 454);
+            this.meteorbox.Location = new System.Drawing.Point(174, 433);
             this.meteorbox.Name = "meteorbox";
             this.meteorbox.Size = new System.Drawing.Size(450, 150);
             this.meteorbox.TabIndex = 17;
@@ -748,27 +734,78 @@
             this.archive_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.archive_worker_DoWork);
             this.archive_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.archive_worker_RunWorkerCompleted);
             // 
+            // Characterlist2
+            // 
+            this.Characterlist2.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.Characterlist2.AutoArrange = false;
+            this.Characterlist2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Characterss});
+            this.Characterlist2.FullRowSelect = true;
+            this.Characterlist2.Location = new System.Drawing.Point(-1, 27);
+            this.Characterlist2.MultiSelect = false;
+            this.Characterlist2.Name = "Characterlist2";
+            this.Characterlist2.Size = new System.Drawing.Size(160, 654);
+            this.Characterlist2.TabIndex = 21;
+            this.Characterlist2.UseCompatibleStateImageBehavior = false;
+            this.Characterlist2.View = System.Windows.Forms.View.Details;
+            this.Characterlist2.SelectedIndexChanged += new System.EventHandler(this.Characterlist2_SelectedIndexChanged);
+            // 
+            // Characterss
+            // 
+            this.Characterss.Text = "Characters";
+            this.Characterss.Width = 120;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Location = new System.Drawing.Point(165, 27);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(650, 654);
+            this.tabControl2.TabIndex = 22;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.tabControl1);
+            this.tabPage4.Controls.Add(this.SkinListBox);
+            this.tabPage4.Controls.Add(this.button8);
+            this.tabPage4.Controls.Add(this.meteorbox);
+            this.tabPage4.Controls.Add(this.button7);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(642, 628);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "Skin Tab";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(701, 628);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "Character Files";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1199, 621);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.meteorbox);
-            this.Controls.Add(this.label9);
+            this.ClientSize = new System.Drawing.Size(1159, 711);
+            this.Controls.Add(this.tabControl2);
+            this.Controls.Add(this.Characterlist2);
             this.Controls.Add(this.textConsole);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.skinboxlabel);
-            this.Controls.Add(this.CharacterList);
-            this.Controls.Add(this.SkinListBox);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(1215, 660);
-            this.MinimumSize = new System.Drawing.Size(1215, 660);
+            this.MaximumSize = new System.Drawing.Size(1175, 750);
+            this.MinimumSize = new System.Drawing.Size(1175, 750);
             this.Name = "main";
             this.Text = "Mowjoh\'s Meteor Skin Library Beta";
             this.menuStrip1.ResumeLayout(false);
@@ -789,6 +826,8 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.meteorbox)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -799,7 +838,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ListBox CharacterList;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -813,7 +851,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox SlotNumberText;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
@@ -864,6 +901,11 @@
         private System.Windows.Forms.ToolStripMenuItem archiveCurrentMeteorSkinPackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetCurrentMeteorSkinPackSessionToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker archive_worker;
+        private System.Windows.Forms.ListView Characterlist2;
+        private System.Windows.Forms.ColumnHeader Characterss;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
     }
 }
 

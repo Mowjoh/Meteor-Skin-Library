@@ -264,8 +264,8 @@ namespace MeteorSkinLibrary
         {
             String folder_name = Path.GetFileName(source_model_path);
 
-            Regex cXX = new Regex("^[c]([0-9]{2}|xx)$", RegexOptions.IgnoreCase);
-            Regex lXX = new Regex("^[l]([0-9]{2}|xx)$", RegexOptions.IgnoreCase);
+            Regex cXX = new Regex("^[c]([0-9]{2}|xx|[0-9]x|x[0-9])$", RegexOptions.IgnoreCase);
+            Regex lXX = new Regex("^[l]([0-9]{2}|xx|[0-9]x|x[0-9])$", RegexOptions.IgnoreCase);
             
             if (cXX.IsMatch(Path.GetFileName(folder_name)))
             {

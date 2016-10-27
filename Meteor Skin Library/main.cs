@@ -12,6 +12,8 @@ using System.Threading;
 using SharpCompress.Archive;
 using SharpCompress.Archive.Zip;
 using SharpCompress.Writer;
+using System.Xml;
+using System.Drawing;
 
 namespace MeteorSkinLibrary
 {
@@ -108,8 +110,12 @@ namespace MeteorSkinLibrary
                     processing = true;
                     block_controls();
                     meteor_download(args);
+                }else
+                {
+                    check_updates();
                 }
                 reset_skin_pack_session();
+                
             }
 
         }
@@ -134,7 +140,8 @@ namespace MeteorSkinLibrary
         {
             if (!processing)
             {
-                if (CharacterList.SelectedIndex != -1)
+                
+                if (Characterlist2.SelectedIndices[0] != -1)
                 {
                     selected_char.add_skin();
                     console_write("Skin added for " + selected_char.fullname + " in slot " + (SkinListBox.Items.Count + 1));
@@ -168,7 +175,7 @@ namespace MeteorSkinLibrary
         {
             if (!processing)
             {
-                if (MessageBox.Show("Doing this will erase all entries in the Library. Skins are still present in the mmsl_workspace folder. Continue with this destruction?", "Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Doing this will erase all entries in the Library. Skins are still present in the mmsl_workspace folder. Continue with this destruction?", "Rando WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     File.Delete(Application.StartupPath + "/mmsl_config/Library.xml");
                     File.Copy(Application.StartupPath + "/mmsl_config/Default_Library.xml", Application.StartupPath + "/mmsl_config/Library.xml");
@@ -180,7 +187,7 @@ namespace MeteorSkinLibrary
                 SkinListBox.SelectedIndex = -1;
                 Characters = Library.get_character_list();
                 init_character_ListBox();
-                CharacterList.SelectedIndex = 0;
+                Characterlist2.Items[0].Selected = true;
                 state_check();
             }
         }
@@ -189,7 +196,7 @@ namespace MeteorSkinLibrary
         {
             if (!processing)
             {
-                if (MessageBox.Show("Doing this will erase all contents of the mmsl_workspace folder which contains every file you've added. Continue with this destruction?", "Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Doing this will erase all contents of the mmsl_workspace folder which contains every file you've added. Continue with this destruction?", "Rando WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     batch_delete(Application.StartupPath + "/mmsl_workspace");
                     Directory.CreateDirectory(Application.StartupPath + "/mmsl_workspace");
@@ -207,7 +214,7 @@ namespace MeteorSkinLibrary
         {
             if (!processing)
             {
-                if (MessageBox.Show("Doing this will erase all configuration changes. Continue with this destruction?", "Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Doing this will erase all configuration changes. Continue with this destruction?", "Rando WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     File.Delete(Application.StartupPath + "/mmsl_config/Config.xml");
                     File.Copy(Application.StartupPath + "/mmsl_config/Default_Config.xml", Application.StartupPath + "/mmsl_config/Config.xml");
@@ -220,7 +227,6 @@ namespace MeteorSkinLibrary
 
                 }
 
-                CharacterList.SelectedIndex = -1;
                 SkinListBox.SelectedIndex = -1;
                 Characters = Library.get_character_list();
                 init_character_ListBox();
@@ -233,7 +239,7 @@ namespace MeteorSkinLibrary
         {
             if (!processing)
             {
-                if (MessageBox.Show("Doing this will erase all configuration changes. It will erase all files of every mod you've added. The library containing skin information will be deleted. Continue with this Supermassive black-hole type destruction?", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Doing this will erase all configuration changes. It will erase all files of every mod you've added. The library containing skin information will be deleted. Continue with this Supermassive black-hole type destruction?", "Super Rando WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     File.Delete(Application.StartupPath + "/mmsl_config/Config.xml");
                     File.Copy(Application.StartupPath + "/mmsl_config/Default_Config.xml", Application.StartupPath + "/mmsl_config/Config.xml");
@@ -270,7 +276,6 @@ namespace MeteorSkinLibrary
                     console_write("Library reset complete");
 
 
-                    CharacterList.SelectedIndex = -1;
                     SkinListBox.SelectedIndex = -1;
                     Characters = Library.get_character_list();
                     init_character_ListBox();
@@ -312,7 +317,7 @@ namespace MeteorSkinLibrary
         {
             if (!processing)
             {
-                if (MessageBox.Show("It will erase all files of every mod you've added. The library containing skin information will be deleted. Continue with this Supermassive black-hole type destruction?", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("It will erase all files of every mod you've added in Meteor Skin Library. The library containing skin information will be deleted. Continue with this Supermassive black-hole type destruction?", "Super Rando WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     processing = true;
                     block_controls();
@@ -331,7 +336,7 @@ namespace MeteorSkinLibrary
         {
             if (!processing)
             {
-                if (MessageBox.Show("Doing this will erase fighter and ui folders from Smash Explorer's workspace. Are you sure you've made a backup? If yes, you can validate these changes", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Doing this will erase fighter/[name]/model and ui/replace/chr and ui/replace/append/chr from Smash Explorer's workspace. Are you sure you've made a backup? If yes, you can validate these changes", "Super Rando WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     processing = true;
                     block_controls();
@@ -351,7 +356,7 @@ namespace MeteorSkinLibrary
         //When a character is selected
         private void character_selected(object sender, EventArgs e)
         {
-            selected_char = new Character(CharacterList.SelectedItem.ToString());
+            selected_char = new Character(Characterlist2.SelectedItems[0].Text);
             skin_ListBox_reload();
             state_check();
         }
@@ -398,7 +403,7 @@ namespace MeteorSkinLibrary
 
             state_check();
 
-            uichar.setFile(int.Parse(Library.get_ui_char_db_id(CharacterList.SelectedItem.ToString())), 7, SkinListBox.Items.Count);
+            uichar.setFile(int.Parse(Library.get_ui_char_db_id(Characterlist2.SelectedItems[0].Text)), 7, SkinListBox.Items.Count);
 
         }
 
@@ -529,7 +534,7 @@ namespace MeteorSkinLibrary
         //Reloads Skin List
         private void skin_ListBox_reload()
         {
-            if (CharacterList.SelectedIndex != -1)
+            if (Characterlist2.SelectedIndices[0] != -1)
             {
                 SkinListBox.Items.Clear();
                 selected_char.getSkins();
@@ -613,11 +618,24 @@ namespace MeteorSkinLibrary
         //Filling Character list
         public void init_character_ListBox()
         {
-            CharacterList.Items.Clear();
-            foreach (String chars in Characters)
+            Characterlist2.Items.Clear();
+            ImageList images = new ImageList();
+            images.ImageSize = new Size(24, 24);
+            Characterlist2.View = View.Details;
+            for(int j = 0; j < Characters.Count; j++)
             {
-                CharacterList.Items.Add(chars);
+                String chars = (String)Characters[j];
+                
+                if (File.Exists(Application.StartupPath + "/mmsl_img/icons/" + chars + ".png"))
+                {
+                    images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/icons/" + chars + ".png"));
+                }
+                ListViewItem item = new ListViewItem(chars);
+                item.ImageIndex = j;
+                Characterlist2.Items.Add(item);
             }
+            Characterlist2.SmallImageList = images;
+
 
         }
 
@@ -644,7 +662,7 @@ namespace MeteorSkinLibrary
         //State Checker
         private void state_check()
         {
-            int character = CharacterList.SelectedIndex;
+            int character = Characterlist2.SelectedIndices.Count > 0 ? Characterlist2.SelectedIndices[0] : -1;
             int skin = SkinListBox.SelectedIndex;
             int model = models_ListView.SelectedIndices.Count;
             int csp = csps_ListView.SelectedIndices.Count;
@@ -768,7 +786,7 @@ namespace MeteorSkinLibrary
             textBox4.Text = "";
 
             SkinListBox.Enabled = false;
-            CharacterList.Enabled = false;
+            Characterlist2.Enabled = false;
             meteorbox.Enabled = false;
 
             button7.Enabled = false;
@@ -777,7 +795,7 @@ namespace MeteorSkinLibrary
         private void enable_controls()
         {
             SkinListBox.Enabled = true;
-            CharacterList.Enabled = true;
+            Characterlist2.Enabled = true;
             meteorbox.Enabled = true;
             button7.Enabled = true;
             button8.Enabled = true;
@@ -842,7 +860,7 @@ namespace MeteorSkinLibrary
                         }
                         else
                         {
-                            Regex clXX = new Regex("^[cl]([0-9]{2}|xx)$", RegexOptions.IgnoreCase);
+                            Regex clXX = new Regex("^[cl]([0-9]{2}|xx|[0-9]x|x[0-9])$", RegexOptions.IgnoreCase);
                             if (clXX.IsMatch(Path.GetFileName(folder)))
                             {
                                 skin.add_model(folder, "body");
@@ -938,7 +956,7 @@ namespace MeteorSkinLibrary
 
                     int skin_slot = SkinListBox.Items.Count + 1;
 
-                    Skin meteor_skin = new Skin(CharacterList.SelectedItem.ToString(), SkinListBox.Items.Count + 1, skin_name, "Custom");
+                    Skin meteor_skin = new Skin(Characterlist2.SelectedItems[0].Text, SkinListBox.Items.Count + 1, skin_name, "Custom");
 
                     //Model files check
                     if (Directory.Exists(file + "/model"))
@@ -971,7 +989,7 @@ namespace MeteorSkinLibrary
             }
             skin_ListBox_reload();
             SkinListBox.SelectedIndex = (SkinListBox.Items.Count - 1);
-            uichar.setFile(int.Parse(Library.get_ui_char_db_id(CharacterList.SelectedItem.ToString())), 7, SkinListBox.Items.Count);
+            uichar.setFile(int.Parse(Library.get_ui_char_db_id(Characterlist2.SelectedItems[0].Text)), 7, SkinListBox.Items.Count);
             skin_details_reload();
         }
 
@@ -980,7 +998,7 @@ namespace MeteorSkinLibrary
             
             foreach (String dir in Directory.GetDirectories(path))
             {
-                int index = CharacterList.FindString(Path.GetFileName(dir));
+                int index = Characterlist2.FindItemWithText(Path.GetFileName(dir)).Index;
                 // Determine if a valid index is returned. Select the item if it is valid.
                 if (index != -1)
                 {
@@ -1037,7 +1055,7 @@ namespace MeteorSkinLibrary
                         current++;
                     }
 
-                    CharacterList.SetSelected(index, true);
+                    Characterlist2.FindItemWithText(selected_meteor_char.fullname).Selected = true;
                     uichar.setFile(int.Parse(Library.get_ui_char_db_id(selected_meteor_char.fullname)), 7, selected_meteor_char.skins.Count);
                 }
                 
@@ -1152,7 +1170,7 @@ namespace MeteorSkinLibrary
 
                                         foreach (String csp in Directory.GetFiles(cspformat))
                                         {
-                                            Regex cspr = new Regex("^((?:chrn|chr|stock)_[0-9][0-9])_([a-zA-Z]+)_[0-9][0-9].nut$");
+                                            Regex cspr = new Regex("^((?:chrn|chr|stock)_[0-9][0-9])_([a-zA-Z]+)_([0-9]{2}|xx|[0-9]x|x[0-9]).nut$");
                                             if (cspr.IsMatch(Path.GetFileName(csp)))
                                             {
                                                 //got every info for file
@@ -1247,6 +1265,7 @@ namespace MeteorSkinLibrary
                     {
                         File.Copy(newPath, newPath.Replace(source, destination), true);
                         float val = (current / count)/4 * 100*3;
+                         val = val > 100 ? 100 : val;
                         export_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
                         current++;
                     }
@@ -1290,6 +1309,7 @@ namespace MeteorSkinLibrary
                         {
                             File.Copy(newPath, newPath.Replace(source, destination), true);
                             float val = (current / count) / 4 * 100+74;
+                            val = val > 100 ? 100 : val;
                             export_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
                             current++;
                         }
@@ -1665,7 +1685,86 @@ namespace MeteorSkinLibrary
             
         }
 
-       
+       private void check_updates()
+        {
+            //try
+            //{
+                XmlDocument xml = new XmlDocument();
+                xml.Load("http://mmsl.lunaticfox.com/corepackage.xml");
+                XmlNode nodes = xml.SelectSingleNode("package");
+                String version = nodes.Attributes[0].Value;
+                int major = int.Parse(version.Split('.')[1]);
+                int minor = int.Parse(version.Split('.')[2]);
+                int build = int.Parse(version.Split('.')[3]);
+
+                XmlDocument xml2 = new XmlDocument();
+                xml2.Load(Application.StartupPath + "/corepackage.xml");
+                XmlNode nodes2 = xml2.SelectSingleNode("package");
+                String version2 = nodes2.Attributes[0].Value;
+                int major2 = int.Parse(version2.Split('.')[1]);
+                int minor2 = int.Parse(version2.Split('.')[2]);
+                int build2 = int.Parse(version2.Split('.')[3]);
+
+                //update
+                if (major > major2)
+                {
+                    update();
+                }
+                else
+                {
+                    //same major version
+                    if (major == major2)
+                    {
+                        //update
+                        if (minor > minor2)
+                        {
+                            update();
+                        }
+                        else
+                        {
+                            //same minor version
+                            if (minor == minor2)
+                            {
+                                //update
+                                if (build > build2)
+                                {
+                                    update();
+                                }
+                            }
+                        }
+                    }
+
+                }
+            //}
+            //catch(Exception e)
+            //{
+            //    console_write("No update available");
+            //}
+           
+
+        }
+
+        private void update()
+        {
+            if (MessageBox.Show("An update is available, Do you wish to download it? It will close Meteor Skin Library and launch the updater", "Rando WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                ProcessStartInfo pro = new ProcessStartInfo();
+                pro.FileName = Application.StartupPath+"/Meteor updater.exe";
+                Process x = Process.Start(pro);
+                Environment.Exit(0);
+            }
+        }
+
+        private void Characterlist2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(Characterlist2.SelectedItems.Count > 0)
+            {
+                selected_char = new Character(Characterlist2.SelectedItems[0].Text);
+                skin_ListBox_reload();
+                state_check();
+            }
+            
+        }
     }
 
 
