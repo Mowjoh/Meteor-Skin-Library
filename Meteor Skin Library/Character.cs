@@ -60,6 +60,7 @@ namespace MeteorSkinLibrary
         {
             Skin deleted = (Skin)skins[slot];
             deleted.delete_skin();
+            skins.Remove(deleted);
             remake_skinlist();
         }
 

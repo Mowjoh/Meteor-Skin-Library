@@ -91,10 +91,24 @@ namespace MeteorSkinLibrary
                 if(Library.get_moved_dlc_status(fullname))
                 {
                     this.csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/chr/";
-                    this.edited_csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder+"/ui/replace/append/chr/";
+                    if(Properties.get("unlocalised") == "0")
+                    {
+                        this.edited_csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
+                    }else
+                    {
+                        this.edited_csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/append/chr/";
+                    }
+                   
                 }else
                 {
-                    this.csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
+                    if (Properties.get("unlocalised") == "0")
+                    {
+                        this.csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
+                    }
+                    else
+                    {
+                        this.edited_csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/append/chr/";
+                    }
                 }
             }else
             {
@@ -125,7 +139,7 @@ namespace MeteorSkinLibrary
         #endregion
 
         #region SkinOperators
-        public void clean_skin()
+        public void clean_skin(int val)
         {
             if(models.Count > 0)
             {
@@ -148,12 +162,22 @@ namespace MeteorSkinLibrary
             }
             load_csp();
             load_models();
-            recreateMeta();
+            if(val == 0)
+            {
+                recreateMeta();
+            }else
+            {
+                if (File.Exists(this.metapath + "meta.xml"))
+                {
+                    File.Delete(this.metapath + "meta.xml");
+                }
+            }
+            
         }
 
         public void delete_skin()
         {
-            clean_skin();
+            clean_skin(1);
             Library.delete_skin(fullname, slot);
         }
 
@@ -224,6 +248,8 @@ namespace MeteorSkinLibrary
             {
                 rename_csp(csp, slot);
             }
+
+            renameMeta(slot);
 
             if(slot == -1)
             {
@@ -365,8 +391,10 @@ namespace MeteorSkinLibrary
             this.csps.Add(csp_name);
             Library.add_skin_csp(this.fullname, this.slot, csp_name);
             
+            //Checking special cases
             if(csp_name == "chr_13")
             {
+                //If moved DLC
                 if (Library.get_moved_dlc_status(fullname))
                 {
                     if (!Directory.Exists(edited_csppath + csp_name))
@@ -389,7 +417,8 @@ namespace MeteorSkinLibrary
                 }
                 
             }else
-            {
+            {   
+                //Checking dlc
                 if (!Directory.Exists(csppath + csp_name))
                 {
                     Directory.CreateDirectory(csppath + csp_name);
@@ -511,6 +540,22 @@ namespace MeteorSkinLibrary
         {
             File.Copy(meta_source_path, metapath + "meta.xml", true);
             loadMeta();
+        }
+
+        internal void renameMeta(int newslot)
+        {
+            String dest = newslot == -1 ? "xx" : (newslot + 1).ToString();
+            String source = temped ? "xx" : this.slot.ToString();
+            String source_path = Application.StartupPath + "/mmsl_config/meta/" + modelfolder + "/slot_" + source;
+            String destination_path = Application.StartupPath + "/mmsl_config/meta/" + modelfolder + "/slot_" + dest;
+            if (!Directory.Exists(destination_path))
+            {
+                Directory.CreateDirectory(destination_path);
+            }
+            File.Copy(source_path + "/meta.xml", destination_path + "/meta.xml",true);
+            this.metapath = destination_path + "/meta.xml";
+            Directory.Delete(source_path,true);
+
         }
         #endregion
 

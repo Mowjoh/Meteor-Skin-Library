@@ -28,9 +28,9 @@ namespace Meteor_updater
 
             //Getting Xml Info
             XmlDocument xml = new XmlDocument();
-            xml.Load("http://mmsl.lunaticfox.com/corepackage.xml");
+            xml.Load("http://mmsl.lunaticfox.com/newcorepackage.xml");
             XmlNode nodes = xml.SelectSingleNode("package");
-            XmlNodeList patches = xml.SelectNodes("package/patchnote/patch");
+            XmlNodeList patches = xml.SelectNodes("package/patchnote");
             version = nodes.Attributes[0].Value;
             patchnotes = nodes.InnerText;
 
@@ -38,12 +38,19 @@ namespace Meteor_updater
             console_write_line();
             console_write("This will update to version " + version+"\n");
             int i = 1;
+
             foreach(XmlElement patch in patches)
             {
-                console_write("#" + i + " - " + patch.InnerText);
-                i++;
+                console_write("Patch "+patch.Attributes["version"].Value);
+                XmlNodeList patchnodes = xml.SelectNodes("package/patchnote[attribute::version='" + patch.Attributes["version"].Value + "']/patch");
+                foreach(XmlElement xe in patchnodes)
+                {
+                    console_write("- " + xe.InnerText+"\n");
+                }
             }
+
             console_write_line();
+
             console_write("- Downloading");
             console_write("- Installing");
 
@@ -108,10 +115,11 @@ namespace Meteor_updater
                         }
                         else
                         {
+
                         }
                     });
 
-                webClient.DownloadFileAsync(new Uri("http://mmsl.lunaticfox.com/build.zip"),app_path+"/build.zip");
+                webClient.DownloadFileAsync(new Uri("http://mmsl.lunaticfox.com/newbuild.zip"),app_path+"/build.zip");
             }
         }
 

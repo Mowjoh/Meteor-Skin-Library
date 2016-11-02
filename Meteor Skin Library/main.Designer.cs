@@ -49,6 +49,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -100,6 +101,20 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button12 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.launchS4EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -114,6 +129,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.meteorbox)).BeginInit();
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -134,7 +152,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem,
-            this.cleanWorkspaceToolStripMenuItem});
+            this.cleanWorkspaceToolStripMenuItem,
+            this.launchS4EToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -150,7 +169,7 @@
             // 
             this.cleanWorkspaceToolStripMenuItem.Name = "cleanWorkspaceToolStripMenuItem";
             this.cleanWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.cleanWorkspaceToolStripMenuItem.Text = "Open Workspace Folder";
+            this.cleanWorkspaceToolStripMenuItem.Text = "Open Installation Folder";
             this.cleanWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.openmmsl_workspace);
             // 
             // skinsToolStripMenuItem
@@ -251,7 +270,7 @@
             // 
             this.exportSmashExplorerWorkpaceToolStripMenuItem.Name = "exportSmashExplorerWorkpaceToolStripMenuItem";
             this.exportSmashExplorerWorkpaceToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
-            this.exportSmashExplorerWorkpaceToolStripMenuItem.Text = "Export SmashExplorer workpace";
+            this.exportSmashExplorerWorkpaceToolStripMenuItem.Text = "Export SmashExplorer workspace";
             this.exportSmashExplorerWorkpaceToolStripMenuItem.Click += new System.EventHandler(this.launch_se_export);
             // 
             // tabControl1
@@ -278,6 +297,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
@@ -295,9 +315,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Skin Information";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 185);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(86, 13);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "melee.msbt entry";
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(161, 221);
+            this.button5.Location = new System.Drawing.Point(160, 283);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(125, 23);
             this.button5.TabIndex = 9;
@@ -308,7 +337,7 @@
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(315, 168);
+            this.button3.Location = new System.Drawing.Point(314, 230);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(125, 23);
             this.button3.TabIndex = 8;
@@ -319,7 +348,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(161, 168);
+            this.button2.Location = new System.Drawing.Point(160, 230);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(125, 23);
             this.button2.TabIndex = 7;
@@ -329,7 +358,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(6, 168);
+            this.button1.Location = new System.Drawing.Point(5, 230);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 23);
             this.button1.TabIndex = 6;
@@ -339,7 +368,7 @@
             // 
             // SkinOriginText
             // 
-            this.SkinOriginText.Location = new System.Drawing.Point(87, 108);
+            this.SkinOriginText.Location = new System.Drawing.Point(124, 108);
             this.SkinOriginText.Name = "SkinOriginText";
             this.SkinOriginText.ReadOnly = true;
             this.SkinOriginText.Size = new System.Drawing.Size(188, 20);
@@ -356,7 +385,7 @@
             // 
             // SkinNameText
             // 
-            this.SkinNameText.Location = new System.Drawing.Point(87, 69);
+            this.SkinNameText.Location = new System.Drawing.Point(124, 69);
             this.SkinNameText.Name = "SkinNameText";
             this.SkinNameText.Size = new System.Drawing.Size(188, 20);
             this.SkinNameText.TabIndex = 3;
@@ -373,7 +402,7 @@
             // 
             // SlotNumberText
             // 
-            this.SlotNumberText.Location = new System.Drawing.Point(87, 33);
+            this.SlotNumberText.Location = new System.Drawing.Point(124, 33);
             this.SlotNumberText.Name = "SlotNumberText";
             this.SlotNumberText.ReadOnly = true;
             this.SlotNumberText.Size = new System.Drawing.Size(188, 20);
@@ -741,6 +770,7 @@
             this.Characterlist2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Characterss});
             this.Characterlist2.FullRowSelect = true;
+            this.Characterlist2.HideSelection = false;
             this.Characterlist2.Location = new System.Drawing.Point(-1, 27);
             this.Characterlist2.MultiSelect = false;
             this.Characterlist2.Name = "Characterlist2";
@@ -782,13 +812,145 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.groupBox8);
+            this.tabPage5.Controls.Add(this.groupBox7);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(701, 628);
+            this.tabPage5.Size = new System.Drawing.Size(642, 628);
             this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "Character Files";
+            this.tabPage5.Text = "Character Tab";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.button12);
+            this.groupBox8.Controls.Add(this.textBox6);
+            this.groupBox8.Controls.Add(this.label4);
+            this.groupBox8.Location = new System.Drawing.Point(436, 6);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(200, 243);
+            this.groupBox8.TabIndex = 8;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "ui_character_db override";
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(22, 214);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(163, 23);
+            this.button12.TabIndex = 7;
+            this.button12.Text = "save";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(110, 37);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(84, 20);
+            this.textBox6.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Custom Skin Count";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.richTextBox1);
+            this.groupBox7.Controls.Add(this.label13);
+            this.groupBox7.Controls.Add(this.listBox1);
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.Controls.Add(this.button11);
+            this.groupBox7.Controls.Add(this.button9);
+            this.groupBox7.Controls.Add(this.button10);
+            this.groupBox7.Controls.Add(this.textBox5);
+            this.groupBox7.Location = new System.Drawing.Point(6, 6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(424, 243);
+            this.groupBox7.TabIndex = 7;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "melee.msbt entries";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(133, 76);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(285, 73);
+            this.richTextBox1.TabIndex = 8;
+            this.richTextBox1.Text = "";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(236, 60);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(60, 13);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Description";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(6, 19);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 160);
+            this.listBox1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(236, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Selected entry";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(279, 156);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(139, 23);
+            this.button11.TabIndex = 6;
+            this.button11.Text = "delete";
+            this.button11.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(6, 197);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(119, 23);
+            this.button9.TabIndex = 4;
+            this.button9.Text = "add entry";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(132, 156);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(141, 23);
+            this.button10.TabIndex = 5;
+            this.button10.Text = "save";
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(132, 37);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(286, 20);
+            this.textBox5.TabIndex = 2;
+            // 
+            // launchS4EToolStripMenuItem
+            // 
+            this.launchS4EToolStripMenuItem.Name = "launchS4EToolStripMenuItem";
+            this.launchS4EToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.launchS4EToolStripMenuItem.Text = "Launch S4E";
+            this.launchS4EToolStripMenuItem.Click += new System.EventHandler(this.launchS4EToolStripMenuItem_Click);
             // 
             // main
             // 
@@ -828,6 +990,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.meteorbox)).EndInit();
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -906,6 +1073,21 @@
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem launchS4EToolStripMenuItem;
     }
 }
 
