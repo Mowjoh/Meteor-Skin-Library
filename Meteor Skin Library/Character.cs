@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Meteor_Skin_Library;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,20 +15,22 @@ namespace MeteorSkinLibrary
         LibraryHandler Library;
         PropertyHandler properties;
         UICharDBHandler ui;
+        Logger log;
         //Character Variables
         public String fullname;
         public ArrayList skins;
 
         //Character Constructor
-        public Character(String full_name)
+        public Character(String full_name, LibraryHandler global_lib, PropertyHandler global_properties, UICharDBHandler global_ui_char, Logger global_log)
         {
             //Setting variables
             this.fullname = full_name;
 
             //Instanciating handlers to get info
-            Library = new LibraryHandler(Application.StartupPath+ "/mmsl_config/Library.xml");
-            properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Config.xml");
-            ui = new UICharDBHandler(properties.get("explorer_workspace"), properties.get("datafolder"));
+            Library = global_lib;
+            properties = global_properties;
+            ui = global_ui_char;
+            log = global_log;
 
             //Getting skins
             skins = new ArrayList();
@@ -41,14 +44,17 @@ namespace MeteorSkinLibrary
             ArrayList skinlist = Library.get_skin_list(fullname);
             foreach (String slot in skinlist)
             {
-                Skin skin = new Skin(fullname, int.Parse(slot), Library.get_skin_libraryname(fullname, int.Parse(slot)), Library.get_skin_origin(fullname, int.Parse(slot)));
-                skins.Add(skin);
+                int slott;
+                if(int.TryParse(slot, out slott)){
+                    Skin skin = new Skin(fullname, slott, Library.get_skin_libraryname(fullname, slott), Library.get_skin_origin(fullname, slott),Library,properties,log);
+                    skins.Add(skin);
+                }
             }
         }
         //Adds a skin to the library
         public void add_skin()
         {
-            Skin newe = new Skin(fullname,skins.Count + 1, "New Skin", "Custom");
+            Skin newe = new Skin(fullname,skins.Count + 1, "New Skin", "Custom", Library, properties, log);
             
             skins.Add(newe);
             //Seventh slot of ui_char_db is skin slot count
@@ -103,7 +109,7 @@ namespace MeteorSkinLibrary
                         swap(ori, dest);
                         break;
                     case 1:
-                        Skin new_skin = new Skin(fullname, ori.slot, "Default", "Default");
+                        Skin new_skin = new Skin(fullname, ori.slot, "Default", "Default", Library, properties, log);
                         Library.insert_skin(fullname, new_skin.slot, new_skin.libraryname, new_skin.origin);
                         skins.Insert(ori.slot, new_skin);
                         Library.reload_skin_order(fullname);
@@ -173,6 +179,16 @@ namespace MeteorSkinLibrary
                 {
                     current.move(i);
                 }
+            }
+        }
+
+        public void check_all_files()
+        {
+            ArrayList skinlist = Library.get_skin_list(fullname);
+            foreach (String slot in skinlist)
+            {
+                Skin skin = new Skin(fullname, int.Parse(slot), Library.get_skin_libraryname(fullname, int.Parse(slot)), Library.get_skin_origin(fullname, int.Parse(slot)), Library, properties, log);
+                skin.check_missing_files_status();
             }
         }
 

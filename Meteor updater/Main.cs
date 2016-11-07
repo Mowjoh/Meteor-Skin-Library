@@ -108,6 +108,15 @@ namespace Meteor_updater
                             //Copy all the files & Replaces any files with the same name
                             foreach (string newPath in Directory.GetFiles(app_path + "/build", "*.*", SearchOption.AllDirectories))
                             {
+                                if(!Directory.Exists(Path.GetDirectoryName(newPath.Replace(app_path + "/build", base_path))))
+                                {
+                                    Directory.CreateDirectory(Path.GetDirectoryName(newPath.Replace(app_path + "/build", base_path)));
+                                }
+                                if(File.Exists(newPath.Replace(app_path + "/build", base_path)))
+                                {
+                                    File.Delete(newPath.Replace(app_path + "/build", base_path));
+                                }
+                                
                                 File.Copy(newPath, newPath.Replace(app_path + "/build", base_path), true);
                             }
 

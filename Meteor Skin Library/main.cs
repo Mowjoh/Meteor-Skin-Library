@@ -26,6 +26,7 @@ namespace MeteorSkinLibrary
         PropertyHandler properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Default_Config.xml");
         MetaHandler meta = new MetaHandler(Application.StartupPath + "/mmsl_config/meta/Default_Meta.xml");
         UICharDBHandler uichar;
+        Logger logg;
         #endregion
         #region SelectedInfo
 
@@ -34,6 +35,7 @@ namespace MeteorSkinLibrary
         Skin selected_skin;
         Character selected_char;
         String last_char = "";
+        String workspace_char = "";
 
         #endregion
         #region Lists
@@ -42,6 +44,8 @@ namespace MeteorSkinLibrary
         ArrayList Skins = new ArrayList();
 
         ArrayList ui_char_db_values = new ArrayList();
+
+        ImageList status_images;
         #endregion
         #region Files
         //Selected Files
@@ -51,6 +55,13 @@ namespace MeteorSkinLibrary
         #endregion
         #region Processing
         Boolean processing;
+        int current_step = 0;
+        int steps = 0;
+        int process= 0;
+        int status = 0;
+        double val;
+        String process_text;
+        int workspace_select = 0;
         #endregion
         #region Errorcodes
         int downloadcode = 0;
@@ -60,6 +71,9 @@ namespace MeteorSkinLibrary
         int importcode = 0;
         int exportcode = 0;
 
+        #endregion
+        #region Appvalues
+        String appversion="";
         #endregion
 
         Boolean fakeargs = false;
@@ -85,8 +99,15 @@ namespace MeteorSkinLibrary
                 conf = false;
             }
 
-            #endregion
+            //Version
+            XmlDocument xml2 = new XmlDocument();
+            xml2.Load(Application.StartupPath + "/newcorepackage.xml");
+            XmlNode nodes2 = xml2.SelectSingleNode("package");
+            this.appversion = nodes2.Attributes[0].Value;
             
+
+            #endregion
+
 
             if (conf && lib)
             {
@@ -120,7 +141,17 @@ namespace MeteorSkinLibrary
                 processing = false;
                 url_worker.RunWorkerAsync();
                 reset_skin_pack_session();
+                this.status_images = new ImageList();
+                status_images.ImageSize = new Size(24, 24);
+                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/unknown.png"));
+                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/missing.png"));
+                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/new.png"));
+                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/checked.png"));
+                SkinListBox.SmallImageList = status_images;
                 #endregion
+
+                logg = new Logger(1);
+                logg.log("Meteor Skin Library Start");
 
                 //Launches config if not edited
                 region_select();
@@ -129,15 +160,18 @@ namespace MeteorSkinLibrary
                 uichar = new UICharDBHandler(properties.get("explorer_workspace"), properties.get("datafolder"));
                 if (!uichar.imported)
                 {
+                    logg.log("ui_char_db not imported");
                     console_write("ui_character_db was not found in Sm4sh Explorer, please add it and relaunch this software!");
                 }
                 else
                 {
+                    logg.log("ui_char_db imported");
                     console_write("ui_character_db was found, congrats !");
                 }
                 #endregion
 
                 #region melee.msbt
+                /*
                 Melee melee = new Melee();
                 if (melee.check_file())
                 {
@@ -146,11 +180,13 @@ namespace MeteorSkinLibrary
                 {
                     console_write("melee.msbt was not found in S4E's workspace or extract folder");
                 }
+               */
                 #endregion
 
                 //If arguments are passed
                 if (args.Length > 0 | (fakeargs == true))
                 {
+                    logg.log("args were passed");
                     //Launch download process
                     processing = true;
                     block_controls();
@@ -158,6 +194,7 @@ namespace MeteorSkinLibrary
                 }
                 else
                 {
+                    logg.log("no args passed");
                     //Launch update process
                     check_updates();
                     check_updater();
@@ -191,6 +228,7 @@ namespace MeteorSkinLibrary
             ProcessStartInfo pro = new ProcessStartInfo();
             String s4path = properties.get("explorer_workspace");
             String path = Directory.GetParent(s4path).ToString() + "/Sm4shFileExplorer.exe";
+            logg.log("trying to launch S4E at "+ path);
             pro.FileName = path;
             pro.WorkingDirectory = Directory.GetParent(s4path).ToString();
             Process x = Process.Start(pro);
@@ -206,10 +244,15 @@ namespace MeteorSkinLibrary
                 if (Characterlist2.SelectedIndices[0] != -1)
                 {
                     selected_char.add_skin();
+                    logg.log("Skin added for " + selected_char.fullname + " in slot " + (SkinListBox.Items.Count + 1));
                     console_write("Skin added for " + selected_char.fullname + " in slot " + (SkinListBox.Items.Count + 1));
                     skin_ListBox_reload();
                     state_check();
-                    SkinListBox.SelectedIndex = SkinListBox.Items.Count - 1;
+                    //Selects the last skin
+                    SkinListBox.FocusedItem = SkinListBox.Items[SkinListBox.Items.Count - 1];
+                    SkinListBox.Items[SkinListBox.Items.Count - 1].Selected = true;
+                    SkinListBox.Select();
+                    SkinListBox.Items[SkinListBox.Items.Count - 1].EnsureVisible();
                 }
                 else
                 {
@@ -276,7 +319,6 @@ namespace MeteorSkinLibrary
                     console_write("Library reset complete");
                 }
 
-                SkinListBox.SelectedIndex = -1;
                 Characters = Library.get_character_list();
                 init_character_ListBox();
                 Characterlist2.Items[0].Selected = true;
@@ -294,7 +336,7 @@ namespace MeteorSkinLibrary
                     Directory.CreateDirectory(Application.StartupPath + "/mmsl_workspace");
                     console_write("mmsl_workspace reset complete");
                 }
-                SkinListBox.SelectedIndex = -1;
+                
                 Characters = Library.get_character_list();
                 init_character_ListBox();
                 state_check();
@@ -319,7 +361,6 @@ namespace MeteorSkinLibrary
 
                 }
 
-                SkinListBox.SelectedIndex = -1;
                 Characters = Library.get_character_list();
                 init_character_ListBox();
                 state_check();
@@ -368,15 +409,14 @@ namespace MeteorSkinLibrary
                     console_write("Library reset complete");
 
 
-                    SkinListBox.SelectedIndex = -1;
                     Characters = Library.get_character_list();
                     init_character_ListBox();
                     state_check();
                 }
             }
         }
-        //Reset all button
-        private void reset_all()
+        //Resets library and workspace
+        private void import_reset()
         {
 
             if (Directory.Exists(Application.StartupPath + "/mmsl_workspace"))
@@ -397,6 +437,15 @@ namespace MeteorSkinLibrary
             {
                 Directory.CreateDirectory(Application.StartupPath + "/mmsl_workspace");
             }
+            //Deleting old meta
+            String[] metas = Directory.GetDirectories(Application.StartupPath + "/mmsl_config/meta");
+            if(metas.Length > 0)
+            {
+                foreach(String meta in metas)
+                {
+                    Directory.Delete(meta, true);
+                }
+            }
 
             File.Delete(Application.StartupPath + "/mmsl_config/Library.xml");
             File.Copy(Application.StartupPath + "/mmsl_config/Default_Library.xml", Application.StartupPath + "/mmsl_config/Library.xml");
@@ -405,23 +454,44 @@ namespace MeteorSkinLibrary
         }
         #endregion
         #region SmashExplorerMenu 
+        //Launches "Replace Workspace"
         private void launch_se_import(object sender, EventArgs e)
         {
             {
-                if (MessageBox.Show("It will erase all files of every mod you've added in Meteor Skin Library to replace them by S4E's mods. Continue with this Supermassive black-hole type destruction?", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("This will import all the skins from S4E. Doing this will erase your actual workspace, and library.", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+                    //Processing 
                     processing = true;
                     block_controls();
-                    reset_all();
-                    loadingbox.Show();
                     loadingbox.Value = 0;
                     loadingbox.Style = ProgressBarStyle.Continuous;
                     appstatus.Text = "Importing from Sm4sh Explorer";
+                    import_reset();
+                    workspace_select = 0;
+                    if (Characterlist2.SelectedIndices.Count > 0)
+                    {
+                        last_char = Characterlist2.SelectedItems[0].Text;
+                    }
                     import_worker.RunWorkerAsync();
                 }
             }
 
 
+        }
+        private void importMissingFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.workspace_select = 1;
+            //Processing 
+            processing = true;
+            block_controls();
+            loadingbox.Value = 0;
+            loadingbox.Style = ProgressBarStyle.Continuous;
+            appstatus.Text = "Importing missing files from S4E";
+            if (Characterlist2.SelectedIndices.Count > 0)
+            {
+                workspace_char = Characterlist2.SelectedItems[0].Text;
+            }
+            import_worker.RunWorkerAsync();
         }
         private void launch_se_export(object sender, EventArgs e)
         {
@@ -435,12 +505,94 @@ namespace MeteorSkinLibrary
                     loadingbox.Value = 0;
                     loadingbox.Style = ProgressBarStyle.Continuous;
                     appstatus.Text = "Exporting to Sm4sh Explorer";
+                    if (Characterlist2.SelectedIndices.Count > 0)
+                    {
+                        workspace_char = Characterlist2.SelectedItems[0].Text;
+                    }
                     export_worker.RunWorkerAsync();
                 }
             }
 
         }
         #endregion
+        #region HelpMenu
+        private void about(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Segtendo Build: " + appversion + "\n\nCreator : Mowjoh \n\nHey, you ! Thanks for using Meteor Skin Library !\nYou da real MVP!", "Meteor Skin Library Beta", MessageBoxButtons.OK) == DialogResult.OK)
+            {
+
+            }
+        }
+        #endregion
+        #region WorkspaceMenu
+        private void refreshMSLsWorkspaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.workspace_select = 2;
+            //Processing 
+            processing = true;
+            block_controls();
+            loadingbox.Value = 0;
+            loadingbox.Style = ProgressBarStyle.Continuous;
+            appstatus.Text = "Importing missing files in workspace";
+            if (Characterlist2.SelectedIndices.Count > 0)
+            {
+                workspace_char = Characterlist2.SelectedItems[0].Text;
+            }
+            import_worker.RunWorkerAsync();
+        }
+        private void checkMissingFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Processing 
+            processing = true;
+            block_controls();
+            loadingbox.Value = 0;
+            loadingbox.Style = ProgressBarStyle.Continuous;
+            appstatus.Text = "Refreshing file list";
+            if (Characterlist2.SelectedIndices.Count > 0)
+            {
+                workspace_char = Characterlist2.SelectedItems[0].Text;
+            }
+            refresh_worker.RunWorkerAsync();
+        }
+        #endregion
+        #endregion
+
+        //Contextual menus
+        #region Contextual Menus
+        private void model_click(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (models_ListView.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    model_menu_strip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void model_context(object sender, EventArgs e)
+        {
+            String path = selected_skin.get_model_path(models_ListView.SelectedItems[0].Text) + "/";
+            System.Diagnostics.Process.Start(path);
+        }
+
+        private void csps_click(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (csps_ListView.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    csps_menu_strip.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void csps_context(object sender, EventArgs e)
+        {
+            String path = Path.GetDirectoryName(selected_skin.get_csp_path(csps_ListView.SelectedItems[0].Text)) + "/";
+            System.Diagnostics.Process.Start(path);
+        }
+
         #endregion
 
         //Main Control Area
@@ -448,11 +600,9 @@ namespace MeteorSkinLibrary
         //When a character is selected
         private void character_selected(object sender, EventArgs e)
         {
-            selected_char = new Character(Characterlist2.SelectedItems[0].Text);
+            selected_char = new Character(Characterlist2.SelectedItems[0].Text,Library,properties,uichar,logg);
             skin_ListBox_reload();
             state_check();
-
-
         }
 
         //When a character is selected NEW
@@ -460,7 +610,7 @@ namespace MeteorSkinLibrary
         {
             if (Characterlist2.SelectedItems.Count > 0)
             {
-                selected_char = new Character(Characterlist2.SelectedItems[0].Text);
+                selected_char = new Character(Characterlist2.SelectedItems[0].Text, Library, properties, uichar, logg);
                 skin_ListBox_reload();
                 state_check();
                 textBox6.Text = "";
@@ -497,12 +647,15 @@ namespace MeteorSkinLibrary
         private void set_skin_libraryname(object sender, EventArgs e)
         {
 
-            int index = SkinListBox.SelectedIndex;
+            int index = SkinListBox.SelectedIndices[0];
             this.selected_skin.set_library_name(SkinNameText.Text);
             skin_ListBox_reload();
             state_check();
-            SkinListBox.SelectedIndex = index;
-
+            //Selects the last skin
+            SkinListBox.FocusedItem = SkinListBox.Items[index];
+            SkinListBox.Items[index].Selected = true;
+            SkinListBox.Select();
+            SkinListBox.Items[index].EnsureVisible();
 
         }
 
@@ -511,19 +664,22 @@ namespace MeteorSkinLibrary
         {
             if (e.KeyCode == Keys.Enter)
             {
-                int index = SkinListBox.SelectedIndex;
+                int index = SkinListBox.SelectedIndices[0];
                 this.selected_skin.set_library_name(SkinNameText.Text);
                 skin_ListBox_reload();
                 state_check();
-                SkinListBox.SelectedIndex = index;
+                SkinListBox.FocusedItem = SkinListBox.Items[index];
+                SkinListBox.Items[index].Selected = true;
+                SkinListBox.Select();
+                SkinListBox.Items[index].EnsureVisible();
             }
         }
 
         //When Delete is pressed
         private void skin_delete(object sender, EventArgs e)
         {
-            int index = SkinListBox.SelectedIndex + 1;
-            int saved_index = SkinListBox.SelectedIndex;
+            int index = SkinListBox.SelectedIndices[0] + 1;
+            int saved_index = SkinListBox.SelectedIndices[0];
             int max = SkinListBox.Items.Count;
 
             if (selected_skin.origin == "Default" | selected_skin.origin == "Default Replaced")
@@ -547,11 +703,19 @@ namespace MeteorSkinLibrary
             uichar.setFile(int.Parse(Library.get_ui_char_db_id(Characterlist2.SelectedItems[0].Text)), 7, SkinListBox.Items.Count);
             if (!(saved_index + 1 < SkinListBox.Items.Count))
             {
-                SkinListBox.SelectedIndex = saved_index - 1;
+                //Selects the last skin
+                SkinListBox.FocusedItem = SkinListBox.Items[saved_index - 1];
+                SkinListBox.Items[saved_index - 1].Selected = true;
+                SkinListBox.Select();
+                SkinListBox.Items[saved_index - 1].EnsureVisible();
             }
             else
             {
-                SkinListBox.SelectedIndex = SkinListBox.Items.Count - 1;
+                //Selects the last skin
+                SkinListBox.FocusedItem = SkinListBox.Items[SkinListBox.Items.Count - 1];
+                SkinListBox.Items[SkinListBox.Items.Count - 1].Selected = true;
+                SkinListBox.Select();
+                SkinListBox.Items[SkinListBox.Items.Count - 1].EnsureVisible();
             }
         }
 
@@ -578,9 +742,12 @@ namespace MeteorSkinLibrary
         {
             if (selected_skin.origin != "Default")
             {
-                selected_char.swap_skin(SkinListBox.SelectedIndex, SkinListBox.SelectedIndex - 1);
+                selected_char.swap_skin(SkinListBox.SelectedIndices[0], SkinListBox.SelectedIndices[0] - 1);
                 skin_ListBox_reload();
-                SkinListBox.SelectedIndex = selected_skin.modelslot;
+                SkinListBox.FocusedItem = SkinListBox.Items[selected_skin.modelslot];
+                SkinListBox.Items[selected_skin.modelslot].Selected = true;
+                SkinListBox.Select();
+                SkinListBox.Items[selected_skin.modelslot].EnsureVisible();
             }
 
         }
@@ -590,9 +757,12 @@ namespace MeteorSkinLibrary
         {
             if (selected_skin.origin != "Default")
             {
-                selected_char.swap_skin(SkinListBox.SelectedIndex, SkinListBox.SelectedIndex + 1);
+                selected_char.swap_skin(SkinListBox.SelectedIndices[0], SkinListBox.SelectedIndices[0] + 1);
                 skin_ListBox_reload();
-                SkinListBox.SelectedIndex = selected_skin.modelslot;
+                SkinListBox.FocusedItem = SkinListBox.Items[selected_skin.modelslot];
+                SkinListBox.Items[selected_skin.modelslot].Selected = true;
+                SkinListBox.Select();
+                SkinListBox.Items[selected_skin.modelslot].EnsureVisible();
             }
 
         }
@@ -655,12 +825,14 @@ namespace MeteorSkinLibrary
         private void skin_details_reload()
         {
 
-            int slot = SkinListBox.SelectedIndex;
+            int slot = SkinListBox.SelectedIndices.Count > 0 ? SkinListBox.SelectedIndices[0] : -1 ;
+            logg.log("-- attempting to reload skin details for slot "+slot);
             //emptying lists
             if (slot != -1)
             {
                 selected_char.getSkins();
                 this.selected_skin = (Skin)selected_char.skins[slot];
+
                 csps_ListView.Clear();
                 models_ListView.Clear();
                 remove_selected_csp.Enabled = false;
@@ -669,15 +841,21 @@ namespace MeteorSkinLibrary
                 SkinNameText.Text = this.selected_skin.libraryname;
                 SkinOriginText.Text = this.selected_skin.origin;
 
+
+                logg.log("emptied lists, looking for csp");
                 //checking csps
                 if (this.selected_skin.csps.Count > 0)
                 {
                     //adding csps
                     foreach (String csp in this.selected_skin.csps)
                     {
+                        
                         csps_ListView.Items.Add(csp);
+                        ListViewItem lvi = new ListViewItem(csp);
+                        
                     }
                 }
+                logg.log("looking for modsl");
                 //Checking models
                 if (this.selected_skin.models.Count > 0)
                 {
@@ -690,14 +868,32 @@ namespace MeteorSkinLibrary
                 //setting delete button
                 if (this.selected_skin.origin != "Default")
                 {
+                    logg.log("Setting delete option to enabled");
                     button3.Enabled = true;
                 }
                 else
                 {
+                    logg.log("Setting delete option to disabled");
+                    
                     button3.Enabled = false;
                 }
 
                 button2.Enabled = true;
+
+                logg.log("Setting skin to imported");
+                this.selected_skin.set_imported();
+                if (this.selected_skin.missing)
+                {
+                    logg.log("skin has missing files");
+                    SkinListBox.SelectedItems[0].ImageIndex = 1;
+                }
+                else
+                {
+                    logg.log("skin has no missing files");
+                    SkinListBox.SelectedItems[0].ImageIndex = 3;
+                    SkinListBox.SelectedItems[0].ForeColor = Color.Black;
+                }
+                
             }
 
 
@@ -709,18 +905,54 @@ namespace MeteorSkinLibrary
 
             if (Characterlist2.SelectedIndices.Count > 0)
             {
+                logg.log("-- Attempting listbox reload");
                 SkinListBox.Items.Clear();
                 selected_char.getSkins();
+                
+
                 foreach (Skin skin in selected_char.skins)
                 {
-                    SkinListBox.Items.Add("Slot " + skin.slotstring + " - " + skin.libraryname);
+                    logg.log("cycling through skins");
+                    ListViewItem item = new ListViewItem("Slot " + skin.slotstring + " - " + skin.libraryname);
+
+                    if (skin.unknown)
+                    {
+                        logg.log("unknown skin found at slot "+ skin.slotstring);
+                        item.ImageIndex = 0;
+                        item.ForeColor = Color.Purple;
+                    }
+                    else
+                    {
+                        if (skin.missing)
+                        {
+                            logg.log("missing files for skin found at slot " + skin.slotstring);
+                            item.ImageIndex = 1;
+                            item.ForeColor = Color.DarkRed;
+                        }
+                        else
+                        {
+                            if (skin.new_files)
+                            {
+                                logg.log("new files for skin found at slot " + skin.slotstring);
+                                item.ImageIndex = 2;
+                            }
+                            else
+                            {
+                                logg.log("imported skin found at slot " + skin.slotstring);
+                                item.ImageIndex = 3;
+                            }
+                           
+                        }
+                    }
+                    SkinListBox.Items.Add(item);
                 }
             }
         }
         //Reloads MetaData
         private void metadata_reload()
         {
-            if (SkinListBox.SelectedIndex != -1)
+            int slot = SkinListBox.SelectedIndices.Count > 0 ? SkinListBox.SelectedIndices[0] : -1;
+            if (slot != -1)
             {
                 //Assign values
                 textBox1.Text = this.selected_skin.author;
@@ -742,6 +974,7 @@ namespace MeteorSkinLibrary
         }
         private void model_DragDrop(object sender, DragEventArgs e)
         {
+            logg.log("-- dropped a model folder");
             this.model_folder_list = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             batch_copy_model(this.model_folder_list, this.selected_skin);
             skin_details_reload();
@@ -760,8 +993,9 @@ namespace MeteorSkinLibrary
             string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             if (Directory.Exists(FileList[0]))
             {
+                logg.log("-- dropped a csp dir");
                 this.csp_file_list = FileList;
-                batch_copy_csp(FileList, SkinListBox.SelectedIndex);
+                batch_copy_csp(FileList, SkinListBox.SelectedIndices[0]);
                 skin_details_reload();
                 state_check();
             }
@@ -770,9 +1004,11 @@ namespace MeteorSkinLibrary
                 //textBox6.Text = "Item wasn't a Directory";
                 if (FileList.Length > 0)
                 {
+                    logg.log("-- dropped a csp file");
                     foreach (String file in FileList)
                     {
                         selected_skin.add_csp(file);
+                        logg.log("detected a csp file "+ file);
                         console_write("Detected files were moved to the selected slot");
                         skin_details_reload();
                     }
@@ -790,6 +1026,7 @@ namespace MeteorSkinLibrary
         }
         private void slot_DragDrop(object sender, DragEventArgs e)
         {
+            logg.log("-- dropped something in the meteor zone");
             this.slot_file_list = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             batch_add_slot(SkinListBox.Items.Count + 1);
             state_check();
@@ -845,7 +1082,15 @@ namespace MeteorSkinLibrary
         private void state_check()
         {
             int character = Characterlist2.SelectedIndices.Count > 0 ? Characterlist2.SelectedIndices[0] : -1;
-            int skin = SkinListBox.SelectedIndex;
+            int skin = 0;
+            if (SkinListBox.SelectedIndices.Count > 0)
+            {
+                skin = SkinListBox.SelectedIndices[0];
+            }else
+            {
+                skin = -1;
+            }
+            
             int model = models_ListView.SelectedIndices.Count;
             int csp = csps_ListView.SelectedIndices.Count;
             String origin = SkinOriginText.Text;
@@ -927,7 +1172,7 @@ namespace MeteorSkinLibrary
             }
             else
             {
-                remove_selected_csp.Enabled = true;
+                button6.Enabled = true;
             }
             if (csp == 0)
             {
@@ -941,7 +1186,10 @@ namespace MeteorSkinLibrary
 
 
         }
+        private void processing_state(int mode)
+        {
 
+        }
         private void block_controls()
         {
             //Interactions
@@ -1079,7 +1327,7 @@ namespace MeteorSkinLibrary
             //update
             if (major > major2)
             {
-                update();
+                update_updater();
             }
             else
             {
@@ -1089,7 +1337,7 @@ namespace MeteorSkinLibrary
                     //update
                     if (minor > minor2)
                     {
-                        update();
+                        update_updater();
                     }
                     else
                     {
@@ -1185,6 +1433,7 @@ namespace MeteorSkinLibrary
                     break;
                 case 1:
                     appstatus.Text = "Skins installed";
+                    process_status.Text = "Success";
                     console_write("----------------------------------------------------------------------------------------------------");
                     console_write("- All the skins where installed");
                     console_write("Installation Status:");
@@ -1221,6 +1470,7 @@ namespace MeteorSkinLibrary
                     break;
                 case 3:
                     appstatus.Text = "Export Success";
+                    process_status.Text = "Success";
                     console_write("----------------------------------------------------------------------------------------------------");
                     console_write("The export was successful");
                     console_write("----------------------------------------------------------------------------------------------------");
@@ -1237,30 +1487,43 @@ namespace MeteorSkinLibrary
                     console_write("----------------------------------------------------------------------------------------------------");
                     console_write("Directory error: \n Could not delete the fighter/[name]/model folders. Please remove them manually and retry.");
                     console_write("----------------------------------------------------------------------------------------------------");
-                    exportcode = 0;
+                    importcode = 0;
                     break;
                 case 2:
                     appstatus.Text = "Error";
                     console_write("----------------------------------------------------------------------------------------------------");
                     console_write("Directory error: \n Could not delete the data/ui/replace/chr folder. Please remove it manually and retry.");
                     console_write("----------------------------------------------------------------------------------------------------");
-                    exportcode = 0;
+                    importcode = 0;
                     break;
                 case 3:
-                    appstatus.Text = "Export Success";
+                    appstatus.Text = "Success";
+                    process_status.Text = "Operation complete";
                     console_write("----------------------------------------------------------------------------------------------------");
-                    console_write("The export was successful");
+                    switch (workspace_select)
+                    {
+                        case 0:
+                            console_write("MSL's library and workspace were successfully replaced.");
+                            break;
+                        case 1:
+                            console_write("MSL's library was refreshed and updated with missing files found in S4E.");
+                            break;
+                        case 2:
+                            console_write("MSL's library was refreshed and updated with missing files found in it's workspace.");
+                            break;
+                    }
+                    
                     console_write("----------------------------------------------------------------------------------------------------");
-                    exportcode = 0;
+                    importcode = 0;
                     break;
             }
         }
         #endregion
-
         #endregion
 
         //Threading functions
         #region Threading
+
         #region Download
         //Launches the download for a specified path
         private void meteor_download(String[] args)
@@ -1268,7 +1531,7 @@ namespace MeteorSkinLibrary
 
             loadingbox.Value = 0;
             //Setting default path
-            String http_url = "http://lunaticfox.com/pack.zip";
+            String http_url = "http://lunaticfox.com/test.zip";
             String file_ext = "zip";
 
             //If URL is passed
@@ -1336,7 +1599,9 @@ namespace MeteorSkinLibrary
 
                                         //Launching the import
                                         loadingbox.Value = 0;
+                                        processbox.Value = 0;
                                         appstatus.Text = "Importing Meteor Skins";
+                                        process_status.Text = "Importing Meteor Skins";
                                         meteor_worker.RunWorkerAsync();
                                     }
                                     catch (Exception e3)
@@ -1441,6 +1706,7 @@ namespace MeteorSkinLibrary
 
         }
         #endregion
+
         #region Batch
         //batch copy with drag&dropped folder and current slot
         private void batch_copy_model(String[] folderlist, Skin skin)
@@ -1593,7 +1859,7 @@ namespace MeteorSkinLibrary
 
                     int skin_slot = SkinListBox.Items.Count + 1;
 
-                    Skin meteor_skin = new Skin(Characterlist2.SelectedItems[0].Text, SkinListBox.Items.Count + 1, skin_name, "Custom");
+                    Skin meteor_skin = new Skin(Characterlist2.SelectedItems[0].Text, SkinListBox.Items.Count + 1, skin_name, "Custom", Library, properties, logg);
 
                     //Model files check
                     if (Directory.Exists(file + "/model"))
@@ -1625,16 +1891,20 @@ namespace MeteorSkinLibrary
                 }
             }
             skin_ListBox_reload();
-            SkinListBox.SelectedIndex = (SkinListBox.Items.Count - 1);
+            SkinListBox.FocusedItem = SkinListBox.Items[SkinListBox.Items.Count - 1];
+            SkinListBox.Items[SkinListBox.Items.Count - 1].Selected = true;
+            SkinListBox.Select();
+            SkinListBox.Items[SkinListBox.Items.Count - 1].EnsureVisible();
             uichar.setFile(int.Parse(Library.get_ui_char_db_id(Characterlist2.SelectedItems[0].Text)), 7, SkinListBox.Items.Count);
             skin_details_reload();
         }
-
         private void batch_add_slot(String path, ArrayList charlist)
         {
             try
             {
                 Boolean test = false;
+                this.current_step = 0;
+                this.steps = Directory.GetDirectories(path).Length;
                 foreach (String dir in Directory.GetDirectories(path))
                 {
 
@@ -1642,11 +1912,11 @@ namespace MeteorSkinLibrary
                     {
                         test = true;
                         //Get specified char and add a skin to it
-                        Character selected_meteor_char = new Character(Path.GetFileName(dir));
+                        Character selected_meteor_char = new Character(Path.GetFileName(dir), Library, properties, uichar, logg);
 
                         Regex meteor = new Regex("(meteor_)(x{2})(_)(p*)");
-                        float count = Directory.GetDirectories(dir).Length;
-                        float current = 0;
+                        double count = Directory.GetDirectories(dir).Length;
+                        double current = 1;
                         foreach (String file in Directory.GetDirectories(dir))
                         {
                             if (meteor.IsMatch(Path.GetFileName(file)))
@@ -1659,7 +1929,7 @@ namespace MeteorSkinLibrary
 
                                 int skin_slot = selected_meteor_char.skins.Count + 1;
 
-                                Skin meteor_skin = new Skin(selected_meteor_char.fullname, skin_slot, skin_name, "Custom");
+                                Skin meteor_skin = new Skin(selected_meteor_char.fullname, skin_slot, skin_name, "Custom", Library, properties, logg);
 
                                 //Model files check
                                 if (Directory.Exists(file + "/model"))
@@ -1669,8 +1939,7 @@ namespace MeteorSkinLibrary
                                 else
                                 {
                                 }
-                                float val = (1 / count) * current + (1 / count) * 1 / 3 * 100;
-                                meteor_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
+                                
                                 //CSP Files check
                                 if (Directory.Exists(file + "/csp/"))
                                 {
@@ -1680,23 +1949,37 @@ namespace MeteorSkinLibrary
                                 else
                                 {
                                 }
-                                val = (1 / count) * current + (1 / count) * 2 / 3 * 100;
-                                meteor_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
                                 if (Directory.Exists(file + "/meta"))
                                 {
                                     meteor_skin.addMeta(file + "/meta/meta.xml");
                                 }
                                 selected_meteor_char.skins.Add(meteor_skin);
-                                val = (1 / count) * current + (1 / count) * 100;
-                                meteor_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
                             }
+
+                            double val = current / count * 100;
+
+                            double val2 = process / steps + (100 / steps) * current_step;
+                            if (val2 > 100)
+                            {
+                                val2 = 100;
+                            }
+
+                            this.process = Convert.ToInt32(Math.Truncate(val));
+                            this.status = Convert.ToInt32(val2);
+                            this.process_text = "Adding Meteor Skins to " + Path.GetFileName(dir);
+                            meteor_worker.ReportProgress(process);
                             current++;
                         }
-
                         last_char = Path.GetFileName(dir);
                         uichar.setFile(int.Parse(Library.get_ui_char_db_id(selected_meteor_char.fullname)), 7, selected_meteor_char.skins.Count);
+
+                        
                     }
+                    current_step++;
                 }
+
+                
+
                 if (test == true)
                 {
                     meteorcode = 1;
@@ -1779,7 +2062,7 @@ namespace MeteorSkinLibrary
                                                         Library.set_libraryname(Library.get_fullname_modelfolder(Path.GetFileName(character)), int.Parse(slot) + 1, "Default Replaced");
                                                     }
                                                 }
-                                                new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), i + 1, "Imported skin", "Sm4sh Explorer").add_model(dir, Directory.GetParent(dir).Name);
+                                                new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), i + 1, "Imported skin", "Sm4sh Explorer", Library, properties, logg).add_model(dir, Directory.GetParent(dir).Name);
                                             }
 
                                         }
@@ -1806,70 +2089,7 @@ namespace MeteorSkinLibrary
                     }
                     if (Directory.Exists(se_csp_path))
                     {
-                        //chr folders
-                        float currentcount = 1;
-
-                        String[] csps = Directory.GetDirectories(se_csp_path);
-                        if (csps.Length > 0)
-                        {
-                            float count = csps.Length;
-
-                            foreach (String cspformat in csps)
-                            {
-                                //check folder
-                                if (Directory.GetFiles(cspformat).Length > 0)
-                                {
-
-                                    for (int i = 0; i < 256; i++)
-                                    {
-
-                                        foreach (String csp in Directory.GetFiles(cspformat))
-                                        {
-                                            Regex cspr = new Regex("^((?:chrn|chr|stock)_[0-9][0-9])_([a-zA-Z]+)_([0-9]{2}|xx|[0-9]x|x[0-9]).nut$");
-                                            if (cspr.IsMatch(Path.GetFileName(csp)))
-                                            {
-                                                //got every info for file
-                                                String test = Path.GetFileName(csp);
-                                                String slot = Path.GetFileName(csp).Split('_')[3].Split('.')[0];
-                                                int teste;
-                                                if (int.TryParse(slot, out teste))
-                                                {
-                                                    //Same slot
-                                                    if (int.Parse(slot) == (i + 1))
-                                                    {
-                                                        //Gettin foldername
-                                                        String foldername = Path.GetFileName(csp).Split('_')[2];
-                                                        if (Library.check_fullname_cspname(foldername))
-                                                        {
-
-                                                            if (!Library.check_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)))
-                                                            {
-                                                                Library.add_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot));
-                                                            }
-                                                            else
-                                                            {
-                                                                if (Library.get_skin_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)) == "Default")
-                                                                {
-                                                                    Library.set_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot), "Default Replaced");
-                                                                    Library.set_libraryname(Library.get_fullname_cspfolder(foldername), int.Parse(slot), "Default Replaced");
-                                                                }
-                                                            }
-                                                            new Skin(Library.get_fullname_cspfolder(foldername), i + 1, "Imported skin", "Sm4sh Explorer").add_csp(csp);
-                                                            text = "Detected: " + Path.GetFileName(csp) + "\n" + text;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                }
-
-                                float val = (z) * 25 + 50 + currentcount / count * 25;
-                                import_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
-                                currentcount++;
-                            }
-                        }
+                        
 
                     }else
                     {
@@ -1891,11 +2111,14 @@ namespace MeteorSkinLibrary
             {
 
             }
+
+
             return text;
         }
         //Used to export MMSL_workspace to Smash Explorer
         private void batch_export_SE()
         {
+            this.steps = 2;
             if (Directory.Exists(Application.StartupPath + "/mmsl_workspace/data"))
             {
                 String destination = properties.get("explorer_workspace") + "/content/patch/data";
@@ -1908,6 +2131,7 @@ namespace MeteorSkinLibrary
                 {
                     try
                     {
+                        process_text = "Removing S4E's skin files";
                         //Deletes the previous fighter models
                         foreach (String c in Characters)
                         {
@@ -1924,23 +2148,27 @@ namespace MeteorSkinLibrary
                                 Directory.Delete(destination + "/ui/replace/chr", true);
                             }
 
-
+                            
                             foreach (string dirPath in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
                                 Directory.CreateDirectory(dirPath.Replace(source, destination));
-
+                            current_step = 0;
+                            process_text = "Copying Data folder";
                             //Copy all the files & Replaces any files with the same name
                             float count = Directory.GetFiles(source, "*.*", SearchOption.AllDirectories).Length;
                             float current = 1;
                             foreach (string newPath in Directory.GetFiles(source, "*.*", SearchOption.AllDirectories))
                             {
                                 File.Copy(newPath, newPath.Replace(source, destination), true);
-                                float val = (current / count) / 4 * 100 * 3;
-                                val = val > 100 ? 100 : val;
-                                export_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
+                                float val = (current / count)*100;
+                                process = Convert.ToInt32(Math.Truncate(val));
+                                double val2 = process / steps + (100 / steps) * current_step;
+                                status = Convert.ToInt32(val2 > 100 ? 100 : val2);
+                                export_worker.ReportProgress(process);
                                 current++;
                             }
 
-
+                            current_step = 1;
+                            process_text = "Copying localised Data folder";
                             if (properties.get("datafolder") != "data")
                             {
                                 if (properties.get("unlocalised") == "1")
@@ -1978,9 +2206,12 @@ namespace MeteorSkinLibrary
                                 foreach (string newPath in Directory.GetFiles(source, "*.*", SearchOption.AllDirectories))
                                 {
                                     File.Copy(newPath, newPath.Replace(source, destination), true);
-                                    float val = (current / count) / 4 * 100 + 74;
+                                    float val = (current / count) * 100;
                                     val = val > 100 ? 100 : val;
-                                    export_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
+                                    process = Convert.ToInt32(Math.Truncate(val));
+                                    double val2 = process / steps + (100 / steps) * current_step;
+                                    status = Convert.ToInt32(val2 > 100 ? 100 : val2);
+                                    export_worker.ReportProgress(process);
                                     current++;
                                 }
 
@@ -2080,23 +2311,56 @@ namespace MeteorSkinLibrary
             }
         }
 
+
         #endregion
+        
         #region Workers
         //Launches import
-        private void import_worker_work(object sender, DoWorkEventArgs e)
+        private void workspace_worker_work(object sender, DoWorkEventArgs e)
         {
-            e.Result = batch_import_SE();//return temp 
+            if(workspace_select == 0)
+            {
+                update_files(workspace_select, properties.get("explorer_workspace"));
+            }
+            if (workspace_select == 1)
+            {
+                update_files(workspace_select, properties.get("explorer_workspace"));
+            }
+            if (workspace_select == 2)
+            {
+                update_files(workspace_select, Application.StartupPath);
+            }
+            //e.Result = batch_import_SE();//return temp 
+
         }
         //Reports import progress
-        private void import_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void workspace_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            loadingbox.Value = e.ProgressPercentage;
+            double val = process / steps + (100 / steps) * current_step;
+            if (val > 100)
+            {
+                val = 100;
+            }
+            loadingbox.Value = Convert.ToInt32(val);
+            processbox.Value = process;
+            process_status.Text = process_text;
         }
         //Reports completion of import
-        private void import_worker_completed(object sender, RunWorkerCompletedEventArgs e)
+        private void workspace_worker_completed(object sender, RunWorkerCompletedEventArgs e)
         {
             console_write((String)e.Result);//copies return value to public list we declared before
             loadingbox.Value = 100;
+            processbox.Value = 100;
+            if(Characterlist2.SelectedIndices.Count > 0)
+            {
+                // Selects the character the last skin was added for
+                Characterlist2.FocusedItem = Characterlist2.FindItemWithText(workspace_char);
+                Characterlist2.FindItemWithText(workspace_char).Selected = true;
+                Characterlist2.Select();
+                Characterlist2.FindItemWithText(workspace_char).EnsureVisible();
+                selected_char = new Character(workspace_char, Library, properties, uichar, logg);
+                skin_ListBox_reload();
+            }
             importstatus();
             enable_controls();
             processing = false;
@@ -2110,13 +2374,21 @@ namespace MeteorSkinLibrary
         //Reports export progress
         private void export_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            loadingbox.Value = e.ProgressPercentage;
+            double val = process / steps + (100 / steps) * current_step;
+            if (val > 100)
+            {
+                val = 100;
+            }
+            loadingbox.Value = Convert.ToInt32(val);
+            processbox.Value = process;
+            process_status.Text = process_text;
         }
         //Reports completion of export
         private void export_worker_completed(object sender, RunWorkerCompletedEventArgs e)
         {
             exportstatus();
             loadingbox.Value = 100;
+            processbox.Value = 100;
             enable_controls();
             processing = false;
             if (MessageBox.Show("Export Finished, do you want to launch Sm4sh Explorer?", " Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -2172,17 +2444,18 @@ namespace MeteorSkinLibrary
         //Reports meteor import progress
         private void meteor_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            loadingbox.Value = e.ProgressPercentage;
+            
+            loadingbox.Value = status;
+            processbox.Value = process;
+            process_status.Text = process_text;
+            
         }
         //Reports completion of meteor import
         private void meteor_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //Reloads the UI
-            skin_details_reload();
-            skin_ListBox_reload();
+           
 
-            //Selects the last skin
-            SkinListBox.SelectedIndex = SkinListBox.Items.Count - 1;
+            
 
             //Deletes the archive file
             //Cleans the files in mmsl_downloads
@@ -2203,6 +2476,27 @@ namespace MeteorSkinLibrary
             Characterlist2.FindItemWithText(last_char).Selected = true;
             Characterlist2.Select();
             Characterlist2.FindItemWithText(last_char).EnsureVisible();
+            selected_char = new Character(last_char, Library, properties, uichar, logg);
+
+            skin_ListBox_reload();
+            try
+            {
+                //Selects the last skin
+                SkinListBox.FocusedItem = SkinListBox.Items[SkinListBox.Items.Count - 1];
+                SkinListBox.Items[SkinListBox.Items.Count - 1].Selected = true;
+                SkinListBox.Select();
+                SkinListBox.Items[SkinListBox.Items.Count - 1].EnsureVisible();
+
+                //Reloads the UI
+                skin_details_reload();
+            }
+            catch
+            {
+
+            }
+
+           
+            
         }
 
         //Launches archiving
@@ -2224,6 +2518,7 @@ namespace MeteorSkinLibrary
             }
 
         }
+
         //When archive is complete
         private void archive_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -2234,17 +2529,580 @@ namespace MeteorSkinLibrary
             processing = false;
             reset_skin_pack_session();
             enable_controls();
+        }
 
+        private void refresh_worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            check_files();
+        }
+
+        private void refresh_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            loadingbox.Value = status;
+            processbox.Value = process;
+            process_status.Text = process_text;
+        }
+
+        private void refresh_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            loadingbox.Value = 100;
+            processbox.Value = 100;
+            if (Characterlist2.SelectedIndices.Count > 0)
+            {
+                // Selects the character the last skin was added for
+                Characterlist2.FocusedItem = Characterlist2.FindItemWithText(workspace_char);
+                Characterlist2.FindItemWithText(workspace_char).Selected = true;
+                Characterlist2.Select();
+                Characterlist2.FindItemWithText(workspace_char).EnsureVisible();
+                selected_char = new Character(workspace_char, Library, properties, uichar, logg);
+                skin_ListBox_reload();
+            }
+            enable_controls();
+            processing = false;
+            appstatus.Text = "Success";
+            console_write("----------------------------------------------------------------------------------------------------");
+            console_write("The files were checked and their status updated");
+            console_write("----------------------------------------------------------------------------------------------------");
         }
         #endregion
+
+        #region Workspace
+        //Grabs files for the library
+        private void update_files(int mode, String update_path)
+        {
+            logg.log("-- starting the update process");
+            //Setting base paths
+            String datafolder = properties.get("datafolder");
+            String source_model_path="";
+            String source_csp_path = "";
+            String source_csp_dlc_path = "";
+
+            if (mode == 2)
+            {
+                logg.log("Refreshing workspace");
+                source_model_path = update_path + "/mmsl_workspace/data/fighter/";
+                 source_csp_path = update_path + "/mmsl_workspace/data/ui/replace/chr/";
+                if(properties.get("unlocalised") == "1")
+                {
+                    source_csp_dlc_path = update_path + "/mmsl_workspace/data/ui/replace/append/chr/";
+                }
+                else
+                {
+                    source_csp_dlc_path = update_path + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
+                }
+                 
+            }else
+            {
+                logg.log("S4E import/update");
+                source_model_path = update_path + "/content/patch/data/fighter/";
+                source_csp_path = update_path + "/content/patch/data/ui/replace/chr/";
+                logg.log("source csp path is :"+ source_csp_path);
+                source_csp_dlc_path = "";
+
+                if (properties.get("unlocalised") == "1")
+                {
+                    source_csp_dlc_path = update_path + "/content/patch/data/ui/replace/append/chr/";
+                }
+                else
+                {
+                    source_csp_dlc_path = update_path + "/content/patch/" + datafolder + "/ui/replace/append/chr/";
+                }
+                logg.log("source dlc csp path is :" + source_csp_dlc_path);
+            }
+
+            String destination_model_path = Application.StartupPath + "/mmsl_workspace/data/fighter/";
+            String destination_csp_path = Application.StartupPath + "/mmsl_workspace/data/ui/replace/chr/";
+            String destination_csp_dlc_path = "";
+            logg.log("destination csp path is :" + destination_csp_path);
+
+
+            if (properties.get("unlocalised") == "1")
+            {
+                destination_csp_dlc_path = Application.StartupPath + "/mmsl_workspace/data/ui/replace/append/chr/";
+            }
+            else
+            {
+                destination_csp_dlc_path = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
+            }
+            logg.log("destination dlc csp path is :" + destination_csp_dlc_path);
+            //Check missing files
+            //fais une version par mode -------------------
+            current_step = 0;
+            if(mode != 0)
+            {
+                steps = 4;
+                process_text = "Checking differences";
+                logg.log("-- Checking difference");
+                double current = 1;
+                foreach (String character in Characters)
+                {
+                    logg.log("Checking character: "+character);
+                    selected_char = new Character(character, Library, properties, uichar, logg);
+                    selected_char.check_all_files();
+                    logg.log("Files checked");
+                    double val = current / Convert.ToDouble(Characters.Count) * 100;
+                    this.process = Convert.ToInt32(Math.Truncate(val));
+                    import_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
+                    current++;
+
+                }
+                current_step++;
+                
+            }else
+            {
+                steps = 3;
+            }
+
+
+            
+            //Checking that source exists
+            if (Directory.Exists(update_path))
+            {
+                process_text = "Importing /model files";
+                //Searching for fighter/model/ differences
+                logg.log("-- launching updating model");
+                update_models(source_model_path, destination_model_path, mode);
+                current_step++;
+                process_text = "Importing ui/replace/chr files";
+                //Searching for ui/replace/chr differences
+                logg.log("-- launching updating csps");
+                update_csps(source_csp_path, destination_csp_path, mode);
+                current_step++;
+                logg.log("-- launching updating dlc csps");
+                process_text = "Importing ui/replace/append/chr files";
+                //Searching for ui/replace/append/chr differences
+                update_csps(source_csp_dlc_path, destination_csp_dlc_path, mode);
+
+                importcode = 3;
+                logg.log("Success");
+            }
+            else
+            {
+                logg.log("Error");
+                importcode = 2;
+            }
+        }
+
+        //Looks for all models and launches update_model for them
+        private void update_models(String source, String destination, int mode)
+        {
+            logg.log("-- update model started");
+            logg.log("source: "+ source);
+            logg.log("destination: " + destination);
+            //Checking source existence
+            if (Directory.Exists(source))
+            {
+                logg.log("model source exists :"+ source);
+                //Getting character folder list from fighter folder
+                String[] characters = Directory.GetDirectories(source);
+                //If there are folders
+                if (characters.Length > 0)
+                {
+                    
+                    //Foreach character folder
+                    double current = 1;
+                    foreach (String character_folder in characters)
+                    {
+                        logg.log("-- character_folder is :" + character_folder);
+                        Boolean test = false;
+                        foreach(String c in Characters)
+                        {
+                            try
+                            {
+                                if (c == Library.get_fullname_modelfolder(Path.GetFileName(character_folder)))
+                                {
+                                    test = true;
+                                    logg.log("exists");
+                                }
+                            }catch(Exception e)
+                            {
+                                logg.log("doesn't exist in characters");
+                            }
+                            
+                        }
+                        if (test)
+                        {
+                            double val = current / Convert.ToDouble(characters.Length) * 100;
+                            this.process = Convert.ToInt32(Math.Truncate(val));
+                            import_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
+                            current++;
+                            String current_character_folder = Path.GetFileName(character_folder);
+                            String character_model_list = character_folder + "/model";
+                            logg.log("model folder:"+character_model_list);
+                            //Checking that there is a model folder inside
+                            if (Directory.Exists(character_model_list))
+                            {
+                                //Getting model folders aka body
+                                String[] model_folders = Directory.GetDirectories(character_model_list);
+
+                                if (model_folders.Length > 0)
+                                {
+                                    //Foreach model folder
+                                    foreach (String character_model_folder in model_folders)
+                                    {
+                                        logg.log("inside model folder:" + character_model_folder);
+                                        String current_character_model_folder = Path.GetFileName(character_model_folder);
+                                        //Getting cXX folders
+                                        String[] models = Directory.GetDirectories(character_model_folder);
+                                        //If there are cXX folders
+                                        if (models.Length > 0)
+                                        {
+                                            //foreach cXX folder
+                                            foreach (String model in models)
+                                            {
+                                                logg.log("cXX:" + model);
+                                                String model_destination = destination + current_character_folder + "/model/" + current_character_model_folder + "/" + Path.GetFileName(model);
+                                                logg.log("cXX destination:" + model_destination);
+                                                update_model(model, model_destination, current_character_folder, mode);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //Updates a specific model based on mode
+        private void update_model(String source, String destination,String character, int mode)
+        {
+            //Handles the file depending on the mode
+            switch (mode)
+            {
+                default:
+                    break;
+
+                //Replace workspace
+                case 0:
+                    logg.log("-- Update model");
+                    //Creating destination
+                    Directory.CreateDirectory(destination);
+                    logg.log("Creating destination");
+                    //Parsing destination slot
+
+                    int slot;
+
+                    if(int.TryParse(Path.GetFileName(source).Substring(1, 2),out slot))
+                    {
+                        logg.log("slot parsed");
+                        //Checking if skin doesn't exists
+                        if (!Library.check_skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot + 1))
+                        {
+                            logg.log("skin doesn't exist");
+                            //Adds the skin to the library
+                            Library.add_skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot + 1);
+                        }
+                        //Skin Exists
+                        else
+                        {
+                            logg.log("skin exists");
+                            //If origin = Default
+                            if (Library.get_skin_origin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot + 1) == "Default")
+                            {
+                                logg.log("setting default replaced");
+                                //Setting origin to default replaced
+                                Library.set_origin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot + 1, "Default Replaced");
+                            }
+                        }
+                        //Adding the model to the skin
+                        new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot + 1, "Imported skin", "Sm4sh Explorer",Library,properties,logg).add_model(source, Directory.GetParent(source).Name);
+
+                    }
+                    break;
+                //Add missing files from S4E
+                case 1:
+                    logg.log("-- Update model");
+                    //Parsing destination slot
+                    int slot2;
+                    if(int.TryParse(Path.GetFileName(source).Substring(1, 2),out slot2))
+                    {
+                        logg.log("slot parsed "+ slot2);
+                        //Checking if skin exists
+                        if (Library.check_skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot2 + 1))
+                        {
+                            //Getting generic modelname
+                            String model = Path.GetFileName(source).Substring(0, 1) == "c" ? "cXX" : "lXX";
+                            logg.log("model parsed " + model);
+                            //If file is missing
+                            if (Library.get_model_workspace_status(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot2 + 1, Directory.GetParent(source).Name + "/" + model) == "missing")
+                            {
+                                logg.log("marked as missing");
+                                //Adding the model to the skin
+                                Skin current = new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot2 + 1, "Imported skin", "Sm4sh Explorer", Library, properties, logg);
+                                current.add_model(source, Directory.GetParent(source).Name);
+                            }
+                            else
+                            {
+                                logg.log("not marked as missing, setting to imported");
+                                Skin current = new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot2 + 1, "Imported skin", "Sm4sh Explorer", Library, properties, logg);
+                                current.set_model_workspace_status(Directory.GetParent(source).Name, model, "imported");
+                            }
+                        }
+                        else
+                        {
+                            logg.log("skin doesn't exist, adding one and file to it");
+                            //Adds the skin to the library
+                            Library.add_skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot2 + 1);
+                            //Adding the model to the skin
+                            new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot2 + 1, "Imported skin", "Sm4sh Explorer", Library, properties, logg).add_model(source, Directory.GetParent(source).Name);
+                        }
+                    }
+                    break;
+                //Actualising workspace
+                case 2:
+                    logg.log("-- Update model");
+                    //Parsing destination slot
+                    int slot3;
+                    if(int.TryParse(Path.GetFileName(source).Substring(1, 2), out slot3)){
+                        logg.log("slot parsed "+slot3);
+                        //Checking if skin exists
+                        if (Library.check_skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot3 + 1))
+                        {
+                            String model = Path.GetFileName(source);
+                            model = model.Substring(0, 1) == "c" ? "cXX" : "lXX";
+                            logg.log("model parsed " + model);
+                            //If file is missing
+                            if (Library.get_model_workspace_status(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot3 + 1, Directory.GetParent(source).Name + "/" + model) == "missing")
+                            {
+                                logg.log("marked as missing");
+                                //Adding the model to the skin
+                                Skin current = new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot3 + 1, "Imported skin", "Sm4sh Explorer", Library, properties, logg);
+                                current.add_model(source, Directory.GetParent(source).Name);
+                            }
+                            else
+                            {
+                                logg.log("not marked as missing, setting to imported");
+                                Skin current = new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot3 + 1, "Imported skin", "Sm4sh Explorer", Library, properties, logg);
+                                current.set_model_workspace_status(Directory.GetParent(source).Name, model, "imported");
+                            }
+                        }
+                        else
+                        {
+                            logg.log("skin doesn't exist, adding one and file to it");
+                            //Adds the skin to the library
+                            Library.add_skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot3 + 1);
+                            //Adding the model to the skin
+                            new Skin(Library.get_fullname_modelfolder(Path.GetFileName(character)), slot3 + 1, "Imported skin", "Sm4sh Explorer", Library, properties, logg).add_model(source, Directory.GetParent(source).Name);
+                        }
+                    }
+                    break;
+
+                case 3:
+
+                    break;
+            }
+        }
+
+        //Looks for all csps and launches update_csp for them
+        private void update_csps(String source, String destination, int mode)
+        {
+            //Regex for detecting csp files
+            Regex cspr = new Regex("^((?:chrn|chr|stock)_[0-9][0-9])_([a-zA-Z]+)_([0-9]{2}|xx|[0-9]x|x[0-9]).nut$");
+
+            //chr folders
+            float currentcount = 1;
+
+            //Getting chr folders
+            if (!Directory.Exists(source))
+            {
+                logg.log("creating destination");
+                Directory.CreateDirectory(source);
+            }
+            String[] csps = Directory.GetDirectories(source);
+            //If chr contains folders
+            if (csps.Length > 0)
+            {
+                logg.log("csp formats found");
+                //Getting count for status bars
+                float count = csps.Length;
+
+                //Foreach cspformat
+                foreach (String cspformat in csps)
+                {
+                    logg.log("- current cspformat: "+cspformat);
+                    double  val = currentcount / Convert.ToDouble(csps.Length) * 100;
+                    this.process = Convert.ToInt32(Math.Truncate(val));
+                    import_worker.ReportProgress(process);
+                    currentcount++;
+                    String[] files = Directory.GetFiles(cspformat);
+                    //check if cspformat contains files
+                    if (files.Length > 0)
+                    {
+                        //foreach file
+                        foreach(String csp in files)
+                        {
+                            logg.log("- current csp: " + Path.GetFileName(csp));
+                            //If file is a csp
+                            if (cspr.IsMatch(Path.GetFileName(csp)))
+                            {
+                                update_csp(csp, destination, mode);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        //Updates a specific csp based on mode
+        private void update_csp(String source, String destination, int mode)
+        {
+            logg.log("-- update csp lauched");
+            logg.log("source:  " + source);
+            logg.log("destination:  " + destination);
+            //Parsing slot
+            String slot = Path.GetFileName(source).Split('_')[3].Split('.')[0];
+            int output_slot;
+            //If the slot is an int
+            if (int.TryParse(slot, out output_slot))
+            {
+                logg.log("slot parsed " + output_slot);
+                //Getting foldername
+                String foldername = Path.GetFileName(source).Split('_')[2];
+                logg.log("foldername parsed " + foldername);
+                //Checking that the character is supported by MSL
+                if (Library.check_fullname_cspname(foldername))
+                {
+                    //Action depends on mode
+                    switch (mode)
+                    {
+                        //Replace Workspace
+                        case 0:
+                            //If skin doesn't exist
+                            if (!Library.check_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)))
+                            {
+                                logg.log("Skin doesn't exist");
+                                Library.add_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot));
+                            }
+                            //If skin exists
+                            else
+                            {
+                                logg.log("Skin exist");
+                                //Changing origin if skin is Default
+                                if (Library.get_skin_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)) == "Default")
+                                {
+                                    logg.log("changing to default replaced");
+                                    Library.set_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot), "Default Replaced");
+                                }
+                            }
+                            //Adding csp to skin
+                            Skin cur = new Skin(Library.get_fullname_cspfolder(foldername), output_slot, "Imported skin", "Sm4sh Explorer", Library, properties, logg);
+                            cur.add_csp(source);
+                            cur.set_csp_workspace_status(source, "new");
+                            break;
+
+                        case 1:
+                            //If skin doesn't exist
+                            if (!Library.check_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)))
+                            {
+                                logg.log("Skin doesn't exist");
+                                Library.add_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot));
+                            }
+                            //If skin exists
+                            else
+                            {
+                                String csp_name = Path.GetFileName(source).Split('_')[0] + "_" + Path.GetFileName(source).Split('_')[1];
+                                logg.log("Skin exist");
+                                //If file is missing
+                                if (Library.get_csp_workspace_status(Library.get_fullname_cspfolder(foldername), int.Parse(slot), csp_name) == "missing")
+                                {
+                                    logg.log("file is missing");
+                                    //Adding csp to skin
+                                    new Skin(Library.get_fullname_cspfolder(foldername), output_slot, "Imported skin", "Sm4sh Explorer", Library, properties, logg).add_csp(source);
+
+                                }
+                                else
+                                {
+                                    logg.log("file is present, setting to imported");
+                                    Skin current = new Skin(Library.get_fullname_cspfolder(foldername), output_slot, "Imported skin", "Sm4sh Explorer", Library, properties, logg);
+                                    current.set_csp_workspace_status(source, "imported");
+                                }
+
+                                //Changing origin if skin is Default
+                                if (Library.get_skin_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)) == "Default")
+                                {
+                                    logg.log("changing to default replaced");
+                                    Library.set_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot), "Default Replaced");
+                                    //Adding csp to skin
+                                    new Skin(Library.get_fullname_cspfolder(foldername), output_slot, "Imported skin", "Sm4sh Explorer", Library, properties, logg).add_csp(source);
+                                }
+                            }
+                            break;
+                        //Refresh Workspace
+                        case 2:
+                            //If skin doesn't exist
+                            if (!Library.check_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)))
+                            {
+                                logg.log("Skin doesn't exist");
+                                Library.add_skin(Library.get_fullname_cspfolder(foldername), int.Parse(slot));
+                            }
+                            //If skin exists
+                            else
+                            {
+                                logg.log("Skin exist");
+                                String csp_name = Path.GetFileName(source).Split('_')[0] + "_" + Path.GetFileName(source).Split('_')[1];
+                                //If file is missing
+                                if (Library.get_csp_workspace_status(Library.get_fullname_cspfolder(foldername), int.Parse(slot), csp_name) == "missing")
+                                {
+                                    logg.log("file is missing");
+                                    //Adding csp to skin
+                                    new Skin(Library.get_fullname_cspfolder(foldername), output_slot, "Imported skin", "Sm4sh Explorer", Library, properties, logg).add_csp(source);
+
+                                }else
+                                {
+                                    logg.log("file is present, setting to imported");
+                                    Skin current = new Skin(Library.get_fullname_cspfolder(foldername), output_slot, "Imported skin", "Sm4sh Explorer", Library, properties, logg);
+                                    current.set_csp_workspace_status(source, "imported");
+                                }
+
+                                //Changing origin if skin is Default
+                                if (Library.get_skin_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot)) == "Default")
+                                {
+                                    logg.log("changing to default replaced");
+                                    Library.set_origin(Library.get_fullname_cspfolder(foldername), int.Parse(slot), "Default Replaced");
+                                    //Adding csp to skin
+                                    new Skin(Library.get_fullname_cspfolder(foldername), output_slot, "Imported skin", "Sm4sh Explorer", Library, properties, logg).add_csp(source);
+                                }
+                            }
+                            
+                            break;
+
+                    }
+                }
+            }
+        }
+
+
+        private void check_files()
+        {
+            steps = 1;
+            current_step = 0;
+                process_text = "Checking differences";
+                logg.log("-- Checking difference");
+                double current = 1;
+                foreach (String character in Characters)
+                {
+                    logg.log("Checking character: " + character);
+                    selected_char = new Character(character,Library,properties,uichar,logg);
+                    selected_char.check_all_files();
+                    logg.log("Files checked");
+                    double val = current / Convert.ToDouble(Characters.Count) * 100;
+                    this.process = Convert.ToInt32(Math.Truncate(val));
+                    refresh_worker.ReportProgress(Convert.ToInt32(Math.Truncate(val)));
+                    current++;
+
+                }
+
+            }
+
+
+
         #endregion
 
+        #endregion
 
-
-
-
-
-
+       
     }
 
 

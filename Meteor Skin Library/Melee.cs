@@ -31,6 +31,7 @@ namespace Meteor_Skin_Library
         public Boolean check_file()
         {
             //Setting specific paths
+
             String extractfolder = Directory.GetParent(explorer_workspace)+ "/extract/" + datafolder + "/ui/message";
             String explorerfolder = explorer_workspace + "/content/patch/" + datafolder + "/ui/message";
             String workspace = Application.StartupPath+"/mmsl_workspace/"+datafolder+ "/ui/message";

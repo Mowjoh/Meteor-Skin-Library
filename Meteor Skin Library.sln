@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Meteor Skin Library Setup",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteor updater", "Meteor updater\Meteor updater.csproj", "{80876718-ED7B-470D-8396-FF789131156A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Meteor Packer", "Meteor Packer\Meteor Packer.csproj", "{2B83DBF3-E7A0-4714-B27E-DBC3F8E8A681}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{80876718-ED7B-470D-8396-FF789131156A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80876718-ED7B-470D-8396-FF789131156A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80876718-ED7B-470D-8396-FF789131156A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B83DBF3-E7A0-4714-B27E-DBC3F8E8A681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B83DBF3-E7A0-4714-B27E-DBC3F8E8A681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B83DBF3-E7A0-4714-B27E-DBC3F8E8A681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B83DBF3-E7A0-4714-B27E-DBC3F8E8A681}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

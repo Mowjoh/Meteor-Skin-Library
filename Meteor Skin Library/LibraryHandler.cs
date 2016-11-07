@@ -309,6 +309,58 @@ namespace MeteorSkinLibrary
 
             return models;
         }
+        //Sets workspace value
+        internal void set_model_workspace_status(string fullname, int slot, string name,String status)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNodeList models = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/model");
+            foreach (XmlElement model in models)
+            {
+                if (model.InnerText == name)
+                {
+                    if (model.Attributes.Count == 0)
+                    {
+                        XmlAttribute attr = xml.CreateAttribute("workspace");
+                        attr.Value = status;
+                        model.Attributes.Append(attr);
+                    }
+                    else
+                    {
+                        model.Attributes["workspace"].Value = status;
+                    }
+                }
+            }
+            xml.Save(LibraryPath);
+        }
+        //Gets workspace value
+        internal String get_model_workspace_status(string fullname, int slot, string name)
+        {
+            String val = "";
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNodeList models = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/model");
+            foreach(XmlElement model in models)
+            {
+                if(model.InnerText == name)
+                {
+                    if (model.Attributes.Count == 0)
+                    {
+                        XmlAttribute attr = xml.CreateAttribute("workspace");
+                        attr.Value = "unknown";
+                        model.Attributes.Append(attr);
+                        xml.Save(LibraryPath);
+                        val = "unknown";
+                    }
+                    else
+                    {
+                        val = model.Attributes["workspace"].Value;
+                    }
+                }
+            }
+
+            return val;
+        }
         #endregion
 
         #region Csp
@@ -384,7 +436,58 @@ namespace MeteorSkinLibrary
             return csps;
         }
 
-
+        //Sets workspace value
+        internal void set_csp_workspace_status(string fullname, int slot, string name, String status)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNodeList csps = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/csp");
+            foreach (XmlElement csp in csps)
+            {
+                if (csp.InnerText == name)
+                {
+                    if (csp.Attributes.Count == 0)
+                    {
+                        XmlAttribute attr = xml.CreateAttribute("workspace");
+                        attr.Value = status;
+                        csp.Attributes.Append(attr);
+                        xml.Save(LibraryPath);
+                    }
+                    else
+                    {
+                        csp.Attributes["workspace"].Value = status;
+                    }
+                }
+            }
+            xml.Save(LibraryPath);
+        }
+        //Gets workspace value
+        internal String get_csp_workspace_status(string fullname, int slot, string name)
+        {
+            String val = "";
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNodeList csps = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/csp");
+            foreach(XmlElement csp in csps)
+            {
+                if(csp.InnerText == name)
+                {
+                    if (csp.Attributes.Count == 0)
+                    {
+                        XmlAttribute attr = xml.CreateAttribute("workspace");
+                        attr.Value = "unknown";
+                        csp.Attributes.Append(attr);
+                        val = "unknown";
+                        xml.Save(LibraryPath);
+                    }
+                    else
+                    {
+                        val = csp.Attributes["workspace"].Value;
+                    }
+                }
+            }
+            return val;
+        }
         #endregion
 
         #region Checks

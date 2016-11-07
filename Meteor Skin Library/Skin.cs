@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Meteor_Skin_Library;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,9 @@ namespace MeteorSkinLibrary
         public String modelslotstring;
         public Boolean dlc;
         public String datafolder;
+        public Boolean missing;
+        public Boolean unknown;
+        public Boolean new_files;
 
         //Skin information
         public String libraryname;
@@ -45,7 +49,7 @@ namespace MeteorSkinLibrary
         //Folders yay !
         String modelpath;
         String csppath;
-        String edited_csppath;
+        String dlc_csppath;
         String metapath;
 
         Boolean temped;
@@ -55,11 +59,12 @@ namespace MeteorSkinLibrary
         LibraryHandler Library;
         PropertyHandler Properties;
         MetaHandler Meta;
+        Logger logger;
         #endregion
 
         #region Constructors
         // basic Constructor
-        public Skin(String fullname,int slot,String libraryname,String origin)
+        public Skin(String fullname,int slot,String libraryname,String origin, LibraryHandler global_library, PropertyHandler global_properties, Logger global_log)
         {
             //Gathering parameters into class variables
             this.fullname = fullname;
@@ -68,13 +73,15 @@ namespace MeteorSkinLibrary
             this.libraryname = libraryname;
             this.origin = origin;
 
+            logger = global_log;
+
             //Creating lists
             csps = new ArrayList();
             models = new ArrayList();
 
             //Instanciating handlers to get info
-            Library = new LibraryHandler(Application.StartupPath + "/mmsl_config/Library.xml");
-            Properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Config.xml");
+            Library = global_library;
+            Properties = global_properties;
 
             check_skin();
 
@@ -86,33 +93,15 @@ namespace MeteorSkinLibrary
 
             //Now setting folders, easy ones
             this.modelpath = Application.StartupPath + "/mmsl_workspace/data/fighter/" + modelfolder + "/model/";
+            this.csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/chr/";
             if (dlc)
             {
-                if(Library.get_moved_dlc_status(fullname))
+                
+                this.dlc_csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
+                if (Properties.get("unlocalised") == "1")
                 {
-                    this.csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/chr/";
-                    if(Properties.get("unlocalised") == "0")
-                    {
-                        this.edited_csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
-                    }else
-                    {
-                        this.edited_csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/append/chr/";
-                    }
-                   
-                }else
-                {
-                    if (Properties.get("unlocalised") == "0")
-                    {
-                        this.csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
-                    }
-                    else
-                    {
-                        this.edited_csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/append/chr/";
-                    }
+                    this.dlc_csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/append/chr/";
                 }
-            }else
-            {
-                this.csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/chr/";
             }
             //Config meta
             this.metapath = Application.StartupPath + "/mmsl_config/meta/" + this.modelfolder + "/slot_" + slot+"/";
@@ -125,6 +114,7 @@ namespace MeteorSkinLibrary
             this.modelslotstring = (this.modelslot < 10 ? "0" + this.modelslot.ToString() : this.modelslot.ToString());
             this.slotstring = (this.slot < 10 ? "0" + this.slot.ToString() : this.slot.ToString());
             temped = false;
+            
 
         }
 
@@ -283,6 +273,137 @@ namespace MeteorSkinLibrary
             this.origin = origins;
         }
 
+        public void check_missing_files_status()
+        {
+            logger.log("started check for " + fullname);
+            //foreach csp
+            foreach(String csp_name in csps)
+            {
+                String FilePath;
+                String FilePath2;
+                if (dlc)
+                {
+                    logger.log("char is dlc");
+                    FilePath = dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+                    logger.log("dlc csp path : "+ FilePath);
+                    if (Library.get_moved_dlc_status(fullname))
+                    {
+                        logger.log("char is moved");
+                        FilePath2 = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+                        if (!File.Exists(FilePath2))
+                        {
+                            logger.log("file doesn't exist for csp path, set missing to true");
+                            Library.set_csp_workspace_status(fullname, slot, csp_name, "missing");
+                            missing = true;
+                        }
+                    }
+                }
+                else
+                {
+                    logger.log("char ins't dlc");
+                    FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+                    logger.log("csp path : " + FilePath);
+                }
+
+                if (File.Exists(FilePath))
+                {
+                    logger.log("file exists");
+                    if (Library.get_csp_workspace_status(fullname, slot, csp_name) == "unknown")
+                    {
+                        logger.log("csp is unknown");
+                        unknown = true;
+                        logger.log("setting global to unknown");
+                    }
+                    else
+                    {
+                        logger.log("csp is known");
+                        if (Library.get_csp_workspace_status(fullname, slot, csp_name) == "new")
+                        {
+                            logger.log("setting global to new");
+                            new_files = true;
+                        }
+                    }
+                }
+                else
+                {
+                    logger.log("file doesn't exist");
+                    Library.set_csp_workspace_status(fullname, slot, csp_name, "missing");
+                    missing = true;
+                    logger.log("setting global to missing");
+                }
+
+            }
+            foreach(String model_name in models)
+            {
+                String folder_path = modelpath + model_name.Split('/')[0] + "/" + model_name.Split('/')[1].Substring(0, 1) + modelslotstring;
+                if (Directory.Exists(folder_path))
+                {
+                    if(Library.get_model_workspace_status(fullname,slot,model_name) == "unknown")
+                    {
+                        unknown = true;
+                    }
+                    else
+                    {
+                        if (Library.get_model_workspace_status(fullname, slot, model_name) == "new")
+                        {
+                            new_files = true;
+                        }
+                    }
+                }
+                else
+                {
+                    Library.set_model_workspace_status(fullname, slot, model_name, "missing");
+                    missing = true;
+                }
+            }
+
+        }
+
+        public void set_imported()
+        {
+            //foreach csp
+            foreach (String csp_name in csps)
+            {
+                String FilePath;
+                if (dlc)
+                {
+                    FilePath = dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+                }
+                else
+                {
+                    FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+                }
+                if (File.Exists(FilePath))
+                {
+                    if (Library.get_csp_workspace_status(fullname, slot, csp_name) == "new")
+                    {
+                        Library.set_csp_workspace_status(fullname, slot, csp_name, "imported");
+                    }
+                }
+                else
+                {
+                    Library.set_csp_workspace_status(fullname, slot, csp_name, "missing");
+                    missing = true;
+                }
+            }
+            foreach (String model_name in models)
+            {
+                String folder_path = modelpath + model_name.Split('/')[0] + "/" + model_name.Split('/')[1].Substring(0, 1) + modelslotstring;
+                if (Directory.Exists(folder_path))
+                {
+                    if (Library.get_model_workspace_status(fullname, slot, model_name) == "new")
+                    {
+                        Library.set_model_workspace_status(fullname, slot, model_name, "imported");
+                    }
+                }
+                else
+                {
+                    Library.set_model_workspace_status(fullname, slot, model_name, "missing");
+                    missing = true;
+                }
+            }
+        }
+
         #endregion
 
         #region ModelOperators
@@ -292,40 +413,56 @@ namespace MeteorSkinLibrary
 
             Regex cXX = new Regex("^[c]([0-9]{2}|xx|[0-9]x|x[0-9])$", RegexOptions.IgnoreCase);
             Regex lXX = new Regex("^[l]([0-9]{2}|xx|[0-9]x|x[0-9])$", RegexOptions.IgnoreCase);
-            
+
             if (cXX.IsMatch(Path.GetFileName(folder_name)))
             {
-                if (Directory.Exists(modelpath + Path.GetFileName(parent_name) + "/c" + this.modelslotstring))
-                {
-                    Directory.Delete(modelpath + Path.GetFileName(parent_name) + "/c" + this.modelslotstring, true);
-                }
+                logger.log("folder is cXX/lXX match");
 
-                Directory.CreateDirectory(modelpath+ Path.GetFileName(parent_name) + "/c" + this.modelslotstring);
-
-                foreach (String file in Directory.GetFiles(source_model_path))
+                //If source != destination
+                if (source_model_path != modelpath)
                 {
-                    File.Copy(file, modelpath + Path.GetFileName(parent_name) + "/c" + this.modelslotstring + "/" + Path.GetFileName(file));
+                    if (Directory.Exists(modelpath + Path.GetFileName(parent_name) + "/c" + this.modelslotstring))
+                    {
+                        Directory.Delete(modelpath + Path.GetFileName(parent_name) + "/c" + this.modelslotstring, true);
+                        logger.log("deleting destination");
+                    }
+
+                    Directory.CreateDirectory(modelpath + Path.GetFileName(parent_name) + "/c" + this.modelslotstring);
+                    logger.log("creating destination");
+                    foreach (String file in Directory.GetFiles(source_model_path))
+                    {
+                        File.Copy(file, modelpath + Path.GetFileName(parent_name) + "/c" + this.modelslotstring + "/" + Path.GetFileName(file));
+                    }
                 }
+                logger.log("files copied in : " + modelpath + Path.GetFileName(parent_name));
                 this.models.Add(Path.GetFileName(parent_name) + "/cXX");
                 Library.add_skin_model(this.fullname, this.slot, Path.GetFileName(parent_name) + "/cXX");
+                set_model_workspace_status(Path.GetFileName(parent_name), "cXX", "new");
+                logger.log("setting to new");
 
             }
             if (lXX.IsMatch(Path.GetFileName(folder_name)))
             {
+
+                logger.log("folder is cXX/lXX match");
                 if (Directory.Exists(modelpath + Path.GetFileName(parent_name) + "/l" + this.modelslotstring))
-                {
-                    Directory.Delete(modelpath + Path.GetFileName(parent_name) + "/l" + this.modelslotstring, true);
+                    {
+                        Directory.Delete(modelpath + Path.GetFileName(parent_name) + "/l" + this.modelslotstring, true);
+                    logger.log("deleting destination");
                 }
 
+                logger.log("creating destination");
                 Directory.CreateDirectory(modelpath + Path.GetFileName(parent_name) + "/l" + this.modelslotstring);
-
-                foreach (String file in Directory.GetFiles(source_model_path))
-                {
-                    File.Copy(file, modelpath + Path.GetFileName(parent_name) + "/l" + this.modelslotstring + "/" + Path.GetFileName(file));
-                }
-
-                this.models.Add(Path.GetFileName(parent_name) + "/lXX" );
-                Library.add_skin_model(this.fullname, this.slot, Path.GetFileName(parent_name) + "/lXX");
+                 logger.log("files copied in : " + modelpath + Path.GetFileName(parent_name));
+                    foreach (String file in Directory.GetFiles(source_model_path))
+                    {
+                        File.Copy(file, modelpath + Path.GetFileName(parent_name) + "/l" + this.modelslotstring + "/" + Path.GetFileName(file));
+                    }
+                logger.log("files copied in : " + modelpath + Path.GetFileName(parent_name));
+                this.models.Add(Path.GetFileName(parent_name) + "/lXX");
+                    Library.add_skin_model(this.fullname, this.slot, Path.GetFileName(parent_name) + "/lXX");
+                    set_model_workspace_status(Path.GetFileName(parent_name), "lXX", "new");
+                logger.log("setting to new");
             }
 
 
@@ -381,79 +518,128 @@ namespace MeteorSkinLibrary
         {
             models = Library.get_models(fullname, slot);
         }
+        public String get_model_path(String model_name)
+        {
+            String folder_path = modelpath + model_name.Split('/')[0] + "/" + model_name.Split('/')[1].Substring(0, 1) + modelslotstring;
+            return folder_path;
+        }
 
+        public void set_model_workspace_status(String parent_name,String model_name, String status)
+        {
+            Library.set_model_workspace_status(this.fullname, this.slot, Path.GetFileName(parent_name) + "/"+ model_name, status);
+        }
         #endregion
 
         #region CspOperators
         public void add_csp(String csp_path)
         {
+            logger.log("- Add CSP");
             String csp_name = Path.GetFileName(csp_path).Split('_')[0] + "_" + Path.GetFileName(csp_path).Split('_')[1];
-            this.csps.Add(csp_name);
-            Library.add_skin_csp(this.fullname, this.slot, csp_name);
             
-            //Checking special cases
-            if(csp_name == "chr_13")
+            
+            //Action for certain types
+
+            //If DLC
+            if (dlc)
             {
-                //If moved DLC
+                logger.log("DLC");
+                //If moved, include a copy in regular data folder
                 if (Library.get_moved_dlc_status(fullname))
                 {
-                    if (!Directory.Exists(edited_csppath + csp_name))
+                    logger.log("moved");
+                    //Copy to regular folder
+                    if (csp_path != csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut")
                     {
-                        Directory.CreateDirectory(edited_csppath + csp_name);
-                        
+                        if (!Directory.Exists(csppath))
+                        {
+                            Directory.CreateDirectory(csppath + csp_name);
+                            logger.log("create destination directory");
+                        }
+                        if (!File.Exists(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
+                        {
+                            logger.log("copy to :"+csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                            //Copy to regular folder
+                            File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                            Library.set_csp_workspace_status(fullname, slot, csp_name, "new");
+                        }
                     }
-                    File.Copy(csp_path, edited_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
-
+                    
                 }
-                else
+
+                if (!Directory.Exists(dlc_csppath + csp_name))
                 {
-                    if (!Directory.Exists(csppath + csp_name))
-                    {
-                        Directory.CreateDirectory(csppath + csp_name);
-                        
-                    }
-                    File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                    Directory.CreateDirectory(dlc_csppath + csp_name);
+                    logger.log("create dlc destination directory");
 
                 }
-                
-            }else
-            {   
-                //Checking dlc
+                if (!File.Exists(dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
+                {
+                    logger.log("copy to :" + dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                    //Copy to append folder
+                    File.Copy(csp_path, dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                    Library.set_csp_workspace_status(fullname, slot, csp_name, "new");
+                }
+            }
+            else
+            {
+
                 if (!Directory.Exists(csppath + csp_name))
                 {
                     Directory.CreateDirectory(csppath + csp_name);
-                    
+                    logger.log("create destination directory");
                 }
-                File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                if (!File.Exists(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
+                {
+                    logger.log("copy to :" + csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                    //Copy to regular folder
+                    File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                    Library.set_csp_workspace_status(fullname, slot, csp_name, "new");
+                }
+
+
+
             }
+
+            this.csps.Add(csp_path);
+            Library.add_skin_csp(this.fullname, this.slot, csp_name);
+
         }
 
         public void delete_csp(String csp_name)
         {
-            String FilePath;
-            if(csp_name == "chr_13")
-            {
-                if (Library.get_moved_dlc_status(fullname))
-                {
-                    FilePath = edited_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
-                }else
-                {
-                    FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
-                }
-                
-            }else
-            {
-                FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
-            }
-            
-
             this.models.Remove(csp_name);
-
             Library.delete_skin_csp(this.fullname, this.slot, csp_name);
 
-            if (File.Exists(FilePath))
+            //If DLC
+            if (dlc)
             {
-                File.Delete(FilePath);
+                //If moved, include delete a copy in regular data folder
+                if (Library.get_moved_dlc_status(fullname))
+                {
+                    //Delete to regular folder
+                    if(File.Exists(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
+                    {
+                        File.Delete(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                    }
+                }
+                else
+                {
+                    //Delete to append folder
+                    if (File.Exists(dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
+                    {
+                        File.Delete(dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                    }
+                    
+                }
+            }
+            else
+            {
+                //Delete to regular folder
+                if (File.Exists(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
+                {
+                    File.Delete(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                }
+                
             }
         }
 
@@ -463,19 +649,24 @@ namespace MeteorSkinLibrary
             String new_slot = slot == -1 ? "xx" : (slot +1) < 10 ? "0" + (slot + 1) : (slot + 1).ToString();
             String new_name = csp_name + "_" + cspfolder + "_" + new_slot + ".nut";
             String source_slot = temped ? "xx" : slotstring;
-            if (csp_name == "chr_13")
+            if (dlc)
             {
                 if (Library.get_moved_dlc_status(fullname))
                 {
-                    FilePath = edited_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + source_slot + ".nut";
-                    new_name = edited_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + new_slot + ".nut";
-                }
-                else
-                {
                     FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + source_slot + ".nut";
                     new_name = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + new_slot + ".nut";
+                    if (File.Exists(FilePath))
+                    {
+                        File.Move(FilePath, new_name);
+                    }
                 }
-
+                
+                FilePath = dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + source_slot + ".nut";
+                new_name = dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + new_slot + ".nut";
+                if (File.Exists(FilePath))
+                {
+                    File.Move(FilePath, new_name);
+                }
             }
             else
             {
@@ -494,6 +685,37 @@ namespace MeteorSkinLibrary
         {
             this.csps = Library.get_csps(fullname, slot);
         }
+
+        public String get_csp_path(String csp_name)
+        {
+            String FilePath;
+            if (dlc)
+            {
+                if (Library.get_moved_dlc_status(fullname))
+                {
+                    FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+                }
+                else
+                {
+                    FilePath = dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+                }
+
+            }
+            else
+            {
+                FilePath = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
+            }
+
+            return FilePath;
+        }
+
+        public void set_csp_workspace_status(String csp_path, String status)
+        {
+            String csp_name = Path.GetFileName(csp_path).Split('_')[0] + "_" + Path.GetFileName(csp_path).Split('_')[1];
+            Library.set_csp_workspace_status(this.fullname, this.slot, csp_name, status);
+        }
+
+
         #endregion
 
         #region Meta
@@ -597,23 +819,17 @@ namespace MeteorSkinLibrary
             foreach(String csp in this.csps)
             {
 
-                String FilePath=""; 
+                String FilePath="";
 
-                if(csp == "chr_13")
+
+                if (dlc)
                 {
-                    if (Library.get_moved_dlc_status(fullname))
-                    {
-                        FilePath = edited_csppath + csp + "/" + csp + "_" + cspfolder + "_" + slotstring + ".nut";
-                    }else
-                    {
-                        FilePath = csppath + csp + "/" + csp + "_" + cspfolder + "_" + slotstring + ".nut";
-                    }
-                    
+                    FilePath = dlc_csppath;
                 }else
                 {
-                    FilePath = csppath + csp + "/" + csp + "_" + cspfolder + "_" + slotstring + ".nut";
+                    FilePath = csppath;
                 }
-
+                FilePath += csp + "/" + csp + "_" + cspfolder + "_" + slotstring + ".nut";
                 if (File.Exists(FilePath))
                 {
                     File.Copy(FilePath, package_destination + "csp/" + Path.GetFileName(FilePath));
