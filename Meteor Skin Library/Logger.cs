@@ -11,9 +11,10 @@ namespace Meteor_Skin_Library
     class Logger
     {
         String path="";
-        bool enabled = true;
 
-        public Logger()
+        bool enabled = false;
+
+        public Logger(Boolean activated)
         {
             this.path = Application.StartupPath + "/mmsl_logs/log.txt";
 
@@ -22,12 +23,13 @@ namespace Meteor_Skin_Library
             }
         }
 
-        public Logger(int mode)
+        public Logger(int mode, Boolean activated)
         {
-
-            if(mode == 1)
+            this.enabled = activated;
+            if (mode == 1)
             {
                 this.path = Application.StartupPath + "/mmsl_logs/log.txt";
+                
 
                 if (!Directory.Exists(Application.StartupPath + "/mmsl_logs"))
                 {
@@ -50,5 +52,6 @@ namespace Meteor_Skin_Library
                 }
             }
         }
+
     }
 }

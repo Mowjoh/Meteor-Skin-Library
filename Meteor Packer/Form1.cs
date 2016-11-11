@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,6 @@ namespace Meteor_Packer
         public Main()
         {
             InitializeComponent();
-            skin_dgv.Rows.Add("1", "Segtendwolf", "body/cXX | chr_00 | chr_11 | stock_segtendo");
 
         }
 
@@ -28,6 +28,21 @@ namespace Meteor_Packer
         {
             ArrayList files = new ArrayList();
             return files;
+        }
+
+        private void resetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (String dir in Directory.GetDirectories(Application.StartupPath + "/mmsl_packages"))
+            {
+                Directory.Delete(dir, true);
+            }
+            if (File.Exists(Application.StartupPath + "/mmsl_packages/meta.xml"))
+            {
+                File.Delete(Application.StartupPath + "/mmsl_packages/meta.xml");
+            }
+            listView1.Enabled = true;
+            listView1.Items.Clear();
+            meteorpack_gridview.Rows.Clear();
         }
     }
 }

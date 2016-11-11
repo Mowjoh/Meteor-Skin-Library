@@ -125,6 +125,9 @@ namespace MeteorSkinLibrary
             message.ForeColor = Color.Green;
 
             checkBox8.Checked = properties.get("unlocalised") == "1" ? true : false;
+            checkBox9.Checked = properties.get("logging") == "1" ? true : false;
+            checkBox10.Checked = properties.get("beta") == "1" ? true : false;
+            checkBox11.Checked = properties.get("dev") == "1" ? true : false;
 
         }
 
@@ -234,6 +237,48 @@ namespace MeteorSkinLibrary
                     properties.add("explorer_workspace", path);
                     message.Text = "Workspace path wasn't named workspace but was saved";
                 }
+            }
+        }
+
+        private void toggle_logging(object sender, EventArgs e)
+        {
+            if (checkBox9.Checked)
+            {
+                properties.add("logging", "1");
+                message.Text = "Logging activated";
+            }else
+            {
+                properties.add("logging", "0");
+                message.Text = "Logging deactivated";
+            }
+            
+        }
+
+        private void toggle_beta(object sender, EventArgs e)
+        {
+            if (checkBox10.Checked)
+            {
+                properties.add("beta", "1");
+                message.Text = "Test builds activated";
+            }
+            else
+            {
+                properties.add("beta", "0");
+                message.Text = "Test builds deactivated";
+            }
+        }
+
+        private void toggle_advanced(object sender, EventArgs e)
+        {
+            if (checkBox11.Checked)
+            {
+                properties.add("dev", "1");
+                message.Text = "Advanced options activated";
+            }
+            else
+            {
+                properties.add("dev", "0");
+                message.Text = "Advanced options deactivated";
             }
         }
     }

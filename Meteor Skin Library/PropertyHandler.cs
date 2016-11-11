@@ -32,7 +32,13 @@ namespace MeteorSkinLibrary
             XmlDocument xml = new XmlDocument();
             xml.Load(LibraryPath);
             XmlNode property = xml.SelectSingleNode("/config/property[attribute::name='" + property_name + "']");
-            return property.InnerText;
+            if(property == null)
+            {
+                return "";
+            }else
+            {
+                return property.InnerText;
+            }
         }
         internal void set(string property_name, string property_value)
         {

@@ -41,6 +41,8 @@
             this.resetCurrentMeteorSkinPackSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshMSLsWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkMissingFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkMissingFilesAndImportNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smashExplorerInterfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importMissingFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportSmashExplorerWorkpaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,6 +134,22 @@
             this.button12 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.meteorpack_gridview = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.button13 = new System.Windows.Forms.Button();
             this.model_menu_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.csps_menu_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -139,9 +157,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.textConsole = new System.Windows.Forms.RichTextBox();
-            this.checkMissingFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkMissingFilesAndImportNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refresh_worker = new System.ComponentModel.BackgroundWorker();
+            this.manual_worker = new System.ComponentModel.BackgroundWorker();
             importSmashExplorerWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -172,6 +189,12 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.meteorpack_gridview)).BeginInit();
+            this.groupBox11.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.model_menu_strip.SuspendLayout();
             this.csps_menu_strip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -272,6 +295,20 @@
             this.refreshMSLsWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.refreshMSLsWorkspaceToolStripMenuItem.Text = "Refresh MSL\'s workspace";
             // 
+            // checkMissingFilesToolStripMenuItem
+            // 
+            this.checkMissingFilesToolStripMenuItem.Name = "checkMissingFilesToolStripMenuItem";
+            this.checkMissingFilesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.checkMissingFilesToolStripMenuItem.Text = "Check missing files";
+            this.checkMissingFilesToolStripMenuItem.Click += new System.EventHandler(this.checkMissingFilesToolStripMenuItem_Click);
+            // 
+            // checkMissingFilesAndImportNewToolStripMenuItem
+            // 
+            this.checkMissingFilesAndImportNewToolStripMenuItem.Name = "checkMissingFilesAndImportNewToolStripMenuItem";
+            this.checkMissingFilesAndImportNewToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.checkMissingFilesAndImportNewToolStripMenuItem.Text = "Check missing files and import new";
+            this.checkMissingFilesAndImportNewToolStripMenuItem.Click += new System.EventHandler(this.refreshMSLsWorkspaceToolStripMenuItem_Click);
+            // 
             // smashExplorerInterfaceToolStripMenuItem
             // 
             this.smashExplorerInterfaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -320,6 +357,7 @@
             this.resetLibraryToolStripMenuItem.Name = "resetLibraryToolStripMenuItem";
             this.resetLibraryToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.resetLibraryToolStripMenuItem.Text = "Reset Library";
+            this.resetLibraryToolStripMenuItem.Visible = false;
             this.resetLibraryToolStripMenuItem.Click += new System.EventHandler(this.menu_reset_library);
             // 
             // resetWorkspaceToolStripMenuItem
@@ -327,6 +365,7 @@
             this.resetWorkspaceToolStripMenuItem.Name = "resetWorkspaceToolStripMenuItem";
             this.resetWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.resetWorkspaceToolStripMenuItem.Text = "Reset Workspace";
+            this.resetWorkspaceToolStripMenuItem.Visible = false;
             this.resetWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.reset_mmsl_workspace);
             // 
             // resetConfigToolStripMenuItem
@@ -334,6 +373,7 @@
             this.resetConfigToolStripMenuItem.Name = "resetConfigToolStripMenuItem";
             this.resetConfigToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.resetConfigToolStripMenuItem.Text = "Reset Config";
+            this.resetConfigToolStripMenuItem.Visible = false;
             this.resetConfigToolStripMenuItem.Click += new System.EventHandler(this.reset_config);
             // 
             // resetAllToolStripMenuItem
@@ -341,6 +381,7 @@
             this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
             this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.resetAllToolStripMenuItem.Text = "Reset All";
+            this.resetAllToolStripMenuItem.Visible = false;
             this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.reset_all);
             // 
             // aboutToolStripMenuItem
@@ -444,7 +485,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button7.Location = new System.Drawing.Point(18, 9);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(154, 23);
+            this.button7.Size = new System.Drawing.Size(155, 23);
             this.button7.TabIndex = 19;
             this.button7.Text = "Move Skin Up";
             this.button7.UseVisualStyleBackColor = true;
@@ -456,7 +497,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button8.Location = new System.Drawing.Point(18, 38);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(154, 23);
+            this.button8.Size = new System.Drawing.Size(155, 23);
             this.button8.TabIndex = 20;
             this.button8.Text = "Move Skin Down";
             this.button8.UseVisualStyleBackColor = true;
@@ -468,9 +509,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.meteorbox.Image = global::Meteor_Skin_Library.Properties.Resources.unknown;
-            this.meteorbox.Location = new System.Drawing.Point(195, 361);
+            this.meteorbox.Location = new System.Drawing.Point(196, 361);
             this.meteorbox.Name = "meteorbox";
-            this.meteorbox.Size = new System.Drawing.Size(381, 95);
+            this.meteorbox.Size = new System.Drawing.Size(380, 95);
             this.meteorbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.meteorbox.TabIndex = 17;
             this.meteorbox.TabStop = false;
@@ -528,6 +569,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl2.Controls.Add(this.tabPage4);
             this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Location = new System.Drawing.Point(133, 3);
             this.tabControl2.Name = "tabControl2";
             this.tableLayoutPanel1.SetRowSpan(this.tabControl2, 2);
@@ -575,7 +617,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 361);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(186, 95);
+            this.panel1.Size = new System.Drawing.Size(187, 95);
             this.panel1.TabIndex = 23;
             // 
             // SkinListBox
@@ -592,7 +634,7 @@
             this.SkinListBox.MinimumSize = new System.Drawing.Size(155, 4);
             this.SkinListBox.MultiSelect = false;
             this.SkinListBox.Name = "SkinListBox";
-            this.SkinListBox.Size = new System.Drawing.Size(186, 352);
+            this.SkinListBox.Size = new System.Drawing.Size(187, 352);
             this.SkinListBox.TabIndex = 21;
             this.SkinListBox.UseCompatibleStateImageBehavior = false;
             this.SkinListBox.View = System.Windows.Forms.View.Details;
@@ -610,7 +652,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSize = true;
             this.panel2.Controls.Add(this.tabControl1);
-            this.panel2.Location = new System.Drawing.Point(195, 3);
+            this.panel2.Location = new System.Drawing.Point(196, 3);
             this.panel2.MinimumSize = new System.Drawing.Size(386, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(386, 352);
@@ -636,7 +678,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(378, 284);
+            this.tabPage1.Size = new System.Drawing.Size(378, 309);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Library Skin Info";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -649,7 +691,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(372, 278);
+            this.groupBox1.Size = new System.Drawing.Size(372, 303);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Skin Information";
@@ -672,7 +714,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(366, 259);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(366, 284);
             this.tableLayoutPanel3.TabIndex = 10;
             // 
             // panel5
@@ -685,7 +727,7 @@
             this.panel5.Location = new System.Drawing.Point(138, 111);
             this.panel5.MinimumSize = new System.Drawing.Size(100, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(225, 145);
+            this.panel5.Size = new System.Drawing.Size(225, 170);
             this.panel5.TabIndex = 3;
             // 
             // button5
@@ -718,7 +760,7 @@
             this.panel4.Controls.Add(this.button3);
             this.panel4.Location = new System.Drawing.Point(3, 111);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(129, 145);
+            this.panel4.Size = new System.Drawing.Size(129, 170);
             this.panel4.TabIndex = 2;
             // 
             // button2
@@ -1002,7 +1044,7 @@
             this.tabPage3.Controls.Add(this.groupBox4);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(378, 284);
+            this.tabPage3.Size = new System.Drawing.Size(378, 309);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Skin Metadata";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1021,7 +1063,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(378, 284);
+            this.groupBox4.Size = new System.Drawing.Size(378, 309);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Metadata";
@@ -1271,6 +1313,179 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Custom Skin Count";
             // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.tableLayoutPanel6);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(585, 465);
+            this.tabPage6.TabIndex = 2;
+            this.tabPage6.Text = "Skin Packer";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.groupBox10, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.meteorpack_gridview, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.groupBox11, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.panel9, 0, 3);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 4;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(585, 465);
+            this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.textBox8);
+            this.groupBox10.Controls.Add(this.textBox7);
+            this.groupBox10.Controls.Add(this.label9);
+            this.groupBox10.Controls.Add(this.label12);
+            this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox10.Location = new System.Drawing.Point(3, 3);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(579, 94);
+            this.groupBox10.TabIndex = 0;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Pack Information";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox8.Location = new System.Drawing.Point(70, 59);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(491, 20);
+            this.textBox8.TabIndex = 8;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox7.Location = new System.Drawing.Point(70, 33);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(491, 20);
+            this.textBox7.TabIndex = 7;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 36);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(38, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Author";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 62);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(42, 13);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Version";
+            // 
+            // meteorpack_gridview
+            // 
+            this.meteorpack_gridview.AllowUserToAddRows = false;
+            this.meteorpack_gridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.meteorpack_gridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column4,
+            this.Column2,
+            this.Column3});
+            this.meteorpack_gridview.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.meteorpack_gridview.Location = new System.Drawing.Point(3, 103);
+            this.meteorpack_gridview.Name = "meteorpack_gridview";
+            this.meteorpack_gridview.Size = new System.Drawing.Size(579, 224);
+            this.meteorpack_gridview.TabIndex = 1;
+            this.meteorpack_gridview.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.meteorpack_gridview_CellValueChanged);
+            this.meteorpack_gridview.CurrentCellChanged += new System.EventHandler(this.meteorpack_gridview_CurrentCellChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Slot";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 50;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.HeaderText = "Character";
+            this.Column4.Items.AddRange(new object[] {
+            "unselected"});
+            this.Column4.Name = "Column4";
+            this.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column4.Sorted = true;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column4.Width = 78;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Displayed Name";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.HeaderText = "Detected files";
+            this.Column3.Name = "Column3";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.listView1);
+            this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox11.Location = new System.Drawing.Point(3, 333);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(579, 86);
+            this.groupBox11.TabIndex = 2;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Manual Install folder drop zone";
+            // 
+            // listView1
+            // 
+            this.listView1.AllowDrop = true;
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.FullRowSelect = true;
+            this.listView1.LabelWrap = false;
+            this.listView1.Location = new System.Drawing.Point(3, 16);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(573, 67);
+            this.listView1.TabIndex = 16;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.List;
+            this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.manual_drop);
+            this.listView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.manual_dragenter);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.button13);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(3, 425);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(579, 37);
+            this.panel9.TabIndex = 3;
+            // 
+            // button13
+            // 
+            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button13.Location = new System.Drawing.Point(0, 0);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(579, 32);
+            this.button13.TabIndex = 0;
+            this.button13.Text = "Pack archive";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.meteor_pack);
+            // 
             // model_menu_strip
             // 
             this.model_menu_strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1341,26 +1556,18 @@
             this.textConsole.TabIndex = 9;
             this.textConsole.Text = "";
             // 
-            // checkMissingFilesToolStripMenuItem
-            // 
-            this.checkMissingFilesToolStripMenuItem.Name = "checkMissingFilesToolStripMenuItem";
-            this.checkMissingFilesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.checkMissingFilesToolStripMenuItem.Text = "Check missing files";
-            this.checkMissingFilesToolStripMenuItem.Click += new System.EventHandler(this.checkMissingFilesToolStripMenuItem_Click);
-            // 
-            // checkMissingFilesAndImportNewToolStripMenuItem
-            // 
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Name = "checkMissingFilesAndImportNewToolStripMenuItem";
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Text = "Check missing files and import new";
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Click += new System.EventHandler(this.refreshMSLsWorkspaceToolStripMenuItem_Click);
-            // 
             // refresh_worker
             // 
             this.refresh_worker.WorkerReportsProgress = true;
             this.refresh_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.refresh_worker_DoWork);
             this.refresh_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.refresh_worker_ProgressChanged);
             this.refresh_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.refresh_worker_RunWorkerCompleted);
+            // 
+            // manual_worker
+            // 
+            this.manual_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.manual_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.manual_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // main
             // 
@@ -1420,6 +1627,13 @@
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.meteorpack_gridview)).EndInit();
+            this.groupBox11.ResumeLayout(false);
+            this.panel9.ResumeLayout(false);
             this.model_menu_strip.ResumeLayout(false);
             this.csps_menu_strip.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1542,6 +1756,23 @@
         private System.Windows.Forms.ToolStripMenuItem checkMissingFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkMissingFilesAndImportNewToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker refresh_worker;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DataGridView meteorpack_gridview;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.ComponentModel.BackgroundWorker manual_worker;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 

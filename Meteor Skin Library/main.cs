@@ -36,6 +36,13 @@ namespace MeteorSkinLibrary
         Character selected_char;
         String last_char = "";
         String workspace_char = "";
+        String[] manualfolder;
+        ArrayList manual_meteors;
+        Boolean started_pack = false;
+        String selected_cell_charname="";
+        int selected_cell_row;
+        int selected_cell_column;
+        String selected_cell_skin_name = "";
 
         #endregion
         #region Lists
@@ -134,6 +141,7 @@ namespace MeteorSkinLibrary
 
                 #region UI Init
                 //Loads Character List
+                manual_meteors = new ArrayList();
                 Characters = Library.get_character_list();
                 init_character_ListBox();
                 state_check();
@@ -148,10 +156,22 @@ namespace MeteorSkinLibrary
                 status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/new.png"));
                 status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/checked.png"));
                 SkinListBox.SmallImageList = status_images;
-                #endregion
 
-                logg = new Logger(1);
-                logg.log("Meteor Skin Library Start");
+                if(properties.get("dev") == "1")
+                {
+                    resetAllToolStripMenuItem.Visible = true;
+                    resetLibraryToolStripMenuItem.Visible = true;
+                    resetConfigToolStripMenuItem.Visible = true;
+                    resetWorkspaceToolStripMenuItem.Visible = true;
+                }
+                #endregion
+                if (properties.get("logging") == "1")
+                {
+                    logg = new Logger(1,true);
+                }else
+                {
+                    logg = new Logger(1,false);
+                }
 
                 //Launches config if not edited
                 region_select();
@@ -276,7 +296,14 @@ namespace MeteorSkinLibrary
             {
                 Directory.Delete(dir, true);
             }
-            console_write("Meteor skin pack session reseted");
+            if(File.Exists(Application.StartupPath + "/mmsl_packages/meta.xml"))
+            {
+                File.Delete(Application.StartupPath + "/mmsl_packages/meta.xml");
+            }
+            console_write("Meteor skin pack session reset");
+            listView1.Enabled = true;
+            listView1.Items.Clear();
+            meteorpack_gridview.Rows.Clear();
         }
 
         //Archives the current skin pack session
@@ -733,8 +760,11 @@ namespace MeteorSkinLibrary
         //packages skin into meteor skin
         private void package_meteor(object sender, EventArgs e)
         {
+
             this.selected_skin.package_meteor();
+            pack_add_item(selected_skin.get_meteor_info());
             console_write("This skin was added to the current pack session");
+            started_pack = true;
         }
 
         //When the move up button is pressed
@@ -815,6 +845,185 @@ namespace MeteorSkinLibrary
             String texidfix = textBox4.Text;
             this.selected_skin.saveMeta(author, version, name, texidfix);
         }
+        #endregion
+
+        //Skin Packing
+        #region Skin Packing
+        public void pack_add_item(String[] values)
+        {
+            meteorpack_gridview.Rows.Add(values);
+        }
+
+        private void manual_drop(object sender, DragEventArgs e)
+        {
+            this.manualfolder = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            listView1.Enabled = false;
+            listView1.Items.Add("Manual folder detected / Skins-> Reset Package folder to restart");
+            
+            manual_worker.RunWorkerAsync();
+        }
+
+        private void manual_dragenter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
+        private void meteorpack_gridview_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (started_pack)
+            {
+                if (meteorpack_gridview.SelectedCells.Count > 0)
+                {
+                    if (meteorpack_gridview.SelectedCells[0].ColumnIndex == 1)
+                    {
+                        selected_cell_charname = meteorpack_gridview.SelectedCells[0].Value.ToString();
+                        selected_cell_row = meteorpack_gridview.SelectedCells[0].RowIndex;
+                        selected_cell_column = 1;
+                    }
+                    if(meteorpack_gridview.SelectedCells[0].ColumnIndex == 2)
+                    {
+                        selected_cell_row = meteorpack_gridview.SelectedCells[0].RowIndex;
+                        selected_cell_skin_name = meteorpack_gridview.Rows[selected_cell_row].Cells[2].Value.ToString();
+                        selected_cell_column = 2;
+                    }
+                }
+            }
+        }
+
+        private void meteorpack_gridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (started_pack)
+            {
+                if(selected_cell_column == 1)
+                {
+                    String packname = meteorpack_gridview.Rows[selected_cell_row].Cells[2].Value.ToString();
+
+                    String source = Application.StartupPath + "/mmsl_packages/" + selected_cell_charname + "";
+                    String destination = Application.StartupPath + "/mmsl_packages/" + meteorpack_gridview.SelectedCells[0].Value.ToString() + "/";
+
+
+                    //Copy all the files & Replaces any files with the same name
+                    foreach (string newPath in Directory.GetFiles(source + "/meteor_xx_" + packname, "*.*", SearchOption.AllDirectories))
+                    {
+                        if (!Directory.Exists(Path.GetDirectoryName(newPath.Replace(source + "/meteor_xx_" + packname, destination + "/meteor_xx_" + packname))))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(newPath.Replace(source + "/meteor_xx_" + packname, destination + "/meteor_xx_" + packname)));
+                        }
+                        File.Copy(newPath, newPath.Replace(source + "/meteor_xx_" + packname, destination + "/meteor_xx_" + packname), true);
+                    }
+                    Directory.Delete(source + "/meteor_xx_" + packname, true);
+                    selected_cell_charname = meteorpack_gridview.SelectedCells[0].Value.ToString();
+                }
+
+                if(selected_cell_column == 2)
+                {
+                    String packname = meteorpack_gridview.Rows[selected_cell_row].Cells[2].Value.ToString();
+
+                    String source = Application.StartupPath + "/mmsl_packages/" + meteorpack_gridview.Rows[selected_cell_row].Cells[1].Value.ToString() + "/";
+                    String destination = Application.StartupPath + "/mmsl_packages/" + meteorpack_gridview.Rows[selected_cell_row].Cells[1].Value.ToString() + "/";
+
+
+                    //Copy all the files & Replaces any files with the same name
+                    foreach (string newPath in Directory.GetFiles(source + "/meteor_xx_" + selected_cell_skin_name, "*.*", SearchOption.AllDirectories))
+                    {
+                        if (!Directory.Exists(Path.GetDirectoryName(newPath.Replace(source + "/meteor_xx_" + selected_cell_skin_name, destination + "/meteor_xx_" + packname))))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(newPath.Replace(source + "/meteor_xx_" + selected_cell_skin_name, destination + "/meteor_xx_" + packname)));
+                        }
+                        File.Copy(newPath, newPath.Replace(source + "/meteor_xx_" + selected_cell_skin_name, destination + "/meteor_xx_" + packname), true);
+                    }
+                    Directory.Delete(source + "/meteor_xx_" + selected_cell_skin_name, true);
+                    selected_cell_charname = meteorpack_gridview.SelectedCells[0].Value.ToString();
+                }
+                
+            }
+
+        }
+
+        private void meteor_pack(object sender, EventArgs e)
+        {
+            if (!processing)
+            {
+                String author_name = textBox7.Text;
+                String pack_version = textBox8.Text;
+                File.Copy(Application.StartupPath + "/mmsl_config/meta/Default_Meta.xml", Application.StartupPath + "/mmsl_packages/meta.xml", true);
+
+                //Creating XML files
+                foreach (DataGridViewRow row in meteorpack_gridview.Rows)
+                {
+                    String character = row.Cells[1].Value.ToString();
+                    String meteorname = row.Cells[2].Value.ToString();
+                    String folder = Application.StartupPath + "/mmsl_packages/" + character + "/meteor_xx_" + meteorname;
+
+                    XmlDocument xml = new XmlDocument();
+                    xml.Load(Application.StartupPath + "/mmsl_packages/meta.xml");
+                    XmlNodeList data = xml.SelectNodes("metadata/meta");
+                    foreach (XmlElement xe in data)
+                    {
+                        if (xe.Attributes["name"].Value.ToString() == "author")
+                        {
+                            xe.InnerText = author_name;
+                        }
+                        if (xe.Attributes["name"].Value.ToString() == "version")
+                        {
+                            xe.InnerText = pack_version;
+                        }
+                        if (xe.Attributes["name"].Value.ToString() == "name")
+                        {
+                            xe.InnerText = meteorname;
+                        }
+                        if (xe.Attributes["name"].Value.ToString() == "texidfix")
+                        {
+                            xe.InnerText = "";
+                        }
+                    }
+                    if (!Directory.Exists(folder + "/meta"))
+                    {
+                        Directory.CreateDirectory(folder + "/meta");
+                    }
+                    xml.Save(folder + "/meta/meta.xml");
+                }
+
+                //Deleting empty folders
+                foreach (String char_dirs in Directory.GetDirectories(Application.StartupPath + "/mmsl_packages/"))
+                {
+                    if (Directory.GetFiles(char_dirs, "*", SearchOption.AllDirectories).Length == 0)
+                    {
+                        Directory.Delete(char_dirs);
+                    }
+                }
+
+                //Copying manual install folder
+                Directory.CreateDirectory(Application.StartupPath + "/mmsl_packages/Manual Installation folder");
+
+                //Copy all the files & Replaces any files with the same name
+                if (manual_meteors.Count > 0)
+                {
+                    foreach (string newPath in Directory.GetFiles(manualfolder[0], "*.*", SearchOption.AllDirectories))
+                    {
+                        if (!Directory.Exists(Path.GetDirectoryName(newPath.Replace(manualfolder[0], Application.StartupPath + "/mmsl_packages/Manual Installation folder"))))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(newPath.Replace(manualfolder[0], Application.StartupPath + "/mmsl_packages/Manual Installation folder")));
+                        }
+                        File.Copy(newPath, newPath.Replace(manualfolder[0], Application.StartupPath + "/mmsl_packages/Manual Installation folder"), true);
+                    }
+                }
+
+                File.Delete(Application.StartupPath + "/mmsl_packages/meta.xml");
+
+
+                archive_worker.RunWorkerAsync();
+                loadingbox.Style = ProgressBarStyle.Marquee;
+                appstatus.Text = "Archiving files...";
+                processing = true;
+                block_controls();
+            }
+
+        }
+
         #endregion
 
         //Interface functions
@@ -1052,6 +1261,7 @@ namespace MeteorSkinLibrary
                 ListViewItem item = new ListViewItem(chars);
                 item.ImageIndex = j;
                 Characterlist2.Items.Add(item);
+                Column4.Items.Add(chars);
             }
             Characterlist2.SmallImageList = images;
 
@@ -1531,8 +1741,8 @@ namespace MeteorSkinLibrary
 
             loadingbox.Value = 0;
             //Setting default path
-            String http_url = "http://lunaticfox.com/test.zip";
-            String file_ext = "zip";
+            String http_url = "";
+            String file_ext = "";
 
             //If URL is passed
             if (args.Length > 0)
@@ -2529,20 +2739,22 @@ namespace MeteorSkinLibrary
             processing = false;
             reset_skin_pack_session();
             enable_controls();
+            System.Diagnostics.Process.Start(Application.StartupPath+"/mmsl_packages/");
         }
 
+        //Launches extract worker
         private void refresh_worker_DoWork(object sender, DoWorkEventArgs e)
         {
             check_files();
         }
-
+        //extract worker progress
         private void refresh_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             loadingbox.Value = status;
             processbox.Value = process;
             process_status.Text = process_text;
         }
-
+        //extract worker complete
         private void refresh_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             loadingbox.Value = 100;
@@ -2563,6 +2775,113 @@ namespace MeteorSkinLibrary
             console_write("----------------------------------------------------------------------------------------------------");
             console_write("The files were checked and their status updated");
             console_write("----------------------------------------------------------------------------------------------------");
+        }
+
+        //Launches manual worker
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            manual_meteors.Clear();
+            //Getting csp files
+            Regex cspr = new Regex("^((?:chrn|chr|stock)_[0-9][0-9])_([a-zA-Z]+)_([0-9]{2}|xx|[0-9]x|x[0-9]).nut$");
+            String[] files = Directory.GetFiles(this.manualfolder[0], "*.nut", SearchOption.AllDirectories);
+            ArrayList manual_csps = new ArrayList();
+            foreach(String file in files)
+            {
+                if (cspr.IsMatch(Path.GetFileName(file)))
+                {
+                    manual_csps.Add(file);
+                }
+            }
+
+            //Getting model folders
+            String[] dirs = Directory.GetDirectories(this.manualfolder[0], "*", SearchOption.AllDirectories);
+            ArrayList manual_models = new ArrayList();
+            foreach (String dir in dirs)
+            {
+                String dirname = Path.GetFileName(dir);
+                //If folder name is three characters
+                if(dirname.Length == 3)
+                {
+                    int slot;
+                    //If slot can be parsed
+                    if(int.TryParse(dirname.Substring(1,2),out slot)){
+                        manual_models.Add(dir);
+                    }
+                }
+            }
+
+            //Moving the files to the appropriate location
+            foreach(String csp in manual_csps)
+            {
+                String csp_parsed_slot = csp.Split('_')[csp.Split('_').Length - 1].Split('.')[0];
+                int slot;
+                if(int.TryParse(csp_parsed_slot,out slot))
+                {
+                    String destination = Application.StartupPath + "/mmsl_packages/unselected/meteor_xx_slot_" + slot+"/csp/";
+                    if (!Directory.Exists(destination))
+                    {
+                        Directory.CreateDirectory(destination);
+                    }
+                    String destination_file = destination + Path.GetFileName(csp);
+                    File.Copy(csp, destination_file, true);
+                }
+            }
+            //Copying models
+            foreach(String model in manual_models)
+            {
+                String model_parsed_slot = Path.GetFileName(model).Substring(1, 2);
+                int slot;
+                if(int.TryParse(model_parsed_slot,out slot))
+                {
+                    slot++;
+                    String destination = Application.StartupPath + "/mmsl_packages/unselected/meteor_xx_slot_" + slot + "/model/";
+                    String parent = Path.GetFileName(Directory.GetParent(model).FullName);
+                    String folder = Path.GetFileName(model);
+
+                    String model_destination = destination + parent + "/" + folder;
+                    if (!Directory.Exists(model_destination))
+                    {
+                        Directory.CreateDirectory(model_destination);
+                    }
+                    foreach(String file in Directory.GetFiles(model))
+                    {
+                        File.Copy(file, model_destination + "/" + Path.GetFileName(file),true);
+                    }
+                }
+            }
+            String filelist = "";
+            //Listing new meteor folders
+            String[] meteors = Directory.GetDirectories(Application.StartupPath + "/mmsl_packages/unselected/");
+            if(meteors.Length > 0)
+            {
+                foreach(String meteor in meteors)
+                {
+                    String slot = meteor.Split('_')[meteor.Split('_').Length - 1];
+                    String name = meteor.Split('_')[3];
+                    foreach(String csp in Directory.GetFiles(meteor + "/csp"))
+                    {
+                        String csp_name = Path.GetFileName(csp).Split('_')[0] + "_" + Path.GetFileName(csp).Split('_')[1];
+                        filelist += csp_name + " | ";
+                    }
+                    manual_meteors.Add(slot+";unselected;slot_" + slot +"; "+filelist);
+                }
+            }
+
+
+        }
+        //manual worker progress
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+        //manual worker complete
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            foreach(String val in manual_meteors)
+            {
+                meteorpack_gridview.Rows.Add(val.Split(';'));
+            }
+            started_pack = true;
         }
         #endregion
 
@@ -3098,11 +3417,14 @@ namespace MeteorSkinLibrary
 
 
 
-        #endregion
+
+
 
         #endregion
 
-       
+        #endregion
+
+        
     }
 
 

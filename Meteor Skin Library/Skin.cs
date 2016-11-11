@@ -559,7 +559,18 @@ namespace MeteorSkinLibrary
                         {
                             logger.log("copy to :"+csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
                             //Copy to regular folder
-                            File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                            try
+                            {
+                                File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                            }
+                            catch(Exception e)
+                            {
+                                logger.log("DLC COPY ERRORs");
+                                logger.log(e.Message);
+                                logger.log(e.StackTrace);
+
+                            }
+                            
                             Library.set_csp_workspace_status(fullname, slot, csp_name, "new");
                         }
                     }
@@ -576,7 +587,17 @@ namespace MeteorSkinLibrary
                 {
                     logger.log("copy to :" + dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
                     //Copy to append folder
-                    File.Copy(csp_path, dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                    try
+                    {
+                        File.Copy(csp_path, dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.log("DLC COPY ERRORs");
+                        logger.log(e.Message);
+                        logger.log(e.StackTrace);
+                    }
+                    
                     Library.set_csp_workspace_status(fullname, slot, csp_name, "new");
                 }
             }
@@ -592,7 +613,17 @@ namespace MeteorSkinLibrary
                 {
                     logger.log("copy to :" + csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
                     //Copy to regular folder
-                    File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                    try
+                    {
+                        File.Copy(csp_path, csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut", true);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.log("NON DLC COPY ERRORs");
+                        logger.log(e.Message);
+                        logger.log(e.StackTrace);
+                    }
+                    
                     Library.set_csp_workspace_status(fullname, slot, csp_name, "new");
                 }
 
@@ -838,6 +869,22 @@ namespace MeteorSkinLibrary
 
             File.Copy(metapath + "meta.xml", package_destination + "meta/meta.xml");
             
+        }
+
+        public String[] get_meteor_info()
+        {
+            String files = "";
+            foreach(String model in models)
+            {
+                files += model+" | ";
+            }
+            foreach (String csp in csps)
+            {
+                files += csp + " | ";
+            }
+            String[] values = new String[] { "xx",fullname, libraryname,files};
+
+            return values;
         }
         #endregion
 
