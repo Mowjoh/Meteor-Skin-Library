@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roaster>
+  <Character name="Mario" dlc="0" foldername="mario" moved_dlc="0" ui_char_db_id="4" cspname="Mario">
+    <skin slot="1" origin="Default" name="Red">
+    </skin>
+    <skin slot="2" origin="Default" name="White">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="5" origin="Default" name="Black">
+    </skin>
+    <skin slot="6" origin="Default" name="Green">
+    </skin>
+    <skin slot="7" origin="Default" name="Striped">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Luigi" dlc="0" foldername="luigi" moved_dlc="0" ui_char_db_id="12" cspname="Luigi">
+    <skin slot="1" origin="Default" name="Green">
+    </skin>
+    <skin slot="2" origin="Default" name="Orange">
+    </skin>
+    <skin slot="3" origin="Default" name="Pink">
+    </skin>
+    <skin slot="4" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="5" origin="Default" name="White">
+    </skin>
+    <skin slot="6" origin="Default" name="Purple">
+    </skin>
+    <skin slot="7" origin="Default" name="Blue">
+    </skin>
+    <skin slot="8" origin="Default" name="Yellow">
+    </skin>
+  </Character>
+  <Character name="Peach" dlc="0" foldername="peach" moved_dlc="0" ui_char_db_id="15" cspname="Peach">
+    <skin slot="1" origin="Default" name="Pink">
+    </skin>
+    <skin slot="2" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Blue">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Fire">
+    </skin>
+    <skin slot="8" origin="Default" name="Black">
+    </skin>
+  </Character>
+  <Character name="Bowser" dlc="0" foldername="koopa" moved_dlc="0" ui_char_db_id="16" cspname="Koopa">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Black">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Grey">
+    </skin>
+    <skin slot="6" origin="Default" name="Orange">
+    </skin>
+    <skin slot="7" origin="Default" name="Red">
+    </skin>
+    <skin slot="8" origin="Default" name="Blue">
+    </skin>
+  </Character>
+  <Character name="Yoshi" dlc="0" foldername="yoshi" moved_dlc="0" ui_char_db_id="8" cspname="Yoshi">
+    <skin slot="1" origin="Default" name="Green">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="5" origin="Default" name="Pink">
+    </skin>
+    <skin slot="6" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="7" origin="Default" name="Purple">
+    </skin>
+    <skin slot="8" origin="Default" name="Black">
+    </skin>
+  </Character>
+  <Character name="Rosalina" dlc="0" foldername="rosetta" moved_dlc="0" ui_char_db_id="37" cspname="Rosetta">
+    <skin slot="1" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="2" origin="Default" name="Pink">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Red">
+    </skin>
+    <skin slot="6" origin="Default" name="Purple">
+    </skin>
+    <skin slot="7" origin="Default" name="Black">
+    </skin>
+    <skin slot="8" origin="Default" name="White">
+    </skin>
+  </Character>
+  <Character name="Bowser Jr" dlc="0" foldername="koopajr" moved_dlc="0" ui_char_db_id="44" cspname="KoopaJr">
+    <skin slot="1" origin="Default" name="Junior">
+    </skin>
+    <skin slot="2" origin="Default" name="Larry">
+    </skin>
+    <skin slot="3" origin="Default" name="Roy">
+    </skin>
+    <skin slot="4" origin="Default" name="Wendy">
+    </skin>
+    <skin slot="5" origin="Default" name="Iggy">
+    </skin>
+    <skin slot="6" origin="Default" name="Morton">
+    </skin>
+    <skin slot="7" origin="Default" name="Lemmy">
+    </skin>
+    <skin slot="8" origin="Default" name="Ludwig">
+    </skin>
+  </Character>
+  <Character name="Donkey Kong" dlc="0" foldername="donkey" moved_dlc="0" ui_char_db_id="5" cspname="Donkey">
+    <skin slot="1" origin="Default" name="Brown">
+    </skin>
+    <skin slot="2" origin="Default" name="Black">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Blue">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Pink">
+    </skin>
+  </Character>
+  <Character name="Diddy Kong" dlc="0" foldername="diddy" moved_dlc="0" ui_char_db_id="28" cspname="Diddy">
+    <skin slot="1" origin="Default" name="Red">
+    </skin>
+    <skin slot="2" origin="Default" name="White">
+    </skin>
+    <skin slot="3" origin="Default" name="Pink">
+    </skin>
+    <skin slot="4" origin="Default" name="Purple">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="Blue">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Cyan">
+    </skin>
+  </Character>
+  <Character name="Game and Watch" dlc="0" foldername="gamewatch" moved_dlc="0" ui_char_db_id="20" cspname="Gamewatch">
+    <skin slot="1" origin="Default" name="Black">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Blue">
+    </skin>
+    <skin slot="5" origin="Default" name="Teal">
+    </skin>
+    <skin slot="6" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="7" origin="Default" name="Green">
+    </skin>
+    <skin slot="8" origin="Default" name="White">
+    </skin>
+  </Character>
+  <Character name="Little Mac" dlc="0" foldername="littlemac" moved_dlc="0" ui_char_db_id="39" cspname="Littlemac">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="3" origin="Default" name="White">
+    </skin>
+    <skin slot="4" origin="Default" name="Red">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Orange">
+    </skin>
+    <skin slot="7" origin="Default" name="Green">
+    </skin>
+    <skin slot="8" origin="Default" name="Pink">
+    </skin>
+    <skin slot="9" origin="Default" name="Wireframe Default">
+    </skin>
+    <skin slot="10" origin="Default" name="Wireframe Yellow">
+    </skin>
+    <skin slot="11" origin="Default" name="Wireframe White">
+    </skin>
+    <skin slot="12" origin="Default" name="Wireframe Red">
+    </skin>
+    <skin slot="13" origin="Default" name="Wireframe Blue">
+    </skin>
+    <skin slot="14" origin="Default" name="Wireframe Orange">
+    </skin>
+    <skin slot="15" origin="Default" name="Wireframe Green">
+    </skin>
+    <skin slot="16" origin="Default" name="Wireframe Pink">
+    </skin>
+  </Character>
+  <Character name="Link" dlc="0" foldername="link" moved_dlc="0" ui_char_db_id="6" cspname="Link">
+    <skin slot="1" origin="Default" name="Green">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Purple">
+    </skin>
+    <skin slot="5" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="6" origin="Default" name="Black">
+    </skin>
+    <skin slot="7" origin="Default" name="White">
+    </skin>
+    <skin slot="8" origin="Default" name="Grey">
+    </skin>
+  </Character>
+  <Character name="Zelda" dlc="0" foldername="zelda" moved_dlc="0" ui_char_db_id="17" cspname="Zelda">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Purple">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="Black">
+    </skin>
+    <skin slot="7" origin="Default" name="Pink">
+    </skin>
+    <skin slot="8" origin="Default" name="White">
+    </skin>
+  </Character>
+  <Character name="Sheik" dlc="0" foldername="sheik" moved_dlc="0" ui_char_db_id="18" cspname="Sheik">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Purple">
+    </skin>
+    <skin slot="4" origin="Default" name="Pink">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="Black">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="White">
+    </skin>
+  </Character>
+  <Character name="Ganon" dlc="0" foldername="ganon" moved_dlc="0" ui_char_db_id="21" cspname="Ganon">
+    <skin slot="1" origin="Default" name="Black">
+    </skin>
+    <skin slot="2" origin="Default" name="White">
+    </skin>
+    <skin slot="3" origin="Default" name="Purple">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Red">
+    </skin>
+    <skin slot="6" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="7" origin="Default" name="Grey">
+    </skin>
+    <skin slot="8" origin="Default" name="Blue">
+    </skin>
+  </Character>
+  <Character name="Toon Link" dlc="0" foldername="toonlink" moved_dlc="0" ui_char_db_id="33" cspname="Toonlink">
+    <skin slot="1" origin="Default" name="Green">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Purple">
+    </skin>
+    <skin slot="5" origin="Default" name="Brown">
+    </skin>
+    <skin slot="6" origin="Default" name="Black">
+    </skin>
+    <skin slot="7" origin="Default" name="Grey">
+    </skin>
+    <skin slot="8" origin="Default" name="Teal">
+    </skin>
+  </Character>
+  <Character name="Wario" dlc="0" foldername="wario" moved_dlc="0" ui_char_db_id="23" cspname="Wario">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="5" origin="Default" name="Classic">
+    </skin>
+    <skin slot="6" origin="Default" name="Classic Red">
+    </skin>
+    <skin slot="7" origin="Default" name="Classic Cyan">
+    </skin>
+    <skin slot="8" origin="Default" name="Classic Green">
+    </skin>
+  </Character>
+  <Character name="Samus" dlc="0" foldername="samus" moved_dlc="0" ui_char_db_id="7" cspname="Samus">
+    <skin slot="1" origin="Default" name="Orange">
+    </skin>
+    <skin slot="2" origin="Default" name="Blue">
+    </skin>
+    <skin slot="3" origin="Default" name="Pink">
+    </skin>
+    <skin slot="4" origin="Default" name="Brown">
+    </skin>
+    <skin slot="5" origin="Default" name="Purple">
+    </skin>
+    <skin slot="6" origin="Default" name="Green">
+    </skin>
+    <skin slot="7" origin="Default" name="White">
+    </skin>
+    <skin slot="8" origin="Default" name="Black">
+    </skin>
+  </Character>
+  <Character name="Zero Suit Samus" dlc="0" foldername="szerosuit" moved_dlc="0" ui_char_db_id="26" cspname="Szerosuit">
+    <skin slot="1" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="2" origin="Default" name="Blue">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Black">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Shorts Orange">
+    </skin>
+    <skin slot="8" origin="Default" name="Shorts Blue">
+    </skin>
+  </Character>
+  <Character name="Pit" dlc="0" foldername="pit" moved_dlc="0" ui_char_db_id="25" cspname="Pit">
+    <skin slot="1" origin="Default" name="White">
+    </skin>
+    <skin slot="2" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Black">
+    </skin>
+    <skin slot="7" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="8" origin="Default" name="Pink">
+    </skin>
+  </Character>
+  <Character name="Palutena" dlc="0" foldername="palutena" moved_dlc="0" ui_char_db_id="41" cspname="Palutena">
+    <skin slot="1" origin="Default" name="White">
+    </skin>
+    <skin slot="2" origin="Default" name="Pink">
+    </skin>
+    <skin slot="3" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Red">
+    </skin>
+    <skin slot="7" origin="Default" name="Black">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Marth" dlc="0" foldername="marth" moved_dlc="0" ui_char_db_id="19" cspname="Marth">
+    <skin slot="1" origin="Default" name="Navy">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Black">
+    </skin>
+    <skin slot="5" origin="Default" name="White">
+    </skin>
+    <skin slot="6" origin="Default" name="Blue">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Ike" dlc="0" foldername="ike" moved_dlc="0" ui_char_db_id="30" cspname="Ike">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Blue">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="Brown">
+    </skin>
+    <skin slot="7" origin="Default" name="Black">
+    </skin>
+    <skin slot="8" origin="Default" name="White">
+    </skin>
+  </Character>
+  <Character name="Robin" dlc="0" foldername="reflet" moved_dlc="0" ui_char_db_id="42" cspname="Reflet">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Female">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Red">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Orange">
+    </skin>
+    <skin slot="7" origin="Default" name="White">
+    </skin>
+    <skin slot="8" origin="Default" name="Pink">
+    </skin>
+  </Character>
+  <Character name="Duck Hunt" dlc="0" foldername="duckhunt" moved_dlc="0" ui_char_db_id="43" cspname="Duckhunt">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Black">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Brown">
+    </skin>
+    <skin slot="5" origin="Default" name="White">
+    </skin>
+    <skin slot="6" origin="Default" name="Tan">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Red">
+    </skin>
+  </Character>
+  <Character name="Falco" dlc="0" foldername="falco" moved_dlc="0" ui_char_db_id="22" cspname="Falco">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Orange">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Red">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="Black">
+    </skin>
+    <skin slot="7" origin="Default" name="White">
+    </skin>
+    <skin slot="8" origin="Default" name="Pink">
+    </skin>
+  </Character>
+  <Character name="Kirby" dlc="0" foldername="kirby" moved_dlc="0" ui_char_db_id="9" cspname="Kirby">
+    <skin slot="1" origin="Default" name="Pink">
+    </skin>
+    <skin slot="2" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Red">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Orange">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="King Dedede" dlc="0" foldername="dedede" moved_dlc="0" ui_char_db_id="29" cspname="Dedede">
+    <skin slot="1" origin="Default" name="Red">
+    </skin>
+    <skin slot="2" origin="Default" name="Pink">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Purple">
+    </skin>
+    <skin slot="5" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="6" origin="Default" name="Brown">
+    </skin>
+    <skin slot="7" origin="Default" name="Blue">
+    </skin>
+    <skin slot="8" origin="Default" name="Black">
+    </skin>
+  </Character>
+  <Character name="Meta Knight" dlc="0" foldername="metaknight" moved_dlc="0" ui_char_db_id="24" cspname="Metaknight">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="White">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Navy">
+    </skin>
+    <skin slot="6" origin="Default" name="Pink">
+    </skin>
+    <skin slot="7" origin="Default" name="Purple">
+    </skin>
+    <skin slot="8" origin="Default" name="Grey">
+    </skin>
+  </Character>
+  <Character name="Fox" dlc="0" foldername="fox" moved_dlc="0" ui_char_db_id="10" cspname="Fox">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Black">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Orange">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Pikachu" dlc="0" foldername="pikachu" moved_dlc="0" ui_char_db_id="11" cspname="Pikachu">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="5" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="6" origin="Default" name="Blue">
+    </skin>
+    <skin slot="7" origin="Default" name="White">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Charizard" dlc="0" foldername="lizardon" moved_dlc="0" ui_char_db_id="34" cspname="Lizardon">
+    <skin slot="1" origin="Default" name="Orange">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Pink">
+    </skin>
+    <skin slot="5" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Blue">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Lucario" dlc="0" foldername="lucario" moved_dlc="0" ui_char_db_id="31" cspname="Lucario">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="White">
+    </skin>
+    <skin slot="4" origin="Default" name="Grey">
+    </skin>
+    <skin slot="5" origin="Default" name="Teal">
+    </skin>
+    <skin slot="6" origin="Default" name="Navy">
+    </skin>
+    <skin slot="7" origin="Default" name="Green">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Jigglypuff" dlc="0" foldername="purin" moved_dlc="0" ui_char_db_id="46" cspname="Purin">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="White">
+    </skin>
+    <skin slot="4" origin="Default" name="Blue">
+    </skin>
+    <skin slot="5" origin="Default" name="Green">
+    </skin>
+    <skin slot="6" origin="Default" name="Pink">
+    </skin>
+    <skin slot="7" origin="Default" name="Nurse">
+    </skin>
+    <skin slot="8" origin="Default" name="Glasses">
+    </skin>
+  </Character>
+  <Character name="Greninja" dlc="0" foldername="gekkouga" moved_dlc="0" ui_char_db_id="49" cspname="Gekkouga">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Pink">
+    </skin>
+    <skin slot="4" origin="Default" name="Black">
+    </skin>
+    <skin slot="5" origin="Default" name="Lavender">
+    </skin>
+    <skin slot="6" origin="Default" name="Green">
+    </skin>
+    <skin slot="7" origin="Default" name="Grey">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="R.O.B" dlc="0" foldername="robot" moved_dlc="0" ui_char_db_id="32" cspname="Robot">
+    <skin slot="1" origin="Default" name="Tan">
+    </skin>
+    <skin slot="2" origin="Default" name="Grey">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Purple">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Green">
+    </skin>
+    <skin slot="7" origin="Default" name="White">
+    </skin>
+    <skin slot="8" origin="Default" name="Red">
+    </skin>
+  </Character>
+  <Character name="Ness" dlc="0" foldername="ness" moved_dlc="0" ui_char_db_id="14" cspname="Ness">
+    <skin slot="1" origin="Default" name="Red">
+    </skin>
+    <skin slot="2" origin="Default" name="White">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Black">
+    </skin>
+    <skin slot="7" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Captain Falcon" dlc="0" foldername="captain" moved_dlc="0" ui_char_db_id="13" cspname="Captain">
+    <skin slot="1" origin="Default" name="Indigo">
+    </skin>
+    <skin slot="2" origin="Default" name="Black">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Cyan">
+    </skin>
+  </Character>
+  <Character name="Villager" dlc="0" foldername="murabito" moved_dlc="0" ui_char_db_id="40" cspname="Murabito">
+    <skin slot="1" origin="Default" name="Red">
+    </skin>
+    <skin slot="2" origin="Default" name="Pink">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="6" origin="Default" name="Blue">
+    </skin>
+    <skin slot="7" origin="Default" name="Purple">
+    </skin>
+    <skin slot="8" origin="Default" name="Chartreuse">
+    </skin>
+  </Character>
+  <Character name="Olimar" dlc="0" foldername="pikmin" moved_dlc="0" ui_char_db_id="27" cspname="Pikmin">
+    <skin slot="1" origin="Default" name="Tan">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Blue">
+    </skin>
+    <skin slot="5" origin="Default" name="Alph">
+    </skin>
+    <skin slot="6" origin="Default" name="Alph Green">
+    </skin>
+    <skin slot="7" origin="Default" name="Alph Pink">
+    </skin>
+    <skin slot="8" origin="Default" name="Alph Red">
+    </skin>
+  </Character>
+  <Character name="Wii Fit" dlc="0" foldername="wiifit" moved_dlc="0" ui_char_db_id="38" cspname="Wiifit">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Male">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Male Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Red">
+    </skin>
+    <skin slot="6" origin="Default" name="Male Red">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Male Yellow">
+    </skin>
+  </Character>
+  <Character name="Shulk" dlc="0" foldername="shulk" moved_dlc="0" ui_char_db_id="45" cspname="Shulk">
+    <skin slot="1" origin="Default" name="Red">
+    </skin>
+    <skin slot="2" origin="Default" name="White">
+    </skin>
+    <skin slot="3" origin="Default" name="Black">
+    </skin>
+    <skin slot="4" origin="Default" name="Orange">
+    </skin>
+    <skin slot="5" origin="Default" name="Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Lavender">
+    </skin>
+    <skin slot="7" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="8" origin="Default" name="Trunks">
+    </skin>
+  </Character>
+  <Character name="Dr. Mario" dlc="0" foldername="mariod" moved_dlc="0" ui_char_db_id="36" cspname="Drmario">
+    <skin slot="1" origin="Default" name="White">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Green">
+    </skin>
+    <skin slot="5" origin="Default" name="Black">
+    </skin>
+    <skin slot="6" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="7" origin="Default" name="Purple">
+    </skin>
+    <skin slot="8" origin="Default" name="Pink">
+    </skin>
+  </Character>
+  <Character name="Dark Pit" dlc="0" foldername="pitb" moved_dlc="0" ui_char_db_id="48" cspname="Pitb">
+    <skin slot="1" origin="Default" name="Black">
+    </skin>
+    <skin slot="2" origin="Default" name="Green">
+    </skin>
+    <skin slot="3" origin="Default" name="Brown">
+    </skin>
+    <skin slot="4" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="5" origin="Default" name="Red">
+    </skin>
+    <skin slot="6" origin="Default" name="Blue">
+    </skin>
+    <skin slot="7" origin="Default" name="White">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Lucina" dlc="0" foldername="lucina" moved_dlc="0" ui_char_db_id="47" cspname="Lucina">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Green">
+    </skin>
+    <skin slot="3" origin="Default" name="Black">
+    </skin>
+    <skin slot="4" origin="Default" name="White">
+    </skin>
+    <skin slot="5" origin="Default" name="Red">
+    </skin>
+    <skin slot="6" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="7" origin="Default" name="Navy">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Pac-man" dlc="0" foldername="pacman" moved_dlc="0" ui_char_db_id="50" cspname="Pacman">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Blue">
+    </skin>
+    <skin slot="3" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="4" origin="Default" name="Black">
+    </skin>
+    <skin slot="5" origin="Default" name="Purple">
+    </skin>
+    <skin slot="6" origin="Default" name="White">
+    </skin>
+    <skin slot="7" origin="Default" name="Red">
+    </skin>
+    <skin slot="8" origin="Default" name="Plaid">
+    </skin>
+  </Character>
+  <Character name="Megaman" dlc="0" foldername="rockman" moved_dlc="0" ui_char_db_id="51" cspname="Rockman">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Brown">
+    </skin>
+    <skin slot="5" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="6" origin="Default" name="Chartreuse">
+    </skin>
+    <skin slot="7" origin="Default" name="Orange">
+    </skin>
+    <skin slot="8" origin="Default" name="Grey">
+    </skin>
+  </Character>
+  <Character name="Sonic" dlc="0" foldername="sonic" moved_dlc="0" ui_char_db_id="35" cspname="Sonic">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Purple">
+    </skin>
+    <skin slot="3" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="4" origin="Default" name="White">
+    </skin>
+    <skin slot="5" origin="Default" name="Black">
+    </skin>
+    <skin slot="6" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="7" origin="Default" name="Green">
+    </skin>
+    <skin slot="8" origin="Default" name="Red">
+    </skin>
+  </Character>
+  <Character name="Mewtwo" dlc="1" foldername="mewtwo" moved_dlc="0" ui_char_db_id="52" cspname="Mewtwo">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Orange">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Brown">
+    </skin>
+    <skin slot="5" origin="Default" name="Pink">
+    </skin>
+    <skin slot="6" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="7" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Lucas" dlc="1" foldername="lucas" moved_dlc="0" ui_char_db_id="54" cspname="Lucas">
+    <skin slot="1" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="2" origin="Default" name="Orange">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Red">
+    </skin>
+    <skin slot="5" origin="Default" name="Grey">
+    </skin>
+    <skin slot="6" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="7" origin="Default" name="Green">
+    </skin>
+    <skin slot="8" origin="Default" name="Purple">
+    </skin>
+  </Character>
+  <Character name="Roy" dlc="1" foldername="roy" moved_dlc="1" ui_char_db_id="55" cspname="Roy">
+    <skin slot="1" origin="Default" name="Blue">
+    </skin>
+    <skin slot="2" origin="Default" name="Red">
+    </skin>
+    <skin slot="3" origin="Default" name="Green">
+    </skin>
+    <skin slot="4" origin="Default" name="Violet">
+    </skin>
+    <skin slot="5" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="6" origin="Default" name="Purple">
+    </skin>
+    <skin slot="7" origin="Default" name="Pink">
+    </skin>
+    <skin slot="8" origin="Default" name="Yellow">
+    </skin>
+  </Character>
+  <Character name="Ryu" dlc="1" foldername="ryu" moved_dlc="0" ui_char_db_id="53" cspname="Ryu">
+    <skin slot="1" origin="Default" name="White">
+    </skin>
+    <skin slot="2" origin="Default" name="Grey">
+    </skin>
+    <skin slot="3" origin="Default" name="Cyan">
+    </skin>
+    <skin slot="4" origin="Default" name="Black">
+    </skin>
+    <skin slot="5" origin="Default" name="Orange">
+    </skin>
+    <skin slot="6" origin="Default" name="Blue">
+    </skin>
+    <skin slot="7" origin="Default" name="Green">
+    </skin>
+    <skin slot="8" origin="Default" name="Red">
+    </skin>
+  </Character>
+  <Character name="Cloud" dlc="1" foldername="cloud" moved_dlc="0" ui_char_db_id="56" cspname="Cloud">
+    <skin slot="1" origin="Default" name="Purple">
+    </skin>
+    <skin slot="2" origin="Default" name="Advent Black">
+    </skin>
+    <skin slot="3" origin="Default" name="Blue">
+    </skin>
+    <skin slot="4" origin="Default" name="Advent Blue">
+    </skin>
+    <skin slot="5" origin="Default" name="Red">
+    </skin>
+    <skin slot="6" origin="Default" name="Advent Teal">
+    </skin>
+    <skin slot="7" origin="Default" name="Black">
+    </skin>
+    <skin slot="8" origin="Default" name="Advent Purple">
+    </skin>
+  </Character>
+  <Character name="Corrin" dlc="1" foldername="kamui" moved_dlc="0" ui_char_db_id="58" cspname="Kamui">
+    <skin slot="1" origin="Default" name="Male Default">
+    </skin>
+    <skin slot="2" origin="Default" name="Female Default">
+    </skin>
+    <skin slot="3" origin="Default" name="Male Red">
+    </skin>
+    <skin slot="4" origin="Default" name="Female Orange">
+    </skin>
+    <skin slot="5" origin="Default" name="Male Blue">
+    </skin>
+    <skin slot="6" origin="Default" name="Female Pink">
+    </skin>
+    <skin slot="7" origin="Default" name="Male Green">
+    </skin>
+    <skin slot="8" origin="Default" name="Female Black">
+    </skin>
+  </Character>
+  <Character name="Bayonetta" dlc="1" foldername="bayonetta" moved_dlc="0" ui_char_db_id="57" cspname="Bayonetta">
+    <skin slot="1" origin="Default" name="Black">
+    </skin>
+    <skin slot="2" origin="Default" name="Yellow">
+    </skin>
+    <skin slot="3" origin="Default" name="Red">
+    </skin>
+    <skin slot="4" origin="Default" name="White">
+    </skin>
+    <skin slot="5" origin="Default" name="Original">
+    </skin>
+    <skin slot="6" origin="Default" name="Green">
+    </skin>
+    <skin slot="7" origin="Default" name="Pink">
+    </skin>
+    <skin slot="8" origin="Default" name="Blue">
+    </skin>
+  </Character>
+  <Character name="Random" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="00" cspname="Omakase">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+  </Character>
+  <Character name="All Miis" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="59" cspname="Miiall">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+  </Character>
+  <Character name="Fighter Mii" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="1" cspname="Miifighter">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+  </Character>
+  <Character name="Gunner Mii" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="3" cspname="Miigunner">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+  </Character>
+  <Character name="Swordsman Mii" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="2" cspname="Miiswordsman">
+    <skin slot="1" origin="Default" name="Default">
+    </skin>
+  </Character>
+</Roaster>

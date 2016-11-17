@@ -1,0 +1,16 @@
+<package version="0.6.4.3">
+  <patchnote version="0.6.4.3">
+    <patch>Code safety Patch</patch>
+    <patch>Rearranged menus</patch>
+    <patch>Added Backup Functionnality</patch>
+  </patchnote>
+  <patchnote version="0.6.4.2">
+    <patch>Interface fix</patch>
+  </patchnote>
+  <patchnote version="0.6.4.1">
+    <patch>New WORKING updater</patch>
+  </patchnote>
+	<patchnote version="0.6.4.0">
+		<patch>New meteor skin packer</patch>
+	</patchnote>
+</package>

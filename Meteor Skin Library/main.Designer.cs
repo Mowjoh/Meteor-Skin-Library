@@ -29,127 +29,122 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.ToolStripMenuItem importSmashExplorerWorkspaceToolStripMenuItem;
+            System.Windows.Forms.ToolStripMenuItem tsmi_s4e_replace;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cleanWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.launchS4EToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.skinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addForSelectedCharacterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.workspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshMSLsWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkMissingFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkMissingFilesAndImportNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.smashExplorerInterfaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importMissingFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportSmashExplorerWorkpaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_file_exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_skin = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_skin_add = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_skin_reset_package = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_workspace = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_workspace_refresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_workspace_check = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_workspace_check_import = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_s4e_export = new System.Windows.Forms.ToolStripMenuItem();
+            this.s4EsWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_s4e_import_missing = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupS4EsWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupMSLsWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foldersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openInstallationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_workspace_open_workspace = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_workspace_open_packages = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_tools = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_tools_s4e = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_config_config = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_help = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_help_wiki = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_help_about = new System.Windows.Forms.ToolStripMenuItem();
+            this.adOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_config_reset_lib = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_config_reset_workspace = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_config_reset_config = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi_config_reset_all = new System.Windows.Forms.ToolStripMenuItem();
             this.skinboxlabel = new System.Windows.Forms.Label();
             this.import_worker = new System.ComponentModel.BackgroundWorker();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.processbox = new System.Windows.Forms.ProgressBar();
-            this.process_status = new System.Windows.Forms.Label();
+            this.label_process_status = new System.Windows.Forms.Label();
             this.loadingbox = new System.Windows.Forms.ProgressBar();
-            this.appstatus = new System.Windows.Forms.Label();
+            this.label_app_status = new System.Windows.Forms.Label();
             this.export_worker = new System.ComponentModel.BackgroundWorker();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.textbox_skin_move_up = new System.Windows.Forms.Button();
+            this.textbox_skin_move_down = new System.Windows.Forms.Button();
             this.meteorbox = new System.Windows.Forms.PictureBox();
             this.url_worker = new System.ComponentModel.BackgroundWorker();
             this.meteor_worker = new System.ComponentModel.BackgroundWorker();
             this.archive_worker = new System.ComponentModel.BackgroundWorker();
-            this.Characterlist2 = new System.Windows.Forms.ListView();
+            this.listview_characters = new System.Windows.Forms.ListView();
             this.Characterss = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.SkinListBox = new System.Windows.Forms.ListView();
-            this.Skins_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_skin_package_meteor = new System.Windows.Forms.Button();
+            this.button_skin_save_info = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_skin_clean = new System.Windows.Forms.Button();
+            this.button_skin_delete = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.SkinOriginText = new System.Windows.Forms.TextBox();
-            this.SkinNameText = new System.Windows.Forms.TextBox();
-            this.SlotNumberText = new System.Windows.Forms.TextBox();
+            this.textbox_skin_origin = new System.Windows.Forms.TextBox();
+            this.textbox_skin_libraryname = new System.Windows.Forms.TextBox();
+            this.textbox_skin_slot = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.models_ListView = new System.Windows.Forms.ListView();
+            this.listview_skin_models = new System.Windows.Forms.ListView();
             this.panel7 = new System.Windows.Forms.Panel();
             this.selected_csp_name = new System.Windows.Forms.Label();
-            this.remove_selected_csp = new System.Windows.Forms.Button();
+            this.button_skin_delete_csp = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.csps_ListView = new System.Windows.Forms.ListView();
+            this.listview_skin_csp = new System.Windows.Forms.ListView();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
+            this.label_skin_selected_model = new System.Windows.Forms.Label();
+            this.button_skin_delete_model = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button_skin_meta_save = new System.Windows.Forms.Button();
+            this.textbox_skin_meta_texidfix = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textbox_skin_meta_name = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textbox_skin_meta_version = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textbox_skin_meta_author = new System.Windows.Forms.TextBox();
+            this.listview_skins = new System.Windows.Forms.ListView();
+            this.Skins_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.button12 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textbox_packer_version = new System.Windows.Forms.TextBox();
+            this.textbox_packer_author = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.meteorpack_gridview = new System.Windows.Forms.DataGridView();
+            this.packer_skinlist = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.packer_dropzone = new System.Windows.Forms.ListView();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.button13 = new System.Windows.Forms.Button();
+            this.button_packer_pack = new System.Windows.Forms.Button();
             this.model_menu_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.csps_menu_strip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -159,7 +154,20 @@
             this.textConsole = new System.Windows.Forms.RichTextBox();
             this.refresh_worker = new System.ComponentModel.BackgroundWorker();
             this.manual_worker = new System.ComponentModel.BackgroundWorker();
-            importSmashExplorerWorkspaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backup_worker = new System.ComponentModel.BackgroundWorker();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox_character_ui = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            tsmi_s4e_replace = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.meteorbox)).BeginInit();
@@ -186,218 +194,292 @@
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.meteorpack_gridview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.packer_skinlist)).BeginInit();
             this.groupBox11.SuspendLayout();
             this.panel9.SuspendLayout();
             this.model_menu_strip.SuspendLayout();
             this.csps_menu_strip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
-            // importSmashExplorerWorkspaceToolStripMenuItem
+            // tsmi_s4e_replace
             // 
-            importSmashExplorerWorkspaceToolStripMenuItem.Name = "importSmashExplorerWorkspaceToolStripMenuItem";
-            importSmashExplorerWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            importSmashExplorerWorkspaceToolStripMenuItem.Text = "Replace MSL\'s workspace";
-            importSmashExplorerWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.launch_se_import);
+            tsmi_s4e_replace.Name = "tsmi_s4e_replace";
+            tsmi_s4e_replace.Size = new System.Drawing.Size(319, 22);
+            tsmi_s4e_replace.Text = "Sync Workspace and Library from S4E (Import)";
+            tsmi_s4e_replace.Click += new System.EventHandler(this.menu_s4e_import);
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.skinsToolStripMenuItem,
-            this.workspaceToolStripMenuItem,
-            this.smashExplorerInterfaceToolStripMenuItem,
-            this.optionsToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.tsmi_file,
+            this.tsmi_skin,
+            this.tsmi_workspace,
+            this.tsmi_tools,
+            this.tsmi_config_config,
+            this.tsmi_help,
+            this.adOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(944, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // tsmi_file
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem,
-            this.cleanWorkspaceToolStripMenuItem,
-            this.launchS4EToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            this.tsmi_file.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_file_exit});
+            this.tsmi_file.Name = "tsmi_file";
+            this.tsmi_file.Size = new System.Drawing.Size(37, 20);
+            this.tsmi_file.Text = "File";
             // 
-            // exitToolStripMenuItem
+            // tsmi_file_exit
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.menu_software_exit);
+            this.tsmi_file_exit.Name = "tsmi_file_exit";
+            this.tsmi_file_exit.Size = new System.Drawing.Size(92, 22);
+            this.tsmi_file_exit.Text = "Exit";
+            this.tsmi_file_exit.Click += new System.EventHandler(this.menu_exit);
             // 
-            // cleanWorkspaceToolStripMenuItem
+            // tsmi_skin
             // 
-            this.cleanWorkspaceToolStripMenuItem.Name = "cleanWorkspaceToolStripMenuItem";
-            this.cleanWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.cleanWorkspaceToolStripMenuItem.Text = "Open Installation Folder";
-            this.cleanWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.openmmsl_workspace);
+            this.tsmi_skin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_skin_add,
+            this.tsmi_skin_reset_package});
+            this.tsmi_skin.Name = "tsmi_skin";
+            this.tsmi_skin.Size = new System.Drawing.Size(46, 20);
+            this.tsmi_skin.Text = "Skins";
             // 
-            // launchS4EToolStripMenuItem
+            // tsmi_skin_add
             // 
-            this.launchS4EToolStripMenuItem.Name = "launchS4EToolStripMenuItem";
-            this.launchS4EToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
-            this.launchS4EToolStripMenuItem.Text = "Launch S4E";
-            this.launchS4EToolStripMenuItem.Click += new System.EventHandler(this.launchS4EToolStripMenuItem_Click);
+            this.tsmi_skin_add.Name = "tsmi_skin_add";
+            this.tsmi_skin_add.Size = new System.Drawing.Size(214, 22);
+            this.tsmi_skin_add.Text = "Add for selected Character";
+            this.tsmi_skin_add.Click += new System.EventHandler(this.menu_skin_add);
             // 
-            // skinsToolStripMenuItem
+            // tsmi_skin_reset_package
             // 
-            this.skinsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addForSelectedCharacterToolStripMenuItem,
-            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem});
-            this.skinsToolStripMenuItem.Name = "skinsToolStripMenuItem";
-            this.skinsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.skinsToolStripMenuItem.Text = "Skins";
+            this.tsmi_skin_reset_package.Name = "tsmi_skin_reset_package";
+            this.tsmi_skin_reset_package.Size = new System.Drawing.Size(214, 22);
+            this.tsmi_skin_reset_package.Text = "Reset package folder";
+            this.tsmi_skin_reset_package.Click += new System.EventHandler(this.menu_packer_reset);
             // 
-            // addForSelectedCharacterToolStripMenuItem
+            // tsmi_workspace
             // 
-            this.addForSelectedCharacterToolStripMenuItem.Name = "addForSelectedCharacterToolStripMenuItem";
-            this.addForSelectedCharacterToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.addForSelectedCharacterToolStripMenuItem.Text = "Add for selected Character";
-            this.addForSelectedCharacterToolStripMenuItem.Click += new System.EventHandler(this.skin_add);
+            this.tsmi_workspace.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_workspace_refresh,
+            this.s4EsWorkspaceToolStripMenuItem,
+            this.backupToolStripMenuItem,
+            this.foldersToolStripMenuItem});
+            this.tsmi_workspace.Name = "tsmi_workspace";
+            this.tsmi_workspace.Size = new System.Drawing.Size(77, 20);
+            this.tsmi_workspace.Text = "Workspace";
             // 
-            // resetCurrentMeteorSkinPackSessionToolStripMenuItem
+            // tsmi_workspace_refresh
             // 
-            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Name = "resetCurrentMeteorSkinPackSessionToolStripMenuItem";
-            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Text = "Reset package folder";
-            this.resetCurrentMeteorSkinPackSessionToolStripMenuItem.Click += new System.EventHandler(this.resetCurrentMeteorSkinPackSessionToolStripMenuItem_Click);
+            this.tsmi_workspace_refresh.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_workspace_check,
+            this.tsmi_workspace_check_import,
+            this.tsmi_s4e_export});
+            this.tsmi_workspace_refresh.Name = "tsmi_workspace_refresh";
+            this.tsmi_workspace_refresh.Size = new System.Drawing.Size(166, 22);
+            this.tsmi_workspace_refresh.Text = "MSL\'s Workspace";
             // 
-            // workspaceToolStripMenuItem
+            // tsmi_workspace_check
             // 
-            this.workspaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.refreshMSLsWorkspaceToolStripMenuItem});
-            this.workspaceToolStripMenuItem.Name = "workspaceToolStripMenuItem";
-            this.workspaceToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
-            this.workspaceToolStripMenuItem.Text = "Workspace";
+            this.tsmi_workspace_check.Name = "tsmi_workspace_check";
+            this.tsmi_workspace_check.Size = new System.Drawing.Size(262, 22);
+            this.tsmi_workspace_check.Text = "Check missing files";
+            this.tsmi_workspace_check.Click += new System.EventHandler(this.menu_refresh_workspace);
             // 
-            // refreshMSLsWorkspaceToolStripMenuItem
+            // tsmi_workspace_check_import
             // 
-            this.refreshMSLsWorkspaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkMissingFilesToolStripMenuItem,
-            this.checkMissingFilesAndImportNewToolStripMenuItem});
-            this.refreshMSLsWorkspaceToolStripMenuItem.Name = "refreshMSLsWorkspaceToolStripMenuItem";
-            this.refreshMSLsWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.refreshMSLsWorkspaceToolStripMenuItem.Text = "Refresh MSL\'s workspace";
+            this.tsmi_workspace_check_import.Name = "tsmi_workspace_check_import";
+            this.tsmi_workspace_check_import.Size = new System.Drawing.Size(262, 22);
+            this.tsmi_workspace_check_import.Text = "Check missing files and import new";
+            this.tsmi_workspace_check_import.Click += new System.EventHandler(this.menu_refresh_workspace_missing);
             // 
-            // checkMissingFilesToolStripMenuItem
+            // tsmi_s4e_export
             // 
-            this.checkMissingFilesToolStripMenuItem.Name = "checkMissingFilesToolStripMenuItem";
-            this.checkMissingFilesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.checkMissingFilesToolStripMenuItem.Text = "Check missing files";
-            this.checkMissingFilesToolStripMenuItem.Click += new System.EventHandler(this.checkMissingFilesToolStripMenuItem_Click);
+            this.tsmi_s4e_export.Name = "tsmi_s4e_export";
+            this.tsmi_s4e_export.Size = new System.Drawing.Size(262, 22);
+            this.tsmi_s4e_export.Text = "Export MSL\'s workspace to S4E";
+            this.tsmi_s4e_export.Click += new System.EventHandler(this.menu_s4e_export);
             // 
-            // checkMissingFilesAndImportNewToolStripMenuItem
+            // s4EsWorkspaceToolStripMenuItem
             // 
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Name = "checkMissingFilesAndImportNewToolStripMenuItem";
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Text = "Check missing files and import new";
-            this.checkMissingFilesAndImportNewToolStripMenuItem.Click += new System.EventHandler(this.refreshMSLsWorkspaceToolStripMenuItem_Click);
+            this.s4EsWorkspaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            tsmi_s4e_replace,
+            this.tsmi_s4e_import_missing});
+            this.s4EsWorkspaceToolStripMenuItem.Name = "s4EsWorkspaceToolStripMenuItem";
+            this.s4EsWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.s4EsWorkspaceToolStripMenuItem.Text = "S4E\'s Workspace";
             // 
-            // smashExplorerInterfaceToolStripMenuItem
+            // tsmi_s4e_import_missing
             // 
-            this.smashExplorerInterfaceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            importSmashExplorerWorkspaceToolStripMenuItem,
-            this.importMissingFilesToolStripMenuItem,
-            this.exportSmashExplorerWorkpaceToolStripMenuItem});
-            this.smashExplorerInterfaceToolStripMenuItem.Name = "smashExplorerInterfaceToolStripMenuItem";
-            this.smashExplorerInterfaceToolStripMenuItem.Size = new System.Drawing.Size(145, 20);
-            this.smashExplorerInterfaceToolStripMenuItem.Text = "SmashExplorer Interface";
+            this.tsmi_s4e_import_missing.Name = "tsmi_s4e_import_missing";
+            this.tsmi_s4e_import_missing.Size = new System.Drawing.Size(319, 22);
+            this.tsmi_s4e_import_missing.Text = "Import missing files from S4E";
+            this.tsmi_s4e_import_missing.Click += new System.EventHandler(this.menu_s4e_import_missing);
             // 
-            // importMissingFilesToolStripMenuItem
+            // backupToolStripMenuItem
             // 
-            this.importMissingFilesToolStripMenuItem.Name = "importMissingFilesToolStripMenuItem";
-            this.importMissingFilesToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.importMissingFilesToolStripMenuItem.Text = "Import missing files";
-            this.importMissingFilesToolStripMenuItem.Click += new System.EventHandler(this.importMissingFilesToolStripMenuItem_Click);
+            this.backupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.backupS4EsWorkspaceToolStripMenuItem,
+            this.backupMSLsWorkspaceToolStripMenuItem});
+            this.backupToolStripMenuItem.Name = "backupToolStripMenuItem";
+            this.backupToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.backupToolStripMenuItem.Text = "Backup";
             // 
-            // exportSmashExplorerWorkpaceToolStripMenuItem
+            // backupS4EsWorkspaceToolStripMenuItem
             // 
-            this.exportSmashExplorerWorkpaceToolStripMenuItem.Name = "exportSmashExplorerWorkpaceToolStripMenuItem";
-            this.exportSmashExplorerWorkpaceToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.exportSmashExplorerWorkpaceToolStripMenuItem.Text = "Export MSL\'s workspace";
-            this.exportSmashExplorerWorkpaceToolStripMenuItem.Click += new System.EventHandler(this.launch_se_export);
+            this.backupS4EsWorkspaceToolStripMenuItem.Name = "backupS4EsWorkspaceToolStripMenuItem";
+            this.backupS4EsWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.backupS4EsWorkspaceToolStripMenuItem.Text = "Backup S4E\'s workspace";
+            this.backupS4EsWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.backupS4EsWorkspaceToolStripMenuItem_Click);
             // 
-            // optionsToolStripMenuItem
+            // backupMSLsWorkspaceToolStripMenuItem
             // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.configurationToolStripMenuItem,
-            this.resetLibraryToolStripMenuItem,
-            this.resetWorkspaceToolStripMenuItem,
-            this.resetConfigToolStripMenuItem,
-            this.resetAllToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.backupMSLsWorkspaceToolStripMenuItem.Name = "backupMSLsWorkspaceToolStripMenuItem";
+            this.backupMSLsWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.backupMSLsWorkspaceToolStripMenuItem.Text = "Backup MSL\'s workspace";
+            this.backupMSLsWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.backupMSLsWorkspaceToolStripMenuItem_Click);
             // 
-            // configurationToolStripMenuItem
+            // foldersToolStripMenuItem
             // 
-            this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
-            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.configurationToolStripMenuItem.Text = "Configuration";
-            this.configurationToolStripMenuItem.Click += new System.EventHandler(this.menu_config);
+            this.foldersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openInstallationToolStripMenuItem,
+            this.tsmi_workspace_open_workspace,
+            this.tsmi_workspace_open_packages,
+            this.toolStripMenuItem1});
+            this.foldersToolStripMenuItem.Name = "foldersToolStripMenuItem";
+            this.foldersToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.foldersToolStripMenuItem.Text = "Folders";
             // 
-            // resetLibraryToolStripMenuItem
+            // openInstallationToolStripMenuItem
             // 
-            this.resetLibraryToolStripMenuItem.Name = "resetLibraryToolStripMenuItem";
-            this.resetLibraryToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.resetLibraryToolStripMenuItem.Text = "Reset Library";
-            this.resetLibraryToolStripMenuItem.Visible = false;
-            this.resetLibraryToolStripMenuItem.Click += new System.EventHandler(this.menu_reset_library);
+            this.openInstallationToolStripMenuItem.Name = "openInstallationToolStripMenuItem";
+            this.openInstallationToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.openInstallationToolStripMenuItem.Text = "Open App Folder";
+            this.openInstallationToolStripMenuItem.Click += new System.EventHandler(this.folder_open_startup_path);
             // 
-            // resetWorkspaceToolStripMenuItem
+            // tsmi_workspace_open_workspace
             // 
-            this.resetWorkspaceToolStripMenuItem.Name = "resetWorkspaceToolStripMenuItem";
-            this.resetWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.resetWorkspaceToolStripMenuItem.Text = "Reset Workspace";
-            this.resetWorkspaceToolStripMenuItem.Visible = false;
-            this.resetWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.reset_mmsl_workspace);
+            this.tsmi_workspace_open_workspace.Name = "tsmi_workspace_open_workspace";
+            this.tsmi_workspace_open_workspace.Size = new System.Drawing.Size(200, 22);
+            this.tsmi_workspace_open_workspace.Text = "Open Workspace Folder";
+            this.tsmi_workspace_open_workspace.Click += new System.EventHandler(this.folder_open_workspace);
             // 
-            // resetConfigToolStripMenuItem
+            // tsmi_workspace_open_packages
             // 
-            this.resetConfigToolStripMenuItem.Name = "resetConfigToolStripMenuItem";
-            this.resetConfigToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.resetConfigToolStripMenuItem.Text = "Reset Config";
-            this.resetConfigToolStripMenuItem.Visible = false;
-            this.resetConfigToolStripMenuItem.Click += new System.EventHandler(this.reset_config);
+            this.tsmi_workspace_open_packages.Name = "tsmi_workspace_open_packages";
+            this.tsmi_workspace_open_packages.Size = new System.Drawing.Size(200, 22);
+            this.tsmi_workspace_open_packages.Text = "Open Packages Folder";
+            this.tsmi_workspace_open_packages.Click += new System.EventHandler(this.folder_open_packages);
             // 
-            // resetAllToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
-            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.resetAllToolStripMenuItem.Text = "Reset All";
-            this.resetAllToolStripMenuItem.Visible = false;
-            this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.reset_all);
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(200, 22);
+            this.toolStripMenuItem1.Text = "Open Backups Folder";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.folder_open_backups);
             // 
-            // aboutToolStripMenuItem
+            // tsmi_tools
             // 
-            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem1});
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.aboutToolStripMenuItem.Text = "Help";
+            this.tsmi_tools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_tools_s4e});
+            this.tsmi_tools.Name = "tsmi_tools";
+            this.tsmi_tools.Size = new System.Drawing.Size(47, 20);
+            this.tsmi_tools.Text = "Tools";
             // 
-            // aboutToolStripMenuItem1
+            // tsmi_tools_s4e
             // 
-            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
-            this.aboutToolStripMenuItem1.Text = "About...";
-            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.about);
+            this.tsmi_tools_s4e.Name = "tsmi_tools_s4e";
+            this.tsmi_tools_s4e.Size = new System.Drawing.Size(151, 22);
+            this.tsmi_tools_s4e.Text = "Sm4shExplorer";
+            this.tsmi_tools_s4e.Click += new System.EventHandler(this.menu_tool_launch_s4e);
+            // 
+            // tsmi_config_config
+            // 
+            this.tsmi_config_config.Name = "tsmi_config_config";
+            this.tsmi_config_config.Size = new System.Drawing.Size(61, 20);
+            this.tsmi_config_config.Text = "Options";
+            this.tsmi_config_config.Click += new System.EventHandler(this.menu_config);
+            // 
+            // tsmi_help
+            // 
+            this.tsmi_help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_help_wiki,
+            this.tsmi_help_about});
+            this.tsmi_help.Name = "tsmi_help";
+            this.tsmi_help.Size = new System.Drawing.Size(44, 20);
+            this.tsmi_help.Text = "Help";
+            // 
+            // tsmi_help_wiki
+            // 
+            this.tsmi_help_wiki.Name = "tsmi_help_wiki";
+            this.tsmi_help_wiki.Size = new System.Drawing.Size(116, 22);
+            this.tsmi_help_wiki.Text = "Wiki";
+            this.tsmi_help_wiki.Click += new System.EventHandler(this.menu_wiki);
+            // 
+            // tsmi_help_about
+            // 
+            this.tsmi_help_about.Name = "tsmi_help_about";
+            this.tsmi_help_about.Size = new System.Drawing.Size(116, 22);
+            this.tsmi_help_about.Text = "About...";
+            this.tsmi_help_about.Click += new System.EventHandler(this.about);
+            // 
+            // adOptionsToolStripMenuItem
+            // 
+            this.adOptionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi_config_reset_lib,
+            this.tsmi_config_reset_workspace,
+            this.tsmi_config_reset_config,
+            this.tsmi_config_reset_all});
+            this.adOptionsToolStripMenuItem.Name = "adOptionsToolStripMenuItem";
+            this.adOptionsToolStripMenuItem.Size = new System.Drawing.Size(117, 20);
+            this.adOptionsToolStripMenuItem.Text = "Advanced Options";
+            // 
+            // tsmi_config_reset_lib
+            // 
+            this.tsmi_config_reset_lib.Name = "tsmi_config_reset_lib";
+            this.tsmi_config_reset_lib.Size = new System.Drawing.Size(163, 22);
+            this.tsmi_config_reset_lib.Text = "Reset Library";
+            this.tsmi_config_reset_lib.Visible = false;
+            this.tsmi_config_reset_lib.Click += new System.EventHandler(this.menu_reset_library);
+            // 
+            // tsmi_config_reset_workspace
+            // 
+            this.tsmi_config_reset_workspace.Name = "tsmi_config_reset_workspace";
+            this.tsmi_config_reset_workspace.Size = new System.Drawing.Size(163, 22);
+            this.tsmi_config_reset_workspace.Text = "Reset Workspace";
+            this.tsmi_config_reset_workspace.Visible = false;
+            this.tsmi_config_reset_workspace.Click += new System.EventHandler(this.menu_reset_workspace);
+            // 
+            // tsmi_config_reset_config
+            // 
+            this.tsmi_config_reset_config.Name = "tsmi_config_reset_config";
+            this.tsmi_config_reset_config.Size = new System.Drawing.Size(163, 22);
+            this.tsmi_config_reset_config.Text = "Reset Config";
+            this.tsmi_config_reset_config.Visible = false;
+            this.tsmi_config_reset_config.Click += new System.EventHandler(this.menu_reset_config);
+            // 
+            // tsmi_config_reset_all
+            // 
+            this.tsmi_config_reset_all.Name = "tsmi_config_reset_all";
+            this.tsmi_config_reset_all.Size = new System.Drawing.Size(163, 22);
+            this.tsmi_config_reset_all.Text = "Reset All";
+            this.tsmi_config_reset_all.Visible = false;
+            this.tsmi_config_reset_all.Click += new System.EventHandler(this.menu_reset_all);
             // 
             // skinboxlabel
             // 
@@ -420,9 +502,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.processbox);
-            this.groupBox6.Controls.Add(this.process_status);
+            this.groupBox6.Controls.Add(this.label_process_status);
             this.groupBox6.Controls.Add(this.loadingbox);
-            this.groupBox6.Controls.Add(this.appstatus);
+            this.groupBox6.Controls.Add(this.label_app_status);
             this.groupBox6.Location = new System.Drawing.Point(732, 314);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(209, 180);
@@ -440,16 +522,16 @@
             this.processbox.Size = new System.Drawing.Size(190, 23);
             this.processbox.TabIndex = 4;
             // 
-            // process_status
+            // label_process_status
             // 
-            this.process_status.AutoSize = true;
-            this.process_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.process_status.Location = new System.Drawing.Point(7, 116);
-            this.process_status.Name = "process_status";
-            this.process_status.Size = new System.Drawing.Size(55, 17);
-            this.process_status.TabIndex = 3;
-            this.process_status.Text = "Waiting";
-            this.process_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_process_status.AutoSize = true;
+            this.label_process_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_process_status.Location = new System.Drawing.Point(7, 116);
+            this.label_process_status.Name = "label_process_status";
+            this.label_process_status.Size = new System.Drawing.Size(55, 17);
+            this.label_process_status.TabIndex = 3;
+            this.label_process_status.Text = "Waiting";
+            this.label_process_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // loadingbox
             // 
@@ -461,16 +543,16 @@
             this.loadingbox.Size = new System.Drawing.Size(190, 23);
             this.loadingbox.TabIndex = 2;
             // 
-            // appstatus
+            // label_app_status
             // 
-            this.appstatus.AutoSize = true;
-            this.appstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appstatus.Location = new System.Drawing.Point(6, 38);
-            this.appstatus.Name = "appstatus";
-            this.appstatus.Size = new System.Drawing.Size(56, 20);
-            this.appstatus.TabIndex = 0;
-            this.appstatus.Text = "Status";
-            this.appstatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_app_status.AutoSize = true;
+            this.label_app_status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_app_status.Location = new System.Drawing.Point(6, 38);
+            this.label_app_status.Name = "label_app_status";
+            this.label_app_status.Size = new System.Drawing.Size(56, 20);
+            this.label_app_status.TabIndex = 0;
+            this.label_app_status.Text = "Status";
+            this.label_app_status.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // export_worker
             // 
@@ -479,29 +561,29 @@
             this.export_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.export_worker_ProgressChanged);
             this.export_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.export_worker_completed);
             // 
-            // button7
+            // textbox_skin_move_up
             // 
-            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_move_up.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button7.Location = new System.Drawing.Point(18, 9);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(155, 23);
-            this.button7.TabIndex = 19;
-            this.button7.Text = "Move Skin Up";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.move_up_skin);
+            this.textbox_skin_move_up.Location = new System.Drawing.Point(18, 9);
+            this.textbox_skin_move_up.Name = "textbox_skin_move_up";
+            this.textbox_skin_move_up.Size = new System.Drawing.Size(155, 23);
+            this.textbox_skin_move_up.TabIndex = 19;
+            this.textbox_skin_move_up.Text = "Move Skin Up";
+            this.textbox_skin_move_up.UseVisualStyleBackColor = true;
+            this.textbox_skin_move_up.Click += new System.EventHandler(this.move_up_skin);
             // 
-            // button8
+            // textbox_skin_move_down
             // 
-            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_move_down.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button8.Location = new System.Drawing.Point(18, 38);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(155, 23);
-            this.button8.TabIndex = 20;
-            this.button8.Text = "Move Skin Down";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.move_down_skin);
+            this.textbox_skin_move_down.Location = new System.Drawing.Point(18, 38);
+            this.textbox_skin_move_down.Name = "textbox_skin_move_down";
+            this.textbox_skin_move_down.Size = new System.Drawing.Size(155, 23);
+            this.textbox_skin_move_down.TabIndex = 20;
+            this.textbox_skin_move_down.Text = "Move Skin Down";
+            this.textbox_skin_move_down.UseVisualStyleBackColor = true;
+            this.textbox_skin_move_down.Click += new System.EventHandler(this.move_down_skin);
             // 
             // meteorbox
             // 
@@ -537,25 +619,25 @@
             this.archive_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.archive_worker_DoWork);
             this.archive_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.archive_worker_RunWorkerCompleted);
             // 
-            // Characterlist2
+            // listview_characters
             // 
-            this.Characterlist2.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.Characterlist2.AutoArrange = false;
-            this.Characterlist2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listview_characters.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listview_characters.AutoArrange = false;
+            this.listview_characters.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.Characterss});
-            this.Characterlist2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Characterlist2.FullRowSelect = true;
-            this.Characterlist2.HideSelection = false;
-            this.Characterlist2.Location = new System.Drawing.Point(3, 3);
-            this.Characterlist2.MinimumSize = new System.Drawing.Size(100, 4);
-            this.Characterlist2.MultiSelect = false;
-            this.Characterlist2.Name = "Characterlist2";
-            this.tableLayoutPanel1.SetRowSpan(this.Characterlist2, 2);
-            this.Characterlist2.Size = new System.Drawing.Size(124, 491);
-            this.Characterlist2.TabIndex = 21;
-            this.Characterlist2.UseCompatibleStateImageBehavior = false;
-            this.Characterlist2.View = System.Windows.Forms.View.Details;
-            this.Characterlist2.SelectedIndexChanged += new System.EventHandler(this.Characterlist2_SelectedIndexChanged);
+            this.listview_characters.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listview_characters.FullRowSelect = true;
+            this.listview_characters.HideSelection = false;
+            this.listview_characters.Location = new System.Drawing.Point(3, 3);
+            this.listview_characters.MinimumSize = new System.Drawing.Size(100, 4);
+            this.listview_characters.MultiSelect = false;
+            this.listview_characters.Name = "listview_characters";
+            this.tableLayoutPanel1.SetRowSpan(this.listview_characters, 2);
+            this.listview_characters.Size = new System.Drawing.Size(124, 491);
+            this.listview_characters.TabIndex = 21;
+            this.listview_characters.UseCompatibleStateImageBehavior = false;
+            this.listview_characters.View = System.Windows.Forms.View.Details;
+            this.listview_characters.SelectedIndexChanged += new System.EventHandler(this.Characterlist2_SelectedIndexChanged);
             // 
             // Characterss
             // 
@@ -595,9 +677,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.SkinListBox, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.meteorbox, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.listview_skins, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
@@ -612,38 +694,13 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.textbox_skin_move_up);
+            this.panel1.Controls.Add(this.textbox_skin_move_down);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 361);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(187, 95);
             this.panel1.TabIndex = 23;
-            // 
-            // SkinListBox
-            // 
-            this.SkinListBox.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.SkinListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SkinListBox.AutoArrange = false;
-            this.SkinListBox.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Skins_col});
-            this.SkinListBox.HideSelection = false;
-            this.SkinListBox.Location = new System.Drawing.Point(3, 3);
-            this.SkinListBox.MinimumSize = new System.Drawing.Size(155, 4);
-            this.SkinListBox.MultiSelect = false;
-            this.SkinListBox.Name = "SkinListBox";
-            this.SkinListBox.Size = new System.Drawing.Size(187, 352);
-            this.SkinListBox.TabIndex = 21;
-            this.SkinListBox.UseCompatibleStateImageBehavior = false;
-            this.SkinListBox.View = System.Windows.Forms.View.Details;
-            this.SkinListBox.SelectedIndexChanged += new System.EventHandler(this.skin_selected);
-            // 
-            // Skins_col
-            // 
-            this.Skins_col.Text = "Skins";
-            this.Skins_col.Width = 151;
             // 
             // panel2
             // 
@@ -721,8 +778,8 @@
             // 
             this.panel5.AutoSize = true;
             this.panel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel5.Controls.Add(this.button5);
-            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.button_skin_package_meteor);
+            this.panel5.Controls.Add(this.button_skin_save_info);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(138, 111);
             this.panel5.MinimumSize = new System.Drawing.Size(100, 0);
@@ -730,25 +787,25 @@
             this.panel5.Size = new System.Drawing.Size(225, 170);
             this.panel5.TabIndex = 3;
             // 
-            // button5
+            // button_skin_package_meteor
             // 
-            this.button5.Location = new System.Drawing.Point(16, 44);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(110, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Package Meteor Skin";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.package_meteor);
+            this.button_skin_package_meteor.Location = new System.Drawing.Point(16, 44);
+            this.button_skin_package_meteor.Name = "button_skin_package_meteor";
+            this.button_skin_package_meteor.Size = new System.Drawing.Size(110, 23);
+            this.button_skin_package_meteor.TabIndex = 11;
+            this.button_skin_package_meteor.Text = "Package Meteor Skin";
+            this.button_skin_package_meteor.UseVisualStyleBackColor = true;
+            this.button_skin_package_meteor.Click += new System.EventHandler(this.package_meteor);
             // 
-            // button1
+            // button_skin_save_info
             // 
-            this.button1.Location = new System.Drawing.Point(16, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Save Information";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.set_skin_libraryname);
+            this.button_skin_save_info.Location = new System.Drawing.Point(16, 15);
+            this.button_skin_save_info.Name = "button_skin_save_info";
+            this.button_skin_save_info.Size = new System.Drawing.Size(110, 23);
+            this.button_skin_save_info.TabIndex = 10;
+            this.button_skin_save_info.Text = "Save Information";
+            this.button_skin_save_info.UseVisualStyleBackColor = true;
+            this.button_skin_save_info.Click += new System.EventHandler(this.set_skin_libraryname);
             // 
             // panel4
             // 
@@ -756,34 +813,34 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.AutoSize = true;
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.button_skin_clean);
+            this.panel4.Controls.Add(this.button_skin_delete);
             this.panel4.Location = new System.Drawing.Point(3, 111);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(129, 170);
             this.panel4.TabIndex = 2;
             // 
-            // button2
+            // button_skin_clean
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(12, 15);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Clean All Files";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.clean_files_clicked);
+            this.button_skin_clean.Enabled = false;
+            this.button_skin_clean.Location = new System.Drawing.Point(12, 15);
+            this.button_skin_clean.Name = "button_skin_clean";
+            this.button_skin_clean.Size = new System.Drawing.Size(110, 23);
+            this.button_skin_clean.TabIndex = 9;
+            this.button_skin_clean.Text = "Clean All Files";
+            this.button_skin_clean.UseVisualStyleBackColor = true;
+            this.button_skin_clean.Click += new System.EventHandler(this.clean_files_clicked);
             // 
-            // button3
+            // button_skin_delete
             // 
-            this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(12, 44);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Delete Skin";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.skin_delete);
+            this.button_skin_delete.Enabled = false;
+            this.button_skin_delete.Location = new System.Drawing.Point(12, 44);
+            this.button_skin_delete.Name = "button_skin_delete";
+            this.button_skin_delete.Size = new System.Drawing.Size(110, 23);
+            this.button_skin_delete.TabIndex = 10;
+            this.button_skin_delete.Text = "Delete Skin";
+            this.button_skin_delete.UseVisualStyleBackColor = true;
+            this.button_skin_delete.Click += new System.EventHandler(this.skin_delete);
             // 
             // panel6
             // 
@@ -829,44 +886,47 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.SkinOriginText);
-            this.panel3.Controls.Add(this.SkinNameText);
-            this.panel3.Controls.Add(this.SlotNumberText);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel3.Controls.Add(this.textbox_skin_origin);
+            this.panel3.Controls.Add(this.textbox_skin_libraryname);
+            this.panel3.Controls.Add(this.textbox_skin_slot);
             this.panel3.Location = new System.Drawing.Point(138, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(225, 102);
             this.panel3.TabIndex = 4;
             // 
-            // SkinOriginText
+            // textbox_skin_origin
             // 
-            this.SkinOriginText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_origin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SkinOriginText.Location = new System.Drawing.Point(16, 75);
-            this.SkinOriginText.Name = "SkinOriginText";
-            this.SkinOriginText.ReadOnly = true;
-            this.SkinOriginText.Size = new System.Drawing.Size(206, 20);
-            this.SkinOriginText.TabIndex = 11;
+            this.textbox_skin_origin.Location = new System.Drawing.Point(16, 75);
+            this.textbox_skin_origin.Name = "textbox_skin_origin";
+            this.textbox_skin_origin.ReadOnly = true;
+            this.textbox_skin_origin.Size = new System.Drawing.Size(206, 20);
+            this.textbox_skin_origin.TabIndex = 11;
             // 
-            // SkinNameText
+            // textbox_skin_libraryname
             // 
-            this.SkinNameText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_libraryname.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SkinNameText.Location = new System.Drawing.Point(16, 40);
-            this.SkinNameText.Name = "SkinNameText";
-            this.SkinNameText.Size = new System.Drawing.Size(206, 20);
-            this.SkinNameText.TabIndex = 10;
-            this.SkinNameText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SkinNameText_KeyDown);
+            this.textbox_skin_libraryname.Location = new System.Drawing.Point(16, 40);
+            this.textbox_skin_libraryname.Name = "textbox_skin_libraryname";
+            this.textbox_skin_libraryname.Size = new System.Drawing.Size(206, 20);
+            this.textbox_skin_libraryname.TabIndex = 10;
+            this.textbox_skin_libraryname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SkinNameText_KeyDown);
             // 
-            // SlotNumberText
+            // textbox_skin_slot
             // 
-            this.SlotNumberText.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_slot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SlotNumberText.Location = new System.Drawing.Point(16, 7);
-            this.SlotNumberText.Name = "SlotNumberText";
-            this.SlotNumberText.ReadOnly = true;
-            this.SlotNumberText.Size = new System.Drawing.Size(206, 20);
-            this.SlotNumberText.TabIndex = 9;
+            this.textbox_skin_slot.Location = new System.Drawing.Point(16, 7);
+            this.textbox_skin_slot.Name = "textbox_skin_slot";
+            this.textbox_skin_slot.ReadOnly = true;
+            this.textbox_skin_slot.Size = new System.Drawing.Size(206, 20);
+            this.textbox_skin_slot.TabIndex = 9;
             // 
             // tabPage2
             // 
@@ -911,7 +971,7 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.models_ListView);
+            this.groupBox5.Controls.Add(this.listview_skin_models);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(3, 3);
             this.groupBox5.Name = "groupBox5";
@@ -920,23 +980,23 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Model";
             // 
-            // models_ListView
+            // listview_skin_models
             // 
-            this.models_ListView.AllowDrop = true;
-            this.models_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.models_ListView.FullRowSelect = true;
-            this.models_ListView.LabelWrap = false;
-            this.models_ListView.Location = new System.Drawing.Point(3, 16);
-            this.models_ListView.MultiSelect = false;
-            this.models_ListView.Name = "models_ListView";
-            this.models_ListView.Size = new System.Drawing.Size(171, 184);
-            this.models_ListView.TabIndex = 15;
-            this.models_ListView.UseCompatibleStateImageBehavior = false;
-            this.models_ListView.View = System.Windows.Forms.View.List;
-            this.models_ListView.Click += new System.EventHandler(this.model_selected);
-            this.models_ListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.model_DragDrop);
-            this.models_ListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.model_DragEnter);
-            this.models_ListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.model_click);
+            this.listview_skin_models.AllowDrop = true;
+            this.listview_skin_models.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listview_skin_models.FullRowSelect = true;
+            this.listview_skin_models.LabelWrap = false;
+            this.listview_skin_models.Location = new System.Drawing.Point(3, 16);
+            this.listview_skin_models.MultiSelect = false;
+            this.listview_skin_models.Name = "listview_skin_models";
+            this.listview_skin_models.Size = new System.Drawing.Size(171, 184);
+            this.listview_skin_models.TabIndex = 15;
+            this.listview_skin_models.UseCompatibleStateImageBehavior = false;
+            this.listview_skin_models.View = System.Windows.Forms.View.List;
+            this.listview_skin_models.Click += new System.EventHandler(this.model_selected);
+            this.listview_skin_models.DragDrop += new System.Windows.Forms.DragEventHandler(this.model_DragDrop);
+            this.listview_skin_models.DragEnter += new System.Windows.Forms.DragEventHandler(this.model_DragEnter);
+            this.listview_skin_models.MouseClick += new System.Windows.Forms.MouseEventHandler(this.model_click);
             // 
             // panel7
             // 
@@ -946,7 +1006,7 @@
             this.panel7.AutoSize = true;
             this.panel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel7.Controls.Add(this.selected_csp_name);
-            this.panel7.Controls.Add(this.remove_selected_csp);
+            this.panel7.Controls.Add(this.button_skin_delete_csp);
             this.panel7.Location = new System.Drawing.Point(186, 212);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(177, 69);
@@ -961,22 +1021,22 @@
             this.selected_csp_name.TabIndex = 14;
             this.selected_csp_name.Text = "No selected CSP";
             // 
-            // remove_selected_csp
+            // button_skin_delete_csp
             // 
-            this.remove_selected_csp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_skin_delete_csp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.remove_selected_csp.Enabled = false;
-            this.remove_selected_csp.Location = new System.Drawing.Point(3, 35);
-            this.remove_selected_csp.Name = "remove_selected_csp";
-            this.remove_selected_csp.Size = new System.Drawing.Size(171, 23);
-            this.remove_selected_csp.TabIndex = 14;
-            this.remove_selected_csp.Text = "Remove Selected CSP";
-            this.remove_selected_csp.UseVisualStyleBackColor = true;
-            this.remove_selected_csp.Click += new System.EventHandler(this.remove_selected_csp_Click);
+            this.button_skin_delete_csp.Enabled = false;
+            this.button_skin_delete_csp.Location = new System.Drawing.Point(3, 35);
+            this.button_skin_delete_csp.Name = "button_skin_delete_csp";
+            this.button_skin_delete_csp.Size = new System.Drawing.Size(171, 23);
+            this.button_skin_delete_csp.TabIndex = 14;
+            this.button_skin_delete_csp.Text = "Remove Selected CSP";
+            this.button_skin_delete_csp.UseVisualStyleBackColor = true;
+            this.button_skin_delete_csp.Click += new System.EventHandler(this.remove_selected_csp_Click);
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.csps_ListView);
+            this.groupBox3.Controls.Add(this.listview_skin_csp);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(186, 3);
             this.groupBox3.Name = "groupBox3";
@@ -985,23 +1045,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "CHR";
             // 
-            // csps_ListView
+            // listview_skin_csp
             // 
-            this.csps_ListView.AllowDrop = true;
-            this.csps_ListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.csps_ListView.FullRowSelect = true;
-            this.csps_ListView.GridLines = true;
-            this.csps_ListView.Location = new System.Drawing.Point(3, 16);
-            this.csps_ListView.MultiSelect = false;
-            this.csps_ListView.Name = "csps_ListView";
-            this.csps_ListView.Size = new System.Drawing.Size(171, 184);
-            this.csps_ListView.TabIndex = 0;
-            this.csps_ListView.UseCompatibleStateImageBehavior = false;
-            this.csps_ListView.View = System.Windows.Forms.View.List;
-            this.csps_ListView.Click += new System.EventHandler(this.csp_selected);
-            this.csps_ListView.DragDrop += new System.Windows.Forms.DragEventHandler(this.csp_DragDrop2);
-            this.csps_ListView.DragEnter += new System.Windows.Forms.DragEventHandler(this.csp_DragEnter2);
-            this.csps_ListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.csps_click);
+            this.listview_skin_csp.AllowDrop = true;
+            this.listview_skin_csp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listview_skin_csp.FullRowSelect = true;
+            this.listview_skin_csp.GridLines = true;
+            this.listview_skin_csp.Location = new System.Drawing.Point(3, 16);
+            this.listview_skin_csp.MultiSelect = false;
+            this.listview_skin_csp.Name = "listview_skin_csp";
+            this.listview_skin_csp.Size = new System.Drawing.Size(171, 184);
+            this.listview_skin_csp.TabIndex = 0;
+            this.listview_skin_csp.UseCompatibleStateImageBehavior = false;
+            this.listview_skin_csp.View = System.Windows.Forms.View.List;
+            this.listview_skin_csp.Click += new System.EventHandler(this.csp_selected);
+            this.listview_skin_csp.DragDrop += new System.Windows.Forms.DragEventHandler(this.csp_DragDrop2);
+            this.listview_skin_csp.DragEnter += new System.Windows.Forms.DragEventHandler(this.csp_DragEnter2);
+            this.listview_skin_csp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.csps_click);
             // 
             // panel8
             // 
@@ -1010,34 +1070,34 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel8.AutoSize = true;
             this.panel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel8.Controls.Add(this.label5);
-            this.panel8.Controls.Add(this.button6);
+            this.panel8.Controls.Add(this.label_skin_selected_model);
+            this.panel8.Controls.Add(this.button_skin_delete_model);
             this.panel8.Location = new System.Drawing.Point(3, 212);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(177, 69);
             this.panel8.TabIndex = 2;
             // 
-            // label5
+            // label_skin_selected_model
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "No Selected Model";
+            this.label_skin_selected_model.AutoSize = true;
+            this.label_skin_selected_model.Location = new System.Drawing.Point(3, 9);
+            this.label_skin_selected_model.Name = "label_skin_selected_model";
+            this.label_skin_selected_model.Size = new System.Drawing.Size(98, 13);
+            this.label_skin_selected_model.TabIndex = 15;
+            this.label_skin_selected_model.Text = "No Selected Model";
             // 
-            // button6
+            // button_skin_delete_model
             // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_skin_delete_model.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(3, 35);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(171, 23);
-            this.button6.TabIndex = 15;
-            this.button6.Text = "Remove Selected Model";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.remove_selected_model_Click);
+            this.button_skin_delete_model.Enabled = false;
+            this.button_skin_delete_model.Location = new System.Drawing.Point(3, 35);
+            this.button_skin_delete_model.Name = "button_skin_delete_model";
+            this.button_skin_delete_model.Size = new System.Drawing.Size(171, 23);
+            this.button_skin_delete_model.TabIndex = 15;
+            this.button_skin_delete_model.Text = "Remove Selected Model";
+            this.button_skin_delete_model.UseVisualStyleBackColor = true;
+            this.button_skin_delete_model.Click += new System.EventHandler(this.remove_selected_model_Click);
             // 
             // tabPage3
             // 
@@ -1051,15 +1111,15 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.button_skin_meta_save);
+            this.groupBox4.Controls.Add(this.textbox_skin_meta_texidfix);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.textbox_skin_meta_name);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.textbox_skin_meta_version);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.textbox_skin_meta_author);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
@@ -1068,27 +1128,27 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Metadata";
             // 
-            // button4
+            // button_skin_meta_save
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.button_skin_meta_save.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(9, 136);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(363, 23);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Save Metadata";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.meta_save);
+            this.button_skin_meta_save.Location = new System.Drawing.Point(9, 136);
+            this.button_skin_meta_save.Name = "button_skin_meta_save";
+            this.button_skin_meta_save.Size = new System.Drawing.Size(363, 23);
+            this.button_skin_meta_save.TabIndex = 8;
+            this.button_skin_meta_save.Text = "Save Metadata";
+            this.button_skin_meta_save.UseVisualStyleBackColor = true;
+            this.button_skin_meta_save.Click += new System.EventHandler(this.meta_save);
             // 
-            // textBox4
+            // textbox_skin_meta_texidfix
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_meta_texidfix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(124, 101);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(248, 20);
-            this.textBox4.TabIndex = 7;
+            this.textbox_skin_meta_texidfix.Location = new System.Drawing.Point(124, 101);
+            this.textbox_skin_meta_texidfix.Name = "textbox_skin_meta_texidfix";
+            this.textbox_skin_meta_texidfix.ReadOnly = true;
+            this.textbox_skin_meta_texidfix.Size = new System.Drawing.Size(248, 20);
+            this.textbox_skin_meta_texidfix.TabIndex = 7;
             // 
             // label11
             // 
@@ -1108,15 +1168,15 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "Author";
             // 
-            // textBox3
+            // textbox_skin_meta_name
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_meta_name.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(124, 75);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(248, 20);
-            this.textBox3.TabIndex = 5;
+            this.textbox_skin_meta_name.Location = new System.Drawing.Point(124, 75);
+            this.textbox_skin_meta_name.Name = "textbox_skin_meta_name";
+            this.textbox_skin_meta_name.ReadOnly = true;
+            this.textbox_skin_meta_name.Size = new System.Drawing.Size(248, 20);
+            this.textbox_skin_meta_name.TabIndex = 5;
             // 
             // label8
             // 
@@ -1127,15 +1187,15 @@
             this.label8.TabIndex = 1;
             this.label8.Text = "Version";
             // 
-            // textBox2
+            // textbox_skin_meta_version
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_meta_version.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(124, 49);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(248, 20);
-            this.textBox2.TabIndex = 4;
+            this.textbox_skin_meta_version.Location = new System.Drawing.Point(124, 49);
+            this.textbox_skin_meta_version.Name = "textbox_skin_meta_version";
+            this.textbox_skin_meta_version.ReadOnly = true;
+            this.textbox_skin_meta_version.Size = new System.Drawing.Size(248, 20);
+            this.textbox_skin_meta_version.TabIndex = 4;
             // 
             // label10
             // 
@@ -1146,19 +1206,44 @@
             this.label10.TabIndex = 2;
             this.label10.Text = "Name";
             // 
-            // textBox1
+            // textbox_skin_meta_author
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_skin_meta_author.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(124, 23);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(248, 20);
-            this.textBox1.TabIndex = 3;
+            this.textbox_skin_meta_author.Location = new System.Drawing.Point(124, 23);
+            this.textbox_skin_meta_author.Name = "textbox_skin_meta_author";
+            this.textbox_skin_meta_author.ReadOnly = true;
+            this.textbox_skin_meta_author.Size = new System.Drawing.Size(248, 20);
+            this.textbox_skin_meta_author.TabIndex = 3;
+            // 
+            // listview_skins
+            // 
+            this.listview_skins.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listview_skins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listview_skins.AutoArrange = false;
+            this.listview_skins.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Skins_col});
+            this.listview_skins.HideSelection = false;
+            this.listview_skins.Location = new System.Drawing.Point(3, 3);
+            this.listview_skins.MinimumSize = new System.Drawing.Size(155, 4);
+            this.listview_skins.MultiSelect = false;
+            this.listview_skins.Name = "listview_skins";
+            this.listview_skins.Size = new System.Drawing.Size(187, 352);
+            this.listview_skins.TabIndex = 21;
+            this.listview_skins.UseCompatibleStateImageBehavior = false;
+            this.listview_skins.View = System.Windows.Forms.View.Details;
+            this.listview_skins.SelectedIndexChanged += new System.EventHandler(this.skin_selected);
+            // 
+            // Skins_col
+            // 
+            this.Skins_col.Text = "Skins";
+            this.Skins_col.Width = 300;
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.tableLayoutPanel5);
+            this.tabPage5.Controls.Add(this.tabControl3);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -1166,152 +1251,6 @@
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Character Tab";
             this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.2487F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.7513F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox7, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.groupBox8, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(579, 459);
-            this.tableLayoutPanel5.TabIndex = 9;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.richTextBox1);
-            this.groupBox7.Controls.Add(this.label13);
-            this.groupBox7.Controls.Add(this.listBox1);
-            this.groupBox7.Controls.Add(this.label6);
-            this.groupBox7.Controls.Add(this.button11);
-            this.groupBox7.Controls.Add(this.button9);
-            this.groupBox7.Controls.Add(this.button10);
-            this.groupBox7.Controls.Add(this.textBox5);
-            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(3, 3);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(365, 453);
-            this.groupBox7.TabIndex = 7;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "melee.msbt entries";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(133, 76);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(226, 73);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(132, 60);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(60, 13);
-            this.label13.TabIndex = 7;
-            this.label13.Text = "Description";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(6, 19);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 160);
-            this.listBox1.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(132, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Selected entry";
-            // 
-            // button11
-            // 
-            this.button11.Location = new System.Drawing.Point(6, 226);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(120, 23);
-            this.button11.TabIndex = 6;
-            this.button11.Text = "delete";
-            this.button11.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(6, 197);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(119, 23);
-            this.button9.TabIndex = 4;
-            this.button9.Text = "add entry";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // button10
-            // 
-            this.button10.Location = new System.Drawing.Point(133, 156);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(163, 23);
-            this.button10.TabIndex = 5;
-            this.button10.Text = "save";
-            this.button10.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(132, 37);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(227, 20);
-            this.textBox5.TabIndex = 2;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.button12);
-            this.groupBox8.Controls.Add(this.textBox6);
-            this.groupBox8.Controls.Add(this.label4);
-            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox8.Location = new System.Drawing.Point(374, 3);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(202, 453);
-            this.groupBox8.TabIndex = 8;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "ui_character_db override";
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(9, 76);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(185, 23);
-            this.button12.TabIndex = 7;
-            this.button12.Text = "save";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(110, 37);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(84, 20);
-            this.textBox6.TabIndex = 1;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Custom Skin Count";
             // 
             // tabPage6
             // 
@@ -1328,7 +1267,7 @@
             this.tableLayoutPanel6.ColumnCount = 1;
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.groupBox10, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.meteorpack_gridview, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.packer_skinlist, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.groupBox11, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.panel9, 0, 3);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1344,8 +1283,8 @@
             // 
             // groupBox10
             // 
-            this.groupBox10.Controls.Add(this.textBox8);
-            this.groupBox10.Controls.Add(this.textBox7);
+            this.groupBox10.Controls.Add(this.textbox_packer_version);
+            this.groupBox10.Controls.Add(this.textbox_packer_author);
             this.groupBox10.Controls.Add(this.label9);
             this.groupBox10.Controls.Add(this.label12);
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1356,23 +1295,23 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Pack Information";
             // 
-            // textBox8
+            // textbox_packer_version
             // 
-            this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_packer_version.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox8.Location = new System.Drawing.Point(70, 59);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(491, 20);
-            this.textBox8.TabIndex = 8;
+            this.textbox_packer_version.Location = new System.Drawing.Point(70, 59);
+            this.textbox_packer_version.Name = "textbox_packer_version";
+            this.textbox_packer_version.Size = new System.Drawing.Size(491, 20);
+            this.textbox_packer_version.TabIndex = 8;
             // 
-            // textBox7
+            // textbox_packer_author
             // 
-            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textbox_packer_author.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox7.Location = new System.Drawing.Point(70, 33);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(491, 20);
-            this.textBox7.TabIndex = 7;
+            this.textbox_packer_author.Location = new System.Drawing.Point(70, 33);
+            this.textbox_packer_author.Name = "textbox_packer_author";
+            this.textbox_packer_author.Size = new System.Drawing.Size(491, 20);
+            this.textbox_packer_author.TabIndex = 7;
             // 
             // label9
             // 
@@ -1392,22 +1331,22 @@
             this.label12.TabIndex = 6;
             this.label12.Text = "Version";
             // 
-            // meteorpack_gridview
+            // packer_skinlist
             // 
-            this.meteorpack_gridview.AllowUserToAddRows = false;
-            this.meteorpack_gridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.meteorpack_gridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.packer_skinlist.AllowUserToAddRows = false;
+            this.packer_skinlist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.packer_skinlist.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column4,
             this.Column2,
             this.Column3});
-            this.meteorpack_gridview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.meteorpack_gridview.Location = new System.Drawing.Point(3, 103);
-            this.meteorpack_gridview.Name = "meteorpack_gridview";
-            this.meteorpack_gridview.Size = new System.Drawing.Size(579, 224);
-            this.meteorpack_gridview.TabIndex = 1;
-            this.meteorpack_gridview.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.meteorpack_gridview_CellValueChanged);
-            this.meteorpack_gridview.CurrentCellChanged += new System.EventHandler(this.meteorpack_gridview_CurrentCellChanged);
+            this.packer_skinlist.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packer_skinlist.Location = new System.Drawing.Point(3, 103);
+            this.packer_skinlist.Name = "packer_skinlist";
+            this.packer_skinlist.Size = new System.Drawing.Size(579, 224);
+            this.packer_skinlist.TabIndex = 1;
+            this.packer_skinlist.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.meteorpack_gridview_CellValueChanged);
+            this.packer_skinlist.CurrentCellChanged += new System.EventHandler(this.meteorpack_gridview_CurrentCellChanged);
             // 
             // Column1
             // 
@@ -1441,7 +1380,7 @@
             // 
             // groupBox11
             // 
-            this.groupBox11.Controls.Add(this.listView1);
+            this.groupBox11.Controls.Add(this.packer_dropzone);
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox11.Location = new System.Drawing.Point(3, 333);
             this.groupBox11.Name = "groupBox11";
@@ -1450,41 +1389,41 @@
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Manual Install folder drop zone";
             // 
-            // listView1
+            // packer_dropzone
             // 
-            this.listView1.AllowDrop = true;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.LabelWrap = false;
-            this.listView1.Location = new System.Drawing.Point(3, 16);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(573, 67);
-            this.listView1.TabIndex = 16;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
-            this.listView1.DragDrop += new System.Windows.Forms.DragEventHandler(this.manual_drop);
-            this.listView1.DragEnter += new System.Windows.Forms.DragEventHandler(this.manual_dragenter);
+            this.packer_dropzone.AllowDrop = true;
+            this.packer_dropzone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.packer_dropzone.FullRowSelect = true;
+            this.packer_dropzone.LabelWrap = false;
+            this.packer_dropzone.Location = new System.Drawing.Point(3, 16);
+            this.packer_dropzone.MultiSelect = false;
+            this.packer_dropzone.Name = "packer_dropzone";
+            this.packer_dropzone.Size = new System.Drawing.Size(573, 67);
+            this.packer_dropzone.TabIndex = 16;
+            this.packer_dropzone.UseCompatibleStateImageBehavior = false;
+            this.packer_dropzone.View = System.Windows.Forms.View.List;
+            this.packer_dropzone.DragDrop += new System.Windows.Forms.DragEventHandler(this.manual_drop);
+            this.packer_dropzone.DragEnter += new System.Windows.Forms.DragEventHandler(this.manual_dragenter);
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.button13);
+            this.panel9.Controls.Add(this.button_packer_pack);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(3, 425);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(579, 37);
             this.panel9.TabIndex = 3;
             // 
-            // button13
+            // button_packer_pack
             // 
-            this.button13.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button13.Location = new System.Drawing.Point(0, 0);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(579, 32);
-            this.button13.TabIndex = 0;
-            this.button13.Text = "Pack archive";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.meteor_pack);
+            this.button_packer_pack.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_packer_pack.Location = new System.Drawing.Point(0, 0);
+            this.button_packer_pack.Name = "button_packer_pack";
+            this.button_packer_pack.Size = new System.Drawing.Size(579, 32);
+            this.button_packer_pack.TabIndex = 0;
+            this.button_packer_pack.Text = "Pack archive";
+            this.button_packer_pack.UseVisualStyleBackColor = true;
+            this.button_packer_pack.Click += new System.EventHandler(this.meteor_pack);
             // 
             // model_menu_strip
             // 
@@ -1522,7 +1461,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.84049F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 63.52459F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.63492F));
-            this.tableLayoutPanel1.Controls.Add(this.Characterlist2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.listview_characters, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tabControl2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox6, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox9, 2, 0);
@@ -1568,6 +1507,139 @@
             this.manual_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.manual_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.manual_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // backup_worker
+            // 
+            this.backup_worker.WorkerReportsProgress = true;
+            this.backup_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backup_worker_DoWork);
+            this.backup_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backup_worker_ProgressChanged);
+            this.backup_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backup_worker_RunWorkerCompleted);
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.tabPage7);
+            this.tabControl3.Controls.Add(this.tabPage8);
+            this.tabControl3.Controls.Add(this.tabPage9);
+            this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl3.Location = new System.Drawing.Point(3, 3);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(579, 459);
+            this.tabControl3.TabIndex = 10;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.tableLayoutPanel5);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(571, 433);
+            this.tabPage7.TabIndex = 0;
+            this.tabPage7.Text = "CSS";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(571, 433);
+            this.tabPage8.TabIndex = 1;
+            this.tabPage8.Text = "Sounds";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(571, 433);
+            this.tabPage9.TabIndex = 2;
+            this.tabPage9.Text = "Misc";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox7, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.groupBox8, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(565, 427);
+            this.tableLayoutPanel5.TabIndex = 0;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.button1);
+            this.groupBox8.Controls.Add(this.textBox_character_ui);
+            this.groupBox8.Controls.Add(this.label4);
+            this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox8.Location = new System.Drawing.Point(3, 3);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(276, 207);
+            this.groupBox8.TabIndex = 14;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "ui_character_db override";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(185, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "save";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox_character_ui
+            // 
+            this.textBox_character_ui.Location = new System.Drawing.Point(110, 37);
+            this.textBox_character_ui.Name = "textBox_character_ui";
+            this.textBox_character_ui.Size = new System.Drawing.Size(84, 20);
+            this.textBox_character_ui.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Custom Skin Count";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.textBox1);
+            this.groupBox7.Controls.Add(this.label5);
+            this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox7.Location = new System.Drawing.Point(285, 3);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(277, 207);
+            this.groupBox7.TabIndex = 15;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "CSS Portrait";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Custom chr_10 file";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(10, 37);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(261, 20);
+            this.textBox1.TabIndex = 9;
             // 
             // main
             // 
@@ -1622,22 +1694,24 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.meteorpack_gridview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.packer_skinlist)).EndInit();
             this.groupBox11.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.model_menu_strip.ResumeLayout(false);
             this.csps_menu_strip.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1646,64 +1720,40 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_file;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_file_exit;
         private System.Windows.Forms.Label skinboxlabel;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetLibraryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem skinsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addForSelectedCharacterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cleanWorkspaceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetWorkspaceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetConfigToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem smashExplorerInterfaceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem resetAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportSmashExplorerWorkpaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_skin;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_skin_add;
         private System.Windows.Forms.PictureBox meteorbox;
         private System.ComponentModel.BackgroundWorker import_worker;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.Label appstatus;
+        private System.Windows.Forms.Label label_app_status;
         private System.ComponentModel.BackgroundWorker export_worker;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button textbox_skin_move_up;
+        private System.Windows.Forms.Button textbox_skin_move_down;
         private System.Windows.Forms.ProgressBar loadingbox;
         private System.ComponentModel.BackgroundWorker url_worker;
         private System.ComponentModel.BackgroundWorker meteor_worker;
-        private System.Windows.Forms.ToolStripMenuItem resetCurrentMeteorSkinPackSessionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_skin_reset_package;
         private System.ComponentModel.BackgroundWorker archive_worker;
-        private System.Windows.Forms.ListView Characterlist2;
+        private System.Windows.Forms.ListView listview_characters;
         private System.Windows.Forms.ColumnHeader Characterss;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.ToolStripMenuItem launchS4EToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip model_menu_strip;
         private System.Windows.Forms.ToolStripMenuItem openFolderToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip csps_menu_strip;
         private System.Windows.Forms.ToolStripMenuItem openFileDirectoryToolStripMenuItem;
         private System.Windows.Forms.ProgressBar processbox;
-        private System.Windows.Forms.Label process_status;
-        private System.Windows.Forms.ListView SkinListBox;
+        private System.Windows.Forms.Label label_process_status;
+        private System.Windows.Forms.ListView listview_skins;
         private System.Windows.Forms.ColumnHeader Skins_col;
-        private System.Windows.Forms.ToolStripMenuItem workspaceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importMissingFilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refreshMSLsWorkspaceToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_workspace;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_workspace_refresh;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_help;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_help_about;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
@@ -1713,11 +1763,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_skin_package_meteor;
+        private System.Windows.Forms.Button button_skin_save_info;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_skin_clean;
+        private System.Windows.Forms.Button button_skin_delete;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -1725,54 +1775,86 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListView models_ListView;
+        private System.Windows.Forms.Button button_skin_delete_model;
+        private System.Windows.Forms.Label label_skin_selected_model;
+        private System.Windows.Forms.ListView listview_skin_models;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label selected_csp_name;
-        private System.Windows.Forms.Button remove_selected_csp;
-        private System.Windows.Forms.ListView csps_ListView;
+        private System.Windows.Forms.Button button_skin_delete_csp;
+        private System.Windows.Forms.ListView listview_skin_csp;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button_skin_meta_save;
+        private System.Windows.Forms.TextBox textbox_skin_meta_texidfix;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textbox_skin_meta_name;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textbox_skin_meta_version;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textbox_skin_meta_author;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.RichTextBox textConsole;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox SkinOriginText;
-        private System.Windows.Forms.TextBox SkinNameText;
-        private System.Windows.Forms.TextBox SlotNumberText;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.ToolStripMenuItem checkMissingFilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem checkMissingFilesAndImportNewToolStripMenuItem;
+        private System.Windows.Forms.TextBox textbox_skin_origin;
+        private System.Windows.Forms.TextBox textbox_skin_libraryname;
+        private System.Windows.Forms.TextBox textbox_skin_slot;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_workspace_check;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_workspace_check_import;
         private System.ComponentModel.BackgroundWorker refresh_worker;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridView meteorpack_gridview;
+        private System.Windows.Forms.DataGridView packer_skinlist;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView packer_dropzone;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Button button_packer_pack;
+        private System.Windows.Forms.TextBox textbox_packer_version;
+        private System.Windows.Forms.TextBox textbox_packer_author;
         private System.ComponentModel.BackgroundWorker manual_worker;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_tools;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_tools_s4e;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_help_wiki;
+        private System.ComponentModel.BackgroundWorker backup_worker;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_s4e_export;
+        private System.Windows.Forms.ToolStripMenuItem s4EsWorkspaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_s4e_import_missing;
+        private System.Windows.Forms.ToolStripMenuItem backupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backupS4EsWorkspaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem backupMSLsWorkspaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem foldersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openInstallationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_workspace_open_workspace;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_workspace_open_packages;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_config_config;
+        private System.Windows.Forms.ToolStripMenuItem adOptionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_config_reset_lib;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_config_reset_workspace;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_config_reset_config;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_config_reset_all;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox_character_ui;
+        private System.Windows.Forms.Label label4;
     }
 }
 

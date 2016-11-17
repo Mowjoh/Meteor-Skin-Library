@@ -52,13 +52,23 @@ namespace MeteorSkinLibrary
             }
         }
         //Adds a skin to the library
-        public void add_skin()
+        public Boolean add_skin()
         {
-            Skin newe = new Skin(fullname,skins.Count + 1, "New Skin", "Custom", Library, properties, log);
-            
-            skins.Add(newe);
-            //Seventh slot of ui_char_db is skin slot count
-            ui.setFile(int.Parse(Library.get_ui_char_db_id(fullname)), 7, skins.Count);
+            Boolean code = false;
+            try
+            {
+                Skin newe = new Skin(fullname, skins.Count + 1, "New Skin", "Custom", Library, properties, log);
+
+                skins.Add(newe);
+                //Seventh slot of ui_char_db is skin slot count
+                ui.setFile(int.Parse(Library.get_ui_char_db_id(fullname)), 7, skins.Count);
+                code = true;
+            }
+            catch
+            {
+                
+            }
+            return code;
         }
 
         //To edit for swapping

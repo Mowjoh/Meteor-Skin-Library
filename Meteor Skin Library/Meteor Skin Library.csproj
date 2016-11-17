@@ -12,23 +12,27 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>ftp://ftp.lunaticfox.com/public_html/MSL/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>0.6.0.%2a</ApplicationVersion>
+    <MapFileExtensions>false</MapFileExtensions>
+    <InstallUrl>http://lunaticfox.com/MSL/</InstallUrl>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>0.6.4.2</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -54,6 +58,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>iconic.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>62023F106B9BF15D6327D9AD0669C096101A3E98</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Meteor Skin Library_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SharpCompress, Version=0.10.3.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL">
@@ -113,6 +129,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Meteor Skin Library_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -130,6 +147,80 @@
   <ItemGroup>
     <None Include="Resources\mowjohdrop.bmp" />
     <None Include="Resources\unknown.png" />
+    <Content Include="7za.exe" />
+    <Content Include="patchnotes.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="updatefiles.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="mmsl_config\Default_Config.xml" />
+    <Content Include="mmsl_config\Default_Library.xml" />
+    <Content Include="mmsl_config\meta\Default_Meta.xml" />
+    <Content Include="mmsl_img\checked.png" />
+    <Content Include="mmsl_img\icons\All Miis.png" />
+    <Content Include="mmsl_img\icons\Bayonetta.png" />
+    <Content Include="mmsl_img\icons\Bowser Jr.png" />
+    <Content Include="mmsl_img\icons\Bowser.png" />
+    <Content Include="mmsl_img\icons\Captain Falcon.png" />
+    <Content Include="mmsl_img\icons\Charizard.png" />
+    <Content Include="mmsl_img\icons\Cloud.png" />
+    <Content Include="mmsl_img\icons\Corrin.png" />
+    <Content Include="mmsl_img\icons\Dark Pit.png" />
+    <Content Include="mmsl_img\icons\Diddy Kong.png" />
+    <Content Include="mmsl_img\icons\Donkey Kong.png" />
+    <Content Include="mmsl_img\icons\Dr. Mario.png" />
+    <Content Include="mmsl_img\icons\Duck Hunt.png" />
+    <Content Include="mmsl_img\icons\Falco.png" />
+    <Content Include="mmsl_img\icons\Fighter Mii.png" />
+    <Content Include="mmsl_img\icons\Fox.png" />
+    <Content Include="mmsl_img\icons\Game and Watch.png" />
+    <Content Include="mmsl_img\icons\Ganon.png" />
+    <Content Include="mmsl_img\icons\Greninja.png" />
+    <Content Include="mmsl_img\icons\Gunner Mii.png" />
+    <Content Include="mmsl_img\icons\Ike.png" />
+    <Content Include="mmsl_img\icons\Jigglypuff.png" />
+    <Content Include="mmsl_img\icons\King Dedede.png" />
+    <Content Include="mmsl_img\icons\Kirby.png" />
+    <Content Include="mmsl_img\icons\Link.png" />
+    <Content Include="mmsl_img\icons\Little Mac.png" />
+    <Content Include="mmsl_img\icons\Lucario.png" />
+    <Content Include="mmsl_img\icons\Lucas.png" />
+    <Content Include="mmsl_img\icons\Lucina.png" />
+    <Content Include="mmsl_img\icons\Luigi.png" />
+    <Content Include="mmsl_img\icons\Mario.png" />
+    <Content Include="mmsl_img\icons\Marth.png" />
+    <Content Include="mmsl_img\icons\Megaman.png" />
+    <Content Include="mmsl_img\icons\Meta Knight.png" />
+    <Content Include="mmsl_img\icons\Mewtwo.png" />
+    <Content Include="mmsl_img\icons\Ness.png" />
+    <Content Include="mmsl_img\icons\Olimar.png" />
+    <Content Include="mmsl_img\icons\Pac-man.png" />
+    <Content Include="mmsl_img\icons\Palutena.png" />
+    <Content Include="mmsl_img\icons\Peach.png" />
+    <Content Include="mmsl_img\icons\Pikachu.png" />
+    <Content Include="mmsl_img\icons\Pit.png" />
+    <Content Include="mmsl_img\icons\R.O.B.png" />
+    <Content Include="mmsl_img\icons\Random.png" />
+    <Content Include="mmsl_img\icons\Robin.png" />
+    <Content Include="mmsl_img\icons\Rosalina.png" />
+    <Content Include="mmsl_img\icons\Roy.png" />
+    <Content Include="mmsl_img\icons\Ryu.png" />
+    <Content Include="mmsl_img\icons\Samus.png" />
+    <Content Include="mmsl_img\icons\Sheik.png" />
+    <Content Include="mmsl_img\icons\Shulk.png" />
+    <Content Include="mmsl_img\icons\Sonic.png" />
+    <Content Include="mmsl_img\icons\Swordsman Mii.png" />
+    <Content Include="mmsl_img\icons\Toon Link.png" />
+    <Content Include="mmsl_img\icons\Villager.png" />
+    <Content Include="mmsl_img\icons\Wario.png" />
+    <Content Include="mmsl_img\icons\Wii Fit.png" />
+    <Content Include="mmsl_img\icons\Yoshi.png" />
+    <Content Include="mmsl_img\icons\Zelda.png" />
+    <Content Include="mmsl_img\icons\Zero Suit Samus.png" />
+    <Content Include="mmsl_img\missing.png" />
+    <Content Include="mmsl_img\new.png" />
+    <Content Include="mmsl_img\unknown.png" />
     <Content Include="SharpCompress.dll" />
     <None Include="bin\Debug\iconic.ico" />
     <Content Include="iconic.ico" />
@@ -149,7 +240,24 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="mmsl_downloads\" />
+    <Folder Include="mmsl_logs\" />
+    <Folder Include="mmsl_packages\" />
+    <Folder Include="mmsl_workspace\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="iconic.ico">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

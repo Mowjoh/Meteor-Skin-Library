@@ -37,7 +37,7 @@ namespace MeteorSkinLibrary
                 {
                         datafolder = "data(us_en)";
                 }
-                if (properties.get("unlocalised") == "1")
+                if (properties.property_get("unlocalised") == "1")
                 {
                     datafolder = "data";
                 }

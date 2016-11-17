@@ -1,0 +1,7 @@
+<config>
+  <property name="default_library">mmsl_config/Default_Library.xml</property>
+  <property name="default_config">mmsl_config/Default_Config.xml</property>
+  <property name="default_meta">mmsl_config/meta/Default_Meta.xml</property>
+  <property name="unlocalised">0</property>
+  <property name="explorer_workspace"></property>
+</config>

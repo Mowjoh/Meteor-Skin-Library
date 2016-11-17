@@ -1,6 +1,7 @@
 ﻿using SharpCompress.Common;
 using SharpCompress.Reader;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,18 +23,17 @@ namespace Meteor_updater
         String version;
         String patchnotes;
         String app_path = Application.StartupPath;
-
-        //Status
-        Boolean downloadstatus;
-        Boolean archivestatus;
-        Boolean movestatus;
-        Boolean deletestatus;
-
+        String last_version;
+        ArrayList failed_files = new ArrayList();
+        ArrayList success_files = new ArrayList();
         public Main()
         {
             InitializeComponent();
 
             console_write("Welcome to Meteor Skin Library's uploader. It will now update so please be patient :D");
+
+            //Getting last version info
+            this.last_version = search_update();
 
             //Write patch info
             write_patch();
@@ -61,9 +61,10 @@ namespace Meteor_updater
 
         public void write_patch()
         {
-            //Getting Xml Info
+            //Getting remote info
+            String remote_path = "http://lunaticfox.com/MSL/Application Files/Meteor Skin Library_" + last_version + "/patchnotes.xml";
             XmlDocument xml = new XmlDocument();
-            xml.Load("http://mmsl.lunaticfox.com/newcorepackage.xml");
+            xml.Load(remote_path);
             XmlNode nodes = xml.SelectSingleNode("package");
             XmlNodeList patches = xml.SelectNodes("package/patchnote");
             version = nodes.Attributes[0].Value;
@@ -99,7 +100,6 @@ namespace Meteor_updater
         private void update_worker_DoWork(object sender, DoWorkEventArgs e)
         {
             download();
-
         }
 
         private void update_worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -117,6 +117,21 @@ namespace Meteor_updater
 
         private void update_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            console_write2("-----------------------");
+
+            foreach (String s in success_files)
+            {
+                console_write2("Updated following file: " + s);
+            }
+            foreach (String s in failed_files)
+            {
+                console_write2("Failed to update following file: "+s);
+            }
+
+            if(failed_files.Count == 0)
+            {
+                replace_manifest();
+            }
             button1.Enabled = true;
         }
         #endregion
@@ -124,136 +139,50 @@ namespace Meteor_updater
         #region Files
         private void download()
         {
-            if(File.Exists(app_path + "/build.zip"))
+            //Getting local version info
+            XmlDocument local_xml = new XmlDocument();
+            local_xml.Load(Application.StartupPath+ "/Meteor Skin Library.exe.manifest");
+            XmlNode nodes = local_xml.SelectSingleNode("//*[local-name()='assembly']/*[local-name()='assemblyIdentity']");
+            String local_version = nodes.Attributes[1].Value;
+            local_version = local_version.Replace('.', '_');
+
+            //Getting remote info
+            String remote_path = "http://lunaticfox.com/MSL/Application Files/Meteor Skin Library_" + last_version + "/updatefiles.xml";
+            XmlDocument files_xml = new XmlDocument();
+            files_xml.Load(remote_path);
+            XmlNodeList file_list = files_xml.SelectNodes("package/file");
+
+            foreach (XmlElement xe in file_list)
             {
-                File.Delete(app_path + "/build.zip");
-            }
-            //Getting file
-            using (WebClient webClient = new WebClient())
-            {
-                //Progress changed for loading box
-                webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(delegate (object sender2, DownloadProgressChangedEventArgs e2)
+                String filepath = xe.InnerText;
+                String fileversion = xe.Attributes[0].Value.ToString();
+                String downloadpath = "http://lunaticfox.com/MSL/Application Files/Meteor Skin Library_" + last_version + "/" + filepath;
+                String destinationpath = Path.GetDirectoryName(app_path + "/" + filepath);
+                if (!Directory.Exists(destinationpath))
                 {
-
-                });
-
-                //When download is completed
-                webClient.DownloadFileCompleted += new System.ComponentModel.AsyncCompletedEventHandler
-                    (delegate (object sender2, System.ComponentModel.AsyncCompletedEventArgs e2)
-                    {
-                        if (e2.Error == null && !e2.Cancelled)
-                        {
-                            this.downloadstatus = true;
-                            //Doing the work
-                            if (Directory.Exists(app_path + "/build"))
-                            {
-                                Directory.Delete(app_path + "/build", true);
-                                Directory.CreateDirectory(app_path + "/build");
-                            }
-                            else
-                            {
-                                Directory.CreateDirectory(app_path + "/build");
-                            }
-
-                            try
-                            {
-                                //Extracting archive
-                                ProcessStartInfo pro = new ProcessStartInfo();
-                                pro.WindowStyle = ProcessWindowStyle.Hidden;
-                                pro.FileName = Application.StartupPath + "/7za.exe";
-                                String arguments = "x \"" + (app_path + "/build.zip") + "\" -o\"" + (app_path + "/build") + "\"";
-                                pro.Arguments = arguments;
-                                Process x = Process.Start(pro);
-                                x.WaitForExit();
-
-                                archivestatus = true;
-
-                                try
-                                {
-                                    //Copying files
-                                    String base_path = Application.StartupPath;
-                                    //Copy all the files & Replaces any files with the same name
-                                    foreach (string newPath in Directory.GetFiles(app_path + "/build", "*.*", SearchOption.AllDirectories))
-                                    {
-                                        String source = newPath;
-                                        String dest = newPath.Replace(app_path + "/build", base_path);
-                                        if (!Directory.Exists(Path.GetDirectoryName(dest)))
-                                        {
-                                            Directory.CreateDirectory(Path.GetDirectoryName(dest));
-                                        }
-                                        if (File.Exists(dest))
-                                        {
-                                            File.Delete(dest);
-                                        }
-                                        File.Copy(source, dest);
-                                    }
-                                    movestatus = true;
-                                    //Deleting old files
-                                    try
-                                    {
-                                        //Doing the work
-                                        
-                                        deletestatus = true;
-                                    }
-                                    catch
-                                    {
-                                        deletestatus = false;
-                                    }
-                                }
-                                catch
-                                {
-                                    movestatus = false;
-                                }
-                            }
-                            catch
-                            {
-                                archivestatus = false;
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine(e2.Error);
-                            downloadstatus = false;
-                        }
-                    });
-                if(check_beta() == "1")
-                {
-                    webClient.DownloadFileAsync(new Uri("http://mmsl.lunaticfox.com/betabuild.zip"), app_path + "/build.zip");
-                }else
-                {
-                    webClient.DownloadFileAsync(new Uri("http://mmsl.lunaticfox.com/newbuild.zip"), app_path + "/build.zip");
+                    Directory.CreateDirectory(destinationpath);
                 }
-               
 
+                if (new_version(local_version, fileversion))
+                {
+                    //Getting file
+                    using (WebClient webClient = new WebClient())
+                    {
+                        try
+                        {
+                            webClient.DownloadFile(new Uri(downloadpath), app_path + "/" + filepath);
+                            this.success_files.Add(filepath);
+                        }
+                        catch
+                        {
+                            this.failed_files.Add(filepath);
+                        }
+
+                    }
+                }
             }
-        }
-
-        private void update()
-        {
 
             
-
-
-
-            
-
-            
-        }
-
-        private String check_beta()
-        {
-
-            XmlDocument xml = new XmlDocument();
-            xml.Load(Application.StartupPath+"/mmsl_config/Config.xml");
-            XmlNode property = xml.SelectSingleNode("/config/property[attribute::name='beta']");
-            if (property == null)
-            {
-                return "";
-            }
-            else
-            {
-                return property.InnerText;
-            }
         }
         #endregion
 
@@ -275,6 +204,69 @@ namespace Meteor_updater
 
         }
 
-        
+        private string search_update()
+        {
+            //Getting remote info
+            String remote_path = "http://lunaticfox.com/MSL/Application Files/patchnotes.xml";
+            XmlDocument xml = new XmlDocument();
+            xml.Load(remote_path);
+            XmlNode nodes = xml.SelectSingleNode("package");
+            String version = nodes.Attributes[0].Value.ToString();
+            version = version.Replace('.', '_');
+            return version;
+
+        }
+
+        //Tells if the remoteversion is newer
+        private Boolean new_version(String localversion, String remoteversion)
+        {
+            int l_major = int.Parse(localversion.Split('_')[0]);
+            int l_minor = int.Parse(localversion.Split('_')[1]);
+            int l_build = int.Parse(localversion.Split('_')[2]);
+            int l_revision = int.Parse(localversion.Split('_')[3]);
+
+            int r_major = int.Parse(remoteversion.Split('_')[0]);
+            int r_minor = int.Parse(remoteversion.Split('_')[1]);
+            int r_build = int.Parse(remoteversion.Split('_')[2]);
+            int r_revision = int.Parse(remoteversion.Split('_')[3]);
+
+            //remote major is superior
+            if(r_major > l_major)
+            {
+                return true;
+            }
+            else
+            {
+                if(r_minor > l_minor)
+                {
+                    return true;
+                }else
+                {
+                    if (r_build > l_build)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        if(r_revision > l_revision)
+                        {
+                            return true;
+                        }else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void replace_manifest()
+        {
+            String remote_path = "http://lunaticfox.com/MSL/Application Files/Meteor Skin Library_" + this.last_version + "/Meteor Skin Library.exe.manifest";
+            XmlDocument files_xml = new XmlDocument();
+            files_xml.Load(remote_path);
+            files_xml.Save(Application.StartupPath + "/Meteor Skin Library.exe.manifest");
+        }
+
     }
 }

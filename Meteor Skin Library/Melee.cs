@@ -22,8 +22,8 @@ namespace Meteor_Skin_Library
             //Setting up property handler
             properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Config.xml");
             //Getting base paths
-            explorer_workspace = properties.get("explorer_workspace");
-            datafolder = properties.get("datafolder");
+            explorer_workspace = properties.property_get("explorer_workspace");
+            datafolder = properties.property_get("datafolder");
 
         }
 

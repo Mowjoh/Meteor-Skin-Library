@@ -20,9 +20,7 @@ namespace Meteor_Packer
         public Main()
         {
             InitializeComponent();
-
         }
-
 
         public ArrayList searchfiles()
         {
@@ -43,6 +41,7 @@ namespace Meteor_Packer
             listView1.Enabled = true;
             listView1.Items.Clear();
             meteorpack_gridview.Rows.Clear();
+
         }
     }
 }

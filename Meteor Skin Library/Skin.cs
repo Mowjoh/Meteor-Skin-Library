@@ -89,7 +89,7 @@ namespace MeteorSkinLibrary
             this.dlc = Library.get_dlc_status(this.fullname);
             this.modelfolder = Library.get_modelfolder_fullname(this.fullname);
             this.cspfolder = Library.get_cspfolder_fullname(this.fullname);
-            this.datafolder = Properties.get("datafolder");
+            this.datafolder = Properties.property_get("datafolder");
 
             //Now setting folders, easy ones
             this.modelpath = Application.StartupPath + "/mmsl_workspace/data/fighter/" + modelfolder + "/model/";
@@ -98,7 +98,7 @@ namespace MeteorSkinLibrary
             {
                 
                 this.dlc_csppath = Application.StartupPath + "/mmsl_workspace/" + datafolder + "/ui/replace/append/chr/";
-                if (Properties.get("unlocalised") == "1")
+                if (Properties.property_get("unlocalised") == "1")
                 {
                     this.dlc_csppath = Application.StartupPath + "/mmsl_workspace/data/ui/replace/append/chr/";
                 }

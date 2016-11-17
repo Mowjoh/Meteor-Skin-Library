@@ -27,7 +27,9 @@ namespace MeteorSkinLibrary
         #endregion
 
         #region Properties
-        internal String get(string property_name)
+
+        //Gets a property
+        internal String property_get(string property_name)
         {
             XmlDocument xml = new XmlDocument();
             xml.Load(LibraryPath);
@@ -40,7 +42,8 @@ namespace MeteorSkinLibrary
                 return property.InnerText;
             }
         }
-        internal void set(string property_name, string property_value)
+        //Sets a property
+        internal void property_set(string property_name, string property_value)
         {
             XmlDocument xml = new XmlDocument();
             xml.Load(LibraryPath);
@@ -49,7 +52,8 @@ namespace MeteorSkinLibrary
 
             xml.Save(LibraryPath);
         }
-        internal void add(string property_name, string property_value)
+        //Adds a property
+        internal void property_add(string property_name, string property_value)
         {
             XmlDocument xml = new XmlDocument();
             xml.Load(LibraryPath);
@@ -77,26 +81,25 @@ namespace MeteorSkinLibrary
             
             xml.Save(LibraryPath);
         }
-
-        internal Boolean check(string property_name)
+        //Checks if property exists
+        internal Boolean property_check(string property_name)
         {
             Boolean test = false;
 
+            //Loads the XML
             XmlDocument xml = new XmlDocument();
             xml.Load(LibraryPath);
-            XmlNode properties = xml.SelectSingleNode("/config");
-
-            XmlNode verify = xml.SelectSingleNode("/config/property[attribute::name='" + property_name + "']");
-            if (verify != null)
-            {
-                test = true;
-            }
+            
+            //Testing the existence of the property
+            test = xml.SelectSingleNode("/config/property[attribute::name='" + property_name + "']") != null ? true : false;
 
             return test;
         }
+
         #endregion
 
         #region Path
+        //Sets a specific Library path
         public void set_library_path(String path)
         {
             this.LibraryPath = path;

@@ -42,7 +42,7 @@ namespace MeteorSkinLibrary
             {
                 textBox1.Text = path;
                 textBox1.BackColor = Color.LightGreen;
-                properties.add("explorer_workspace", path);
+                properties.property_add("explorer_workspace", path);
                 message.Text = "Workspace path saved";
 
             }
@@ -50,7 +50,7 @@ namespace MeteorSkinLibrary
             {
                 textBox1.Text = path;
                 textBox1.BackColor = Color.LightCoral;
-                properties.add("explorer_workspace", path);
+                properties.property_add("explorer_workspace", path);
                 message.Text = "Workspace path wasn't named workspace but was saved";
             }
         }
@@ -62,11 +62,11 @@ namespace MeteorSkinLibrary
 
         public void retrieve_config()
         {
-            textBox1.Text = properties.get("explorer_workspace");
+            textBox1.Text = properties.property_get("explorer_workspace");
 
-            if(properties.check("datafolder")){
+            if(properties.property_check("datafolder")){
 
-                String locale = properties.get("datafolder");
+                String locale = properties.property_get("datafolder");
                 String language = "";
                 if (locale != "data")
                 {
@@ -124,10 +124,10 @@ namespace MeteorSkinLibrary
             message.Text = "";
             message.ForeColor = Color.Green;
 
-            checkBox8.Checked = properties.get("unlocalised") == "1" ? true : false;
-            checkBox9.Checked = properties.get("logging") == "1" ? true : false;
-            checkBox10.Checked = properties.get("beta") == "1" ? true : false;
-            checkBox11.Checked = properties.get("dev") == "1" ? true : false;
+            checkBox8.Checked = properties.property_get("unlocalised") == "1" ? true : false;
+            checkBox9.Checked = properties.property_get("logging") == "1" ? true : false;
+            checkBox10.Checked = properties.property_get("beta") == "1" ? true : false;
+            checkBox11.Checked = properties.property_get("dev") == "1" ? true : false;
 
         }
 
@@ -189,7 +189,7 @@ namespace MeteorSkinLibrary
                     break;
             }
             message.Text = "Data folder set to : " + datafolder;
-            properties.add("datafolder",datafolder);
+            properties.property_add("datafolder",datafolder);
         }
 
         private void localisationbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -216,7 +216,7 @@ namespace MeteorSkinLibrary
         private void checkBox8_CheckedChanged(object sender, EventArgs e)
         {
             String val = checkBox8.Checked ? "1" : "0";
-            properties.set("unlocalised", val);
+            properties.property_set("unlocalised", val);
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -227,14 +227,14 @@ namespace MeteorSkinLibrary
                 if (Path.GetFileName(path) == "workspace")
                 {
                     textBox1.BackColor = Color.LightGreen;
-                    properties.add("explorer_workspace", path);
+                    properties.property_add("explorer_workspace", path);
                     message.Text = "Workspace path saved";
 
                 }
                 else
                 {
                     textBox1.BackColor = Color.LightCoral;
-                    properties.add("explorer_workspace", path);
+                    properties.property_add("explorer_workspace", path);
                     message.Text = "Workspace path wasn't named workspace but was saved";
                 }
             }
@@ -244,11 +244,11 @@ namespace MeteorSkinLibrary
         {
             if (checkBox9.Checked)
             {
-                properties.add("logging", "1");
+                properties.property_add("logging", "1");
                 message.Text = "Logging activated";
             }else
             {
-                properties.add("logging", "0");
+                properties.property_add("logging", "0");
                 message.Text = "Logging deactivated";
             }
             
@@ -258,12 +258,12 @@ namespace MeteorSkinLibrary
         {
             if (checkBox10.Checked)
             {
-                properties.add("beta", "1");
+                properties.property_add("beta", "1");
                 message.Text = "Test builds activated";
             }
             else
             {
-                properties.add("beta", "0");
+                properties.property_add("beta", "0");
                 message.Text = "Test builds deactivated";
             }
         }
@@ -272,12 +272,12 @@ namespace MeteorSkinLibrary
         {
             if (checkBox11.Checked)
             {
-                properties.add("dev", "1");
+                properties.property_add("dev", "1");
                 message.Text = "Advanced options activated";
             }
             else
             {
-                properties.add("dev", "0");
+                properties.property_add("dev", "0");
                 message.Text = "Advanced options deactivated";
             }
         }

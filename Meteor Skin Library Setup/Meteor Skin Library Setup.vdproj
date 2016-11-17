@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0B3AC09E33B4489B885670036E820D1C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_111A0C67A4F3005AC19156C37A102345"
         "OwnerKey" = "8:_DE5D0D6326D54E699EF2FC5C66CB5272"
         "MsmSig" = "8:_UNDEFINED"
@@ -40,6 +46,12 @@
         "Entry"
         {
         "MsmKey" = "8:_11CBEE6B19974EA3923000168F843F8E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_15D2EA95D28F4AB7A9E02545AFEE0AF3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -87,12 +99,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_28E63E98E2714313B7FA4433F6534961"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_34B584C151054C97A0836AB9FCDA2596"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -106,6 +112,12 @@
         "Entry"
         {
         "MsmKey" = "8:_3C7EDFC7B5CF488283854E96D4640D58"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_496A23ABFE7A4B03A1A1208A28263A03"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -171,6 +183,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_69744F4684FB46C3A08D4822C2BEE81F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6A37FD385C844DB2B4CDF21755257472"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -178,6 +196,12 @@
         "Entry"
         {
         "MsmKey" = "8:_6ACDA9EB39E44BA484ED49B0EEF57592"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6C280EAA7784404F9E69EF011409E847"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -292,12 +316,6 @@
         "Entry"
         {
         "MsmKey" = "8:_A8749F6C302343549248EA98D37C914A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A8F2C6FD8F444CF0B1BC87C6F0458A9C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -441,6 +459,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F3C64CBDE96449399C2F370E11B4EBF4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F9D101D33A904EFB855E2C086942CE79"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -466,7 +490,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F3BAA3D1894B49C5B1F4015A12DBAB02"
+        "OwnerKey" = "8:_7844E62248B9C0C0DA9E289F587E35A3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -478,7 +502,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7844E62248B9C0C0DA9E289F587E35A3"
+        "OwnerKey" = "8:_F3BAA3D1894B49C5B1F4015A12DBAB02"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -576,6 +600,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B3AC09E33B4489B885670036E820D1C"
+            {
+            "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\mmsl_img\\missing.png"
+            "TargetName" = "8:missing.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F4392AA7D7724E8091D402B094545409"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_111A0C67A4F3005AC19156C37A102345"
             {
             "AssemblyRegister" = "3:1"
@@ -583,11 +627,6 @@
             "AssemblyAsmDisplayName" = "8:SharpCompress, Version=0.10.3.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_111A0C67A4F3005AC19156C37A102345"
-                    {
-                    "Name" = "8:SharpCompress.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SharpCompress.dll"
             "TargetName" = "8:"
@@ -653,6 +692,26 @@
             "TargetName" = "8:Charizard.png"
             "Tag" = "8:"
             "Folder" = "8:_41E14324F4EC4B2B8B283D4FE1D608EA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15D2EA95D28F4AB7A9E02545AFEE0AF3"
+            {
+            "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\updatepackage.xml"
+            "TargetName" = "8:updatepackage.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_3D8912FE11584D3998A1D5D43806406C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -807,26 +866,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_28E63E98E2714313B7FA4433F6534961"
-            {
-            "SourcePath" = "8:D:\\SB4\\releases\\packages\\newbuild\\newcorepackage.xml"
-            "TargetName" = "8:newcorepackage.xml"
-            "Tag" = "8:"
-            "Folder" = "8:_3D8912FE11584D3998A1D5D43806406C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_34B584C151054C97A0836AB9FCDA2596"
             {
             "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\mmsl_img\\icons\\Lucas.png"
@@ -873,6 +912,26 @@
             "TargetName" = "8:Meta Knight.png"
             "Tag" = "8:"
             "Folder" = "8:_41E14324F4EC4B2B8B283D4FE1D608EA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_496A23ABFE7A4B03A1A1208A28263A03"
+            {
+            "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\mmsl_img\\checked.png"
+            "TargetName" = "8:checked.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F4392AA7D7724E8091D402B094545409"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1087,6 +1146,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_69744F4684FB46C3A08D4822C2BEE81F"
+            {
+            "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\Meteor Skin Library.exe.manifest"
+            "TargetName" = "8:Meteor Skin Library.exe.manifest"
+            "Tag" = "8:"
+            "Folder" = "8:_3D8912FE11584D3998A1D5D43806406C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A37FD385C844DB2B4CDF21755257472"
             {
             "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\mmsl_img\\icons\\Bowser.png"
@@ -1113,6 +1192,26 @@
             "TargetName" = "8:Marth.png"
             "Tag" = "8:"
             "Folder" = "8:_41E14324F4EC4B2B8B283D4FE1D608EA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C280EAA7784404F9E69EF011409E847"
+            {
+            "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\mmsl_img\\unknown.png"
+            "TargetName" = "8:unknown.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F4392AA7D7724E8091D402B094545409"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1214,11 +1313,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_7844E62248B9C0C0DA9E289F587E35A3"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -1484,26 +1578,6 @@
             "TargetName" = "8:Peach.png"
             "Tag" = "8:"
             "Folder" = "8:_41E14324F4EC4B2B8B283D4FE1D608EA"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A8F2C6FD8F444CF0B1BC87C6F0458A9C"
-            {
-            "SourcePath" = "8:D:\\SB4\\releases\\packages\\updater\\updatepackage.xml"
-            "TargetName" = "8:updatepackage.xml"
-            "Tag" = "8:"
-            "Folder" = "8:_3D8912FE11584D3998A1D5D43806406C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1938,6 +2012,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F3C64CBDE96449399C2F370E11B4EBF4"
+            {
+            "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\mmsl_img\\new.png"
+            "TargetName" = "8:new.png"
+            "Tag" = "8:"
+            "Folder" = "8:_F4392AA7D7724E8091D402B094545409"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9D101D33A904EFB855E2C086942CE79"
             {
             "SourcePath" = "8:..\\Meteor Skin Library\\bin\\Debug\\mmsl_img\\icons\\Fighter Mii.png"
@@ -2143,7 +2237,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Meteor Skin Library"
         "ProductCode" = "8:{4FFFBF9E-B96C-4EBC-A011-3C300B853940}"
-        "PackageCode" = "8:{43BEE3D0-DED1-4060-B272-8DF9E981EABC}"
+        "PackageCode" = "8:{41633D07-359F-4E71-AC31-3CAD67C210DB}"
         "UpgradeCode" = "8:{7E5945E5-0291-472B-A02F-D0C785C3138C}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
