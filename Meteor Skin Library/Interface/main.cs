@@ -718,8 +718,6 @@ namespace MeteorSkinLibrary
         #endregion
         #endregion
 
-        
-
         //Character tab
         #region Character Tab
         #region Interactions
@@ -1541,8 +1539,6 @@ namespace MeteorSkinLibrary
         }
 
         #endregion
-
-
 
         //Interface functions
         #region Interface

@@ -89,43 +89,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character.cs" />
-    <Compile Include="config.cs">
+    <Compile Include="Items\Character.cs" />
+    <Compile Include="Interface\config.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="config.Designer.cs">
+    <Compile Include="Interface\config.Designer.cs">
       <DependentUpon>config.cs</DependentUpon>
     </Compile>
-    <Compile Include="Filebank.cs" />
-    <Compile Include="FilebankWindow.cs">
+    <Compile Include="Handlers\filebank_handler.cs" />
+    <Compile Include="Interface\filebank.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FilebankWindow.Designer.cs">
-      <DependentUpon>FilebankWindow.cs</DependentUpon>
+    <Compile Include="Interface\filebank.Designer.cs">
+      <DependentUpon>filebank.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileManager.cs" />
-    <Compile Include="LibraryHandler.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="main.cs">
+    <Compile Include="Handlers\library_handler.cs" />
+    <Compile Include="Handlers\logger.cs" />
+    <Compile Include="Interface\main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main.Designer.cs">
+    <Compile Include="Interface\main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Melee.cs" />
-    <Compile Include="MetaHandler.cs" />
+    <Compile Include="Handlers\melee_handler.cs" />
+    <Compile Include="Handlers\meta_handler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyHandler.cs" />
-    <Compile Include="Skin.cs" />
-    <Compile Include="UICharDBHandler.cs" />
-    <EmbeddedResource Include="config.resx">
+    <Compile Include="Handlers\config_handler.cs" />
+    <Compile Include="Items\Skin.cs" />
+    <Compile Include="Handlers\uichar_handler.cs" />
+    <EmbeddedResource Include="Interface\config.resx">
       <DependentUpon>config.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FilebankWindow.resx">
-      <DependentUpon>FilebankWindow.cs</DependentUpon>
+    <EmbeddedResource Include="Interface\filebank.resx">
+      <DependentUpon>filebank.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main.resx">
+    <EmbeddedResource Include="Interface\main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
