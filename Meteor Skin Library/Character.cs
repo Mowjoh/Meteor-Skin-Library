@@ -20,6 +20,9 @@ namespace MeteorSkinLibrary
         public String fullname;
         public ArrayList skins;
 
+        public ArrayList css_files;
+        
+
         //Character Constructor
         public Character(String full_name, LibraryHandler global_lib, PropertyHandler global_properties, UICharDBHandler global_ui_char, Logger global_log)
         {
@@ -37,6 +40,9 @@ namespace MeteorSkinLibrary
             getSkins();
         }
 
+        #region SkinActions
+
+        #region Actions
         //Retreives the list of skins from the library
         public void getSkins()
         {
@@ -45,12 +51,14 @@ namespace MeteorSkinLibrary
             foreach (String slot in skinlist)
             {
                 int slott;
-                if(int.TryParse(slot, out slott)){
-                    Skin skin = new Skin(fullname, slott, Library.get_skin_libraryname(fullname, slott), Library.get_skin_origin(fullname, slott),Library,properties,log);
+                if (int.TryParse(slot, out slott))
+                {
+                    Skin skin = new Skin(fullname, slott, Library.get_skin_libraryname(fullname, slott), Library.get_skin_origin(fullname, slott), Library, properties, log);
                     skins.Add(skin);
                 }
             }
         }
+
         //Adds a skin to the library
         public Boolean add_skin()
         {
@@ -66,7 +74,7 @@ namespace MeteorSkinLibrary
             }
             catch
             {
-                
+
             }
             return code;
         }
@@ -79,12 +87,14 @@ namespace MeteorSkinLibrary
             skins.Remove(deleted);
             remake_skinlist();
         }
+        #endregion
 
+        #region Swap
         //Swaps two skins
         public void swap_skin(int origin, int destination)
         {
             Skin ori = (Skin)skins[origin];
-            if(!(skins.Count == (origin + 1) && destination == origin +1))
+            if (!(skins.Count == (origin + 1) && destination == origin + 1))
             {
                 Skin dest = (Skin)skins[destination];
                 int action = 0;
@@ -142,11 +152,12 @@ namespace MeteorSkinLibrary
                         dest.reload_default_skin();
                         break;
                 }
-            }else
-            {
-               
             }
-            
+            else
+            {
+
+            }
+
         }
 
         //Swaps skin files and library info
@@ -162,36 +173,12 @@ namespace MeteorSkinLibrary
             s1.move(s2slot);
 
             //Swapping in library
-            Library.swap_skin(fullname, s1slot +1, s2slot +1);
+            Library.swap_skin(fullname, s1slot + 1, s2slot + 1);
 
         }
+        #endregion
 
-        //moves skin to first empty slot it finds
-        public void remake_skinlist()
-        {
-            for(int i = 0; i < skins.Count; i++)
-            {
-                Skin current = (Skin)skins[i];
-                if(current.modelslot != i)
-                {
-                    current.move(i);
-                }
-            }
-        }
-
-        //moves skin to first empty slot it finds
-        public void remake_skinlist_inverted()
-        {
-            for (int i = (skins.Count-1); i >= 0; i--)
-            {
-                Skin current = (Skin)skins[i];
-                if (current.modelslot != i)
-                {
-                    current.move(i);
-                }
-            }
-        }
-
+        #region Files
         public void check_all_files()
         {
             ArrayList skinlist = Library.get_skin_list(fullname);
@@ -201,6 +188,42 @@ namespace MeteorSkinLibrary
                 skin.check_missing_files_status();
             }
         }
+
+        #endregion
+
+        #region Lists
+        //moves skin to first empty slot it finds
+        public void remake_skinlist()
+        {
+            for (int i = 0; i < skins.Count; i++)
+            {
+                Skin current = (Skin)skins[i];
+                if (current.modelslot != i)
+                {
+                    current.move(i);
+                }
+            }
+        }
+
+        //moves skin to first empty slot it finds
+        public void remake_skinlist_inverted()
+        {
+            for (int i = (skins.Count - 1); i >= 0; i--)
+            {
+                Skin current = (Skin)skins[i];
+                if (current.modelslot != i)
+                {
+                    current.move(i);
+                }
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region CharacterFiles
+            
+        #endregion
 
     }
 }

@@ -139,9 +139,6 @@ namespace MeteorSkinLibrary
                 {
                     delete_model(this.models[0].ToString());
                 }
-                    
-                
-                
             }
             if(csps.Count > 0)
             {
@@ -152,6 +149,7 @@ namespace MeteorSkinLibrary
             }
             load_csp();
             load_models();
+
             if(val == 0)
             {
                 recreateMeta();
@@ -283,20 +281,44 @@ namespace MeteorSkinLibrary
                 String FilePath2;
                 if (dlc)
                 {
-                    logger.log("char is dlc");
+                   
+                    logger.log("char is dlc | character file");
                     FilePath = dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
-                    logger.log("dlc csp path : "+ FilePath);
+                    logger.log("dlc csp path : " + FilePath);
                     if (Library.get_moved_dlc_status(fullname))
                     {
                         logger.log("char is moved");
                         FilePath2 = csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut";
                         if (!File.Exists(FilePath2))
                         {
-                            logger.log("file doesn't exist for csp path, set missing to true");
-                            Library.set_csp_workspace_status(fullname, slot, csp_name, "missing");
-                            missing = true;
+                            if (csp_name == "chr_10" | csp_name == "chrn_11")
+                            {
+                                logger.log("file doesn't exist for csp path, set missing to true");
+                                Library.delete_skin_csp(fullname, slot, csp_name);
+                                missing = true;
+                            }
+                            else
+                            {
+                                logger.log("file doesn't exist for csp path, set missing to true");
+                                Library.set_csp_workspace_status(fullname, slot, csp_name, "missing");
+                                missing = true;
+                            }
+                                
+
+                        }else
+                        {
+                            if (csp_name == "chr_10")
+                            {
+                                Library.add_character_icon(fullname, slot, csp_name + "_" + cspfolder + "_" + slotstring);
+                            }
+                            else
+                            {
+                                Library.add_character_nameplate(fullname, slot, csp_name + "_" + cspfolder + "_" + slotstring);
+                            }
                         }
                     }
+                    
+                    
                 }
                 else
                 {
@@ -473,8 +495,16 @@ namespace MeteorSkinLibrary
 
             if (Directory.Exists(folder_path))
             {
+                foreach(String file in Directory.GetFiles(folder_path, "*", SearchOption.AllDirectories)){
+                    FileInfo fi = new FileInfo(file);
+                    if (fi.IsReadOnly)
+                    {
+                        fi.IsReadOnly = false;
+                    }
+                }
                 Directory.Delete(folder_path, true);
             }
+
             Library.delete_skin_model(this.fullname, this.slot, model_name);
             this.models.Remove(model_name);
         }
@@ -638,9 +668,6 @@ namespace MeteorSkinLibrary
 
         public void delete_csp(String csp_name)
         {
-            this.models.Remove(csp_name);
-            Library.delete_skin_csp(this.fullname, this.slot, csp_name);
-
             //If DLC
             if (dlc)
             {
@@ -650,6 +677,11 @@ namespace MeteorSkinLibrary
                     //Delete to regular folder
                     if(File.Exists(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
                     {
+                        FileInfo fi = new FileInfo(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                        if (fi.IsReadOnly)
+                        {
+                            fi.IsReadOnly = false;
+                        }
                         File.Delete(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
                     }
                 }
@@ -658,6 +690,12 @@ namespace MeteorSkinLibrary
                     //Delete to append folder
                     if (File.Exists(dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
                     {
+                        FileInfo fi = new FileInfo(dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                        if (fi.IsReadOnly)
+                        {
+                            fi.IsReadOnly = false;
+                        }
+
                         File.Delete(dlc_csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
                     }
                     
@@ -668,10 +706,18 @@ namespace MeteorSkinLibrary
                 //Delete to regular folder
                 if (File.Exists(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut"))
                 {
+                    FileInfo fi = new FileInfo(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
+                    if (fi.IsReadOnly)
+                    {
+                        fi.IsReadOnly = false;
+                    }
                     File.Delete(csppath + csp_name + "/" + csp_name + "_" + cspfolder + "_" + slotstring + ".nut");
                 }
                 
             }
+
+            this.models.Remove(csp_name);
+            Library.delete_skin_csp(this.fullname, this.slot, csp_name);
         }
 
         public void rename_csp(String csp_name,int slot)

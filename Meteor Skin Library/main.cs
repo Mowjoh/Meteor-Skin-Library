@@ -122,6 +122,7 @@ namespace MeteorSkinLibrary
 
         #endregion
         Boolean fakeargs = false;
+        
 
         public main(String[] args)
         {
@@ -253,6 +254,8 @@ namespace MeteorSkinLibrary
                     //Launch update process
                     proper_update();
                     check_updater();
+
+
                 }
 
 
@@ -312,6 +315,169 @@ namespace MeteorSkinLibrary
         private void menu_packer_reset(object sender, EventArgs e)
         {
             packer_reset();
+        }
+        #endregion
+        #region WorkspaceMenu
+        #region MSL
+        //Scans the workspace for differences and then imports any missing file found
+        private void menu_refresh_workspace_missing(object sender, EventArgs e)
+        {
+            this.workspace_select = 2;
+            //Processing 
+            process_start("Importing missing files in workspace", true);
+            if (listview_characters.SelectedIndices.Count > 0)
+            {
+                workspace_char = listview_characters.SelectedItems[0].Text;
+            }
+            import_worker.RunWorkerAsync();
+        }
+        //Scans the workspace for differences
+        private void menu_refresh_workspace(object sender, EventArgs e)
+        {
+            //Processing 
+            process_start("Refreshing file list", true);
+            if (listview_characters.SelectedIndices.Count > 0)
+            {
+                workspace_char = listview_characters.SelectedItems[0].Text;
+            }
+            refresh_worker.RunWorkerAsync();
+        }
+        private void menu_s4e_export(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Doing this will erase fighter/[name]/model for every character that has mods and ui/replace/chr and ui/replace/append/chr from Smash Explorer's workspace. Are you sure you've made a backup? If yes, you can validate these changes and replace S4E's content by MSL's content", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                process_start("Exporting to Sm4sh Explorer", true);
+                if (listview_characters.SelectedIndices.Count > 0)
+                {
+                    workspace_char = listview_characters.SelectedItems[0].Text;
+                }
+                export_worker.RunWorkerAsync();
+            }
+        }
+        #endregion
+        #region S4E
+        //Launches "Replace Workspace"
+        private void menu_s4e_import(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("This will import all the skins from S4E. Doing this will erase your actual workspace, and library.", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                //Processing 
+                process_start("Importing from Sm4sh Explorer", true);
+                if (reset_import())
+                {
+                    workspace_select = 0;
+                    if (listview_characters.SelectedIndices.Count > 0)
+                    {
+                        last_char = listview_characters.SelectedItems[0].Text;
+                    }
+                    import_worker.RunWorkerAsync();
+                }
+                else
+                {
+                    message("import", 0, 0);
+                }
+            }
+        }
+        private void menu_s4e_import_missing(object sender, EventArgs e)
+        {
+            this.workspace_select = 1;
+
+            //Processing 
+            process_start("Importing missing files from S4E", true);
+            if (listview_characters.SelectedIndices.Count > 0)
+            {
+                workspace_char = listview_characters.SelectedItems[0].Text;
+            }
+            import_worker.RunWorkerAsync();
+        }
+
+        #endregion
+        #region Backup
+        private void backupMSLsWorkspaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                backup_select = 1;
+                this.steps = 1;
+                process_start("Backuping MSL's Workspace", true);
+                backup_worker.RunWorkerAsync();
+            }
+            catch (Exception)
+            {
+
+                write("MSL's backup failed", 0);
+            }
+
+        }
+        private void backupS4EsWorkspaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                backup_select = 2;
+                this.steps = 1;
+                process_start("Backuping S4E's Workspace", true);
+                backup_worker.RunWorkerAsync();
+            }
+            catch (Exception)
+            {
+                write("S4E's backup failed", 0);
+            }
+        }
+        #endregion
+        #region Folders
+        //Opens the application startup path
+        private void folder_open_startup_path(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.StartupPath);
+        }
+        //Opens the folder mmsl_workspace
+        private void folder_open_workspace(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.StartupPath + "/mmsl_workspace");
+        }
+        //Opens the folder mmsl_packages
+        private void folder_open_packages(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.StartupPath + "/mmsl_packages");
+        }
+        //Opens the folder mmsl_backups
+        private void folder_open_backups(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(Application.StartupPath + "/mmsl_backups");
+            }
+            catch
+            {
+                write("No backups yet", 0);
+            }
+
+        }
+        #endregion
+
+        #endregion
+        #region Tools
+        //Launch S4E
+        private void tool_launch_s4e()
+        {
+            //Setting up variables
+            ProcessStartInfo pro = new ProcessStartInfo();
+            String s4path = properties.property_get("explorer_workspace");
+            String path = Directory.GetParent(s4path).ToString() + "/Sm4shFileExplorer.exe";
+            pro.FileName = path;
+            pro.WorkingDirectory = Directory.GetParent(s4path).ToString();
+            //Process start
+            Process x = Process.Start(pro);
+            //Logging operation
+            logg.log("trying to launch S4E at " + path);
+        }
+        #endregion
+        #region FileBank
+        private void meteorFileBankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //launching window
+            FilebankWindow fbw = new FilebankWindow();
+            fbw.ShowDialog();
         }
         #endregion
         #region OptionMenu 
@@ -535,54 +701,6 @@ namespace MeteorSkinLibrary
             return false;
         }
         #endregion<
-        #region SmashExplorerMenu 
-        //Launches "Replace Workspace"
-        private void menu_s4e_import(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("This will import all the skins from S4E. Doing this will erase your actual workspace, and library.", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                //Processing 
-                process_start("Importing from Sm4sh Explorer", true);
-                if (reset_import())
-                {
-                    workspace_select = 0;
-                    if (listview_characters.SelectedIndices.Count > 0)
-                    {
-                        last_char = listview_characters.SelectedItems[0].Text;
-                    }
-                    import_worker.RunWorkerAsync();
-                }
-                else
-                {
-                    message("import", 0, 0);
-                }
-            }
-        }
-        private void menu_s4e_import_missing(object sender, EventArgs e)
-        {
-            this.workspace_select = 1;
-
-            //Processing 
-            process_start("Importing missing files from S4E", true);
-            if (listview_characters.SelectedIndices.Count > 0)
-            {
-                workspace_char = listview_characters.SelectedItems[0].Text;
-            }
-            import_worker.RunWorkerAsync();
-        }
-        private void menu_s4e_export(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Doing this will erase fighter/[name]/model for every character that has mods and ui/replace/chr and ui/replace/append/chr from Smash Explorer's workspace. Are you sure you've made a backup? If yes, you can validate these changes and replace S4E's content by MSL's content", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                process_start("Exporting to Sm4sh Explorer", true);
-                if (listview_characters.SelectedIndices.Count > 0)
-                {
-                    workspace_char = listview_characters.SelectedItems[0].Text;
-                }
-                export_worker.RunWorkerAsync();
-            }
-        }
-        #endregion
         #region HelpMenu
         //Shows the about window
         private void about(object sender, EventArgs e)
@@ -598,112 +716,483 @@ namespace MeteorSkinLibrary
             System.Diagnostics.Process.Start("https://github.com/Mowjoh/Meteor-Skin-Library/wiki");
         }
         #endregion
-        #region WorkspaceMenu
-        //Scans the workspace for differences and then imports any missing file found
-        private void menu_refresh_workspace_missing(object sender, EventArgs e)
-        {
-            this.workspace_select = 2;
-            //Processing 
-            process_start("Importing missing files in workspace", true);
-            if (listview_characters.SelectedIndices.Count > 0)
-            {
-                workspace_char = listview_characters.SelectedItems[0].Text;
-            }
-            import_worker.RunWorkerAsync();
-        }
-        //Scans the workspace for differences
-        private void menu_refresh_workspace(object sender, EventArgs e)
-        {
-            //Processing 
-            process_start("Refreshing file list", true);
-            if (listview_characters.SelectedIndices.Count > 0)
-            {
-                workspace_char = listview_characters.SelectedItems[0].Text;
-            }
-            refresh_worker.RunWorkerAsync();
-        }
         #endregion
-        #region Backup
-        private void backupMSLsWorkspaceToolStripMenuItem_Click(object sender, EventArgs e)
+
+        
+
+        //Character tab
+        #region Character Tab
+        #region Interactions
+        //When a character is selected
+        private void character_selected(object sender, EventArgs e)
         {
             try
             {
-                backup_select = 1;
-                this.steps = 1;
-                process_start("Backuping MSL's Workspace", true);
-                backup_worker.RunWorkerAsync();
+                selected_char = new Character(listview_characters.SelectedItems[0].Text, Library, properties, uichar, logg);
+
+                skin_ListBox_reload();
+
+                state_check();
+            }
+            catch
+            {
+                write("Character select failed", 0);
+            }
+
+        }
+
+        //When a character is selected NEW
+        private void Characterlist2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listview_characters.SelectedItems.Count > 0)
+                {
+                    selected_char = new Character(listview_characters.SelectedItems[0].Text, Library, properties, uichar, logg);
+                    skin_ListBox_reload();
+                    state_check();
+                    textBox_character_ui.Text = "";
+                }
+
+            }
+            catch
+            {
+                write("Could not change selected character", 0);
+            }
+        }
+        #endregion
+        #region CSS Tab
+        //UI char db override settings saved
+        private void character_uichar_override(object sender, EventArgs e)
+        {
+            try
+            {
+                int val = 0;
+                if (int.TryParse(textBox_character_ui.Text, out val))
+                {
+                    uichar.setFile(int.Parse(Library.get_ui_char_db_id(listview_characters.SelectedItems[0].Text)), 7, val);
+                    write("Override ui_character_db settings saved", 2);
+                }
+                else
+                {
+                    write("What you entered wasn't a number", 1);
+                }
+            }
+            catch
+            {
+                write("Could not update ui_character_db", 0);
+            }
+        }
+        #endregion
+        #region Action tab
+        private Boolean reset_skins(int startindex, int endindex)
+        {
+            //If a character is selected
+            if (listview_characters.SelectedIndices.Count > 0)
+            {
+                try
+                {
+
+                    for (int i = startindex; i <= endindex; i++)
+                    {
+                        try
+                        {
+                            Skin work_skin = (Skin)selected_char.skins[i];
+                            if (work_skin.origin == "Default")
+                            {
+                                work_skin.clean_skin(0);
+                                work_skin.reload_default_skin();
+                            }
+                            else
+                            {
+                                work_skin.delete_skin();
+                            }
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+
+                    write("Skins reset complete", 2);
+                }
+                catch (Exception)
+                {
+                    write("Skins reset presented errors", 0);
+                }
+
+                selected_char.getSkins();
+                skin_ListBox_reload();
+
+            }
+
+            return true;
+        }
+
+        private void reset_default_skins(object sender, EventArgs e)
+        {
+            //If a character is selected
+            if (listview_characters.SelectedIndices.Count > 0)
+            {
+                try
+                {
+                    int basecount = 0;
+                    if (selected_char.fullname == "Little Mac")
+                    {
+                        basecount = 16;
+                    }
+                    else
+                    {
+                        basecount = 8;
+                    }
+
+                    reset_skins(1, basecount);
+
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void reset_extra_skins(object sender, EventArgs e)
+        {
+            //If a character is selected
+            if (listview_characters.SelectedIndices.Count > 0)
+            {
+                try
+                {
+                    int basecount = 0;
+                    if (selected_char.fullname == "Little Mac")
+                    {
+                        basecount = 16;
+                    }
+                    else
+                    {
+                        basecount = 8;
+                    }
+
+                    reset_skins(basecount, selected_char.skins.Count);
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void reset_all_skins(object sender, EventArgs e)
+        {
+            //If a character is selected
+            if (listview_characters.SelectedIndices.Count > 0)
+            {
+                try
+                {
+                    reset_skins(0, selected_char.skins.Count);
+                }
+                catch
+                {
+
+
+                }
+            }
+        }
+        #endregion
+        #endregion
+
+        //Skin tab
+        #region Skin Tab 
+        #region Interactions
+        //When a skin is selected
+        private void skin_selected(object sender, EventArgs e)
+        {
+            try
+            {
+                skin_details_reload();
+                state_check();
+                metadata_reload();
+            }
+            catch
+            {
+                write("Could not select skin", 0);
+            }
+
+        }
+
+        //When the move up button is pressed
+        private void move_up_skin(object sender, EventArgs e)
+        {
+            try
+            {
+                if (selected_skin.origin != "Default")
+                {
+                    selected_char.swap_skin(listview_skins.SelectedIndices[0], listview_skins.SelectedIndices[0] - 1);
+                    skin_ListBox_reload();
+
+                    focus_skin(selected_skin.modelslot);
+                }
+            }
+            catch
+            {
+                write("the process messed up, you may be in trouble :o", 0);
+            }
+
+
+        }
+
+        //When the move down button is pressed
+        private void move_down_skin(object sender, EventArgs e)
+        {
+            try
+            {
+                if (selected_skin.origin != "Default")
+                {
+                    selected_char.swap_skin(listview_skins.SelectedIndices[0], listview_skins.SelectedIndices[0] + 1);
+                    skin_ListBox_reload();
+                    listview_skins.FocusedItem = listview_skins.Items[selected_skin.modelslot];
+                    listview_skins.Items[selected_skin.modelslot].Selected = true;
+                    listview_skins.Select();
+                    listview_skins.Items[selected_skin.modelslot].EnsureVisible();
+                }
+            }
+            catch
+            {
+                write("the process messed up, you may be in trouble :o", 0);
+            }
+
+
+        }
+        #endregion
+        #region File Info Tab
+        //Skin Info Saved button is pressed
+        private void save_info_button(object sender, EventArgs e)
+        {
+            set_skin_libraryname();
+        }
+
+        //Skin Info Saved by enter key press
+        private void save_info_enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                set_skin_libraryname();
+            }
+        }
+
+        //Sets the info
+        private void set_skin_libraryname()
+        {
+            try
+            {
+                int index = listview_skins.SelectedIndices[0];
+                this.selected_skin.set_library_name(textbox_skin_libraryname.Text);
+                skin_ListBox_reload();
+                state_check();
+
+                //Selects the last skin
+                focus_skin(index);
+
+
+            }
+            catch
+            {
+                write("Could not set library name", 0);
+            }
+        }
+
+        //When Delete is pressed
+        private void skin_delete(object sender, EventArgs e)
+        {
+            int index = listview_skins.SelectedIndices[0] + 1;
+            int saved_index = listview_skins.SelectedIndices[0];
+            int max = listview_skins.Items.Count;
+
+            try
+            {
+                if (selected_skin.origin == "Default" | selected_skin.origin == "Default Replaced")
+                {
+                    write("Thy cannot delete Default slots",1);
+                }
+                else
+                {
+                    try
+                    {
+                        selected_char.delete_skin(this.selected_skin.modelslot);
+                        try
+                        {
+                            Library.reload_skin_order(selected_char.fullname);
+
+                            try
+                            {
+                                selected_char.getSkins();
+
+                                skin_ListBox_reload();
+                                skin_details_reload();
+                                write("Deleted slot " + index, 2);
+
+                                try
+                                {
+                                    uichar.setFile(int.Parse(Library.get_ui_char_db_id(listview_characters.SelectedItems[0].Text)), 7, listview_skins.Items.Count);
+
+
+                                }
+                                catch
+                                {
+                                    write("Could not change ui_character_db", 0);
+                                }
+                            }
+                            catch
+                            {
+                                write("Could not reload the skins info", 0);
+                            }
+                        }
+                        catch
+                        {
+                            write("Could not reload the skin order", 0);
+                        }
+                    }
+                    catch
+                    {
+                        write("Could not delete the skin files", 0);
+                    }
+                }
+
+                //focus
+                state_check();
+                if (!(saved_index + 1 < listview_skins.Items.Count))
+                {
+                    //Selects the last skin
+                    focus_skin(saved_index - 1);
+                }
+                else
+                {
+                    //Selects the last skin
+                    focus_skin(listview_skins.Items.Count - 1);
+                }
+                
+            }
+            catch
+            {
+                write("Could not delete the skin", 0);
+            }
+        }
+
+        //When Clean Files is pressed
+        private void clean_files_clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                this.selected_skin.clean_skin(0);
+                try
+                {
+                    skin_details_reload();
+                    skin_ListBox_reload();
+                    state_check();
+
+                }
+                catch
+                {
+                    write("could not reload skin details", 0);
+                }
+            }
+            catch
+            {
+                write("could not clean files", 0);
+            }
+        }
+
+        //packages skin into meteor skin
+        private void package_meteor(object sender, EventArgs e)
+        {
+            try
+            {
+                this.selected_skin.package_meteor();
+                try
+                {
+                    pack_add_item(selected_skin.get_meteor_info());
+                    write("This skin was added to the current pack session", 2);
+                    started_pack = true;
+                }
+                catch
+                {
+                    write("This skin was not pushed to the file packer", 0);
+                }
+            }
+            catch
+            {
+                write("This skin was not packed", 0);
+            }
+
+        }
+        #endregion
+        #region File Manager Tab
+        //On model selected
+        private void model_selected(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listview_skin_models.SelectedItems.Count == 1)
+                {
+                    label_skin_selected_model.Text = "Selected Model : " + listview_skin_models.SelectedItems[0].Text;
+                    button_skin_delete_model.Enabled = true;
+                }
+                state_check();
+            }
+            catch
+            {
+                write("could not select model", 0);
+            }
+
+        }
+        //On model delete
+        private void remove_selected_model_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                selected_skin.delete_model(listview_skin_models.SelectedItems[0].Text);
+                skin_details_reload();
+                state_check();
             }
             catch (Exception)
             {
 
-                write("MSL's backup failed", 0);
+                write("The model could not be properly removed");
             }
-
         }
-        private void backupS4EsWorkspaceToolStripMenuItem_Click(object sender, EventArgs e)
+        //When a csp is selected
+        private void csp_selected(object sender, EventArgs e)
         {
             try
             {
-                backup_select = 2;
-                this.steps = 1;
-                process_start("Backuping S4E's Workspace", true);
-                backup_worker.RunWorkerAsync();
+                if (listview_skin_csp.SelectedItems.Count == 1)
+                {
+                    selected_csp_name.Text = "Selected CSP : " + listview_skin_csp.SelectedItems[0].Text;
+                    button_skin_delete_csp.Enabled = true;
+                }
+                state_check();
             }
             catch (Exception)
             {
-                write("S4E's backup failed", 0);
+
+                write("Could not select csp", 0);
             }
         }
-        #endregion
-
-        #region Folders
-        //Opens the application startup path
-        private void folder_open_startup_path(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(Application.StartupPath);
-        }
-        //Opens the folder mmsl_workspace
-        private void folder_open_workspace(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(Application.StartupPath + "/mmsl_workspace");
-        }
-        //Opens the folder mmsl_packages
-        private void folder_open_packages(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(Application.StartupPath+"/mmsl_packages");
-        }
-        //Opens the folder mmsl_backups
-        private void folder_open_backups(object sender, EventArgs e)
+        //When a csp is deleted
+        private void remove_selected_csp_Click(object sender, EventArgs e)
         {
             try
             {
-                System.Diagnostics.Process.Start(Application.StartupPath + "/mmsl_backups");
-            }catch
-            {
-                write("No backups yet", 0);
+                this.selected_skin.delete_csp(listview_skin_csp.SelectedItems[0].Text);
+                skin_details_reload();
+                state_check();
             }
-            
-        }
-        #endregion
+            catch (Exception)
+            {
 
-        #region Tools
-        //Launch S4E
-        private void tool_launch_s4e()
-        {
-            //Setting up variables
-            ProcessStartInfo pro = new ProcessStartInfo();
-            String s4path = properties.property_get("explorer_workspace");
-            String path = Directory.GetParent(s4path).ToString() + "/Sm4shFileExplorer.exe";
-            pro.FileName = path;
-            pro.WorkingDirectory = Directory.GetParent(s4path).ToString();
-            //Process start
-            Process x = Process.Start(pro);
-            //Logging operation
-            logg.log("trying to launch S4E at " + path);
+                write("The csp couldn't be properly removed", 0);
+            }
         }
-        #endregion
-
-        #endregion
 
         //Contextual menus
         #region Contextual Menus
@@ -757,329 +1246,8 @@ namespace MeteorSkinLibrary
 
         #endregion
 
-        //Main Control Area
-        #region Character Tab
-        //When a character is selected
-        private void character_selected(object sender, EventArgs e)
-        {
-            try
-            {
-                selected_char = new Character(listview_characters.SelectedItems[0].Text, Library, properties, uichar, logg);
-
-                skin_ListBox_reload();
-
-                state_check();
-            }
-            catch
-            {
-                write("Character select failed",0);
-            }
-            
-        }
-
-        //When a character is selected NEW
-        private void Characterlist2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (listview_characters.SelectedItems.Count > 0)
-                {
-                    selected_char = new Character(listview_characters.SelectedItems[0].Text, Library, properties, uichar, logg);
-                    skin_ListBox_reload();
-                    state_check();
-                    textBox_character_ui.Text = "";
-                }
-
-            }catch
-            {
-                write("Could not change selected character", 0);
-            }
-        }
-
-        //UI char db override settings saved
-        private void character_uichar_override(object sender, EventArgs e)
-        {
-            try
-            {
-                int val = 0;
-                if (int.TryParse(textBox_character_ui.Text, out val))
-                {
-                    uichar.setFile(int.Parse(Library.get_ui_char_db_id(listview_characters.SelectedItems[0].Text)), 7, val);
-                    write("Override ui_character_db settings saved",2);
-                }
-                else
-                {
-                    write("What you entered wasn't a number",1);
-                }
-            }
-            catch
-            {
-                write("Could not update ui_character_db", 0);
-            }
-        }
         #endregion
-        #region Skin Tab 
-        //When a skin is selected
-        private void skin_selected(object sender, EventArgs e)
-        {
-            try
-            {
-                skin_details_reload();
-                state_check();
-                metadata_reload();
-            }
-            catch
-            {
-                write("Could not select skin", 0);
-            }
-            
-        }
-
-        //Skin Info Saved button is pressed
-        private void set_skin_libraryname(object sender, EventArgs e)
-        {
-            try
-            {
-                int index = listview_skins.SelectedIndices[0];
-                this.selected_skin.set_library_name(textbox_skin_libraryname.Text);
-                skin_ListBox_reload();
-                state_check();
-
-                //Selects the last skin
-                focus_skin(index);
-                
-                
-            }
-            catch
-            {
-                write("Could not set library name", 0);
-            }
-            
-
-        }
-
-        //Skin Info Saved by enter key press
-        private void SkinNameText_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                try
-                {
-                    int index = listview_skins.SelectedIndices[0];
-                    this.selected_skin.set_library_name(textbox_skin_libraryname.Text);
-                    skin_ListBox_reload();
-                    state_check();
-
-                    //Selects the last skin
-                    focus_skin(index);
-
-
-                }
-                catch
-                {
-                    write("Could not set library name", 0);
-                }
-            }
-        }
-
-        //When Delete is pressed
-        private void skin_delete(object sender, EventArgs e)
-        {
-            int index = listview_skins.SelectedIndices[0] + 1;
-            int saved_index = listview_skins.SelectedIndices[0];
-            int max = listview_skins.Items.Count;
-
-            try
-            {
-                if (selected_skin.origin == "Default" | selected_skin.origin == "Default Replaced")
-                {
-                    write("Thy cannot delete Default slots");
-                }
-                else
-                {
-                    selected_char.delete_skin(this.selected_skin.modelslot);
-                    Library.reload_skin_order(selected_char.fullname);
-                    selected_char.getSkins();
-
-                    skin_ListBox_reload();
-                    skin_details_reload();
-                    write("Deleted slot " + index);
-                }
-
-                state_check();
-
-                uichar.setFile(int.Parse(Library.get_ui_char_db_id(listview_characters.SelectedItems[0].Text)), 7, listview_skins.Items.Count);
-                if (!(saved_index + 1 < listview_skins.Items.Count))
-                {
-                    //Selects the last skin
-                    focus_skin(saved_index - 1);
-                }
-                else
-                {
-                    //Selects the last skin
-                    focus_skin(listview_skins.Items.Count - 1);
-                }
-            }
-            catch
-            {
-                write("Could not delete the skin", 0);
-            }
-
-            
-
-
-        }
-
-        //When Clean Files is pressed
-        private void clean_files_clicked(object sender, EventArgs e)
-        {
-            try
-            {
-                this.selected_skin.clean_skin(0);
-
-                skin_details_reload();
-                skin_ListBox_reload();
-                state_check();
-            }
-            catch
-            {
-                write("could not clean files", 0);
-            }
-            
-
-        }
-
-        //packages skin into meteor skin
-        private void package_meteor(object sender, EventArgs e)
-        {
-            try
-            {
-                this.selected_skin.package_meteor();
-                pack_add_item(selected_skin.get_meteor_info());
-                write("This skin was added to the current pack session",2);
-                started_pack = true;
-            }catch
-            {
-                write("This skin was not packed",0);
-            }
-            
-        }
-
-        //When the move up button is pressed
-        private void move_up_skin(object sender, EventArgs e)
-        {
-            try
-            {
-                if (selected_skin.origin != "Default")
-                {
-                    selected_char.swap_skin(listview_skins.SelectedIndices[0], listview_skins.SelectedIndices[0] - 1);
-                    skin_ListBox_reload();
-
-                    focus_skin(selected_skin.modelslot);
-                }
-            }
-            catch
-            {
-                write("the process messed up, you may be in trouble :o", 0);
-            }
-            
-
-        }
-
-        //When the move down button is pressed
-        private void move_down_skin(object sender, EventArgs e)
-        {
-            try
-            {
-                if (selected_skin.origin != "Default")
-                {
-                    selected_char.swap_skin(listview_skins.SelectedIndices[0], listview_skins.SelectedIndices[0] + 1);
-                    skin_ListBox_reload();
-                    listview_skins.FocusedItem = listview_skins.Items[selected_skin.modelslot];
-                    listview_skins.Items[selected_skin.modelslot].Selected = true;
-                    listview_skins.Select();
-                    listview_skins.Items[selected_skin.modelslot].EnsureVisible();
-                }
-            }
-            catch
-            {
-                write("the process messed up, you may be in trouble :o", 0);
-            }
-            
-
-        }
-        #endregion
-        #region Model Zone 
-        //On model selected
-        private void model_selected(object sender, EventArgs e)
-        {
-            try
-            {
-                if (listview_skin_models.SelectedItems.Count == 1)
-                {
-                    label_skin_selected_model.Text = "Selected Model : " + listview_skin_models.SelectedItems[0].Text;
-                    button_skin_delete_model.Enabled = true;
-                }
-                state_check();
-            }
-            catch
-            {
-                write("could not select model", 0);
-            }
-           
-        }
-        //On model delete
-        private void remove_selected_model_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                selected_skin.delete_model(listview_skin_models.SelectedItems[0].Text);
-                skin_details_reload();
-                state_check();
-            }
-            catch (Exception)
-            {
-
-                write("The model could not be properly removed");
-            }
-        }
-        #endregion
-        #region Csp Zone
-        //When a csp is selected
-        private void csp_selected(object sender, EventArgs e)
-        {
-            try
-            {
-                if (listview_skin_csp.SelectedItems.Count == 1)
-                {
-                    selected_csp_name.Text = "Selected CSP : " + listview_skin_csp.SelectedItems[0].Text;
-                    button_skin_delete_csp.Enabled = true;
-                }
-                state_check();
-            }
-            catch (Exception)
-            {
-
-                write("Could not select csp", 0);
-            }
-        }
-        //When a csp is deleted
-        private void remove_selected_csp_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.selected_skin.delete_csp(listview_skin_csp.SelectedItems[0].Text);
-                skin_details_reload();
-                state_check();
-            }
-            catch (Exception)
-            {
-
-                write("The csp couldn't be properly removed",0);
-            }
-        }
-        #endregion
-        #region Meta Tab
+        #region Metadata Tab
         //When you save all metadata
         void meta_save(object sender, EventArgs e)
         {
@@ -1098,9 +1266,15 @@ namespace MeteorSkinLibrary
             }
         }
         #endregion
+        #endregion
 
-        //Skin Packing
-        #region Skin Packing
+        //Skin detector 3000 tab
+        #region Awesome Skin Detector tab
+
+        #endregion
+
+        //Skin Packing tab
+        #region Skin Packer tab
 
         //Deletes the packed skins and resets the packer interface
         private void packer_reset()
@@ -1126,11 +1300,11 @@ namespace MeteorSkinLibrary
                 packer_dropzone.Enabled = true;
 
                 //Informing user
-                write("Meteor skin pack session reset",2);
+                write("Meteor skin pack session reset", 2);
             }
             catch (Exception)
             {
-                write("Meteor skin pack reset unsuccessful",0);
+                write("Meteor skin pack reset unsuccessful", 0);
             }
         }
 
@@ -1166,7 +1340,7 @@ namespace MeteorSkinLibrary
             {
                 write("Could not add the item", 0);
             }
-            
+
         }
 
         private void manual_drop(object sender, DragEventArgs e)
@@ -1361,12 +1535,14 @@ namespace MeteorSkinLibrary
             }
             catch (Exception)
             {
-                write("The packing went wrong",0);
+                write("The packing went wrong", 0);
             }
 
         }
 
         #endregion
+
+
 
         //Interface functions
         #region Interface
@@ -2416,7 +2592,7 @@ namespace MeteorSkinLibrary
         #endregion
 
         #endregion
-
+        
         //Threading functions
         #region Threading
 
@@ -3021,6 +3197,15 @@ namespace MeteorSkinLibrary
                         {
                             if (Directory.Exists(destination + "/fighter/" + Library.get_modelfolder_fullname(c) + "/model"))
                             {
+                                foreach (String file in Directory.GetFiles(destination + "/fighter/" + Library.get_modelfolder_fullname(c) + "/model", "*", SearchOption.AllDirectories))
+                                {
+                                    FileInfo fInfo = new FileInfo(file);
+                                    if (fInfo.IsReadOnly)
+                                    {
+                                        fInfo.IsReadOnly = false;
+                                    }
+                                }
+
                                 Directory.Delete(destination + "/fighter/" + Library.get_modelfolder_fullname(c) + "/model", true);
                             }
                         }
@@ -3029,8 +3214,18 @@ namespace MeteorSkinLibrary
                         {
                             if (Directory.Exists(destination + "/ui/replace/chr"))
                             {
+                                foreach(String file in Directory.GetFiles(destination + "/ui/replace/chr", "*", SearchOption.AllDirectories))
+                                {
+                                    FileInfo fInfo = new FileInfo(file);
+                                    if (fInfo.IsReadOnly)
+                                    {
+                                        fInfo.IsReadOnly = false;
+                                    }
+                                }
                                 Directory.Delete(destination + "/ui/replace/chr", true);
                             }
+
+                            
 
 
                             foreach (string dirPath in Directory.GetDirectories(source, "*", SearchOption.AllDirectories))
@@ -3068,6 +3263,7 @@ namespace MeteorSkinLibrary
                                 destination = properties.property_get("explorer_workspace") + "/content/patch/" + properties.property_get("datafolder");
                                 if (Directory.Exists(destination + "/ui/replace/chr"))
                                 {
+
                                     Directory.Delete(destination + "/ui/replace/chr", true);
                                 }
                                 if (Directory.Exists(destination + "/fighter"))
@@ -4151,9 +4347,12 @@ namespace MeteorSkinLibrary
 
 
 
+
         #endregion
 
         #endregion
+
+        
     }
 
 

@@ -20,7 +20,38 @@ namespace MeteorSkinLibrary
         {
             this.Library = lib;
             this.uichar = ui;
+
         }
+
+        //Assuming that the filemanager is at the root of all file placement, 
+        //I got a lot to do well. First off : add_skin
+
+
+
+        #region Skins
+        public Boolean add_skin(String meteorpath,String character)
+        {
+
+            return false;
+        }
+
+        public Boolean delete_skin()
+        {
+
+            return false;
+        }
+
+        public Boolean clean_skin()
+        {
+
+            return false;
+        }
+        public Boolean reset_skin()
+        {
+
+            return false;
+        }
+        #endregion
 
     }
 }

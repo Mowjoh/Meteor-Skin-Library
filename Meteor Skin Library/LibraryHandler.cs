@@ -490,6 +490,105 @@ namespace MeteorSkinLibrary
         }
         #endregion
 
+        #region Characterfiles
+
+        public void add_character_icon(String fullname, int slot, String name)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlElement icon = xml.CreateElement("icon");
+            icon.InnerText = name;
+
+            XmlNode skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']");
+            XmlNodeList icons = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/icon");
+            if(icons == null)
+            {
+                skin.AppendChild(icon);
+            }else
+            {
+                Boolean test = false;
+                foreach(XmlElement xe in icons)
+                {
+                    if(xe.InnerText == name)
+                    {
+                        test = true;
+                    }
+                }
+                if (!test)
+                {
+                    skin.AppendChild(icon);
+                }
+            }
+
+            xml.Save(LibraryPath);
+
+        }
+
+        public void delete_character_icon(String fullname, int slot, String name)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+
+            XmlNodeList icons = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/icon");
+            foreach (XmlElement xe in icons)
+            {
+                if (xe.InnerText == name)
+                {
+                    XmlNode skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']");
+                    skin.RemoveChild(xe);
+                }
+
+            }
+
+            xml.Save(LibraryPath);
+        }
+
+        public void add_character_nameplate(String fullname, int slot, String name)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+
+            XmlElement nameplate = xml.CreateElement("nameplate");
+            nameplate.InnerText = name;
+
+            XmlNode nameplates = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/nameplate");
+            XmlNode skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']");
+
+            if (nameplates == null)
+            {
+                skin.AppendChild(nameplate);
+            }
+            else
+            {
+                nameplates.InnerText = name;
+            }
+
+            xml.Save(LibraryPath);
+
+        }
+
+        public void delete_character_nameplate(String fullname, int slot, String name)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+
+
+            XmlNode nameplates = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']/nameplate");
+            XmlNode skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']");
+
+            if (nameplates == null)
+            {
+
+            }
+            else
+            {
+                skin.RemoveChild(nameplates);
+            }
+
+            xml.Save(LibraryPath);
+        }
+        #endregion
+
         #region Checks
         //Checks a skin's presence
         internal Boolean check_skin(string fullname, int slot)

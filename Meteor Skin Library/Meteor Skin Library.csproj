@@ -29,8 +29,8 @@
     <InstallUrl>http://lunaticfox.com/MSL/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>0.6.4.2</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>0.6.4.3</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -96,8 +96,14 @@
     <Compile Include="config.Designer.cs">
       <DependentUpon>config.cs</DependentUpon>
     </Compile>
+    <Compile Include="Filebank.cs" />
+    <Compile Include="FilebankWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilebankWindow.Designer.cs">
+      <DependentUpon>FilebankWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileManager.cs" />
-    <Compile Include="launcher.cs" />
     <Compile Include="LibraryHandler.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="main.cs">
@@ -115,6 +121,9 @@
     <Compile Include="UICharDBHandler.cs" />
     <EmbeddedResource Include="config.resx">
       <DependentUpon>config.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilebankWindow.resx">
+      <DependentUpon>FilebankWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main.resx">
       <DependentUpon>main.cs</DependentUpon>
