@@ -148,11 +148,6 @@
             this.textBox_character_ui = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
@@ -228,9 +223,6 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.tabPage9.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage11.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             this.groupBox12.SuspendLayout();
@@ -386,14 +378,14 @@
             this.backupS4EsWorkspaceToolStripMenuItem.Name = "backupS4EsWorkspaceToolStripMenuItem";
             this.backupS4EsWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.backupS4EsWorkspaceToolStripMenuItem.Text = "Backup S4E\'s workspace";
-            this.backupS4EsWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.backupS4EsWorkspaceToolStripMenuItem_Click);
+            this.backupS4EsWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.menu_backup_s4e);
             // 
             // backupMSLsWorkspaceToolStripMenuItem
             // 
             this.backupMSLsWorkspaceToolStripMenuItem.Name = "backupMSLsWorkspaceToolStripMenuItem";
             this.backupMSLsWorkspaceToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.backupMSLsWorkspaceToolStripMenuItem.Text = "Backup MSL\'s workspace";
-            this.backupMSLsWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.backupMSLsWorkspaceToolStripMenuItem_Click);
+            this.backupMSLsWorkspaceToolStripMenuItem.Click += new System.EventHandler(this.menu_backup_msl);
             // 
             // foldersToolStripMenuItem
             // 
@@ -454,7 +446,7 @@
             this.meteorFileBankToolStripMenuItem.Name = "meteorFileBankToolStripMenuItem";
             this.meteorFileBankToolStripMenuItem.Size = new System.Drawing.Size(107, 20);
             this.meteorFileBankToolStripMenuItem.Text = "Meteor File Bank";
-            this.meteorFileBankToolStripMenuItem.Click += new System.EventHandler(this.meteorFileBankToolStripMenuItem_Click);
+            this.meteorFileBankToolStripMenuItem.Click += new System.EventHandler(this.menu_filebank_open);
             // 
             // tsmi_config_config
             // 
@@ -685,7 +677,7 @@
             this.listview_characters.TabIndex = 21;
             this.listview_characters.UseCompatibleStateImageBehavior = false;
             this.listview_characters.View = System.Windows.Forms.View.Details;
-            this.listview_characters.SelectedIndexChanged += new System.EventHandler(this.Characterlist2_SelectedIndexChanged);
+            this.listview_characters.SelectedIndexChanged += new System.EventHandler(this.character_select);
             // 
             // Characterss
             // 
@@ -982,6 +974,7 @@
             // 
             this.comboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox3.Enabled = false;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "Select associated nameplate"});
@@ -994,6 +987,7 @@
             // 
             this.comboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Select associated nameplate"});
@@ -1372,7 +1366,6 @@
             // 
             this.tabControl3.Controls.Add(this.tabPage7);
             this.tabControl3.Controls.Add(this.tabPage8);
-            this.tabControl3.Controls.Add(this.tabPage9);
             this.tabControl3.Controls.Add(this.tabPage11);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
@@ -1493,59 +1486,8 @@
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.Size = new System.Drawing.Size(784, 490);
             this.tabPage8.TabIndex = 1;
-            this.tabPage8.Text = "Sounds";
+            this.tabPage8.Text = "File Manager";
             this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // tabPage9
-            // 
-            this.tabPage9.Controls.Add(this.tableLayoutPanel9);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(784, 490);
-            this.tabPage9.TabIndex = 2;
-            this.tabPage9.Text = "Nameplates";
-            this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Controls.Add(this.dataGridView2, 0, 0);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 2;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.59184F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.40816F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(784, 490);
-            this.tableLayoutPanel9.TabIndex = 0;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column5,
-            this.Column6});
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(778, 433);
-            this.dataGridView2.TabIndex = 0;
-            // 
-            // Column5
-            // 
-            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "Name";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 60;
-            // 
-            // Column6
-            // 
-            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column6.HeaderText = "Associated file";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // tabPage11
             // 
@@ -2063,9 +2005,6 @@
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
-            this.tableLayoutPanel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage11.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
@@ -2213,19 +2152,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_config_reset_workspace;
         private System.Windows.Forms.ToolStripMenuItem tsmi_config_reset_config;
         private System.Windows.Forms.ToolStripMenuItem tsmi_config_reset_all;
-        private System.Windows.Forms.TabControl tabControl3;
-        private System.Windows.Forms.TabPage tabPage7;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox_character_ui;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -2237,11 +2163,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TabPage tabPage11;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button_skin_package_meteor;
         private System.Windows.Forms.Button button_skin_save_info;
@@ -2251,12 +2172,25 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.ToolStripMenuItem meteorFileBankToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox_character_ui;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
     }
 }
 

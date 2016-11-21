@@ -11,31 +11,32 @@ namespace MeteorSkinLibrary
 {
     class UICharDBHandler
     {
+
+        #region Class Variables
         //S4E
         String ui_file_path_source;
         //MMSL
         String ui_file_path_destination;
-        int[] offsets = new int[] {0,5,7,9,11,16,21,26,31,36,38,40,42,44,46,48,50,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,89,91,93,95,97,99,101,103,105,107,109,111,113,115,117,119,121,123,125};
+        int[] offsets = new int[] { 0, 5, 7, 9, 11, 16, 21, 26, 31, 36, 38, 40, 42, 44, 46, 48, 50, 55, 57, 59, 61, 63, 65, 67, 69, 71, 73, 75, 77, 79, 81, 83, 85, 87, 89, 91, 93, 95, 97, 99, 101, 103, 105, 107, 109, 111, 113, 115, 117, 119, 121, 123, 125 };
 
         public Boolean imported;
         public Boolean sourcepresent;
+        #endregion
 
-        public UICharDBHandler()
-        {
-
-        }
+        #region Constructors
+        //Basic Constructor
         public UICharDBHandler(String uipath, String datafolder)
         {
             PropertyHandler properties = new PropertyHandler();
-            properties.set_library_path(Application.StartupPath + "/mmsl_config/Config.xml");
+            properties.set_config_path(Application.StartupPath + "/mmsl_config/Config.xml");
             imported = false;
             sourcepresent = false;
 
             if (uipath != "" && datafolder != "")
             {
-                if(datafolder == "data")
+                if (datafolder == "data")
                 {
-                        datafolder = "data(us_en)";
+                    datafolder = "data(us_en)";
                 }
                 if (properties.property_get("unlocalised") == "1")
                 {
@@ -94,7 +95,9 @@ namespace MeteorSkinLibrary
 
             }
         }
+        #endregion
 
+        #region FileActions
         //returns a String arraylist of ui_char_db values for that character
         public String fileRead(Int64 characterposition, int position)
         {
@@ -103,7 +106,7 @@ namespace MeteorSkinLibrary
             if (imported == true)
             {
                 Stream stream = File.Open(ui_file_path_destination, FileMode.Open);
-                using(BinaryReader br = new BinaryReader(stream))
+                using (BinaryReader br = new BinaryReader(stream))
                 {
                     long pose = 13 + (127 * characterposition) + offsets[position];
                     stream.Seek(pose, SeekOrigin.Begin);
@@ -129,7 +132,8 @@ namespace MeteorSkinLibrary
             return val;
         }
 
-        public void setFile(int characterposition,int slot,int value)
+        //Sets a value in the file
+        public void setFile(int characterposition, int slot, int value)
         {
             if (imported == true)
             {
@@ -148,7 +152,7 @@ namespace MeteorSkinLibrary
                             case 2:
                                 stream.WriteByte(BitConverter.GetBytes(value)[0]);
                                 break;
-                                
+
                             case 5:
                                 Byte[] bytes = BitConverter.GetBytes(value);
                                 Array.Reverse(bytes);
@@ -164,5 +168,7 @@ namespace MeteorSkinLibrary
                 }
             }
         }
+        #endregion
+
     }
 }

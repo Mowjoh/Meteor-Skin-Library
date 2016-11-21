@@ -12,46 +12,46 @@ namespace MeteorSkinLibrary
     class MetaHandler
     {
         #region ClassVariables
-            String LibraryPath = "";
+            String MetaPath = "";
         #endregion
 
         #region Constructors
         //basic
         public MetaHandler()
         {
-            LibraryPath = "";
+            MetaPath = "";
         }
         //With folderpath
         public MetaHandler(string custom_LibraryPath)
         {
-            LibraryPath = custom_LibraryPath;
+            MetaPath = custom_LibraryPath;
         }
         #endregion
 
-        #region Properties
+        #region Values
         //gets a property value
         internal String get(string meta_name)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(LibraryPath);
+            xml.Load(MetaPath);
             XmlNode property = xml.SelectSingleNode("/metadata/meta[attribute::name='" + meta_name + "']");
             return property.InnerText;
         }
         //Sets a property value
-        internal void set(string meta_name, string property_value)
+        internal void set(string meta_name, string meta_value)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(LibraryPath);
+            xml.Load(MetaPath);
             XmlNode property = xml.SelectSingleNode("/metadata/meta[attribute::name='" + meta_name + "']");
-            property.InnerText = property_value;
+            property.InnerText = meta_value;
 
-            xml.Save(LibraryPath);
+            xml.Save(MetaPath);
         }
         //Adds a property and it's value
-        internal void add(string meta_name, string property_value)
+        internal void add(string meta_name, string meta_value)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(LibraryPath);
+            xml.Load(MetaPath);
             XmlNode properties = xml.SelectSingleNode("/metadata");
 
             XmlNode verify = xml.SelectSingleNode("/metadata/meta[attribute::name='" + meta_name + "']");
@@ -59,7 +59,7 @@ namespace MeteorSkinLibrary
             {
                 XmlElement property = xml.CreateElement("meta");
                 property.SetAttribute("name", meta_name);
-                property.InnerText = property_value;
+                property.InnerText = meta_value;
                 properties.AppendChild(property);
             }
             else
@@ -69,19 +69,19 @@ namespace MeteorSkinLibrary
 
                 XmlElement property = xml.CreateElement("meta");
                 property.SetAttribute("name", meta_name);
-                property.InnerText = property_value;
+                property.InnerText = meta_value;
                 properties.AppendChild(property);
 
             }
 
-            xml.Save(LibraryPath);
+            xml.Save(MetaPath);
         }
         #endregion
 
         #region Path
-        public void set_library_path(String path)
+        public void set_meta_path(String path)
         {
-            this.LibraryPath = path;
+            this.MetaPath = path;
         }
         #endregion 
     }

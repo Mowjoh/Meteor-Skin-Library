@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(config));
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.unlocalised_checkbox = new System.Windows.Forms.CheckBox();
             this.message = new System.Windows.Forms.Label();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
@@ -65,14 +65,14 @@
             // 
             // checkBox8
             // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(3, 46);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(81, 17);
-            this.checkBox8.TabIndex = 16;
-            this.checkBox8.Text = "Unlocalised";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            this.checkBox8.CheckedChanged += new System.EventHandler(this.checkBox8_CheckedChanged);
+            this.unlocalised_checkbox.AutoSize = true;
+            this.unlocalised_checkbox.Location = new System.Drawing.Point(3, 46);
+            this.unlocalised_checkbox.Name = "checkBox8";
+            this.unlocalised_checkbox.Size = new System.Drawing.Size(81, 17);
+            this.unlocalised_checkbox.TabIndex = 16;
+            this.unlocalised_checkbox.Text = "Unlocalised";
+            this.unlocalised_checkbox.UseVisualStyleBackColor = true;
+            this.unlocalised_checkbox.CheckedChanged += new System.EventHandler(this.unlocalised_checkbox_changed);
             // 
             // message
             // 
@@ -202,7 +202,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(385, 20);
             this.textBox1.TabIndex = 1;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.workspace_save);
             // 
             // folderBrowserDialog1
             // 
@@ -264,7 +264,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.localisationbox, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.checkBox8, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.unlocalised_checkbox, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.regionbox, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
@@ -388,7 +388,7 @@
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox unlocalised_checkbox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;

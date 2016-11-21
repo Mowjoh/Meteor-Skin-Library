@@ -11,18 +11,18 @@ namespace MeteorSkinLibrary
 {
     public class PropertyHandler
     {
-        private string LibraryPath;
+        private string ConfigPath;
 
         #region Constructors
         //basic
         public PropertyHandler()
         {
-            LibraryPath = "";
+            ConfigPath = "";
         }
         //With folderpath
-        public PropertyHandler(string custom_LibraryPath)
+        public PropertyHandler(string custom_ConfigPath)
         {
-            LibraryPath = custom_LibraryPath;
+            ConfigPath = custom_ConfigPath;
         }
         #endregion
 
@@ -32,7 +32,7 @@ namespace MeteorSkinLibrary
         internal String property_get(string property_name)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(LibraryPath);
+            xml.Load(ConfigPath);
             XmlNode property = xml.SelectSingleNode("/config/property[attribute::name='" + property_name + "']");
             if(property == null)
             {
@@ -46,17 +46,17 @@ namespace MeteorSkinLibrary
         internal void property_set(string property_name, string property_value)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(LibraryPath);
+            xml.Load(ConfigPath);
             XmlNode property = xml.SelectSingleNode("/config/property[attribute::name='" + property_name + "']");
             property.InnerText = property_value;
 
-            xml.Save(LibraryPath);
+            xml.Save(ConfigPath);
         }
         //Adds a property
         internal void property_add(string property_name, string property_value)
         {
             XmlDocument xml = new XmlDocument();
-            xml.Load(LibraryPath);
+            xml.Load(ConfigPath);
             XmlNode properties = xml.SelectSingleNode("/config");
 
             XmlNode verify = xml.SelectSingleNode("/config/property[attribute::name='" + property_name + "']");
@@ -79,7 +79,7 @@ namespace MeteorSkinLibrary
 
             }
             
-            xml.Save(LibraryPath);
+            xml.Save(ConfigPath);
         }
         //Checks if property exists
         internal Boolean property_check(string property_name)
@@ -88,7 +88,7 @@ namespace MeteorSkinLibrary
 
             //Loads the XML
             XmlDocument xml = new XmlDocument();
-            xml.Load(LibraryPath);
+            xml.Load(ConfigPath);
             
             //Testing the existence of the property
             test = xml.SelectSingleNode("/config/property[attribute::name='" + property_name + "']") != null ? true : false;
@@ -100,9 +100,9 @@ namespace MeteorSkinLibrary
 
         #region Path
         //Sets a specific Library path
-        public void set_library_path(String path)
+        public void set_config_path(String path)
         {
-            this.LibraryPath = path;
+            this.ConfigPath = path;
         }
         #endregion
 

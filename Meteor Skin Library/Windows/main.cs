@@ -164,7 +164,7 @@ namespace MeteorSkinLibrary
                     write("Creating Config");
                     File.Copy(properties.property_get("default_config"), Application.StartupPath + "/mmsl_config/Config.xml");
                 }
-                properties.set_library_path(Application.StartupPath + "/mmsl_config/Config.xml");
+                properties.set_config_path(Application.StartupPath + "/mmsl_config/Config.xml");
                 properties.property_add("current_library", Application.StartupPath + "/mmsl_config/Library.xml");
                 write("Config loaded : mmsl_config/Config.xml");
 
@@ -200,6 +200,8 @@ namespace MeteorSkinLibrary
                 {
                     adOptionsToolStripMenuItem.Visible = false;
                 }
+
+
                 #endregion
                 if (properties.property_get("logging") == "1")
                 {
@@ -271,11 +273,7 @@ namespace MeteorSkinLibrary
         {
             Application.Exit();
         }
-        //Launches S4E through a menu
-        private void menu_tool_launch_s4e(object sender, EventArgs e)
-        {
-            tool_launch_s4e();
-        }
+        
         #endregion
         #region SkinMenu 
         //Adds a skin to the selected character
@@ -342,6 +340,7 @@ namespace MeteorSkinLibrary
             }
             refresh_worker.RunWorkerAsync();
         }
+        //Launches the export process
         private void menu_s4e_export(object sender, EventArgs e)
         {
             if (MessageBox.Show("Doing this will erase fighter/[name]/model for every character that has mods and ui/replace/chr and ui/replace/append/chr from Smash Explorer's workspace. Are you sure you've made a backup? If yes, you can validate these changes and replace S4E's content by MSL's content", "Super Segtendo WARNING", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -378,6 +377,7 @@ namespace MeteorSkinLibrary
                 }
             }
         }
+        //Launches "import missing" from S4E's workspace
         private void menu_s4e_import_missing(object sender, EventArgs e)
         {
             this.workspace_select = 1;
@@ -393,7 +393,8 @@ namespace MeteorSkinLibrary
 
         #endregion
         #region Backup
-        private void backupMSLsWorkspaceToolStripMenuItem_Click(object sender, EventArgs e)
+        //Backups MSL's workspace + library
+        private void menu_backup_msl(object sender, EventArgs e)
         {
             try
             {
@@ -409,7 +410,8 @@ namespace MeteorSkinLibrary
             }
 
         }
-        private void backupS4EsWorkspaceToolStripMenuItem_Click(object sender, EventArgs e)
+        //Backups S4E's workspace
+        private void menu_backup_s4e(object sender, EventArgs e)
         {
             try
             {
@@ -457,6 +459,11 @@ namespace MeteorSkinLibrary
 
         #endregion
         #region Tools
+        //Launches S4E through a menu
+        private void menu_tool_launch_s4e(object sender, EventArgs e)
+        {
+            tool_launch_s4e();
+        }
         //Launch S4E
         private void tool_launch_s4e()
         {
@@ -473,7 +480,8 @@ namespace MeteorSkinLibrary
         }
         #endregion
         #region FileBank
-        private void meteorFileBankToolStripMenuItem_Click(object sender, EventArgs e)
+        //Opens the file bank
+        private void menu_filebank_open(object sender, EventArgs e)
         {
             //launching window
             FilebankWindow fbw = new FilebankWindow();
@@ -722,25 +730,7 @@ namespace MeteorSkinLibrary
         #region Character Tab
         #region Interactions
         //When a character is selected
-        private void character_selected(object sender, EventArgs e)
-        {
-            try
-            {
-                selected_char = new Character(listview_characters.SelectedItems[0].Text, Library, properties, uichar, logg);
-
-                skin_ListBox_reload();
-
-                state_check();
-            }
-            catch
-            {
-                write("Character select failed", 0);
-            }
-
-        }
-
-        //When a character is selected NEW
-        private void Characterlist2_SelectedIndexChanged(object sender, EventArgs e)
+        private void character_select(object sender, EventArgs e)
         {
             try
             {
@@ -783,6 +773,7 @@ namespace MeteorSkinLibrary
         }
         #endregion
         #region Action tab
+        //Resets all skins at specified start and endindex
         private Boolean reset_skins(int startindex, int endindex)
         {
             //If a character is selected
@@ -827,6 +818,7 @@ namespace MeteorSkinLibrary
             return true;
         }
 
+        //Resets default skins
         private void reset_default_skins(object sender, EventArgs e)
         {
             //If a character is selected
@@ -854,6 +846,7 @@ namespace MeteorSkinLibrary
             }
         }
 
+        //Resets extra skins
         private void reset_extra_skins(object sender, EventArgs e)
         {
             //If a character is selected
@@ -880,6 +873,7 @@ namespace MeteorSkinLibrary
             }
         }
 
+        //Resets all skins
         private void reset_all_skins(object sender, EventArgs e)
         {
             //If a character is selected
@@ -1328,6 +1322,7 @@ namespace MeteorSkinLibrary
 
         }
 
+        //Adds an item to the packer
         public void pack_add_item(String[] values)
         {
             try
@@ -1341,6 +1336,7 @@ namespace MeteorSkinLibrary
 
         }
 
+        //When a manual folder is dropped
         private void manual_drop(object sender, DragEventArgs e)
         {
             try
@@ -1357,7 +1353,7 @@ namespace MeteorSkinLibrary
                 write("could not process the dropped folder", 0);
             }
         }
-
+        //Changes drop appearance
         private void manual_dragenter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -1365,7 +1361,7 @@ namespace MeteorSkinLibrary
             else
                 e.Effect = DragDropEffects.None;
         }
-
+        //When the cell is changed
         private void meteorpack_gridview_CurrentCellChanged(object sender, EventArgs e)
         {
             try
@@ -1394,7 +1390,7 @@ namespace MeteorSkinLibrary
                 write("could not select another cell", 0);
             }
         }
-
+        //When a cell value is changed
         private void meteorpack_gridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -1452,7 +1448,7 @@ namespace MeteorSkinLibrary
             }
 
         }
-
+        //Launches the archiving process
         private void meteor_pack(object sender, EventArgs e)
         {
             try
@@ -1560,6 +1556,7 @@ namespace MeteorSkinLibrary
             }
             
         }
+        //Focuses the UI on a character
         private void focus_character(String workspace_chars)
         {
             try
@@ -1744,6 +1741,7 @@ namespace MeteorSkinLibrary
         }
         #endregion
         #region Drag&Drop
+        //Changes ui for drop
         private void model_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -1751,6 +1749,7 @@ namespace MeteorSkinLibrary
             else
                 e.Effect = DragDropEffects.None;
         }
+        //When a model is dropped in the box
         private void model_DragDrop(object sender, DragEventArgs e)
         {
             try
@@ -1767,6 +1766,7 @@ namespace MeteorSkinLibrary
             }
            
         }
+        //Changes ui for drop
         private void csp_DragEnter2(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -1774,6 +1774,7 @@ namespace MeteorSkinLibrary
             else
                 e.Effect = DragDropEffects.None;
         }
+        //When a csp is dropped in the box
         private void csp_DragDrop2(object sender, DragEventArgs e)
         {
             try
@@ -1811,6 +1812,7 @@ namespace MeteorSkinLibrary
 
 
         }
+        //Changes ui for drop
         private void slot_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -1818,6 +1820,7 @@ namespace MeteorSkinLibrary
             else
                 e.Effect = DragDropEffects.None;
         }
+        //When a meteor skin is dropped in the box
         private void slot_DragDrop(object sender, DragEventArgs e)
         {
             try
@@ -2191,7 +2194,7 @@ namespace MeteorSkinLibrary
             //Override tab
             textBox_character_ui.Enabled = true;
         }
-
+        //updates the process values
         private void process_update()
         {
 
@@ -2354,6 +2357,7 @@ namespace MeteorSkinLibrary
             }
         }
 
+        //New updater
         private void proper_update()
         {
           
@@ -2392,6 +2396,7 @@ namespace MeteorSkinLibrary
             
         }
 
+        //Searches for last update
         private string search_update()
         {
             try
@@ -2412,6 +2417,7 @@ namespace MeteorSkinLibrary
             }
         }
 
+        //tries to load an xml from a remote destination
         private Boolean tryxml(String full_dest)
         {
             try
@@ -2482,6 +2488,7 @@ namespace MeteorSkinLibrary
         }
         #endregion
         #region Errors
+        //These shows status when the process is finished
         private void downloadstatus()
         {
 
@@ -3386,7 +3393,7 @@ namespace MeteorSkinLibrary
 
             }
         }
-
+        //Backups a folder from a source to a destination
         private void backup_folder(String source, String destination)
         {
 
@@ -4309,7 +4316,7 @@ namespace MeteorSkinLibrary
             }
         }
 
-
+        //Checks all files
         private void check_files()
         {
             steps = 1;

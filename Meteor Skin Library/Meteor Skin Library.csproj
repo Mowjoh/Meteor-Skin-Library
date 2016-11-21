@@ -90,25 +90,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Items\Character.cs" />
-    <Compile Include="Interface\config.cs">
+    <Compile Include="Windows\config.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interface\config.Designer.cs">
+    <Compile Include="Windows\config.Designer.cs">
       <DependentUpon>config.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\filebank_handler.cs" />
-    <Compile Include="Interface\filebank.cs">
+    <Compile Include="Windows\filebank.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interface\filebank.Designer.cs">
+    <Compile Include="Windows\filebank.Designer.cs">
       <DependentUpon>filebank.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\library_handler.cs" />
     <Compile Include="Handlers\logger.cs" />
-    <Compile Include="Interface\main.cs">
+    <Compile Include="Windows\main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interface\main.Designer.cs">
+    <Compile Include="Windows\main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
     </Compile>
     <Compile Include="Handlers\melee_handler.cs" />
@@ -118,13 +118,13 @@
     <Compile Include="Handlers\config_handler.cs" />
     <Compile Include="Items\Skin.cs" />
     <Compile Include="Handlers\uichar_handler.cs" />
-    <EmbeddedResource Include="Interface\config.resx">
+    <EmbeddedResource Include="Windows\config.resx">
       <DependentUpon>config.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interface\filebank.resx">
+    <EmbeddedResource Include="Windows\filebank.resx">
       <DependentUpon>filebank.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interface\main.resx">
+    <EmbeddedResource Include="Windows\main.resx">
       <DependentUpon>main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

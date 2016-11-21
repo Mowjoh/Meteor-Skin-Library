@@ -48,7 +48,6 @@ namespace MeteorSkinLibrary
             return Characters_array;
 
         }
-
         #endregion
 
         #region Skins
@@ -86,6 +85,8 @@ namespace MeteorSkinLibrary
                 }
             }
         }
+
+        //Sets the origin of a skin
         public void set_origin(String fullname, int slot, String origin)
         {
             XmlDocument xml = new XmlDocument();
@@ -134,6 +135,7 @@ namespace MeteorSkinLibrary
 
 
         }
+
         //Adds a Dummy Skin with a specific Library Name and origin
         public void add_skin(String fullname, int slot, String skin_name, String origin)
         {
@@ -201,6 +203,7 @@ namespace MeteorSkinLibrary
             }
             xml.Save(LibraryPath);
         }
+
         //sets a moved_dlc value
         internal void set_moved_dlc_status(String fullname,String status)
         {
@@ -211,6 +214,7 @@ namespace MeteorSkinLibrary
             xml.Save(LibraryPath);
         }
 
+        //Gets the default skin values
         internal void get_skin_default(String fullname, int slot)
         {
             XmlDocument xml = new XmlDocument();
@@ -224,6 +228,7 @@ namespace MeteorSkinLibrary
             xml2.Save(LibraryPath);
         }
 
+        //Inserts a skin at a position
         internal void insert_skin(String fullname,int slot, String skin_name, String origin)
         {
             XmlDocument xml = new XmlDocument();
@@ -238,6 +243,7 @@ namespace MeteorSkinLibrary
             
             xml.Save(LibraryPath);
         }
+
         #endregion
 
         #region Models
@@ -461,6 +467,7 @@ namespace MeteorSkinLibrary
             }
             xml.Save(LibraryPath);
         }
+
         //Gets workspace value
         internal String get_csp_workspace_status(string fullname, int slot, string name)
         {
@@ -769,7 +776,7 @@ namespace MeteorSkinLibrary
             }
             return test;
         }
-
+        //Gets the id for ui_char_db modifications
         internal String get_ui_char_db_id(String fullname)
         {
             XmlDocument xml = new XmlDocument();
@@ -780,6 +787,7 @@ namespace MeteorSkinLibrary
         #endregion
 
         #region Swappers
+        //Swaps two entries in the library
         public void swap_skin(string fullname, int slot, int slot_dest)
         {
             XmlDocument xml = new XmlDocument();
@@ -801,7 +809,6 @@ namespace MeteorSkinLibrary
 
             xml.Save(LibraryPath);
         }
-
         #endregion
 
     }

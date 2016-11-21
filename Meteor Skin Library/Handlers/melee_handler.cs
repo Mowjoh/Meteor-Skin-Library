@@ -12,10 +12,14 @@ namespace Meteor_Skin_Library
     class Melee
     {
 
+        #region Class Variables
         PropertyHandler properties;
         String explorer_workspace;
         String datafolder;
         Boolean imported = false;
+        #endregion
+
+        #region Constructor
         //Constructor
         public Melee()
         {
@@ -26,6 +30,7 @@ namespace Meteor_Skin_Library
             datafolder = properties.property_get("datafolder");
 
         }
+        #endregion
 
         #region File Handling
         public Boolean check_file()
@@ -71,7 +76,6 @@ namespace Meteor_Skin_Library
         }
 
         #endregion
-
 
     }
 }
