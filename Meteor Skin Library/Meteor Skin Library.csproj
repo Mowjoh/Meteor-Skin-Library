@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Items\Character.cs" />
+    <Compile Include="Items\NewSkin.cs" />
     <Compile Include="Windows\config.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +157,7 @@
     <None Include="Resources\mowjohdrop.bmp" />
     <None Include="Resources\unknown.png" />
     <Content Include="7za.exe" />
+    <Content Include="mmsl_config\Default_Filebank.xml" />
     <Content Include="patchnotes.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -34,9 +34,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmi_file = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_file_exit = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_skin = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_skin_add = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmi_skin_reset_package = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_workspace = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_workspace_refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmi_workspace_check = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,8 +69,6 @@
             this.loadingbox = new System.Windows.Forms.ProgressBar();
             this.label_app_status = new System.Windows.Forms.Label();
             this.export_worker = new System.ComponentModel.BackgroundWorker();
-            this.textbox_skin_move_up = new System.Windows.Forms.Button();
-            this.textbox_skin_move_down = new System.Windows.Forms.Button();
             this.meteorbox = new System.Windows.Forms.PictureBox();
             this.url_worker = new System.ComponentModel.BackgroundWorker();
             this.meteor_worker = new System.ComponentModel.BackgroundWorker();
@@ -83,7 +78,6 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -137,6 +131,18 @@
             this.Skins_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
@@ -148,12 +154,6 @@
             this.textBox_character_ui = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -167,6 +167,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.button10 = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.textbox_packer_version = new System.Windows.Forms.TextBox();
             this.textbox_packer_author = new System.Windows.Forms.TextBox();
@@ -191,6 +192,7 @@
             this.refresh_worker = new System.ComponentModel.BackgroundWorker();
             this.manual_worker = new System.ComponentModel.BackgroundWorker();
             this.backup_worker = new System.ComponentModel.BackgroundWorker();
+            this.convert_worker = new System.ComponentModel.BackgroundWorker();
             tsmi_s4e_replace = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -198,7 +200,6 @@
             this.tabControl2.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -219,13 +220,14 @@
             this.groupBox4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabControl3.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.tabPage11.SuspendLayout();
-            this.tableLayoutPanel8.SuspendLayout();
-            this.groupBox12.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -255,7 +257,6 @@
             this.menuStrip1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmi_file,
-            this.tsmi_skin,
             this.tsmi_workspace,
             this.tsmi_tools,
             this.meteorFileBankToolStripMenuItem,
@@ -264,7 +265,7 @@
             this.adOptionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1279, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(944, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -282,29 +283,6 @@
             this.tsmi_file_exit.Size = new System.Drawing.Size(92, 22);
             this.tsmi_file_exit.Text = "Exit";
             this.tsmi_file_exit.Click += new System.EventHandler(this.menu_exit);
-            // 
-            // tsmi_skin
-            // 
-            this.tsmi_skin.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmi_skin_add,
-            this.tsmi_skin_reset_package});
-            this.tsmi_skin.Name = "tsmi_skin";
-            this.tsmi_skin.Size = new System.Drawing.Size(46, 20);
-            this.tsmi_skin.Text = "Skins";
-            // 
-            // tsmi_skin_add
-            // 
-            this.tsmi_skin_add.Name = "tsmi_skin_add";
-            this.tsmi_skin_add.Size = new System.Drawing.Size(214, 22);
-            this.tsmi_skin_add.Text = "Add for selected Character";
-            this.tsmi_skin_add.Click += new System.EventHandler(this.menu_skin_add);
-            // 
-            // tsmi_skin_reset_package
-            // 
-            this.tsmi_skin_reset_package.Name = "tsmi_skin_reset_package";
-            this.tsmi_skin_reset_package.Size = new System.Drawing.Size(214, 22);
-            this.tsmi_skin_reset_package.Text = "Reset package folder";
-            this.tsmi_skin_reset_package.Click += new System.EventHandler(this.menu_packer_reset);
             // 
             // tsmi_workspace
             // 
@@ -545,9 +523,9 @@
             this.groupBox6.Controls.Add(this.label_process_status);
             this.groupBox6.Controls.Add(this.loadingbox);
             this.groupBox6.Controls.Add(this.label_app_status);
-            this.groupBox6.Location = new System.Drawing.Point(992, 349);
+            this.groupBox6.Location = new System.Drawing.Point(732, 314);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(284, 202);
+            this.groupBox6.Size = new System.Drawing.Size(209, 180);
             this.groupBox6.TabIndex = 18;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "App Status";
@@ -559,7 +537,7 @@
             this.processbox.ForeColor = System.Drawing.Color.LimeGreen;
             this.processbox.Location = new System.Drawing.Point(10, 136);
             this.processbox.Name = "processbox";
-            this.processbox.Size = new System.Drawing.Size(265, 23);
+            this.processbox.Size = new System.Drawing.Size(190, 23);
             this.processbox.TabIndex = 4;
             // 
             // label_process_status
@@ -580,7 +558,7 @@
             this.loadingbox.ForeColor = System.Drawing.Color.LimeGreen;
             this.loadingbox.Location = new System.Drawing.Point(10, 76);
             this.loadingbox.Name = "loadingbox";
-            this.loadingbox.Size = new System.Drawing.Size(265, 23);
+            this.loadingbox.Size = new System.Drawing.Size(190, 23);
             this.loadingbox.TabIndex = 2;
             // 
             // label_app_status
@@ -601,39 +579,15 @@
             this.export_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.export_worker_ProgressChanged);
             this.export_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.export_worker_completed);
             // 
-            // textbox_skin_move_up
-            // 
-            this.textbox_skin_move_up.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textbox_skin_move_up.Location = new System.Drawing.Point(18, 9);
-            this.textbox_skin_move_up.Name = "textbox_skin_move_up";
-            this.textbox_skin_move_up.Size = new System.Drawing.Size(226, 23);
-            this.textbox_skin_move_up.TabIndex = 19;
-            this.textbox_skin_move_up.Text = "Move Skin Up";
-            this.textbox_skin_move_up.UseVisualStyleBackColor = true;
-            this.textbox_skin_move_up.Click += new System.EventHandler(this.move_up_skin);
-            // 
-            // textbox_skin_move_down
-            // 
-            this.textbox_skin_move_down.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textbox_skin_move_down.Location = new System.Drawing.Point(18, 38);
-            this.textbox_skin_move_down.Name = "textbox_skin_move_down";
-            this.textbox_skin_move_down.Size = new System.Drawing.Size(226, 23);
-            this.textbox_skin_move_down.TabIndex = 20;
-            this.textbox_skin_move_down.Text = "Move Skin Down";
-            this.textbox_skin_move_down.UseVisualStyleBackColor = true;
-            this.textbox_skin_move_down.Click += new System.EventHandler(this.move_down_skin);
-            // 
             // meteorbox
             // 
             this.meteorbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.meteorbox.Image = global::Meteor_Skin_Library.Properties.Resources.unknown;
-            this.meteorbox.Location = new System.Drawing.Point(267, 406);
+            this.meteorbox.Location = new System.Drawing.Point(196, 361);
             this.meteorbox.Name = "meteorbox";
-            this.meteorbox.Size = new System.Drawing.Size(522, 107);
+            this.meteorbox.Size = new System.Drawing.Size(380, 95);
             this.meteorbox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.meteorbox.TabIndex = 17;
             this.meteorbox.TabStop = false;
@@ -673,7 +627,7 @@
             this.listview_characters.MultiSelect = false;
             this.listview_characters.Name = "listview_characters";
             this.tableLayoutPanel1.SetRowSpan(this.listview_characters, 2);
-            this.listview_characters.Size = new System.Drawing.Size(171, 548);
+            this.listview_characters.Size = new System.Drawing.Size(124, 491);
             this.listview_characters.TabIndex = 21;
             this.listview_characters.UseCompatibleStateImageBehavior = false;
             this.listview_characters.View = System.Windows.Forms.View.Details;
@@ -693,11 +647,11 @@
             this.tabControl2.Controls.Add(this.tabPage5);
             this.tabControl2.Controls.Add(this.tabPage10);
             this.tabControl2.Controls.Add(this.tabPage6);
-            this.tabControl2.Location = new System.Drawing.Point(180, 3);
+            this.tabControl2.Location = new System.Drawing.Point(133, 3);
             this.tabControl2.Name = "tabControl2";
             this.tableLayoutPanel1.SetRowSpan(this.tabControl2, 2);
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(806, 548);
+            this.tabControl2.Size = new System.Drawing.Size(593, 491);
             this.tabControl2.TabIndex = 22;
             // 
             // tabPage4
@@ -706,7 +660,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(798, 522);
+            this.tabPage4.Size = new System.Drawing.Size(585, 465);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Skin Tab";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -717,7 +671,6 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.meteorbox, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.listview_skins, 0, 0);
@@ -728,20 +681,8 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 78.1385F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.86149F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(792, 516);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(579, 459);
             this.tableLayoutPanel2.TabIndex = 22;
-            // 
-            // panel1
-            // 
-            this.panel1.AutoSize = true;
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.textbox_skin_move_up);
-            this.panel1.Controls.Add(this.textbox_skin_move_down);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 406);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 107);
-            this.panel1.TabIndex = 23;
             // 
             // panel2
             // 
@@ -750,10 +691,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSize = true;
             this.panel2.Controls.Add(this.tabControl1);
-            this.panel2.Location = new System.Drawing.Point(267, 3);
+            this.panel2.Location = new System.Drawing.Point(196, 3);
             this.panel2.MinimumSize = new System.Drawing.Size(386, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(522, 397);
+            this.panel2.Size = new System.Drawing.Size(386, 352);
             this.panel2.TabIndex = 24;
             // 
             // tabControl1
@@ -767,7 +708,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 17);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(522, 380);
+            this.tabControl1.Size = new System.Drawing.Size(386, 335);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -776,7 +717,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(514, 354);
+            this.tabPage1.Size = new System.Drawing.Size(378, 309);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Library Skin Info";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -789,7 +730,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(508, 348);
+            this.groupBox1.Size = new System.Drawing.Size(372, 303);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Skin Information";
@@ -812,7 +753,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 204F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(502, 329);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(366, 284);
             this.tableLayoutPanel3.TabIndex = 10;
             // 
             // panel5
@@ -825,7 +766,7 @@
             this.panel5.Location = new System.Drawing.Point(138, 207);
             this.panel5.MinimumSize = new System.Drawing.Size(100, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(361, 119);
+            this.panel5.Size = new System.Drawing.Size(225, 74);
             this.panel5.TabIndex = 3;
             // 
             // button_skin_package_meteor
@@ -834,7 +775,7 @@
             this.button_skin_package_meteor.Name = "button_skin_package_meteor";
             this.button_skin_package_meteor.Size = new System.Drawing.Size(110, 23);
             this.button_skin_package_meteor.TabIndex = 11;
-            this.button_skin_package_meteor.Text = "Package Meteor Skin";
+            this.button_skin_package_meteor.Text = "Add to Packer";
             this.button_skin_package_meteor.UseVisualStyleBackColor = true;
             this.button_skin_package_meteor.Click += new System.EventHandler(this.package_meteor);
             // 
@@ -856,7 +797,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(3, 207);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(129, 119);
+            this.panel4.Size = new System.Drawing.Size(129, 74);
             this.panel4.TabIndex = 2;
             // 
             // button_skin_clean
@@ -866,9 +807,9 @@
             this.button_skin_clean.Name = "button_skin_clean";
             this.button_skin_clean.Size = new System.Drawing.Size(110, 23);
             this.button_skin_clean.TabIndex = 9;
-            this.button_skin_clean.Text = "Clean All Files";
+            this.button_skin_clean.Text = "Store Skin";
             this.button_skin_clean.UseVisualStyleBackColor = true;
-            this.button_skin_clean.Click += new System.EventHandler(this.clean_files_clicked);
+            this.button_skin_clean.Click += new System.EventHandler(this.skin_store);
             // 
             // button_skin_delete
             // 
@@ -967,7 +908,7 @@
             this.panel3.Controls.Add(this.textbox_skin_slot);
             this.panel3.Location = new System.Drawing.Point(138, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(361, 198);
+            this.panel3.Size = new System.Drawing.Size(225, 198);
             this.panel3.TabIndex = 4;
             // 
             // comboBox3
@@ -980,7 +921,7 @@
             "Select associated nameplate"});
             this.comboBox3.Location = new System.Drawing.Point(16, 146);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(331, 21);
+            this.comboBox3.Size = new System.Drawing.Size(195, 21);
             this.comboBox3.TabIndex = 14;
             // 
             // comboBox2
@@ -993,7 +934,7 @@
             "Select associated nameplate"});
             this.comboBox2.Location = new System.Drawing.Point(16, 119);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(331, 21);
+            this.comboBox2.Size = new System.Drawing.Size(195, 21);
             this.comboBox2.TabIndex = 13;
             // 
             // comboBox1
@@ -1005,7 +946,7 @@
             "Select associated nameplate"});
             this.comboBox1.Location = new System.Drawing.Point(16, 92);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(331, 21);
+            this.comboBox1.Size = new System.Drawing.Size(195, 21);
             this.comboBox1.TabIndex = 12;
             // 
             // textbox_skin_origin
@@ -1015,7 +956,7 @@
             this.textbox_skin_origin.Location = new System.Drawing.Point(16, 66);
             this.textbox_skin_origin.Name = "textbox_skin_origin";
             this.textbox_skin_origin.ReadOnly = true;
-            this.textbox_skin_origin.Size = new System.Drawing.Size(331, 20);
+            this.textbox_skin_origin.Size = new System.Drawing.Size(195, 20);
             this.textbox_skin_origin.TabIndex = 11;
             // 
             // textbox_skin_libraryname
@@ -1024,7 +965,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textbox_skin_libraryname.Location = new System.Drawing.Point(16, 40);
             this.textbox_skin_libraryname.Name = "textbox_skin_libraryname";
-            this.textbox_skin_libraryname.Size = new System.Drawing.Size(331, 20);
+            this.textbox_skin_libraryname.Size = new System.Drawing.Size(195, 20);
             this.textbox_skin_libraryname.TabIndex = 10;
             this.textbox_skin_libraryname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.save_info_enter);
             // 
@@ -1035,7 +976,7 @@
             this.textbox_skin_slot.Location = new System.Drawing.Point(16, 14);
             this.textbox_skin_slot.Name = "textbox_skin_slot";
             this.textbox_skin_slot.ReadOnly = true;
-            this.textbox_skin_slot.Size = new System.Drawing.Size(331, 20);
+            this.textbox_skin_slot.Size = new System.Drawing.Size(195, 20);
             this.textbox_skin_slot.TabIndex = 9;
             // 
             // tabPage2
@@ -1044,7 +985,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(514, 354);
+            this.tabPage2.Size = new System.Drawing.Size(378, 309);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "File Manager";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1056,7 +997,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(508, 348);
+            this.groupBox2.Size = new System.Drawing.Size(372, 303);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Skin Files";
@@ -1076,7 +1017,7 @@
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(502, 329);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(366, 284);
             this.tableLayoutPanel4.TabIndex = 4;
             // 
             // groupBox5
@@ -1085,7 +1026,7 @@
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(3, 3);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(245, 248);
+            this.groupBox5.Size = new System.Drawing.Size(177, 203);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Model";
@@ -1099,7 +1040,7 @@
             this.listview_skin_models.Location = new System.Drawing.Point(3, 16);
             this.listview_skin_models.MultiSelect = false;
             this.listview_skin_models.Name = "listview_skin_models";
-            this.listview_skin_models.Size = new System.Drawing.Size(239, 229);
+            this.listview_skin_models.Size = new System.Drawing.Size(171, 184);
             this.listview_skin_models.TabIndex = 15;
             this.listview_skin_models.UseCompatibleStateImageBehavior = false;
             this.listview_skin_models.View = System.Windows.Forms.View.List;
@@ -1117,9 +1058,9 @@
             this.panel7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel7.Controls.Add(this.selected_csp_name);
             this.panel7.Controls.Add(this.button_skin_delete_csp);
-            this.panel7.Location = new System.Drawing.Point(254, 257);
+            this.panel7.Location = new System.Drawing.Point(186, 212);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(245, 69);
+            this.panel7.Size = new System.Drawing.Size(177, 69);
             this.panel7.TabIndex = 1;
             // 
             // selected_csp_name
@@ -1138,7 +1079,7 @@
             this.button_skin_delete_csp.Enabled = false;
             this.button_skin_delete_csp.Location = new System.Drawing.Point(3, 35);
             this.button_skin_delete_csp.Name = "button_skin_delete_csp";
-            this.button_skin_delete_csp.Size = new System.Drawing.Size(239, 23);
+            this.button_skin_delete_csp.Size = new System.Drawing.Size(171, 23);
             this.button_skin_delete_csp.TabIndex = 14;
             this.button_skin_delete_csp.Text = "Remove Selected CSP";
             this.button_skin_delete_csp.UseVisualStyleBackColor = true;
@@ -1148,9 +1089,9 @@
             // 
             this.groupBox3.Controls.Add(this.listview_skin_csp);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(254, 3);
+            this.groupBox3.Location = new System.Drawing.Point(186, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(245, 248);
+            this.groupBox3.Size = new System.Drawing.Size(177, 203);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "CHR";
@@ -1164,7 +1105,7 @@
             this.listview_skin_csp.Location = new System.Drawing.Point(3, 16);
             this.listview_skin_csp.MultiSelect = false;
             this.listview_skin_csp.Name = "listview_skin_csp";
-            this.listview_skin_csp.Size = new System.Drawing.Size(239, 229);
+            this.listview_skin_csp.Size = new System.Drawing.Size(171, 184);
             this.listview_skin_csp.TabIndex = 0;
             this.listview_skin_csp.UseCompatibleStateImageBehavior = false;
             this.listview_skin_csp.View = System.Windows.Forms.View.List;
@@ -1182,9 +1123,9 @@
             this.panel8.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel8.Controls.Add(this.label_skin_selected_model);
             this.panel8.Controls.Add(this.button_skin_delete_model);
-            this.panel8.Location = new System.Drawing.Point(3, 257);
+            this.panel8.Location = new System.Drawing.Point(3, 212);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(245, 69);
+            this.panel8.Size = new System.Drawing.Size(177, 69);
             this.panel8.TabIndex = 2;
             // 
             // label_skin_selected_model
@@ -1203,7 +1144,7 @@
             this.button_skin_delete_model.Enabled = false;
             this.button_skin_delete_model.Location = new System.Drawing.Point(3, 35);
             this.button_skin_delete_model.Name = "button_skin_delete_model";
-            this.button_skin_delete_model.Size = new System.Drawing.Size(239, 23);
+            this.button_skin_delete_model.Size = new System.Drawing.Size(171, 23);
             this.button_skin_delete_model.TabIndex = 15;
             this.button_skin_delete_model.Text = "Remove Selected Model";
             this.button_skin_delete_model.UseVisualStyleBackColor = true;
@@ -1214,7 +1155,7 @@
             this.tabPage3.Controls.Add(this.groupBox4);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(514, 354);
+            this.tabPage3.Size = new System.Drawing.Size(378, 309);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Skin Metadata";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1233,7 +1174,7 @@
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(514, 354);
+            this.groupBox4.Size = new System.Drawing.Size(378, 309);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Metadata";
@@ -1244,7 +1185,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button_skin_meta_save.Location = new System.Drawing.Point(9, 136);
             this.button_skin_meta_save.Name = "button_skin_meta_save";
-            this.button_skin_meta_save.Size = new System.Drawing.Size(499, 23);
+            this.button_skin_meta_save.Size = new System.Drawing.Size(363, 23);
             this.button_skin_meta_save.TabIndex = 8;
             this.button_skin_meta_save.Text = "Save Metadata";
             this.button_skin_meta_save.UseVisualStyleBackColor = true;
@@ -1257,7 +1198,7 @@
             this.textbox_skin_meta_texidfix.Location = new System.Drawing.Point(124, 101);
             this.textbox_skin_meta_texidfix.Name = "textbox_skin_meta_texidfix";
             this.textbox_skin_meta_texidfix.ReadOnly = true;
-            this.textbox_skin_meta_texidfix.Size = new System.Drawing.Size(384, 20);
+            this.textbox_skin_meta_texidfix.Size = new System.Drawing.Size(248, 20);
             this.textbox_skin_meta_texidfix.TabIndex = 7;
             // 
             // label11
@@ -1285,7 +1226,7 @@
             this.textbox_skin_meta_name.Location = new System.Drawing.Point(124, 75);
             this.textbox_skin_meta_name.Name = "textbox_skin_meta_name";
             this.textbox_skin_meta_name.ReadOnly = true;
-            this.textbox_skin_meta_name.Size = new System.Drawing.Size(384, 20);
+            this.textbox_skin_meta_name.Size = new System.Drawing.Size(248, 20);
             this.textbox_skin_meta_name.TabIndex = 5;
             // 
             // label8
@@ -1304,7 +1245,7 @@
             this.textbox_skin_meta_version.Location = new System.Drawing.Point(124, 49);
             this.textbox_skin_meta_version.Name = "textbox_skin_meta_version";
             this.textbox_skin_meta_version.ReadOnly = true;
-            this.textbox_skin_meta_version.Size = new System.Drawing.Size(384, 20);
+            this.textbox_skin_meta_version.Size = new System.Drawing.Size(248, 20);
             this.textbox_skin_meta_version.TabIndex = 4;
             // 
             // label10
@@ -1323,12 +1264,13 @@
             this.textbox_skin_meta_author.Location = new System.Drawing.Point(124, 23);
             this.textbox_skin_meta_author.Name = "textbox_skin_meta_author";
             this.textbox_skin_meta_author.ReadOnly = true;
-            this.textbox_skin_meta_author.Size = new System.Drawing.Size(384, 20);
+            this.textbox_skin_meta_author.Size = new System.Drawing.Size(248, 20);
             this.textbox_skin_meta_author.TabIndex = 3;
             // 
             // listview_skins
             // 
             this.listview_skins.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.listview_skins.AllowDrop = true;
             this.listview_skins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1340,11 +1282,15 @@
             this.listview_skins.MinimumSize = new System.Drawing.Size(155, 4);
             this.listview_skins.MultiSelect = false;
             this.listview_skins.Name = "listview_skins";
-            this.listview_skins.Size = new System.Drawing.Size(258, 397);
+            this.tableLayoutPanel2.SetRowSpan(this.listview_skins, 2);
+            this.listview_skins.Size = new System.Drawing.Size(187, 453);
             this.listview_skins.TabIndex = 21;
             this.listview_skins.UseCompatibleStateImageBehavior = false;
             this.listview_skins.View = System.Windows.Forms.View.Details;
+            this.listview_skins.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.listview_skins_ItemDrag);
             this.listview_skins.SelectedIndexChanged += new System.EventHandler(this.skin_selected);
+            this.listview_skins.DragDrop += new System.Windows.Forms.DragEventHandler(this.listview_skins_DragDrop);
+            this.listview_skins.DragEnter += new System.Windows.Forms.DragEventHandler(this.listview_skins_DragEnter);
             // 
             // Skins_col
             // 
@@ -1357,22 +1303,167 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(798, 522);
+            this.tabPage5.Size = new System.Drawing.Size(585, 465);
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "Character Tab";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // tabControl3
             // 
+            this.tabControl3.Controls.Add(this.tabPage11);
             this.tabControl3.Controls.Add(this.tabPage7);
             this.tabControl3.Controls.Add(this.tabPage8);
-            this.tabControl3.Controls.Add(this.tabPage11);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(792, 516);
+            this.tabControl3.Size = new System.Drawing.Size(579, 459);
             this.tabControl3.TabIndex = 10;
+            // 
+            // tabPage11
+            // 
+            this.tabPage11.Controls.Add(this.tableLayoutPanel8);
+            this.tabPage11.Location = new System.Drawing.Point(4, 22);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(571, 433);
+            this.tabPage11.TabIndex = 3;
+            this.tabPage11.Text = "Actions";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Controls.Add(this.groupBox12, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.groupBox14, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 2;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(565, 427);
+            this.tableLayoutPanel8.TabIndex = 2;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.button6);
+            this.groupBox12.Controls.Add(this.button5);
+            this.groupBox12.Controls.Add(this.button4);
+            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox12.Location = new System.Drawing.Point(285, 3);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(277, 207);
+            this.groupBox12.TabIndex = 0;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Segtendo Actions";
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.Location = new System.Drawing.Point(6, 104);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(265, 23);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Reset all extra skins";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.reset_extra_skins);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.Location = new System.Drawing.Point(6, 178);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(265, 23);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "Reset all skins";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.reset_all_skins);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.Location = new System.Drawing.Point(6, 40);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(265, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "Reset all default skins";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.reset_default_skins);
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.button9);
+            this.groupBox14.Controls.Add(this.button8);
+            this.groupBox14.Controls.Add(this.button7);
+            this.groupBox14.Controls.Add(this.textBox2);
+            this.groupBox14.Controls.Add(this.label15);
+            this.groupBox14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox14.Location = new System.Drawing.Point(3, 3);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(276, 207);
+            this.groupBox14.TabIndex = 17;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Add Skins";
+            // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.Location = new System.Drawing.Point(0, 179);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(270, 23);
+            this.button9.TabIndex = 10;
+            this.button9.Text = "Add 1000 skins, pretty please";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button8
+            // 
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button8.Location = new System.Drawing.Point(6, 40);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(264, 23);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "Add one skin please";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.add_one_skin);
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.Location = new System.Drawing.Point(0, 127);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(270, 23);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "Add this many please";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.add_many_skins);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox2.Location = new System.Drawing.Point(88, 101);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(182, 20);
+            this.textBox2.TabIndex = 1;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 104);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 13);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "Skin Count";
             // 
             // tabPage7
             // 
@@ -1380,7 +1471,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(784, 490);
+            this.tabPage7.Size = new System.Drawing.Size(571, 433);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "CSS";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1398,7 +1489,7 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(778, 484);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(565, 427);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // groupBox7
@@ -1407,9 +1498,9 @@
             this.groupBox7.Controls.Add(this.textBox1);
             this.groupBox7.Controls.Add(this.label5);
             this.groupBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox7.Location = new System.Drawing.Point(392, 3);
+            this.groupBox7.Location = new System.Drawing.Point(285, 3);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(383, 236);
+            this.groupBox7.Size = new System.Drawing.Size(277, 207);
             this.groupBox7.TabIndex = 15;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "CSS Portrait";
@@ -1429,7 +1520,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.Location = new System.Drawing.Point(10, 51);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(184, 20);
+            this.textBox1.Size = new System.Drawing.Size(78, 20);
             this.textBox1.TabIndex = 9;
             // 
             // label5
@@ -1449,7 +1540,7 @@
             this.groupBox8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox8.Location = new System.Drawing.Point(3, 3);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(383, 236);
+            this.groupBox8.Size = new System.Drawing.Size(276, 207);
             this.groupBox8.TabIndex = 14;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "ui_character_db override";
@@ -1484,85 +1575,10 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(784, 490);
+            this.tabPage8.Size = new System.Drawing.Size(571, 433);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "File Manager";
             this.tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.Controls.Add(this.tableLayoutPanel8);
-            this.tabPage11.Location = new System.Drawing.Point(4, 22);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(784, 490);
-            this.tabPage11.TabIndex = 3;
-            this.tabPage11.Text = "Actions";
-            this.tabPage11.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel8
-            // 
-            this.tableLayoutPanel8.ColumnCount = 2;
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.groupBox12, 0, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
-            this.tableLayoutPanel8.RowCount = 2;
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(778, 484);
-            this.tableLayoutPanel8.TabIndex = 2;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.button6);
-            this.groupBox12.Controls.Add(this.button5);
-            this.groupBox12.Controls.Add(this.button4);
-            this.groupBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox12.Location = new System.Drawing.Point(3, 3);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(383, 236);
-            this.groupBox12.TabIndex = 0;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Segtendo Actions";
-            // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.Location = new System.Drawing.Point(6, 58);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(371, 23);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Reset all extra skins";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.reset_extra_skins);
-            // 
-            // button5
-            // 
-            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button5.Location = new System.Drawing.Point(6, 87);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(371, 23);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "Reset all skins";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.reset_all_skins);
-            // 
-            // button4
-            // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(6, 29);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(371, 23);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Reset all default skins";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.reset_default_skins);
             // 
             // tabPage10
             // 
@@ -1570,7 +1586,7 @@
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(798, 522);
+            this.tabPage10.Size = new System.Drawing.Size(585, 465);
             this.tabPage10.TabIndex = 3;
             this.tabPage10.Text = "Awesome Skin Detector 3000";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1590,7 +1606,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(792, 516);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(579, 459);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
             // dataGridView1
@@ -1605,7 +1621,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(786, 375);
+            this.dataGridView1.Size = new System.Drawing.Size(573, 318);
             this.dataGridView1.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -1642,9 +1658,9 @@
             // 
             this.groupBox13.Controls.Add(this.listView1);
             this.groupBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox13.Location = new System.Drawing.Point(3, 384);
+            this.groupBox13.Location = new System.Drawing.Point(3, 327);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(786, 86);
+            this.groupBox13.Size = new System.Drawing.Size(573, 86);
             this.groupBox13.TabIndex = 2;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Manual Install folder drop zone";
@@ -1658,7 +1674,7 @@
             this.listView1.Location = new System.Drawing.Point(3, 16);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(780, 67);
+            this.listView1.Size = new System.Drawing.Size(567, 67);
             this.listView1.TabIndex = 16;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
@@ -1667,9 +1683,9 @@
             // 
             this.panel10.Controls.Add(this.button3);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(3, 476);
+            this.panel10.Location = new System.Drawing.Point(3, 419);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(786, 37);
+            this.panel10.Size = new System.Drawing.Size(573, 37);
             this.panel10.TabIndex = 3;
             // 
             // button3
@@ -1677,7 +1693,7 @@
             this.button3.Dock = System.Windows.Forms.DockStyle.Top;
             this.button3.Location = new System.Drawing.Point(0, 0);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(786, 32);
+            this.button3.Size = new System.Drawing.Size(573, 32);
             this.button3.TabIndex = 0;
             this.button3.Text = "Add detected skins to the library";
             this.button3.UseVisualStyleBackColor = true;
@@ -1687,15 +1703,17 @@
             this.tabPage6.Controls.Add(this.tableLayoutPanel6);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(798, 522);
+            this.tabPage6.Size = new System.Drawing.Size(585, 465);
             this.tabPage6.TabIndex = 2;
             this.tabPage6.Text = "Skin Packer";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel6
             // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.button10, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.groupBox10, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.packer_skinlist, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.groupBox11, 0, 2);
@@ -1708,11 +1726,23 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(798, 522);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(585, 465);
             this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // button10
+            // 
+            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button10.Location = new System.Drawing.Point(295, 425);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(287, 32);
+            this.button10.TabIndex = 4;
+            this.button10.Text = "Reset Pack";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.menu_packer_reset);
             // 
             // groupBox10
             // 
+            this.tableLayoutPanel6.SetColumnSpan(this.groupBox10, 2);
             this.groupBox10.Controls.Add(this.textbox_packer_version);
             this.groupBox10.Controls.Add(this.textbox_packer_author);
             this.groupBox10.Controls.Add(this.label9);
@@ -1720,7 +1750,7 @@
             this.groupBox10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox10.Location = new System.Drawing.Point(3, 3);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(792, 94);
+            this.groupBox10.Size = new System.Drawing.Size(579, 94);
             this.groupBox10.TabIndex = 0;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Pack Information";
@@ -1731,7 +1761,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textbox_packer_version.Location = new System.Drawing.Point(70, 59);
             this.textbox_packer_version.Name = "textbox_packer_version";
-            this.textbox_packer_version.Size = new System.Drawing.Size(704, 20);
+            this.textbox_packer_version.Size = new System.Drawing.Size(491, 20);
             this.textbox_packer_version.TabIndex = 8;
             // 
             // textbox_packer_author
@@ -1740,7 +1770,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textbox_packer_author.Location = new System.Drawing.Point(70, 33);
             this.textbox_packer_author.Name = "textbox_packer_author";
-            this.textbox_packer_author.Size = new System.Drawing.Size(704, 20);
+            this.textbox_packer_author.Size = new System.Drawing.Size(491, 20);
             this.textbox_packer_author.TabIndex = 7;
             // 
             // label9
@@ -1770,10 +1800,11 @@
             this.Column4,
             this.Column2,
             this.Column3});
+            this.tableLayoutPanel6.SetColumnSpan(this.packer_skinlist, 2);
             this.packer_skinlist.Dock = System.Windows.Forms.DockStyle.Fill;
             this.packer_skinlist.Location = new System.Drawing.Point(3, 103);
             this.packer_skinlist.Name = "packer_skinlist";
-            this.packer_skinlist.Size = new System.Drawing.Size(792, 281);
+            this.packer_skinlist.Size = new System.Drawing.Size(579, 224);
             this.packer_skinlist.TabIndex = 1;
             this.packer_skinlist.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.meteorpack_gridview_CellValueChanged);
             this.packer_skinlist.CurrentCellChanged += new System.EventHandler(this.meteorpack_gridview_CurrentCellChanged);
@@ -1810,11 +1841,12 @@
             // 
             // groupBox11
             // 
+            this.tableLayoutPanel6.SetColumnSpan(this.groupBox11, 2);
             this.groupBox11.Controls.Add(this.packer_dropzone);
             this.groupBox11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox11.Location = new System.Drawing.Point(3, 390);
+            this.groupBox11.Location = new System.Drawing.Point(3, 333);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(792, 86);
+            this.groupBox11.Size = new System.Drawing.Size(579, 86);
             this.groupBox11.TabIndex = 2;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Manual Install folder drop zone";
@@ -1828,7 +1860,7 @@
             this.packer_dropzone.Location = new System.Drawing.Point(3, 16);
             this.packer_dropzone.MultiSelect = false;
             this.packer_dropzone.Name = "packer_dropzone";
-            this.packer_dropzone.Size = new System.Drawing.Size(786, 67);
+            this.packer_dropzone.Size = new System.Drawing.Size(573, 67);
             this.packer_dropzone.TabIndex = 16;
             this.packer_dropzone.UseCompatibleStateImageBehavior = false;
             this.packer_dropzone.View = System.Windows.Forms.View.List;
@@ -1839,9 +1871,9 @@
             // 
             this.panel9.Controls.Add(this.button_packer_pack);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(3, 482);
+            this.panel9.Location = new System.Drawing.Point(3, 425);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(792, 37);
+            this.panel9.Size = new System.Drawing.Size(286, 37);
             this.panel9.TabIndex = 3;
             // 
             // button_packer_pack
@@ -1849,7 +1881,7 @@
             this.button_packer_pack.Dock = System.Windows.Forms.DockStyle.Top;
             this.button_packer_pack.Location = new System.Drawing.Point(0, 0);
             this.button_packer_pack.Name = "button_packer_pack";
-            this.button_packer_pack.Size = new System.Drawing.Size(792, 32);
+            this.button_packer_pack.Size = new System.Drawing.Size(286, 32);
             this.button_packer_pack.TabIndex = 0;
             this.button_packer_pack.Text = "Pack archive";
             this.button_packer_pack.UseVisualStyleBackColor = true;
@@ -1901,16 +1933,16 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.57962F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.42038F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1279, 554);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(944, 497);
             this.tableLayoutPanel1.TabIndex = 23;
             // 
             // groupBox9
             // 
             this.groupBox9.Controls.Add(this.textConsole);
             this.groupBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox9.Location = new System.Drawing.Point(992, 3);
+            this.groupBox9.Location = new System.Drawing.Point(732, 3);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(284, 340);
+            this.groupBox9.Size = new System.Drawing.Size(209, 305);
             this.groupBox9.TabIndex = 23;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Console";
@@ -1921,7 +1953,7 @@
             this.textConsole.Location = new System.Drawing.Point(3, 16);
             this.textConsole.MinimumSize = new System.Drawing.Size(133, 4);
             this.textConsole.Name = "textConsole";
-            this.textConsole.Size = new System.Drawing.Size(278, 321);
+            this.textConsole.Size = new System.Drawing.Size(203, 286);
             this.textConsole.TabIndex = 9;
             this.textConsole.Text = "";
             // 
@@ -1945,11 +1977,16 @@
             this.backup_worker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backup_worker_ProgressChanged);
             this.backup_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backup_worker_RunWorkerCompleted);
             // 
+            // convert_worker
+            // 
+            this.convert_worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.convert_worker_DoWork);
+            this.convert_worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.convert_worker_RunWorkerCompleted);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1279, 578);
+            this.ClientSize = new System.Drawing.Size(944, 521);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.skinboxlabel);
             this.Controls.Add(this.menuStrip1);
@@ -1968,7 +2005,6 @@
             this.tabPage4.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1999,15 +2035,17 @@
             this.groupBox4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
-            this.tableLayoutPanel8.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -2035,19 +2073,14 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_file;
         private System.Windows.Forms.ToolStripMenuItem tsmi_file_exit;
         private System.Windows.Forms.Label skinboxlabel;
-        private System.Windows.Forms.ToolStripMenuItem tsmi_skin;
-        private System.Windows.Forms.ToolStripMenuItem tsmi_skin_add;
         private System.Windows.Forms.PictureBox meteorbox;
         private System.ComponentModel.BackgroundWorker import_worker;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label_app_status;
         private System.ComponentModel.BackgroundWorker export_worker;
-        private System.Windows.Forms.Button textbox_skin_move_up;
-        private System.Windows.Forms.Button textbox_skin_move_down;
         private System.Windows.Forms.ProgressBar loadingbox;
         private System.ComponentModel.BackgroundWorker url_worker;
         private System.ComponentModel.BackgroundWorker meteor_worker;
-        private System.Windows.Forms.ToolStripMenuItem tsmi_skin_reset_package;
         private System.ComponentModel.BackgroundWorker archive_worker;
         private System.Windows.Forms.ListView listview_characters;
         private System.Windows.Forms.ColumnHeader Characterss;
@@ -2068,7 +2101,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmi_help_about;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -2191,6 +2223,14 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label15;
+        private System.ComponentModel.BackgroundWorker convert_worker;
+        private System.Windows.Forms.Button button10;
     }
 }
 

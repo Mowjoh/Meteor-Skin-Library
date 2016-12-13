@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Meteor_Skin_Library.Items;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,7 +53,7 @@ namespace MeteorSkinLibrary
 
         #region Skins
         //Returns an ArrayList containing skins names for the ListBox.
-        public ArrayList get_skin_list(String fullname)
+        public ArrayList get_skin_slots(String fullname)
         {
             ArrayList Skins_array = new ArrayList();
 
@@ -65,6 +66,51 @@ namespace MeteorSkinLibrary
             {
                 count++;
                 Skins_array.Add(node.GetAttribute("slot"));
+            }
+
+            return Skins_array;
+        }
+
+        //Returns an ArrayList containing skins names for the ListBox.
+        public ArrayList get_skin_names(String fullname)
+        {
+            ArrayList Skins_array = new ArrayList();
+
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNodeList nodes = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin");
+            int count = 0;
+
+            foreach (XmlElement node in nodes)
+            {
+                count++;
+                Skins_array.Add(node.GetAttribute("name"));
+            }
+
+            return Skins_array;
+        }
+
+        public ArrayList get_skins(String fullname)
+        {
+            ArrayList Skins_array = new ArrayList();
+
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNodeList nodes = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin");
+
+            foreach (XmlElement node in nodes)
+            {
+                String skin_info;
+                if (node.Attributes.GetNamedItem("id") == null)
+                {
+                    skin_info = node.GetAttribute("slot") + ";" + node.GetAttribute("name") + ";-1";
+                }
+                else
+                {
+                    skin_info = node.GetAttribute("slot") + ";" + node.GetAttribute("name") + ";" + node.GetAttribute("id");
+                }
+                
+                Skins_array.Add(skin_info);
             }
 
             return Skins_array;
@@ -129,6 +175,24 @@ namespace MeteorSkinLibrary
             xmlSkin.SetAttribute("slot", slot.ToString());
             xmlSkin.SetAttribute("name", skin_name);
             xmlSkin.SetAttribute("origin", "Custom");
+
+            xmlChar.AppendChild(xmlSkin);
+            xml.Save(LibraryPath);
+
+
+        }
+
+        //Adds a Skin with a specific Library Name and id
+        public void add_skin(String fullname, int slot, String skin_name, int id)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNode xmlChar = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']");
+            XmlElement xmlSkin = xml.CreateElement("skin");
+            xmlSkin.SetAttribute("slot", slot.ToString());
+            xmlSkin.SetAttribute("name", skin_name);
+            xmlSkin.SetAttribute("origin", "FileBank");
+            xmlSkin.SetAttribute("id", id.ToString());
 
             xmlChar.AppendChild(xmlSkin);
             xml.Save(LibraryPath);
@@ -244,6 +308,35 @@ namespace MeteorSkinLibrary
             xml.Save(LibraryPath);
         }
 
+        internal void move(String fullname, int origin_slot, int destination_slot)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            
+            XmlNode destination_skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + destination_slot.ToString() + "']");
+            XmlNode source = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + origin_slot.ToString() + "']");
+            XmlNode copy = source.Clone();
+            copy.Attributes["slot"].Value = destination_slot.ToString();
+            destination_skin.ParentNode.InsertBefore(copy,destination_skin);
+            source.ParentNode.RemoveChild(source);
+
+            xml.Save(LibraryPath);
+        }
+
+        internal void set_changed_status(String fullname, int slot, String status)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNodeList nodes = xml.SelectNodes("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']");
+            foreach (XmlElement node in nodes)
+            {
+                if (node.GetAttribute("slot") == slot.ToString())
+                {
+                    node.SetAttribute("changed", status);
+                    xml.Save(LibraryPath);
+                }
+            }
+        }
         #endregion
 
         #region Models
@@ -763,6 +856,16 @@ namespace MeteorSkinLibrary
             XmlNode character = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + skinslot + "']");
             return character.Attributes["name"].Value;
         }
+
+        //Gets the library name
+        internal string get_default_skin_libraryname(String fullname, int skinslot)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(Application.StartupPath+"/mmsl_config/Default_Library.xml");
+            XmlNode character = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + skinslot + "']");
+            return character.Attributes["name"].Value;
+        }
+
         //gets the moved_dlc status
         internal Boolean get_moved_dlc_status(String fullname)
         {
@@ -784,6 +887,28 @@ namespace MeteorSkinLibrary
             XmlNode character = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']");
             return character.Attributes["ui_char_db_id"].Value;
         }
+
+        internal String get_changed_status(String fullname, int slot)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+            XmlNode skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + slot + "']");
+
+            if (skin == null)
+            {
+                return "";
+            }else
+            {
+                if(skin.Attributes["changed"] == null)
+                {
+                    return "";
+                }else
+                {
+                    return skin.Attributes["changed"].Value;
+                }
+            }
+        }
+
         #endregion
 
         #region Swappers
@@ -810,6 +935,50 @@ namespace MeteorSkinLibrary
             xml.Save(LibraryPath);
         }
         #endregion
+
+        public void set_id(NewSkin current_newskin)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+
+            XmlNode skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + current_newskin.fullname + "']/skin[attribute::slot='" + current_newskin.cspslot + "']");
+
+            if (skin.Attributes.GetNamedItem("id") == null)
+            {
+                //ID
+                XmlAttribute attr = xml.CreateAttribute("id");
+                attr.Value = current_newskin.id.ToString();
+                skin.Attributes.Append(attr);
+                skin.InnerXml = "";
+            }
+            else
+            {
+                skin.Attributes["id"].Value = current_newskin.id.ToString();
+                skin.InnerXml = "";
+            }
+
+            xml.Save(LibraryPath);
+
+        }
+
+        public String get_id(String fullname, String cspslot)
+        {
+            XmlDocument xml = new XmlDocument();
+            xml.Load(LibraryPath);
+
+            XmlNode skin = xml.SelectSingleNode("/Roaster/Character[attribute::name='" + fullname + "']/skin[attribute::slot='" + cspslot + "']");
+
+            if (skin.Attributes.GetNamedItem("id") == null)
+            {
+                return "";
+            }
+            else
+            {
+                return skin.Attributes["id"].Value;
+            }
+            
+        }
+
 
     }
 

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Filebank>
+  <Character name="Mario" dlc="0" foldername="mario" moved_dlc="0" ui_char_db_id="4" cspname="Mario">
+  </Character>
+  <Character name="Luigi" dlc="0" foldername="luigi" moved_dlc="0" ui_char_db_id="12" cspname="Luigi">
+  </Character>
+  <Character name="Peach" dlc="0" foldername="peach" moved_dlc="0" ui_char_db_id="15" cspname="Peach">
+  </Character>
+  <Character name="Bowser" dlc="0" foldername="koopa" moved_dlc="0" ui_char_db_id="16" cspname="Koopa">
+  </Character>
+  <Character name="Yoshi" dlc="0" foldername="yoshi" moved_dlc="0" ui_char_db_id="8" cspname="Yoshi">
+  </Character>
+  <Character name="Rosalina" dlc="0" foldername="rosetta" moved_dlc="0" ui_char_db_id="37" cspname="Rosetta">
+  </Character>
+  <Character name="Bowser Jr" dlc="0" foldername="koopajr" moved_dlc="0" ui_char_db_id="44" cspname="KoopaJr">
+  </Character>
+  <Character name="Donkey Kong" dlc="0" foldername="donkey" moved_dlc="0" ui_char_db_id="5" cspname="Donkey">
+  </Character>
+  <Character name="Diddy Kong" dlc="0" foldername="diddy" moved_dlc="0" ui_char_db_id="28" cspname="Diddy">
+  </Character>
+  <Character name="Game and Watch" dlc="0" foldername="gamewatch" moved_dlc="0" ui_char_db_id="20" cspname="Gamewatch">
+  </Character>
+  <Character name="Little Mac" dlc="0" foldername="littlemac" moved_dlc="0" ui_char_db_id="39" cspname="Littlemac">
+  </Character>
+  <Character name="Link" dlc="0" foldername="link" moved_dlc="0" ui_char_db_id="6" cspname="Link">
+  </Character>
+  <Character name="Zelda" dlc="0" foldername="zelda" moved_dlc="0" ui_char_db_id="17" cspname="Zelda">
+  </Character>
+  <Character name="Sheik" dlc="0" foldername="sheik" moved_dlc="0" ui_char_db_id="18" cspname="Sheik">
+  </Character>
+  <Character name="Ganon" dlc="0" foldername="ganon" moved_dlc="0" ui_char_db_id="21" cspname="Ganon">
+  </Character>
+  <Character name="Toon Link" dlc="0" foldername="toonlink" moved_dlc="0" ui_char_db_id="33" cspname="Toonlink">
+  </Character>
+  <Character name="Wario" dlc="0" foldername="wario" moved_dlc="0" ui_char_db_id="23" cspname="Wario">
+  </Character>
+  <Character name="Samus" dlc="0" foldername="samus" moved_dlc="0" ui_char_db_id="7" cspname="Samus">
+  </Character>
+  <Character name="Zero Suit Samus" dlc="0" foldername="szerosuit" moved_dlc="0" ui_char_db_id="26" cspname="Szerosuit">
+  </Character>
+  <Character name="Pit" dlc="0" foldername="pit" moved_dlc="0" ui_char_db_id="25" cspname="Pit">
+  </Character>
+  <Character name="Palutena" dlc="0" foldername="palutena" moved_dlc="0" ui_char_db_id="41" cspname="Palutena">
+  </Character>
+  <Character name="Marth" dlc="0" foldername="marth" moved_dlc="0" ui_char_db_id="19" cspname="Marth">
+  </Character>
+  <Character name="Ike" dlc="0" foldername="ike" moved_dlc="0" ui_char_db_id="30" cspname="Ike">
+  </Character>
+  <Character name="Robin" dlc="0" foldername="reflet" moved_dlc="0" ui_char_db_id="42" cspname="Reflet">
+  </Character>
+  <Character name="Duck Hunt" dlc="0" foldername="duckhunt" moved_dlc="0" ui_char_db_id="43" cspname="Duckhunt">
+  </Character>
+  <Character name="Falco" dlc="0" foldername="falco" moved_dlc="0" ui_char_db_id="22" cspname="Falco">
+  </Character>
+  <Character name="Kirby" dlc="0" foldername="kirby" moved_dlc="0" ui_char_db_id="9" cspname="Kirby">
+  </Character>
+  <Character name="King Dedede" dlc="0" foldername="dedede" moved_dlc="0" ui_char_db_id="29" cspname="Dedede">
+  </Character>
+  <Character name="Meta Knight" dlc="0" foldername="metaknight" moved_dlc="0" ui_char_db_id="24" cspname="Metaknight">
+  </Character>
+  <Character name="Fox" dlc="0" foldername="fox" moved_dlc="0" ui_char_db_id="10" cspname="Fox">
+  </Character>
+  <Character name="Pikachu" dlc="0" foldername="pikachu" moved_dlc="0" ui_char_db_id="11" cspname="Pikachu">
+  </Character>
+  <Character name="Charizard" dlc="0" foldername="lizardon" moved_dlc="0" ui_char_db_id="34" cspname="Lizardon">
+  </Character>
+  <Character name="Lucario" dlc="0" foldername="lucario" moved_dlc="0" ui_char_db_id="31" cspname="Lucario">
+  </Character>
+  <Character name="Jigglypuff" dlc="0" foldername="purin" moved_dlc="0" ui_char_db_id="46" cspname="Purin">
+  </Character>
+  <Character name="Greninja" dlc="0" foldername="gekkouga" moved_dlc="0" ui_char_db_id="49" cspname="Gekkouga">
+  </Character>
+  <Character name="R.O.B" dlc="0" foldername="robot" moved_dlc="0" ui_char_db_id="32" cspname="Robot">
+  </Character>
+  <Character name="Ness" dlc="0" foldername="ness" moved_dlc="0" ui_char_db_id="14" cspname="Ness">
+  </Character>
+  <Character name="Captain Falcon" dlc="0" foldername="captain" moved_dlc="0" ui_char_db_id="13" cspname="Captain">
+  </Character>
+  <Character name="Villager" dlc="0" foldername="murabito" moved_dlc="0" ui_char_db_id="40" cspname="Murabito">
+  </Character>
+  <Character name="Olimar" dlc="0" foldername="pikmin" moved_dlc="0" ui_char_db_id="27" cspname="Pikmin">
+  </Character>
+  <Character name="Wii Fit" dlc="0" foldername="wiifit" moved_dlc="0" ui_char_db_id="38" cspname="Wiifit">
+  </Character>
+  <Character name="Shulk" dlc="0" foldername="shulk" moved_dlc="0" ui_char_db_id="45" cspname="Shulk">
+  </Character>
+  <Character name="Dr. Mario" dlc="0" foldername="mariod" moved_dlc="0" ui_char_db_id="36" cspname="Drmario">
+  </Character>
+  <Character name="Dark Pit" dlc="0" foldername="pitb" moved_dlc="0" ui_char_db_id="48" cspname="Pitb">
+  </Character>
+  <Character name="Lucina" dlc="0" foldername="lucina" moved_dlc="0" ui_char_db_id="47" cspname="Lucina">
+  </Character>
+  <Character name="Pac-man" dlc="0" foldername="pacman" moved_dlc="0" ui_char_db_id="50" cspname="Pacman">
+  </Character>
+  <Character name="Megaman" dlc="0" foldername="rockman" moved_dlc="0" ui_char_db_id="51" cspname="Rockman">
+  </Character>
+  <Character name="Sonic" dlc="0" foldername="sonic" moved_dlc="0" ui_char_db_id="35" cspname="Sonic">
+  </Character>
+  <Character name="Mewtwo" dlc="1" foldername="mewtwo" moved_dlc="0" ui_char_db_id="52" cspname="Mewtwo">
+  </Character>
+  <Character name="Lucas" dlc="1" foldername="lucas" moved_dlc="0" ui_char_db_id="54" cspname="Lucas">
+  </Character>
+  <Character name="Roy" dlc="1" foldername="roy" moved_dlc="1" ui_char_db_id="55" cspname="Roy">
+  </Character>
+  <Character name="Ryu" dlc="1" foldername="ryu" moved_dlc="0" ui_char_db_id="53" cspname="Ryu">
+  </Character>
+  <Character name="Cloud" dlc="1" foldername="cloud" moved_dlc="0" ui_char_db_id="56" cspname="Cloud">
+  </Character>
+  <Character name="Corrin" dlc="1" foldername="kamui" moved_dlc="0" ui_char_db_id="58" cspname="Kamui">
+  </Character>
+  <Character name="Bayonetta" dlc="1" foldername="bayonetta" moved_dlc="0" ui_char_db_id="57" cspname="Bayonetta">
+  </Character>
+  <Character name="Random" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="00" cspname="Omakase">
+  </Character>
+  <Character name="All Miis" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="59" cspname="Miiall">
+  </Character>
+  <Character name="Fighter Mii" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="1" cspname="Miifighter">
+  </Character>
+  <Character name="Gunner Mii" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="3" cspname="Miigunner">
+  </Character>
+  <Character name="Swordsman Mii" dlc="0" foldername="" moved_dlc="0" ui_char_db_id="2" cspname="Miiswordsman">
+  </Character>
+</Filebank>

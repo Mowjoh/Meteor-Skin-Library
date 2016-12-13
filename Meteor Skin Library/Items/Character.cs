@@ -19,6 +19,7 @@ namespace MeteorSkinLibrary
         //Character Variables
         public String fullname;
         public ArrayList skins;
+        public String[][] new_skins;
 
         public ArrayList css_files;
         
@@ -47,16 +48,25 @@ namespace MeteorSkinLibrary
         public void getSkins()
         {
             skins.Clear();
-            ArrayList skinlist = Library.get_skin_list(fullname);
+            ArrayList skinlist = Library.get_skin_slots(fullname);
+
             foreach (String slot in skinlist)
             {
                 int slott;
                 if (int.TryParse(slot, out slott))
                 {
+
                     Skin skin = new Skin(fullname, slott, Library.get_skin_libraryname(fullname, slott), Library.get_skin_origin(fullname, slott), Library, properties, log);
                     skins.Add(skin);
                 }
             }
+        }
+
+        public ArrayList getNewSkins()
+        {
+            ArrayList skinlist = Library.get_skin_names(fullname);
+
+            return skinlist;
         }
 
         //Adds a skin to the library
@@ -181,7 +191,7 @@ namespace MeteorSkinLibrary
         #region Files
         public void check_all_files()
         {
-            ArrayList skinlist = Library.get_skin_list(fullname);
+            ArrayList skinlist = Library.get_skin_slots(fullname);
             foreach (String slot in skinlist)
             {
                 Skin skin = new Skin(fullname, int.Parse(slot), Library.get_skin_libraryname(fullname, int.Parse(slot)), Library.get_skin_origin(fullname, int.Parse(slot)), Library, properties, log);

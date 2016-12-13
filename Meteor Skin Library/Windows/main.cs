@@ -15,6 +15,7 @@ using SharpCompress.Writer;
 using System.Xml;
 using System.Drawing;
 using Meteor_Skin_Library;
+using Meteor_Skin_Library.Items;
 
 namespace MeteorSkinLibrary
 {
@@ -25,6 +26,7 @@ namespace MeteorSkinLibrary
         LibraryHandler Library;
         PropertyHandler properties = new PropertyHandler(Application.StartupPath + "/mmsl_config/Default_Config.xml");
         MetaHandler meta = new MetaHandler(Application.StartupPath + "/mmsl_config/meta/Default_Meta.xml");
+        Filebank filebank = new Filebank();
         UICharDBHandler uichar;
         Logger logg;
         #endregion
@@ -33,6 +35,7 @@ namespace MeteorSkinLibrary
 
         //Variables redone
         Skin selected_skin;
+        NewSkin selected_newskin;
         Character selected_char;
         String last_char = "";
         String workspace_char = "";
@@ -43,6 +46,8 @@ namespace MeteorSkinLibrary
         int selected_cell_row;
         int selected_cell_column;
         String selected_cell_skin_name = "";
+
+
 
         #endregion
         #region Lists
@@ -190,10 +195,9 @@ namespace MeteorSkinLibrary
                 packer_reset();
                 this.status_images = new ImageList();
                 status_images.ImageSize = new Size(24, 24);
-                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/unknown.png"));
-                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/missing.png"));
-                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/new.png"));
-                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/checked.png"));
+                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/skin_default.png"));
+                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/skin_changed.png"));
+                status_images.Images.Add(Image.FromFile(Application.StartupPath + "/mmsl_img/skin_ok.png"));
                 listview_skins.SmallImageList = status_images;
 
                 if (properties.property_get("dev") != "1")
@@ -203,6 +207,7 @@ namespace MeteorSkinLibrary
 
 
                 #endregion
+
                 if (properties.property_get("logging") == "1")
                 {
                     logg = new Logger(1, true);
@@ -257,12 +262,11 @@ namespace MeteorSkinLibrary
                     proper_update();
                     check_updater();
 
-
+                    process_start("Converting library", false);
+                    convert_worker.RunWorkerAsync();
+                    
                 }
-
-
             }
-
         }
 
         //Top Menu
@@ -484,7 +488,7 @@ namespace MeteorSkinLibrary
         private void menu_filebank_open(object sender, EventArgs e)
         {
             //launching window
-            FilebankWindow fbw = new FilebankWindow();
+            FilebankWindow fbw = new FilebankWindow(filebank,Library,properties,this);
             fbw.ShowDialog();
         }
         #endregion
@@ -771,8 +775,110 @@ namespace MeteorSkinLibrary
                 write("Could not update ui_character_db", 0);
             }
         }
+        private void button9_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < 100; i++)
+            {
+                write("You really thought this would work?", 1);
+            }
+        }
         #endregion
         #region Action tab
+
+        #region Add skins
+        private void add_one_skin(object sender, EventArgs e)
+        {
+            if(selected_char != null)
+            {
+                NewSkin current = new NewSkin(-1, selected_char.fullname, listview_skins.Items.Count + 1, "Created skin", Library, properties, filebank);
+                filebank.add_skin(current, "", "");
+                Library.add_skin(selected_char.fullname, listview_skins.Items.Count + 1, "Created skin", current.id);
+                skin_ListBox_reload();
+            }else
+            {
+                write("Please select a character first", 1);
+            }
+        }
+        private void add_many_skins(object sender, EventArgs e)
+        {
+            int count;
+            if(int.TryParse(textBox2.Text,out count))
+            {
+                
+                if (selected_char != null)
+                {
+                    if (count < 50)
+                    {
+                        for (int i = 0; i < count; i++)
+                        {
+                            int basecount = listview_skins.Items.Count + 1 + i;
+
+                            NewSkin current = new NewSkin(-1, selected_char.fullname, basecount, "Created skin", Library, properties, filebank);
+                            filebank.add_skin(current, "", "");
+                            Library.add_skin(selected_char.fullname, basecount, "Created skin", current.id);
+                        }
+
+                        skin_ListBox_reload();
+                    }else
+                    {
+                        if(count > 9000)
+                        {
+                            write("IT'S OVER 9000!!!!!", 1);
+                        }else
+                        {
+                            if(count > 5000)
+                            {
+                                write("please stop trying.", 1);
+                            }
+                            else
+                            {
+                                if (count > 1000)
+                                {
+                                    write("You're not prepared for this", 1);
+                                }else
+                                {
+
+                                    if (count == 1000)
+                                    {
+                                        write("You're quite the rebel aren't you?", 1);
+                                    }else
+                                    {
+                                        if (count == 666)
+                                        {
+                                            write("This won't summon the devil, you know? I already am.", 1);
+                                        }else
+                                        {
+                                            write("you can't add more than 50 skins", 1);
+                                        }
+                                    }
+                                    
+
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    write("Please select a character first", 1);
+                }
+            }
+            else
+            {
+                if(textBox2.Text == "DSX8")
+                {
+                    write("Come talk to me for your reward. you have found the secret doorway.", 2);
+                }else
+                {
+                    write("Enter a valid number", 1);
+                }
+                
+            }
+        }
+
+        #endregion
+
+        #region Segtendo Actions
         //Resets all skins at specified start and endindex
         private Boolean reset_skins(int startindex, int endindex)
         {
@@ -891,6 +997,8 @@ namespace MeteorSkinLibrary
             }
         }
         #endregion
+
+        #endregion
         #endregion
 
         //Skin tab
@@ -901,9 +1009,9 @@ namespace MeteorSkinLibrary
         {
             try
             {
-                skin_details_reload();
+
+                load_newskin();
                 state_check();
-                metadata_reload();
             }
             catch
             {
@@ -955,6 +1063,19 @@ namespace MeteorSkinLibrary
 
 
         }
+
+        private NewSkin create_skin(int slot, String libraryname)
+        {
+            NewSkin current;
+            current = new NewSkin(-1, selected_char.fullname,slot, libraryname, Library, properties, filebank);
+            current.save_skin_filebank();
+            Library.set_id(current);
+            Library.set_libraryname(current.fullname, slot, libraryname);
+            Library.set_changed_status(current.fullname, slot, "changed");
+
+            return current;
+        }
+
         #endregion
         #region File Info Tab
         //Skin Info Saved button is pressed
@@ -977,15 +1098,29 @@ namespace MeteorSkinLibrary
         {
             try
             {
-                int index = listview_skins.SelectedIndices[0];
-                this.selected_skin.set_library_name(textbox_skin_libraryname.Text);
-                skin_ListBox_reload();
-                state_check();
+                //parsing selected index
+                int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
+
+                if (slot != -1)
+                {
+                    int id = 0;
+                    if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()), out id))
+                    {
+                        if ( id == 0)
+                        {
+                            create_skin((slot + 1), textbox_skin_libraryname.Text);
+                        }else
+                        {
+                            NewSkin current = new NewSkin(id, selected_char.fullname, (slot + 1), Library, properties, filebank);
+                            current.set_libraryname(textbox_skin_libraryname.Text);
+                        }
+                        listview_skins.Items[slot].Text = "Slot "+(slot+1).ToString()+" - "+ textbox_skin_libraryname.Text;
+                        listview_skins.Items[slot].ImageIndex = 1;
+                    }
+                }
 
                 //Selects the last skin
-                focus_skin(index);
-
-
+                focus_skin(slot);
             }
             catch
             {
@@ -996,101 +1131,50 @@ namespace MeteorSkinLibrary
         //When Delete is pressed
         private void skin_delete(object sender, EventArgs e)
         {
-            int index = listview_skins.SelectedIndices[0] + 1;
-            int saved_index = listview_skins.SelectedIndices[0];
-            int max = listview_skins.Items.Count;
 
-            try
+            //parsing selected index
+            int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
+
+            if (slot != -1)
             {
-                if (selected_skin.origin == "Default" | selected_skin.origin == "Default Replaced")
+                int id = 0;
+                if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()), out id))
                 {
-                    write("Thy cannot delete Default slots",1);
-                }
-                else
-                {
-                    try
+                    NewSkin current = new NewSkin(id, selected_char.fullname, (slot + 1), Library, properties, filebank);
+                    if (Directory.Exists(current.filebank_folder))
                     {
-                        selected_char.delete_skin(this.selected_skin.modelslot);
-                        try
-                        {
-                            Library.reload_skin_order(selected_char.fullname);
-
-                            try
-                            {
-                                selected_char.getSkins();
-
-                                skin_ListBox_reload();
-                                skin_details_reload();
-                                write("Deleted slot " + index, 2);
-
-                                try
-                                {
-                                    uichar.setFile(int.Parse(Library.get_ui_char_db_id(listview_characters.SelectedItems[0].Text)), 7, listview_skins.Items.Count);
-
-
-                                }
-                                catch
-                                {
-                                    write("Could not change ui_character_db", 0);
-                                }
-                            }
-                            catch
-                            {
-                                write("Could not reload the skins info", 0);
-                            }
-                        }
-                        catch
-                        {
-                            write("Could not reload the skin order", 0);
-                        }
+                        Directory.Delete(current.filebank_folder, true);
                     }
-                    catch
-                    {
-                        write("Could not delete the skin files", 0);
-                    }
-                }
+                    filebank.delete_skin(selected_char.fullname,id);
+                    Library.delete_skin(selected_char.fullname, (slot + 1));
+                    Library.reload_skin_order(selected_char.fullname);
+                    skin_ListBox_reload();
+                    int count = -1;
+                    count = slot == listview_skins.Items.Count ? listview_skins.Items.Count - 1 : slot;
+                    focus_skin(count);
 
-                //focus
-                state_check();
-                if (!(saved_index + 1 < listview_skins.Items.Count))
-                {
-                    //Selects the last skin
-                    focus_skin(saved_index - 1);
                 }
-                else
-                {
-                    //Selects the last skin
-                    focus_skin(listview_skins.Items.Count - 1);
-                }
-                
-            }
-            catch
-            {
-                write("Could not delete the skin", 0);
             }
         }
 
-        //When Clean Files is pressed
-        private void clean_files_clicked(object sender, EventArgs e)
+        //When Store is pressed
+        private void skin_store(object sender, EventArgs e)
         {
-            try
-            {
-                this.selected_skin.clean_skin(0);
-                try
-                {
-                    skin_details_reload();
-                    skin_ListBox_reload();
-                    state_check();
+            //parsing selected index
+            int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
 
-                }
-                catch
-                {
-                    write("could not reload skin details", 0);
-                }
-            }
-            catch
+            if (slot != -1)
             {
-                write("could not clean files", 0);
+                int id = 0;
+                if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()), out id))
+                {
+                    Library.delete_skin(selected_char.fullname, (slot + 1));
+                    Library.reload_skin_order(selected_char.fullname);
+                    skin_ListBox_reload();
+                    int count = -1;
+                    count = slot == listview_skins.Items.Count ? listview_skins.Items.Count - 1 : slot;
+                    focus_skin(count);
+                }
             }
         }
 
@@ -1099,10 +1183,10 @@ namespace MeteorSkinLibrary
         {
             try
             {
-                this.selected_skin.package_meteor();
+                this.selected_newskin.copy_package();
                 try
                 {
-                    pack_add_item(selected_skin.get_meteor_info());
+                    pack_add_item(selected_newskin.get_meteor_info());
                     write("This skin was added to the current pack session", 2);
                     started_pack = true;
                 }
@@ -1111,8 +1195,10 @@ namespace MeteorSkinLibrary
                     write("This skin was not pushed to the file packer", 0);
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 write("This skin was not packed", 0);
             }
 
@@ -1142,13 +1228,29 @@ namespace MeteorSkinLibrary
         {
             try
             {
-                selected_skin.delete_model(listview_skin_models.SelectedItems[0].Text);
-                skin_details_reload();
+                //parsing selected index
+                int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
+
+                if (slot != -1)
+                {
+                    int id = 0;
+                    if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()), out id))
+                    {
+                        NewSkin current = new NewSkin(id, selected_char.fullname, (slot + 1), Library, properties, filebank);
+                        current.delete_model(listview_skin_models.SelectedItems[0].Text);
+                        listview_skins.Items[slot].ImageIndex = 1;
+                    }else
+                    {
+
+                    }
+                }
+                load_newskin();
                 state_check();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 write("The model could not be properly removed");
             }
         }
@@ -1175,12 +1277,17 @@ namespace MeteorSkinLibrary
         {
             try
             {
-                this.selected_skin.delete_csp(listview_skin_csp.SelectedItems[0].Text);
-                skin_details_reload();
+                this.selected_newskin.delete_csp(listview_skin_csp.SelectedItems[0].Text);
+                listview_skins.Items[listview_skins.SelectedIndices[0]].ImageIndex = 1;
+                load_newskin();
                 state_check();
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+
+                Console.WriteLine(ex.StackTrace);
 
                 write("The csp couldn't be properly removed", 0);
             }
@@ -1245,17 +1352,99 @@ namespace MeteorSkinLibrary
         {
             try
             {
-                String author = textbox_skin_meta_author.Text;
-                String version = textbox_skin_meta_version.Text;
-                String name = textbox_skin_meta_name.Text;
-                String texidfix = textbox_skin_meta_texidfix.Text;
-                this.selected_skin.saveMeta(author, version, name, texidfix);
-            }
-            catch (Exception)
-            {
+                //parsing selected index
+                int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
 
+                if (slot != -1)
+                {
+                    int id = 0;
+                    if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()), out id))
+                    {
+                        if (id == 0)
+                        {
+                            create_skin((slot + 1),textbox_skin_libraryname.Text);
+                            load_newskin();
+                        }
+
+                        String author = textbox_skin_meta_author.Text;
+                        String version = textbox_skin_meta_version.Text;
+                        String name = textbox_skin_meta_name.Text;
+                        String texidfix = textbox_skin_meta_texidfix.Text;
+
+                        this.selected_newskin.set_skin_meta(author, version, name, texidfix);
+                        listview_skins.Items[listview_skins.SelectedIndices[0]].ImageIndex = 1;
+                        load_newskin();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 write("Could not save meta", 0);
             }
+        }
+        #endregion
+        #region DragDrop
+        private void listview_skins_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            listview_skins.DoDragDrop(listview_skins.SelectedItems, DragDropEffects.Move);
+        }
+
+        private void listview_skins_DragEnter(object sender, DragEventArgs e)
+        {
+            int len = e.Data.GetFormats().Length - 1;
+            int i;
+            for (i = 0; i <= len; i++)
+            {
+                if (e.Data.GetFormats()[i].Equals("System.Windows.Forms.ListView+SelectedListViewItemCollection"))
+                {
+                    //The data from the drag source is moved to the target.	
+                    e.Effect = DragDropEffects.Move;
+                }
+            }
+        }
+
+        private void listview_skins_DragDrop(object sender, DragEventArgs e)
+        {
+            //Return if the items are not selected in the ListView control.
+            if (listview_skins.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            //Returns the location of the mouse pointer in the ListView control.
+            Point cp = listview_skins.PointToClient(new Point(e.X, e.Y));
+            //Obtain the item that is located at the specified location of the mouse pointer.
+            ListViewItem dragToItem = listview_skins.GetItemAt(cp.X, cp.Y);
+            if (dragToItem == null)
+            {
+                return;
+            }
+
+            //Obtain the index of the item at the mouse pointer.
+            int dragIndex = dragToItem.Index;
+
+            ListViewItem item = new ListViewItem();
+            item = listview_skins.SelectedItems[0];
+
+            if (dragIndex == item.Index)
+            {
+                return;
+            }
+
+            //Insert the item at the mouse pointer.
+            ListViewItem insertItem = (ListViewItem)item.Clone();
+            listview_skins.Items.Insert(dragIndex, insertItem);
+            //Removes the item from the initial location while 
+            //the item is moved to the new location.
+            listview_skins.Items.Remove(item);
+            Library.move(selected_char.fullname, insertItem.Index + 1, (dragIndex + 1));
+            Library.reload_skin_order(selected_char.fullname);
+
+
+
         }
         #endregion
         #endregion
@@ -1263,7 +1452,7 @@ namespace MeteorSkinLibrary
         //Skin detector 3000 tab
         #region Awesome Skin Detector tab
 
-        #endregion
+        #endregion 
 
         //Skin Packing tab
         #region Skin Packer tab
@@ -1540,6 +1729,7 @@ namespace MeteorSkinLibrary
         #region Interface
 
         #region Focus
+
         //Focuses the UI on a skin
         private void focus_skin(int position)
         {
@@ -1666,7 +1856,7 @@ namespace MeteorSkinLibrary
 
         }
         //Reloads Skin List
-        private void skin_ListBox_reload()
+        public void skin_ListBox_reload()
         {
             try
             {
@@ -1674,46 +1864,41 @@ namespace MeteorSkinLibrary
                 {
                     logg.log("-- Attempting listbox reload");
                     listview_skins.Items.Clear();
-                    selected_char.getSkins();
-                    foreach (Skin skin in selected_char.skins)
+                    ArrayList skins = selected_char.getNewSkins();
+
+                    foreach (String skin in skins)
                     {
                         logg.log("cycling through skins");
-                        ListViewItem item = new ListViewItem("Slot " + skin.slotstring + " - " + skin.libraryname);
-                        if (skin.unknown)
+                        ListViewItem item = new ListViewItem("Slot " + (listview_skins.Items.Count+1).ToString() + " - " + skin);
+
+                        //Checking if default skin
+                        if(Library.get_id(selected_char.fullname, (listview_skins.Items.Count + 1).ToString()) != "0")
                         {
-                            logg.log("unknown skin found at slot " + skin.slotstring);
-                            item.ImageIndex = 0;
-                            item.ForeColor = Color.Purple;
-                        }
-                        else
-                        {
-                            if (skin.missing)
+                            //Checking the changed tab
+                            if(Library.get_changed_status(selected_char.fullname, (listview_skins.Items.Count + 1)) == "changed")
                             {
-                                logg.log("missing files for skin found at slot " + skin.slotstring);
                                 item.ImageIndex = 1;
-                                item.ForeColor = Color.DarkRed;
                             }
                             else
                             {
-                                if (skin.new_files)
-                                {
-                                    logg.log("new files for skin found at slot " + skin.slotstring);
-                                    item.ImageIndex = 2;
-                                }
-                                else
-                                {
-                                    logg.log("imported skin found at slot " + skin.slotstring);
-                                    item.ImageIndex = 3;
-                                }
-
+                                //Build or no tag, which is build
+                                item.ImageIndex = 2;
                             }
                         }
+                        else
+                        {
+                            item.ImageIndex = 0;
+                        }
+                        
+
                         listview_skins.Items.Add(item);
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
 
                 write("Could not reload skin list", 0);
             }
@@ -1740,6 +1925,138 @@ namespace MeteorSkinLibrary
             }
         }
         #endregion
+        #region Loads
+        public void load_newskin()
+        {
+            //parsing selected index
+            int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
+
+            if(slot != -1)
+            {
+                int id = 0;
+                if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()),out id))
+                {
+                    //If Custom skin
+                    if(id != 0)
+                    {
+                        String[] skin_info = filebank.get_skin_info(id, selected_char.fullname);
+                        NewSkin current = new NewSkin(id, selected_char.fullname, 0, Library, properties, filebank);
+                        this.selected_newskin = current;
+
+                        #region Library Info tab
+                        //Setting library info
+                        textbox_skin_slot.Text = (slot + 1).ToString();
+                        textbox_skin_libraryname.Text = skin_info[0].Split(';')[0];
+                        textbox_skin_origin.Text = "File Bank";
+                        #endregion
+
+                        #region FileManager tab
+                        //Clearing file boxes
+                        listview_skin_csp.Clear();
+                        listview_skin_models.Clear();
+
+                        //checking csps
+                        if (skin_info[2] != "")
+                        {
+                            //adding csps
+                            foreach (String csp in skin_info[2].Split(';'))
+                            {
+                                if (csp != "")
+                                {
+                                    listview_skin_csp.Items.Add(csp);
+                                    ListViewItem lvi = new ListViewItem(csp);
+                                }
+                            }
+                        }
+                        //checking models
+                        if (skin_info[1] != "")
+                        {
+                            //adding models
+                            foreach (String model in skin_info[1].Split(';'))
+                            {
+                                if (model != "")
+                                {
+                                    listview_skin_models.Items.Add(model);
+                                    ListViewItem lvi = new ListViewItem(model);
+                                }
+                            }
+                        }
+                        #endregion
+
+                        #region Meta tab load
+                        String meta = current.get_skin_meta();
+                        load_meta(meta);
+                        #endregion
+
+                        #region Action sets
+                        button_skin_delete.Enabled = true;
+                        button_skin_clean.Enabled = true;
+                        #endregion
+
+                    }
+                    //If Default skin
+                    else
+                    {
+                        String libraryname = Library.get_default_skin_libraryname(selected_char.fullname, (slot + 1));
+                        String current_name = Library.get_skin_libraryname(selected_char.fullname, (slot + 1));
+
+                        #region Naming
+                        if (current_name != libraryname)
+                        {
+                            Library.set_libraryname(selected_char.fullname, (slot + 1), libraryname);
+                            skin_ListBox_reload();
+                            focus_skin(slot);
+                        }
+                        #endregion
+
+                        #region Library Info tab
+                        //Setting library info
+                        textbox_skin_slot.Text = (slot + 1).ToString();
+                        textbox_skin_libraryname.Text = libraryname;
+                        textbox_skin_origin.Text = "Default Skin";
+                        #endregion
+
+                        #region FileManager tab
+                        //Clearing file boxes
+                        listview_skin_csp.Clear();
+                        listview_skin_models.Clear();
+                        #endregion
+
+                        #region Meta tab load
+                        load_meta("Nintendo;Version 1;"+ libraryname+";The one it's supposed to have");
+                        #endregion
+                    }
+                }
+            }
+        }
+
+        //Reloads MetaData
+        private void load_meta(String meta)
+        {
+            try
+            {
+                int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
+                if (slot != -1)
+                {
+                    if(meta != "")
+                    {
+                        String[] metas = meta.Split(';');
+                        //Assign values
+                        textbox_skin_meta_author.Text = metas[0];
+                        textbox_skin_meta_version.Text = metas[1];
+                        textbox_skin_meta_name.Text = metas[2];
+                        textbox_skin_meta_texidfix.Text = metas[3];
+                    }
+                    
+                }
+            }
+            catch (Exception)
+            {
+
+                write("Could not reload metadata", 0);
+            }
+        }
+        #endregion
         #region Drag&Drop
         //Changes ui for drop
         private void model_DragEnter(object sender, DragEventArgs e)
@@ -1756,12 +2073,36 @@ namespace MeteorSkinLibrary
             {
                 logg.log("-- dropped a model folder");
                 this.model_folder_list = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-                batch_copy_model(this.model_folder_list, this.selected_skin);
-                state_check();
-                skin_details_reload();
+
+
+                //parsing selected index
+                int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
+
+                if (slot != -1)
+                {
+                    int id = 0;
+                    if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()), out id))
+                    {
+                        if (id == 0)
+                        {
+                            create_skin((slot + 1), textbox_skin_libraryname.Text);
+                            load_newskin();
+                        }
+
+                        add_model_newskin(model_folder_list, selected_newskin);
+                        state_check();
+                        load_newskin();
+                        listview_skins.Items[listview_skins.SelectedIndices[0]].ImageIndex = 1;
+                    }
+                }
+
+
+                
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 write("Could not add the model", 0);
             }
            
@@ -1780,32 +2121,54 @@ namespace MeteorSkinLibrary
             try
             {
                 string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-                if (Directory.Exists(FileList[0]))
+
+                //parsing selected index
+                int slot = listview_skins.SelectedIndices.Count > 0 ? listview_skins.SelectedIndices[0] : -1;
+
+                if (slot != -1)
                 {
-                    logg.log("-- dropped a csp dir");
-                    this.csp_file_list = FileList;
-                    batch_copy_csp(FileList, listview_skins.SelectedIndices[0]);
-                    skin_details_reload();
-                    state_check();
-                }
-                else
-                {
-                    //textBox6.Text = "Item wasn't a Directory";
-                    if (FileList.Length > 0)
+                    int id = 0;
+                    if (int.TryParse(Library.get_id(selected_char.fullname, (slot + 1).ToString()), out id))
                     {
-                        logg.log("-- dropped a csp file");
-                        foreach (String file in FileList)
+                        if (id == 0)
                         {
-                            selected_skin.add_csp(file);
-                            logg.log("detected a csp file " + file);
-                            write("Detected files were moved to the selected slot");
-                            skin_details_reload();
+                            create_skin((slot + 1), textbox_skin_libraryname.Text);
+                            load_newskin();
+                        }
+
+                        if (Directory.Exists(FileList[0]))
+                        {
+                            add_cspfolder_newskin(FileList, selected_newskin);
+                            load_newskin();
+                            state_check();
+                        }
+                        else
+                        {
+                            //textBox6.Text = "Item wasn't a Directory";
+                            if (FileList.Length > 0)
+                            {
+                                logg.log("-- dropped a csp file");
+                                foreach (String file in FileList)
+                                {
+                                    selected_newskin.add_csp(file);
+                                    logg.log("detected a csp file " + file);
+                                    write("Detected files were moved to the selected slot");
+                                }
+                            }
+
+                            load_newskin();
+
+                            listview_skins.Items[listview_skins.SelectedIndices[0]].ImageIndex = 1;
                         }
                     }
                 }
+
+                
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 write("Could not add model", 0);
             }
             
@@ -1826,13 +2189,15 @@ namespace MeteorSkinLibrary
             try
             {
                 logg.log("-- dropped something in the meteor zone");
-                this.slot_file_list = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-                batch_add_slot(listview_skins.Items.Count + 1);
+                String[] filelist = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+                batch_add_meteor(filelist);
                 state_check();
                 skin_details_reload();
             }
-            catch
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
                 write("could not install the meteor skin(s)", 0);
             }
             
@@ -1890,6 +2255,36 @@ namespace MeteorSkinLibrary
                 write("Could not properly make region select", 0);
             }
         }
+
+        //Inits new library converter
+        public Boolean library_check()
+        {
+            return true;
+        }
+
+        public void library_convert()
+        {
+            //Loops through each skin to put it in the bank
+            //Then, sets the association to the skin
+            foreach(String character in Characters)
+            {
+                ArrayList skins = Library.get_skins(character);
+                foreach(String skin_info in skins)
+                {
+                    String id = skin_info.Split(';')[2];
+                    String name = String.Join("_", skin_info.Split(';')[1].Split(Path.GetInvalidFileNameChars()));
+                    String slot = skin_info.Split(';')[0];
+
+                    if(id == "-1")
+                    {
+                        NewSkin skin = new NewSkin(int.Parse(id), character, int.Parse(slot), name, Library, properties,filebank);
+                        skin.get_workspace_skin();
+                    }
+                }
+            }
+            
+        }
+
         #endregion
         #region Messages 
         //Writes string to console
@@ -1898,7 +2293,7 @@ namespace MeteorSkinLibrary
             textConsole.Text = s + "\n" + textConsole.Text;
         }
         //Wirtes a string to the console with a specific status 
-        private void write(String s, int code)
+        public void write(String s, int code)
         {
             switch (code)
             {
@@ -2079,6 +2474,7 @@ namespace MeteorSkinLibrary
             try
             {
                 loadingbox.Value = 100;
+                loadingbox.Style = ProgressBarStyle.Continuous;
                 processbox.Value = 100;
                 enable_controls();
                 processing = false;
@@ -2096,7 +2492,6 @@ namespace MeteorSkinLibrary
             adOptionsToolStripMenuItem.Enabled = false;
             tsmi_config_config.Enabled = false;
             tsmi_help.Enabled = false;
-            tsmi_skin.Enabled = false;
             tsmi_tools.Enabled = false;
             s4EsWorkspaceToolStripMenuItem.Enabled = false;
             backupToolStripMenuItem.Enabled = false;
@@ -2140,9 +2535,6 @@ namespace MeteorSkinLibrary
             //Meteor box
             meteorbox.Enabled = false;
 
-            //Moving controls
-            textbox_skin_move_up.Enabled = false;
-            textbox_skin_move_down.Enabled = false;
 
             //Override tab
             textBox_character_ui.Enabled = false;
@@ -2162,7 +2554,6 @@ namespace MeteorSkinLibrary
             adOptionsToolStripMenuItem.Enabled = true;
             tsmi_config_config.Enabled = true;
             tsmi_help.Enabled = true;
-            tsmi_skin.Enabled = true;
             tsmi_tools.Enabled = true;
             s4EsWorkspaceToolStripMenuItem.Enabled = true;
             backupToolStripMenuItem.Enabled = true;
@@ -2173,9 +2564,6 @@ namespace MeteorSkinLibrary
 
             //Skin Controls
             listview_skins.Enabled = true;
-            textbox_skin_move_up.Enabled = true;
-            textbox_skin_move_down.Enabled = true;
-
 
             //Meteorbox
             meteorbox.Enabled = true;
@@ -3368,31 +3756,6 @@ namespace MeteorSkinLibrary
                 }
             }
         }
-        //used to delete to empty and delete directory with all subs
-        private void batch_delete(String foldername)
-        {
-            if (Directory.Exists(foldername))
-            {
-                String[] directories = Directory.GetDirectories(foldername, "*", SearchOption.AllDirectories);
-                String[] files = Directory.GetFiles(foldername, "*", SearchOption.AllDirectories);
-                if (files.Length != 0)
-                {
-                    foreach (String file in files)
-                    {
-                        File.Delete(file);
-                    }
-                }
-                if (directories.Length != 0)
-                {
-                    foreach (String directory in directories)
-                    {
-                        batch_delete(directory);
-                    }
-
-                }
-
-            }
-        }
         //Backups a folder from a source to a destination
         private void backup_folder(String source, String destination)
         {
@@ -3421,6 +3784,54 @@ namespace MeteorSkinLibrary
                 current++;
             }
 
+
+        }
+
+        private void batch_add_meteor(string[] filelist)
+        {
+            foreach(String file in filelist)
+            {
+                FileAttributes attr = File.GetAttributes(file);
+                if (attr.HasFlag(FileAttributes.Directory))
+                {
+                    String[] folders = Directory.GetDirectories(file, "meteor_*", SearchOption.AllDirectories);
+                    //If a character folder was dropped
+                    if(folders.Length > 0)
+                    {
+                        foreach (String folder in folders)
+                        {
+                            add_meteor(folder);
+                        }
+                    }
+                    //If a meteor folder was dropped
+                    else
+                    {
+                        add_meteor(file);
+                    }
+                    
+                }
+                //If an archive was dropped
+                else
+                {
+                    String extension = file.Split('.')[file.Split('.').Length - 1];
+                    if(extension == "rar" | extension == "zip" | extension == "7z")
+                    {
+                        Console.WriteLine(file);
+                        write("archive unsupported", 0);
+                    }
+                }
+            }
+        }
+
+        private void add_meteor(String folder)
+        {
+            String meteorfolder = Path.GetFileName(folder);
+            String libraryname = meteorfolder.Split('_')[2];
+            NewSkin current = new NewSkin(-1, selected_char.fullname, listview_skins.Items.Count + 1, libraryname, Library, properties, filebank);
+            current.get_meteor_skin(folder);
+            Library.add_skin(selected_char.fullname, listview_skins.Items.Count + 1, libraryname, current.id);
+
+            skin_ListBox_reload();
 
         }
         #endregion
@@ -3801,6 +4212,23 @@ namespace MeteorSkinLibrary
             process_stop();
             label_app_status.Text = "Success";
             write("The backup process was successful", 2);
+        }
+
+        private void convert_worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Launching library update if necessary
+            if (library_check())
+            {
+                library_convert();
+            }
+        }
+
+        private void convert_worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            process_stop();
+            label_app_status.Text = "Complete";
+            label_process_status.Text = "Complete conversion";
+            write("library convert complete", 2);
         }
         #endregion
 
@@ -4348,6 +4776,99 @@ namespace MeteorSkinLibrary
 
 
 
+
+
+
+
+
+        #endregion
+
+        #region Filebank Interactions
+        public void add_model_newskin(String[] dropped_folders, NewSkin skin)
+        {
+            foreach (String folder in dropped_folders)
+            {
+                // Base folder level
+                //It means, folders are inside
+                if (Path.GetFileName(folder) == "model")
+                {
+                    // Model folder level
+                    //Getting directories inside
+                    String[] model_folders = Directory.GetDirectories(folder);
+                    //Checking folder presence
+                    if (model_folders.Length > 0)
+                    {
+                        foreach (String folder2 in model_folders)
+                        {
+                            //body others level
+
+                            String[] body_folders = Directory.GetDirectories(folder2);
+                            foreach (String folder3 in body_folders)
+                            {
+                                //cXX / lXX level
+                                if (Directory.GetFiles(folder3).Length > 0)
+                                {
+                                    skin.add_model(folder3, Path.GetFileName(folder2));
+                                }
+
+                            }
+                        }
+                    }
+                }
+                //body others level
+                //moving a folder that's inside model
+                else
+                {
+                    String[] body_folders = Directory.GetDirectories(folder);
+                    if (Directory.GetFiles(folder).Length == 0)
+                    {
+                        foreach (String folder2 in body_folders)
+                        {
+                            //cXX / lXX level
+                            if (Directory.GetFiles(folder2).Length > 0)
+                            {
+                                skin.add_model(folder2, Path.GetFileName(folder));
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        Regex clXX = new Regex("^[cl]([0-9]{2}|xx|[0-9]x|x[0-9])$", RegexOptions.IgnoreCase);
+                        if (clXX.IsMatch(Path.GetFileName(folder)))
+                        {
+                            skin.add_model(folder, "body");
+                        }
+                    }
+                }
+            }
+        }
+
+        public void add_cspfolder_newskin(String[] dropped_folders, NewSkin skin)
+        {
+            if (dropped_folders.Length != 0)
+            {
+
+                String path = dropped_folders[0];
+
+                String filter = "*.nut";
+
+                String[] files = Directory.GetFiles(path, filter, SearchOption.AllDirectories);
+
+                foreach (String file in files)
+                {
+                    write("File Detected :" + Path.GetFileName(file));
+                    skin.add_csp(file);
+                }
+                write("All detected CSP were moved to slot " + selected_skin.slot);
+            }
+            else
+            {
+
+            }
+
+            skin_details_reload();
+        }
 
 
 
